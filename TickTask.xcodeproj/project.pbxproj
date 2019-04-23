@@ -14,6 +14,18 @@
 		B537080E226F188600ACFA62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B537080C226F188600ACFA62 /* Main.storyboard */; };
 		B537081A226F188600ACFA62 /* TickTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370819226F188600ACFA62 /* TickTaskTests.swift */; };
 		B5370825226F188600ACFA62 /* TickTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370824226F188600ACFA62 /* TickTaskUITests.swift */; };
+		B5370839226F18A200ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370838226F18A200ACFA62 /* AppDelegate.swift */; };
+		B537083B226F18A200ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537083A226F18A200ACFA62 /* ViewController.swift */; };
+		B537083E226F18A200ACFA62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B537083C226F18A200ACFA62 /* Main.storyboard */; };
+		B5370843226F18A300ACFA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5370842226F18A300ACFA62 /* Assets.xcassets */; };
+		B5370846226F18A300ACFA62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5370844226F18A300ACFA62 /* LaunchScreen.storyboard */; };
+		B5370851226F18A300ACFA62 /* TickTask_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370850226F18A300ACFA62 /* TickTask_iOSTests.swift */; };
+		B537085C226F18A300ACFA62 /* TickTask_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537085B226F18A300ACFA62 /* TickTask_iOSUITests.swift */; };
+		B53856C5226F1A65003F9640 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
+		B53856C6226F1A66003F9640 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
+		B53856D4226F1FE9003F9640 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53856D3226F1FE9003F9640 /* Database.swift */; };
+		B53856D5226F1FE9003F9640 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53856D3226F1FE9003F9640 /* Database.swift */; };
+		B53856D6226F2053003F9640 /* TickTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5370807226F188600ACFA62 /* TickTask.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,23 +43,52 @@
 			remoteGlobalIDString = B53707FF226F188600ACFA62;
 			remoteInfo = TickTask;
 		};
+		B537084D226F18A300ACFA62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B53707F8226F188600ACFA62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5370835226F18A200ACFA62;
+			remoteInfo = "TickTask-iOS";
+		};
+		B5370858226F18A300ACFA62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B53707F8226F188600ACFA62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5370835226F18A200ACFA62;
+			remoteInfo = "TickTask-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B5370800226F188600ACFA62 /* TickTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TickTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5370800226F188600ACFA62 /* TickTask-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B5370808226F188600ACFA62 /* TickTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TickTask.xcdatamodel; sourceTree = "<group>"; };
 		B537080A226F188600ACFA62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B537080D226F188600ACFA62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B537080F226F188600ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5370810226F188600ACFA62 /* TickTask.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask.entitlements; sourceTree = "<group>"; };
-		B5370815226F188600ACFA62 /* TickTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TickTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5370810226F188600ACFA62 /* TickTask-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TickTask-macOS.entitlements"; sourceTree = "<group>"; };
+		B5370815226F188600ACFA62 /* TickTask-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370819226F188600ACFA62 /* TickTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTaskTests.swift; sourceTree = "<group>"; };
 		B537081B226F188600ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5370820226F188600ACFA62 /* TickTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TickTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5370820226F188600ACFA62 /* TickTask-macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370824226F188600ACFA62 /* TickTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTaskUITests.swift; sourceTree = "<group>"; };
 		B5370826226F188600ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5370836226F18A200ACFA62 /* TickTask-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5370838226F18A200ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B537083A226F18A200ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B537083D226F18A200ACFA62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B5370842226F18A300ACFA62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5370845226F18A300ACFA62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B5370847226F18A300ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B537084C226F18A300ACFA62 /* TickTask-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5370850226F18A300ACFA62 /* TickTask_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_iOSTests.swift; sourceTree = "<group>"; };
+		B5370852226F18A300ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5370857226F18A300ACFA62 /* TickTask-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B537085B226F18A300ACFA62 /* TickTask_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_iOSUITests.swift; sourceTree = "<group>"; };
+		B537085D226F18A300ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5370867226F18FB00ACFA62 /* TickTask-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TickTask-iOS.entitlements"; sourceTree = "<group>"; };
+		B53856D3226F1FE9003F9640 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,15 +113,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5370833226F18A200ACFA62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5370849226F18A300ACFA62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5370854226F18A300ACFA62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B53707F7226F188600ACFA62 = {
 			isa = PBXGroup;
 			children = (
-				B5370802226F188600ACFA62 /* TickTask */,
+				B5370802226F188600ACFA62 /* TickTask-macOS */,
 				B5370818226F188600ACFA62 /* TickTaskTests */,
 				B5370823226F188600ACFA62 /* TickTaskUITests */,
+				B5370837226F18A200ACFA62 /* TickTask-iOS */,
+				B537084F226F18A300ACFA62 /* TickTask-iOSTests */,
+				B537085A226F18A300ACFA62 /* TickTask-iOSUITests */,
 				B5370801226F188600ACFA62 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,14 +153,17 @@
 		B5370801226F188600ACFA62 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5370800226F188600ACFA62 /* TickTask.app */,
-				B5370815226F188600ACFA62 /* TickTaskTests.xctest */,
-				B5370820226F188600ACFA62 /* TickTaskUITests.xctest */,
+				B5370800226F188600ACFA62 /* TickTask-macOS.app */,
+				B5370815226F188600ACFA62 /* TickTask-macOSTests.xctest */,
+				B5370820226F188600ACFA62 /* TickTask-macOSUITests.xctest */,
+				B5370836226F18A200ACFA62 /* TickTask-iOS.app */,
+				B537084C226F18A300ACFA62 /* TickTask-iOSTests.xctest */,
+				B5370857226F18A300ACFA62 /* TickTask-iOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B5370802226F188600ACFA62 /* TickTask */ = {
+		B5370802226F188600ACFA62 /* TickTask-macOS */ = {
 			isa = PBXGroup;
 			children = (
 				B5370803226F188600ACFA62 /* AppDelegate.swift */,
@@ -103,10 +171,11 @@
 				B537080A226F188600ACFA62 /* Assets.xcassets */,
 				B537080C226F188600ACFA62 /* Main.storyboard */,
 				B537080F226F188600ACFA62 /* Info.plist */,
-				B5370810226F188600ACFA62 /* TickTask.entitlements */,
+				B5370810226F188600ACFA62 /* TickTask-macOS.entitlements */,
 				B5370807226F188600ACFA62 /* TickTask.xcdatamodeld */,
+				B53856D3226F1FE9003F9640 /* Database.swift */,
 			);
-			path = TickTask;
+			path = "TickTask-macOS";
 			sourceTree = "<group>";
 		};
 		B5370818226F188600ACFA62 /* TickTaskTests */ = {
@@ -127,12 +196,44 @@
 			path = TickTaskUITests;
 			sourceTree = "<group>";
 		};
+		B5370837226F18A200ACFA62 /* TickTask-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B5370867226F18FB00ACFA62 /* TickTask-iOS.entitlements */,
+				B5370838226F18A200ACFA62 /* AppDelegate.swift */,
+				B537083A226F18A200ACFA62 /* ViewController.swift */,
+				B537083C226F18A200ACFA62 /* Main.storyboard */,
+				B5370842226F18A300ACFA62 /* Assets.xcassets */,
+				B5370844226F18A300ACFA62 /* LaunchScreen.storyboard */,
+				B5370847226F18A300ACFA62 /* Info.plist */,
+			);
+			path = "TickTask-iOS";
+			sourceTree = "<group>";
+		};
+		B537084F226F18A300ACFA62 /* TickTask-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				B5370850226F18A300ACFA62 /* TickTask_iOSTests.swift */,
+				B5370852226F18A300ACFA62 /* Info.plist */,
+			);
+			path = "TickTask-iOSTests";
+			sourceTree = "<group>";
+		};
+		B537085A226F18A300ACFA62 /* TickTask-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B537085B226F18A300ACFA62 /* TickTask_iOSUITests.swift */,
+				B537085D226F18A300ACFA62 /* Info.plist */,
+			);
+			path = "TickTask-iOSUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B53707FF226F188600ACFA62 /* TickTask */ = {
+		B53707FF226F188600ACFA62 /* TickTask-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5370829226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask" */;
+			buildConfigurationList = B5370829226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-macOS" */;
 			buildPhases = (
 				B53707FC226F188600ACFA62 /* Sources */,
 				B53707FD226F188600ACFA62 /* Frameworks */,
@@ -142,14 +243,14 @@
 			);
 			dependencies = (
 			);
-			name = TickTask;
+			name = "TickTask-macOS";
 			productName = TickTask;
-			productReference = B5370800226F188600ACFA62 /* TickTask.app */;
+			productReference = B5370800226F188600ACFA62 /* TickTask-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B5370814226F188600ACFA62 /* TickTaskTests */ = {
+		B5370814226F188600ACFA62 /* TickTask-macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B537082C226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTaskTests" */;
+			buildConfigurationList = B537082C226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-macOSTests" */;
 			buildPhases = (
 				B5370811226F188600ACFA62 /* Sources */,
 				B5370812226F188600ACFA62 /* Frameworks */,
@@ -160,14 +261,14 @@
 			dependencies = (
 				B5370817226F188600ACFA62 /* PBXTargetDependency */,
 			);
-			name = TickTaskTests;
+			name = "TickTask-macOSTests";
 			productName = TickTaskTests;
-			productReference = B5370815226F188600ACFA62 /* TickTaskTests.xctest */;
+			productReference = B5370815226F188600ACFA62 /* TickTask-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B537081F226F188600ACFA62 /* TickTaskUITests */ = {
+		B537081F226F188600ACFA62 /* TickTask-macOSUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B537082F226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTaskUITests" */;
+			buildConfigurationList = B537082F226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-macOSUITests" */;
 			buildPhases = (
 				B537081C226F188600ACFA62 /* Sources */,
 				B537081D226F188600ACFA62 /* Frameworks */,
@@ -178,9 +279,62 @@
 			dependencies = (
 				B5370822226F188600ACFA62 /* PBXTargetDependency */,
 			);
-			name = TickTaskUITests;
+			name = "TickTask-macOSUITests";
 			productName = TickTaskUITests;
-			productReference = B5370820226F188600ACFA62 /* TickTaskUITests.xctest */;
+			productReference = B5370820226F188600ACFA62 /* TickTask-macOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B5370835226F18A200ACFA62 /* TickTask-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B537085E226F18A300ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-iOS" */;
+			buildPhases = (
+				B5370832226F18A200ACFA62 /* Sources */,
+				B5370833226F18A200ACFA62 /* Frameworks */,
+				B5370834226F18A200ACFA62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TickTask-iOS";
+			productName = "TickTask-iOS";
+			productReference = B5370836226F18A200ACFA62 /* TickTask-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B537084B226F18A300ACFA62 /* TickTask-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5370861226F18A300ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-iOSTests" */;
+			buildPhases = (
+				B5370848226F18A300ACFA62 /* Sources */,
+				B5370849226F18A300ACFA62 /* Frameworks */,
+				B537084A226F18A300ACFA62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B537084E226F18A300ACFA62 /* PBXTargetDependency */,
+			);
+			name = "TickTask-iOSTests";
+			productName = "TickTask-iOSTests";
+			productReference = B537084C226F18A300ACFA62 /* TickTask-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B5370856226F18A300ACFA62 /* TickTask-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5370864226F18A300ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-iOSUITests" */;
+			buildPhases = (
+				B5370853226F18A300ACFA62 /* Sources */,
+				B5370854226F18A300ACFA62 /* Frameworks */,
+				B5370855226F18A300ACFA62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5370859226F18A300ACFA62 /* PBXTargetDependency */,
+			);
+			name = "TickTask-iOSUITests";
+			productName = "TickTask-iOSUITests";
+			productReference = B5370857226F18A300ACFA62 /* TickTask-iOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -195,6 +349,14 @@
 				TargetAttributes = {
 					B53707FF226F188600ACFA62 = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+							com.apple.HardenedRuntime = {
+								enabled = 0;
+							};
+						};
 					};
 					B5370814226F188600ACFA62 = {
 						CreatedOnToolsVersion = 10.2;
@@ -203,6 +365,25 @@
 					B537081F226F188600ACFA62 = {
 						CreatedOnToolsVersion = 10.2;
 						TestTargetID = B53707FF226F188600ACFA62;
+					};
+					B5370835226F18A200ACFA62 = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
+					};
+					B537084B226F18A300ACFA62 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = B5370835226F18A200ACFA62;
+					};
+					B5370856226F18A300ACFA62 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = B5370835226F18A200ACFA62;
 					};
 				};
 			};
@@ -219,9 +400,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B53707FF226F188600ACFA62 /* TickTask */,
-				B5370814226F188600ACFA62 /* TickTaskTests */,
-				B537081F226F188600ACFA62 /* TickTaskUITests */,
+				B53707FF226F188600ACFA62 /* TickTask-macOS */,
+				B5370814226F188600ACFA62 /* TickTask-macOSTests */,
+				B537081F226F188600ACFA62 /* TickTask-macOSUITests */,
+				B5370835226F18A200ACFA62 /* TickTask-iOS */,
+				B537084B226F18A300ACFA62 /* TickTask-iOSTests */,
+				B5370856226F18A300ACFA62 /* TickTask-iOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +434,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5370834226F18A200ACFA62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5370846226F18A300ACFA62 /* LaunchScreen.storyboard in Resources */,
+				B5370843226F18A300ACFA62 /* Assets.xcassets in Resources */,
+				B537083E226F18A200ACFA62 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B537084A226F18A300ACFA62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5370855226F18A300ACFA62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -259,6 +467,7 @@
 			files = (
 				B5370806226F188600ACFA62 /* ViewController.swift in Sources */,
 				B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */,
+				B53856D4226F1FE9003F9640 /* Database.swift in Sources */,
 				B5370809226F188600ACFA62 /* TickTask.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B53856C5226F1A65003F9640 /* ViewController.swift in Sources */,
 				B537081A226F188600ACFA62 /* TickTaskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,7 +485,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B53856C6226F1A66003F9640 /* ViewController.swift in Sources */,
 				B5370825226F188600ACFA62 /* TickTaskUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5370832226F18A200ACFA62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B537083B226F18A200ACFA62 /* ViewController.swift in Sources */,
+				B53856D5226F1FE9003F9640 /* Database.swift in Sources */,
+				B53856D6226F2053003F9640 /* TickTask.xcdatamodeld in Sources */,
+				B5370839226F18A200ACFA62 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5370848226F18A300ACFA62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5370851226F18A300ACFA62 /* TickTask_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5370853226F18A300ACFA62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B537085C226F18A300ACFA62 /* TickTask_iOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,13 +522,23 @@
 /* Begin PBXTargetDependency section */
 		B5370817226F188600ACFA62 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B53707FF226F188600ACFA62 /* TickTask */;
+			target = B53707FF226F188600ACFA62 /* TickTask-macOS */;
 			targetProxy = B5370816226F188600ACFA62 /* PBXContainerItemProxy */;
 		};
 		B5370822226F188600ACFA62 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B53707FF226F188600ACFA62 /* TickTask */;
+			target = B53707FF226F188600ACFA62 /* TickTask-macOS */;
 			targetProxy = B5370821226F188600ACFA62 /* PBXContainerItemProxy */;
+		};
+		B537084E226F18A300ACFA62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5370835226F18A200ACFA62 /* TickTask-iOS */;
+			targetProxy = B537084D226F18A300ACFA62 /* PBXContainerItemProxy */;
+		};
+		B5370859226F18A300ACFA62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5370835226F18A200ACFA62 /* TickTask-iOS */;
+			targetProxy = B5370858226F18A300ACFA62 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -303,6 +551,22 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		B537083C226F18A200ACFA62 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B537083D226F18A200ACFA62 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B5370844226F18A300ACFA62 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5370845226F18A300ACFA62 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -312,8 +576,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -343,7 +607,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -357,13 +621,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -373,8 +640,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -404,20 +671,24 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -425,17 +696,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TickTask/TickTask.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TickTask-macOS/TickTask-macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = TickTask/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.joshgrant.TickTask;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -444,17 +718,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TickTask/TickTask.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TickTask-macOS/TickTask-macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = TickTask/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.joshgrant.TickTask;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -476,7 +753,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.joshgrant.TickTaskTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask.app/Contents/MacOS/TickTask";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask-macOS.app/Contents/MacOS/TickTask-macOS";
 			};
 			name = Debug;
 		};
@@ -497,7 +774,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.joshgrant.TickTaskTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask.app/Contents/MacOS/TickTask";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask-macOS.app/Contents/MacOS/TickTask-macOS";
 			};
 			name = Release;
 		};
@@ -541,6 +818,147 @@
 			};
 			name = Release;
 		};
+		B537085F226F18A300ACFA62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TickTask-iOS/TickTask-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 685257RUQP;
+				INFOPLIST_FILE = "TickTask-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B5370860226F18A300ACFA62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TickTask-iOS/TickTask-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 685257RUQP;
+				INFOPLIST_FILE = "TickTask-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B5370862226F18A300ACFA62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 685257RUQP;
+				INFOPLIST_FILE = "TickTask-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask-iOS.app/TickTask-iOS";
+			};
+			name = Debug;
+		};
+		B5370863226F18A300ACFA62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 685257RUQP;
+				INFOPLIST_FILE = "TickTask-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask-iOS.app/TickTask-iOS";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B5370865226F18A300ACFA62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 685257RUQP;
+				INFOPLIST_FILE = "TickTask-iOSUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TickTask-iOS";
+			};
+			name = Debug;
+		};
+		B5370866226F18A300ACFA62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 685257RUQP;
+				INFOPLIST_FILE = "TickTask-iOSUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TickTask-iOS";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -553,7 +971,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5370829226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask" */ = {
+		B5370829226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B537082A226F188600ACFA62 /* Debug */,
@@ -562,7 +980,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B537082C226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTaskTests" */ = {
+		B537082C226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B537082D226F188600ACFA62 /* Debug */,
@@ -571,11 +989,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B537082F226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTaskUITests" */ = {
+		B537082F226F188600ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-macOSUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5370830226F188600ACFA62 /* Debug */,
 				B5370831226F188600ACFA62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B537085E226F18A300ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B537085F226F18A300ACFA62 /* Debug */,
+				B5370860226F18A300ACFA62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5370861226F18A300ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5370862226F18A300ACFA62 /* Debug */,
+				B5370863226F18A300ACFA62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5370864226F18A300ACFA62 /* Build configuration list for PBXNativeTarget "TickTask-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5370865226F18A300ACFA62 /* Debug */,
+				B5370866226F18A300ACFA62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

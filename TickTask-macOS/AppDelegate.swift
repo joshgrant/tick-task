@@ -101,11 +101,6 @@ extension AppDelegate
         return menu
     }
     
-    @objc func sex()
-    {
-        print("Sex")
-    }
-    
     func viewControllerMenuItem(viewController: ViewController) -> NSMenuItem
     {
         let item = NSMenuItem()

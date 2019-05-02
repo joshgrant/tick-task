@@ -28,27 +28,16 @@ class ViewController: NSViewController
     var secondTimer: Timer?
     var startDate: Date?
     var currentDurationWithoutCountdown: TimeInterval = 0
-    var currentTaskGroup: TaskGroup?
     var maxMinutes: CGFloat = 60.0
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     var statusItem: NSStatusItem?
-    var optionKeyPressed: Bool = false
-    
-    var dropDownView: DropDownView?
     
     // MARK: Interface Outlets
     
-//    @IBOutlet weak var nameField: NSTextField!
     @IBOutlet weak var durationField: NSTextField!
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var panGesture: NSPanGestureRecognizer!
     @IBOutlet weak var stackView: NSStackView!
-    
-    // MARK: Overridden Properties
-    
-//    override var acceptsFirstResponder: Bool {
-//        return true
-//    }
     
     // MARK: View Lifecycle
     
@@ -102,20 +91,6 @@ class ViewController: NSViewController
             // Enable or disable features based on authorization.
         }
     }
-    
-    // Let's try to use cocoa bindings...
-//    func populateTaskGroupFieldWithValueFromUserDefaults()
-//    {
-//        if let name = UserDefaults.standard.string(forKey: currentTaskGroupNameKey)
-//        {
-//            nameField.stringValue = name
-//        }
-//
-//        if let taskGroup = currentTaskGroup
-//        {
-//            setTooltipForTaskNameField(taskGroup: taskGroup)
-//        }
-//    }
     
     func configureSceneView()
     {
@@ -279,10 +254,14 @@ class ViewController: NSViewController
     
     func scheduleNotification()
     {
+        let minutes = minutesFromTimeInterval(timeInterval: self.currentDurationWithoutCountdown)
+        
         let content = UNMutableNotificationContent()
-        content.title = self.currentTaskGroup?.name ?? "Task Complete"
-        content.body = "Completed at \(Date())"
+        content.title = "Task Done"
+        // The body of the notification. Use -[NSString localizedUserNotificationStringForKey:arguments:] to provide a string that will be localized at the time that the notification is presented.
+        content.body = "\(minutes) minutes completed"
         content.sound = UNNotificationSound.default
+        
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentDurationWithoutCountdown, repeats: false)
         
@@ -308,19 +287,27 @@ class ViewController: NSViewController
                      repeats: true)
     }
     
-    // ---------------------------
-    
     func updateDurationField(with angle: CGFloat)
     {
         let timeInterval = angleToTimeInterval(angle)
         // Separate components into minutes and seconds
-        let minutes = Int(floor(timeInterval / 60))
-        let seconds = Int(timeInterval) % 60
+        let minutes = minutesFromTimeInterval(timeInterval: timeInterval)
+        let seconds = secondsFromTimeInterval(timeInterval: timeInterval)
         
         let string = "\(String(format: "%02d", minutes))m \(String(format: "%02d", seconds))s"
         
         // Then, set the duration field
         durationField.stringValue = string
+    }
+    
+    func minutesFromTimeInterval(timeInterval: TimeInterval) -> Int
+    {
+        return Int(floor(timeInterval / 60))
+    }
+    
+    func secondsFromTimeInterval(timeInterval: TimeInterval) -> Int
+    {
+        return Int(timeInterval) % 60
     }
     
     func currentCountdownTimerValue() -> TimeInterval
@@ -335,23 +322,10 @@ class ViewController: NSViewController
     
     func countdownTimerDidComplete(timer: Timer)
     {
-        // Add a new task to the task group
-        // Reset the timer to the last number
-        // Sound an alarm
-        
         let task = Task(context: Database.container.viewContext)
         task.duration = currentDurationWithoutCountdown
         
-//        if let currentTaskGroup = currentTaskGroup
-//        {
-//            currentTaskGroup.addToTasks(task)
-//            setTooltipForTaskNameField(taskGroup: currentTaskGroup)
-//        }
-        
-        Database.save()
-        
         resetTimerAndDate()
-        
     }
     
     func userSetTimerDurationToZero()
@@ -371,137 +345,7 @@ class ViewController: NSViewController
         secondTimer = nil
         startDate = nil
     }
-    
-    // func setTooltipForTaskNameField
-    
-//    func setTooltipForTaskNameField(taskGroup: TaskGroup)
-//    {
-//        nameField.toolTip = "\(taskGroup.totalDuration)"
-//    }
-    
-    // func displayAutocompleteDropdownList()
-    
-    // func hideAutocompleteDropdownList()
-    
-    // func highlightSelectedDropdownRow(highlighted: Bool)
-    
-    // func navigateToPreviousAutocompleteSuggestion()
-    
-    // func navigateToNextDropdownRow()
-    
-    // func autocompleteSuggestionSelected(suggestion: String)
-    // Use the suggestion from the autocomplete
-    
-    // func showRightClickMenuOnDropdownList()
-    
-    // func hideRightClickMenuOnDropdownList()
-    
-    // func handleTabToNextInterfaceElement()
-    
-    // func handleEnterKeyPress()
-    // If the button is selected - start or stop
-    // If an autocomplete suggestion is selected - change the current task
-    
-//    func handleNameTextFieldDidEndEditing(nameTextField: NSTextField)
-//    {
-//        if let exactMatch = TaskGroup.taskGroupMatching(name: nameTextField.stringValue)
-//        {
-//            currentTaskGroup = exactMatch
-//        }
-//        else
-//        {
-//            let newTaskGroup = TaskGroup.createNewTaskGroup(name: nameTextField.stringValue)
-//            currentTaskGroup = newTaskGroup
-//            saveUserDefaultForTaskGroup(taskGroup: newTaskGroup)
-//        }
-//
-////        if let taskGroup = currentTaskGroup
-////        {
-////            setTooltipForTaskNameField(taskGroup: taskGroup)
-////        }
-//    }
-    
-//    func saveUserDefaultForTaskGroup(taskGroup: TaskGroup)
-//    {
-//        UserDefaults.standard.set(taskGroup.name, forKey: currentTaskGroupNameKey)
-//        UserDefaults.standard.set(currentDurationWithoutCountdown, forKey: currentTaskDurationKey)
-//    }
-//
-//    override func touchesBegan(with event: NSEvent) {
-//        print("View cont")
-//    }
 }
-
-/*
-extension ViewController: NSTextFieldDelegate
-{
-    func controlTextDidEndEditing(_ obj: Notification)
-    {
-        if let textField = obj.object as? NSTextField
-        {
-            if textField.isEqual(nameField)
-            {
-                handleNameTextFieldDidEndEditing(nameTextField: textField)
-            }
-        }
-        
-        
-        
-//        dropDownView?.removeFromSuperview()
-//        dropDownView = nil
-    }
-    
-    func controlTextDidBeginEditing(_ obj: Notification)
-    {
-        //
-        print("Prepare the dropdown menu")
-        print("Show the dropdown menu")
-        
-//        dropDownView = DropDownView.initFromNib()
-//        dropDownView?.delegate = self
-//
-//        dropDownView?.translatesAutoresizingMaskIntoConstraints = false
-//
-//        self.view.addSubview(dropDownView!)
-//
-//        dropDownView?.frame = NSRect(x: 0, y: self.nameField.frame.origin.y - self.nameField.bounds.size.height, width: self.view.bounds.size.width, height: 60)
-    }
-    
-    func controlTextDidChange(_ obj: Notification)
-    {
-        print("Update the contents of the dropdown menu")
-        
-        if let textField = obj.object as? NSTextField
-        {
-//            dropDownView?.handleNewText(text: textField.stringValue)
-            
-            let groups = TaskGroup.taskGroupsMatchingAutocompleteSegment(segment: textField.stringValue)
-            
-            for view in self.stackView.subviews
-            {
-                if let view = view as? DropDownItemView
-                {
-                    self.stackView.removeView(view)
-                }
-            }
-            
-            for group in groups
-            {
-                if let newDropDownView = DropDownItemView.initFromNib()
-                {
-                    newDropDownView.delegate = self
-                    newDropDownView.taskGroup = group
-                    newDropDownView.taskNameLabel.stringValue = group.name ?? ""
-                    newDropDownView.taskDurationLabel.stringValue = "\(group.totalDuration)"
-//                    self.stackView.addView(newDropDownView, in: .bottom)
-                    stackView.addView(newDropDownView, in: .top)
-                }
-            }
-        }
-    }
-}
-
-*/
 
 // MARK: Utility Functions
 
@@ -541,18 +385,3 @@ extension ViewController
         return TimeInterval(ceil(seconds))
     }
 }
-
-//extension ViewController: DropDownDelegate
-//{
-//    func dropDownItemWasSelected(item: DropDownItemView)
-//    {
-//        print(item)
-//        print(item.taskNameLabel.stringValue)
-//
-//        currentTaskGroup = item.taskGroup
-//        nameField.stringValue = currentTaskGroup?.name ?? ""
-//
-//        dropDownView?.removeFromSuperview()
-//        dropDownView = nil
-//    }
-//}

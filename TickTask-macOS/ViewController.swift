@@ -29,7 +29,6 @@ class ViewController: NSViewController
     var startDate: Date?
     var currentDurationWithoutCountdown: TimeInterval = 0
     var currentTaskGroup: TaskGroup?
-    var dragStartLocation: NSPoint?
     var maxMinutes: CGFloat = 60.0
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     var statusItem: NSStatusItem?
@@ -54,28 +53,11 @@ class ViewController: NSViewController
     {
         self.view.translatesAutoresizingMaskIntoConstraints = true
         
-        let center = UNUserNotificationCenter.current()
-        // Request permission to display alerts and play sounds.
-        center.requestAuthorization(options: [.alert, .sound])
-        { (granted, error) in
-            // Enable or disable features based on authorization.
-        }
+        requestAuthorizationToDisplayNotifications()
         
-        if let name = UserDefaults.standard.string(forKey: currentTaskGroupNameKey)
-        {
-            nameField.stringValue = name
-        }
+        populateTaskGroupFieldWithValueFromUserDefaults()
         
-        if let scene = SCNScene(named: "SceneKitAssets.scnassets/timer-3.scn")
-        {
-            if let sceneView = sceneView
-            {
-                sceneView.scene = scene
-                sceneView.allowsCameraControl = false
-                sceneView.antialiasingMode = .multisampling16X
-                sceneView.resignFirstResponder()
-            }
-        }
+        configureSceneView()
         
         super.viewDidLoad()
     }
@@ -85,6 +67,8 @@ class ViewController: NSViewController
         if let _ = startDate
         {
             let currentTimeInterval = currentDurationWithoutCountdown - currentCountdownTimerValue()
+            
+            updateStatusItemIconWithTimeInterval(timeInterval: currentTimeInterval)
             updateDurationFieldWithTimeInterval(timeInterval: currentTimeInterval)
             updateDialRotationWithTimeInterval(timeInterval: currentTimeInterval)
             
@@ -95,43 +79,101 @@ class ViewController: NSViewController
         }
     }
     
+    func requestAuthorizationToDisplayNotifications()
+    {
+        let center = UNUserNotificationCenter.current()
+        
+        // Request permission to display alerts and play sounds.
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
+    }
+    
+    func populateTaskGroupFieldWithValueFromUserDefaults()
+    {
+        if let name = UserDefaults.standard.string(forKey: currentTaskGroupNameKey)
+        {
+            nameField.stringValue = name
+        }
+        
+        if let taskGroup = currentTaskGroup
+        {
+            setTooltipForTaskNameField(taskGroup: taskGroup)
+        }
+    }
+    
+    func configureSceneView()
+    {
+        if let sceneView = sceneView
+        {
+            if let scene = SCNScene(named: "SceneKitAssets.scnassets/timer-3.scn")
+            {
+                sceneView.scene = scene
+                sceneView.allowsCameraControl = false
+                sceneView.antialiasingMode = .multisampling16X
+                //                sceneView.resignFirstResponder()
+            }
+        }
+    }
+    
     // MARK: Interface Actions
     
     @IBAction func handlePanGesture(_ gesture: NSPanGestureRecognizer)
     {
+        guard let dial = getDial() else { return }
+        
+        let location = gesture.location(in: sceneView)
+        
+        let origin = calculateOriginOfSceneView(sceneView: sceneView)
+        
+        let angle = calculateAngleOfDialFromOrigin(origin: origin, andCursorLocation: location)
+        
         switch gesture.state
         {
         case .began:
-            setDialStateTo(state: .userDragging)
-            dragStartLocation = gesture.location(in: sceneView)
-            secondTimer?.invalidate()
-            secondTimer = nil
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            userBeganDraggingDial(dial: dial, angle: angle)
         case .changed:
-            let currentLocation = gesture.location(in: sceneView)
-            updateDialRotation(cursorLocation: currentLocation)
+            updateDialRotation(dial: dial, angle: angle)
         case .ended:
-            // Unless the user drags it back to zero...
-            
-            startDate = Date()
-            setTimerToActive()
-            setDialStateTo(state: .countdown)
+            userEndedDraggingDial(dial: dial, angle: angle)
         default:
-            print("Braken")
+            debugPrint("Gesture state not handled.")
+        }
+    }
+    
+    func userBeganDraggingDial(dial: SCNNode, angle: CGFloat)
+    {
+        setDial(dial, toState: .userDragging)
+        
+        secondTimer?.invalidate()
+        secondTimer = nil
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+    
+    func userEndedDraggingDial(dial: SCNNode, angle: CGFloat)
+    {
+        // Unless the user drags it back to zero...
+        
+        if angle == 0
+        {
+            userSetTimerDurationToZero()
+        }
+        else
+        {
+            setTimerToActive()
         }
     }
     
     func calculateOriginOfSceneView(sceneView: SCNView) -> NSPoint
     {
-        let origin = NSPoint(x: sceneView.bounds.size.width / 2.0, y: sceneView.bounds.size.height / 2.0)
-        return origin
+        return NSPoint(x: sceneView.bounds.size.width / 2.0, y: sceneView.bounds.size.height / 2.0)
     }
     
     func calculateAngleOfDialFromOrigin(origin: NSPoint, andCursorLocation location: NSPoint) -> CGFloat
     {
         // We calculate the angle of the mouse location from the origin
         // Angle 0 is the right side of the unit circle
-        var angle = atan2(cursorLocation.y - origin.y, cursorLocation.x - origin.x)
+        var angle = atan2(location.y - origin.y, location.x - origin.x)
         
         // Subtract pi/2 (90 degrees) to start the dial at the top
         angle -= CGFloat.pi/2
@@ -153,98 +195,101 @@ class ViewController: NSViewController
         return angle
     }
     
-    func updateDialRotation(cursorLocation: NSPoint)
+    func updateDialRotation(dial: SCNNode, angle: CGFloat)
     {
-        if let scene = sceneView.scene
-        {
-            if let dial = scene.rootNode.childNode(withName: "Dial", recursively: false)
-            {
-                let origin = calculateOriginOfSceneView(sceneView: sceneView)
-                
-                let angle = calculateAngleOfDialFromOrigin(origin: origin, andCursorLocation: cursorLocation)
-                
-                dial.runAction(SCNAction.rotateTo(x: 0, y: angle, z: 0, duration: 0))
-                
-                // Update the timer label?
-                
-                updateDurationFieldWithTimeInterval(timeInterval: angleToTimeInterval(angle))
-            }
-        }
+        dial.runAction(SCNAction.rotateTo(x: 0, y: angle, z: 0, duration: 0))
+        
+        updateDurationFieldWithTimeInterval(timeInterval: angleToTimeInterval(angle))
+        updateStatusItemIconWithTimeInterval(timeInterval: angleToTimeInterval(angle))
     }
     
-    func setDialStateTo(state: DialState)
+    func getDial() -> SCNNode?
     {
+        guard let scene = sceneView.scene else { return nil }
+        
+        if let dial = scene.rootNode.childNode(withName: "Dial", recursively: false)
+        {
+            return dial
+        }
+        
+        return nil
+    }
+    
+    func setDial(_ dial: SCNNode, toState state: DialState)
+    {
+        let color: NSColor
+        
         switch state
         {
         case .inactive:
-            dial.geometry?.firstMaterial?.diffuse.contents = NSColor.green
-            dial.geometry?.firstMaterial?.emission.contents = NSColor.green
+            color = .green
         case .userDragging:
-            dial.geometry?.firstMaterial?.diffuse.contents = NSColor.orange
-            dial.geometry?.firstMaterial?.emission.contents = NSColor.orange
+            color = .orange
         case .countdown:
-            dial.geometry?.firstMaterial?.diffuse.contents = NSColor.red
-            dial.geometry?.firstMaterial?.emission.contents = NSColor.red
+            color = .red
         }
+        
+        dial.geometry?.firstMaterial?.diffuse.contents = color
+        dial.geometry?.firstMaterial?.emission.contents = color
     }
     
     func updateDialRotationWithTimeInterval(timeInterval: TimeInterval)
     {
-        if let scene = sceneView.scene
-        {
-            if let dial = scene.rootNode.childNode(withName: "Dial", recursively: false)
-            {
-                dial.runAction(SCNAction.rotateTo(x: 0, y: timeIntervalToAngle(timeInterval), z: 0, duration: 0))
-            }
-        }
+        guard let dial = getDial() else { return }
+        
+        dial.runAction(SCNAction.rotateTo(x: 0, y: timeIntervalToAngle(timeInterval), z: 0, duration: 0))
     }
     
     func setTimerToActive()
     {
-        if let scene = sceneView.scene
-        {
-            if let dial = scene.rootNode.childNode(withName: "Dial", recursively: false)
-            {
-                dial.geometry?.firstMaterial?.diffuse.contents = NSColor.red
-                dial.geometry?.firstMaterial?.emission.contents = NSColor.red
-                
-                currentDurationWithoutCountdown = angleToTimeInterval(dial.eulerAngles.y)
-                
-                secondTimer = initializeSecondTimer()
-                RunLoop.main.add(secondTimer!, forMode: .common)
-            }
-        }
+        guard let dial = getDial() else { return }
+        
+        setDial(dial, toState: .countdown)
+        
+        startDate = Date()
+        
+        currentDurationWithoutCountdown = angleToTimeInterval(dial.eulerAngles.y)
+        
+        secondTimer = initializeSecondTimer()
+        RunLoop.main.add(secondTimer!, forMode: .common)
         
         // We need more of this...
         guard currentDurationWithoutCountdown > 0 else { return }
         
+        createNotification()
+    }
+    
+    func createNotification()
+    {
         let notificationCenter = UNUserNotificationCenter.current()
         
         notificationCenter.getNotificationSettings { (settings) in
             // Do not schedule notifications if not authorized.
-            guard settings.authorizationStatus == .authorized else {return}
+            guard settings.authorizationStatus == .authorized else { return }
             
-
-                let content = UNMutableNotificationContent()
-                content.title = self.currentTaskGroup?.name ?? "Task Complete"
-                content.body = "Completed at \(Date())"
-            content.sound = UNNotificationSound.default
-                
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentDurationWithoutCountdown, repeats: false)
-            
-            let uuidString = UUID().uuidString
-            let request = UNNotificationRequest(identifier: uuidString,
-                                                content: content, trigger: trigger)
-            
-            // Schedule the request with the system.
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.add(request) { (error) in
-                if error != nil {
-                    // Handle any errors.
-                }
+            self.scheduleNotification()
+        }
+    }
+    
+    func scheduleNotification()
+    {
+        let content = UNMutableNotificationContent()
+        content.title = self.currentTaskGroup?.name ?? "Task Complete"
+        content.body = "Completed at \(Date())"
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentDurationWithoutCountdown, repeats: false)
+        
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString,
+                                            content: content, trigger: trigger)
+        
+        // Schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error) in
+            if error != nil {
+                // Handle any errors.
             }
-                
-//            }
         }
     }
     
@@ -269,7 +314,10 @@ class ViewController: NSViewController
         
         // Then, set the duration field
         durationField.stringValue = string
-        
+    }
+    
+    func updateStatusItemIconWithTimeInterval(timeInterval: TimeInterval)
+    {
         statusItem?.button?.image = StatusBarIconView.imageWithRotation(angle: timeIntervalToAngle(timeInterval))
     }
     
@@ -295,17 +343,31 @@ class ViewController: NSViewController
         if let currentTaskGroup = currentTaskGroup
         {
             currentTaskGroup.addToTasks(task)
+            setTooltipForTaskNameField(taskGroup: currentTaskGroup)
         }
         
         Database.save()
         
+       resetTimerAndDate()
+        
+    }
+    
+    func userSetTimerDurationToZero()
+    {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+        guard let dial = getDial() else { return }
+        
+        setDial(dial, toState: .inactive)
+        
+        resetTimerAndDate()
+    }
+    
+    func resetTimerAndDate()
+    {
         secondTimer?.invalidate()
         secondTimer = nil
         startDate = nil
-        
-//        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        
-        // Push the banner
     }
     
     // func setTooltipForTaskNameField
@@ -337,11 +399,6 @@ class ViewController: NSViewController
     // func handleEnterKeyPress()
     // If the button is selected - start or stop
     // If an autocomplete suggestion is selected - change the current task
-    
-    func handleDurationTextFieldDidEndEditing(durationTextField: NSTextField)
-    {
-        durationTextField.stringValue = "Hello!"
-    }
     
     func handleNameTextFieldDidEndEditing(nameTextField: NSTextField)
     {
@@ -385,18 +442,14 @@ extension ViewController: NSTextFieldDelegate
             {
                 handleNameTextFieldDidEndEditing(nameTextField: textField)
             }
-            else if textField.isEqual(durationField)
-            {
-                handleDurationTextFieldDidEndEditing(durationTextField: textField)
-            }
         }
     }
     
     func controlTextDidChange(_ obj: Notification)
     {
-        if let textField = obj.object as? NSTextField
+        if let _ = obj.object as? NSTextField
         {
-//            print(textField.stringValue)
+            //            print(textField.stringValue)
         }
         
         // Recalculate the autocomplete suggestions for the segment

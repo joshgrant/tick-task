@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <plugIn identifier="com.apple.SceneKitIBPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -687,28 +686,14 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="TickTask_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="116" height="167"/>
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="141"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ttx-Mz-rdC">
-                                <rect key="frame" x="0.0" y="0.0" width="116" height="167"/>
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="141"/>
                                 <subviews>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6NL-Ai-4N2">
-                                        <rect key="frame" x="6" y="141" width="104" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="3IU-Wa-htq"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" placeholderString="Task Name" id="qxg-bZ-WUJ">
-                                            <font key="font" metaFont="systemBold" size="14"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <outlet property="delegate" destination="XfG-lQ-9wD" id="dQb-xs-UdL"/>
-                                        </connections>
-                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RED-zY-5Z7">
-                                        <rect key="frame" x="6" y="116" width="104" height="17"/>
+                                        <rect key="frame" x="6" y="116" width="108" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="00m 00s" id="yfR-97-WmA">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -716,7 +701,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <sceneView sceneName="timer-3.scn" autoenablesDefaultLighting="YES" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tia-UI-DZh">
-                                        <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                        <rect key="frame" x="8" y="8" width="104" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="fzR-D4-HJS"/>
                                         </constraints>
@@ -734,10 +719,8 @@
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -752,12 +735,13 @@
                     </view>
                     <connections>
                         <outlet property="durationField" destination="RED-zY-5Z7" id="v49-ja-6tm"/>
-                        <outlet property="nameField" destination="6NL-Ai-4N2" id="G6C-Ch-o1x"/>
                         <outlet property="panGesture" destination="9QM-9t-OPo" id="5z3-ki-d5Z"/>
                         <outlet property="sceneView" destination="Tia-UI-DZh" id="Qqj-yG-NAQ"/>
+                        <outlet property="stackView" destination="Ttx-Mz-rdC" id="enh-Lo-DFv"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="wQ6-aY-828"/>
             </objects>
             <point key="canvasLocation" x="-246" y="-48"/>
         </scene>

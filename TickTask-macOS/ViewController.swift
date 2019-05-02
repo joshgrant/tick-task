@@ -11,8 +11,8 @@ import AVFoundation
 import SceneKit
 import UserNotifications
 
-let currentTaskGroupNameKey = "me.joshgrant.TickTask.currentTaskGroupName"
-let currentTaskDurationKey = "me.joshgrant.TickTask.currentTaskDuration"
+let currentTaskGroupNameKey = "currentTaskGroupName"
+let currentTaskDurationKey = "currentTaskDuration"
 
 enum DialState
 {
@@ -34,18 +34,21 @@ class ViewController: NSViewController
     var statusItem: NSStatusItem?
     var optionKeyPressed: Bool = false
     
+    var dropDownView: DropDownView?
+    
     // MARK: Interface Outlets
     
-    @IBOutlet weak var nameField: NSTextField!
+//    @IBOutlet weak var nameField: NSTextField!
     @IBOutlet weak var durationField: NSTextField!
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var panGesture: NSPanGestureRecognizer!
+    @IBOutlet weak var stackView: NSStackView!
     
     // MARK: Overridden Properties
     
-    override var acceptsFirstResponder: Bool {
-        return true
-    }
+//    override var acceptsFirstResponder: Bool {
+//        return true
+//    }
     
     // MARK: View Lifecycle
     
@@ -55,7 +58,7 @@ class ViewController: NSViewController
         
         requestAuthorizationToDisplayNotifications()
         
-        populateTaskGroupFieldWithValueFromUserDefaults()
+//        populateTaskGroupFieldWithValueFromUserDefaults()
         
         configureSceneView()
         
@@ -100,18 +103,19 @@ class ViewController: NSViewController
         }
     }
     
-    func populateTaskGroupFieldWithValueFromUserDefaults()
-    {
-        if let name = UserDefaults.standard.string(forKey: currentTaskGroupNameKey)
-        {
-            nameField.stringValue = name
-        }
-        
-        if let taskGroup = currentTaskGroup
-        {
-            setTooltipForTaskNameField(taskGroup: taskGroup)
-        }
-    }
+    // Let's try to use cocoa bindings...
+//    func populateTaskGroupFieldWithValueFromUserDefaults()
+//    {
+//        if let name = UserDefaults.standard.string(forKey: currentTaskGroupNameKey)
+//        {
+//            nameField.stringValue = name
+//        }
+//
+//        if let taskGroup = currentTaskGroup
+//        {
+//            setTooltipForTaskNameField(taskGroup: taskGroup)
+//        }
+//    }
     
     func configureSceneView()
     {
@@ -122,7 +126,7 @@ class ViewController: NSViewController
                 sceneView.scene = scene
                 sceneView.allowsCameraControl = false
                 sceneView.antialiasingMode = .multisampling16X
-                //                sceneView.resignFirstResponder()
+                sceneView.resignFirstResponder()
             }
         }
     }
@@ -134,9 +138,7 @@ class ViewController: NSViewController
         guard let dial = getDial() else { return }
         
         let location = gesture.location(in: sceneView)
-        
         let origin = calculateOriginOfSceneView(sceneView: sceneView)
-        
         let angle = calculateAngleOfDialFromOrigin(origin: origin, andCursorLocation: location)
         
         switch gesture.state
@@ -340,11 +342,11 @@ class ViewController: NSViewController
         let task = Task(context: Database.container.viewContext)
         task.duration = currentDurationWithoutCountdown
         
-        if let currentTaskGroup = currentTaskGroup
-        {
-            currentTaskGroup.addToTasks(task)
-            setTooltipForTaskNameField(taskGroup: currentTaskGroup)
-        }
+//        if let currentTaskGroup = currentTaskGroup
+//        {
+//            currentTaskGroup.addToTasks(task)
+//            setTooltipForTaskNameField(taskGroup: currentTaskGroup)
+//        }
         
         Database.save()
         
@@ -372,10 +374,10 @@ class ViewController: NSViewController
     
     // func setTooltipForTaskNameField
     
-    func setTooltipForTaskNameField(taskGroup: TaskGroup)
-    {
-        nameField.toolTip = "\(taskGroup.totalDuration)"
-    }
+//    func setTooltipForTaskNameField(taskGroup: TaskGroup)
+//    {
+//        nameField.toolTip = "\(taskGroup.totalDuration)"
+//    }
     
     // func displayAutocompleteDropdownList()
     
@@ -400,38 +402,37 @@ class ViewController: NSViewController
     // If the button is selected - start or stop
     // If an autocomplete suggestion is selected - change the current task
     
-    func handleNameTextFieldDidEndEditing(nameTextField: NSTextField)
-    {
-        if let exactMatch = TaskGroup.taskGroupMatching(name: nameTextField.stringValue)
-        {
-            currentTaskGroup = exactMatch
-        }
-        else
-        {
-            let newTaskGroup = TaskGroup.createNewTaskGroup(name: nameTextField.stringValue)
-            currentTaskGroup = newTaskGroup
-            saveUserDefaultForTaskGroup(taskGroup: newTaskGroup)
-        }
-        
-        if let taskGroup = currentTaskGroup
-        {
-            setTooltipForTaskNameField(taskGroup: taskGroup)
-        }
-    }
+//    func handleNameTextFieldDidEndEditing(nameTextField: NSTextField)
+//    {
+//        if let exactMatch = TaskGroup.taskGroupMatching(name: nameTextField.stringValue)
+//        {
+//            currentTaskGroup = exactMatch
+//        }
+//        else
+//        {
+//            let newTaskGroup = TaskGroup.createNewTaskGroup(name: nameTextField.stringValue)
+//            currentTaskGroup = newTaskGroup
+//            saveUserDefaultForTaskGroup(taskGroup: newTaskGroup)
+//        }
+//
+////        if let taskGroup = currentTaskGroup
+////        {
+////            setTooltipForTaskNameField(taskGroup: taskGroup)
+////        }
+//    }
     
-    func saveUserDefaultForTaskGroup(taskGroup: TaskGroup)
-    {
-        UserDefaults.standard.set(taskGroup.name, forKey: currentTaskGroupNameKey)
-        UserDefaults.standard.set(currentDurationWithoutCountdown, forKey: currentTaskDurationKey)
-    }
-    
-    // It would be nice in the future to allow smaller increment drag if the user
-    // presses the option key
-    override func flagsChanged(with event: NSEvent) {
-        print(event)
-    }
+//    func saveUserDefaultForTaskGroup(taskGroup: TaskGroup)
+//    {
+//        UserDefaults.standard.set(taskGroup.name, forKey: currentTaskGroupNameKey)
+//        UserDefaults.standard.set(currentDurationWithoutCountdown, forKey: currentTaskDurationKey)
+//    }
+//
+//    override func touchesBegan(with event: NSEvent) {
+//        print("View cont")
+//    }
 }
 
+/*
 extension ViewController: NSTextFieldDelegate
 {
     func controlTextDidEndEditing(_ obj: Notification)
@@ -443,18 +444,64 @@ extension ViewController: NSTextFieldDelegate
                 handleNameTextFieldDidEndEditing(nameTextField: textField)
             }
         }
+        
+        
+        
+//        dropDownView?.removeFromSuperview()
+//        dropDownView = nil
+    }
+    
+    func controlTextDidBeginEditing(_ obj: Notification)
+    {
+        //
+        print("Prepare the dropdown menu")
+        print("Show the dropdown menu")
+        
+//        dropDownView = DropDownView.initFromNib()
+//        dropDownView?.delegate = self
+//
+//        dropDownView?.translatesAutoresizingMaskIntoConstraints = false
+//
+//        self.view.addSubview(dropDownView!)
+//
+//        dropDownView?.frame = NSRect(x: 0, y: self.nameField.frame.origin.y - self.nameField.bounds.size.height, width: self.view.bounds.size.width, height: 60)
     }
     
     func controlTextDidChange(_ obj: Notification)
     {
-        if let _ = obj.object as? NSTextField
-        {
-            //            print(textField.stringValue)
-        }
+        print("Update the contents of the dropdown menu")
         
-        // Recalculate the autocomplete suggestions for the segment
+        if let textField = obj.object as? NSTextField
+        {
+//            dropDownView?.handleNewText(text: textField.stringValue)
+            
+            let groups = TaskGroup.taskGroupsMatchingAutocompleteSegment(segment: textField.stringValue)
+            
+            for view in self.stackView.subviews
+            {
+                if let view = view as? DropDownItemView
+                {
+                    self.stackView.removeView(view)
+                }
+            }
+            
+            for group in groups
+            {
+                if let newDropDownView = DropDownItemView.initFromNib()
+                {
+                    newDropDownView.delegate = self
+                    newDropDownView.taskGroup = group
+                    newDropDownView.taskNameLabel.stringValue = group.name ?? ""
+                    newDropDownView.taskDurationLabel.stringValue = "\(group.totalDuration)"
+//                    self.stackView.addView(newDropDownView, in: .bottom)
+                    stackView.addView(newDropDownView, in: .top)
+                }
+            }
+        }
     }
 }
+
+*/
 
 // MARK: Utility Functions
 
@@ -494,3 +541,18 @@ extension ViewController
         return TimeInterval(ceil(seconds))
     }
 }
+
+//extension ViewController: DropDownDelegate
+//{
+//    func dropDownItemWasSelected(item: DropDownItemView)
+//    {
+//        print(item)
+//        print(item.taskNameLabel.stringValue)
+//
+//        currentTaskGroup = item.taskGroup
+//        nameField.stringValue = currentTaskGroup?.name ?? ""
+//
+//        dropDownView?.removeFromSuperview()
+//        dropDownView = nil
+//    }
+//}

@@ -85,18 +85,28 @@ extension AppDelegate
     func initializeMenu(viewController: ViewController) -> NSMenu
     {
         let menu = NSMenu()
-        
-        let viewControllerItem = initializeViewControllerMenuItem(viewController: viewController)
-        let quitItem = initializeQuitMenuItem()
 
-        menu.addItem(viewControllerItem)
+        menu.addItem(viewControllerMenuItem(viewController: viewController))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(quitItem)
+        menu.addItem(quitMenuItem())
+        
+        let item = NSMenuItem(title: "Hello", action: #selector(sex), keyEquivalent: "r")
+        item.keyEquivalentModifierMask = .option
+        item.allowsKeyEquivalentWhenHidden = true
+        item.isHidden = true
+//        item.
+        
+        menu.addItem(item)
         
         return menu
     }
     
-    func initializeViewControllerMenuItem(viewController: ViewController) -> NSMenuItem
+    @objc func sex()
+    {
+        print("Sex")
+    }
+    
+    func viewControllerMenuItem(viewController: ViewController) -> NSMenuItem
     {
         let item = NSMenuItem()
         
@@ -105,7 +115,7 @@ extension AppDelegate
         return item
     }
     
-    func initializeQuitMenuItem() -> NSMenuItem
+    func quitMenuItem() -> NSMenuItem
     {
         let title = "Quit"
         let selector = #selector(NSApplication.terminate(_:))

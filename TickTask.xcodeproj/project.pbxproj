@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B532D6D022706704000B8BA7 /* TaskGroup+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B532D6CF22706704000B8BA7 /* TaskGroup+.swift */; };
+		B532D6D22270670A000B8BA7 /* Task+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B532D6D12270670A000B8BA7 /* Task+.swift */; };
+		B532D6D422707ABB000B8BA7 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B532D6D322707ABB000B8BA7 /* DurationFormatter.swift */; };
+		B532D6DA22708517000B8BA7 /* SceneKitAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B532D6D922708517000B8BA7 /* SceneKitAssets.scnassets */; };
 		B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370803226F188600ACFA62 /* AppDelegate.swift */; };
 		B5370806226F188600ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
 		B5370809226F188600ACFA62 /* TickTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5370807226F188600ACFA62 /* TickTask.xcdatamodeld */; };
@@ -26,6 +30,8 @@
 		B53856D4226F1FE9003F9640 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53856D3226F1FE9003F9640 /* Database.swift */; };
 		B53856D5226F1FE9003F9640 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53856D3226F1FE9003F9640 /* Database.swift */; };
 		B53856D6226F2053003F9640 /* TickTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5370807226F188600ACFA62 /* TickTask.xcdatamodeld */; };
+		B5712214227A04F10070DB87 /* StatusBarIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5712213227A04F10070DB87 /* StatusBarIconView.swift */; };
+		B5712216227AF7C00070DB87 /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5712215227AF7C00070DB87 /* Temp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B532D6CF22706704000B8BA7 /* TaskGroup+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskGroup+.swift"; sourceTree = "<group>"; };
+		B532D6D12270670A000B8BA7 /* Task+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+.swift"; sourceTree = "<group>"; };
+		B532D6D322707ABB000B8BA7 /* DurationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatter.swift; sourceTree = "<group>"; };
+		B532D6D922708517000B8BA7 /* SceneKitAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SceneKitAssets.scnassets; sourceTree = "<group>"; };
 		B5370800226F188600ACFA62 /* TickTask-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +99,8 @@
 		B537085D226F18A300ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5370867226F18FB00ACFA62 /* TickTask-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TickTask-iOS.entitlements"; sourceTree = "<group>"; };
 		B53856D3226F1FE9003F9640 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		B5712213227A04F10070DB87 /* StatusBarIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarIconView.swift; sourceTree = "<group>"; };
+		B5712215227AF7C00070DB87 /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,12 +180,18 @@
 			children = (
 				B5370803226F188600ACFA62 /* AppDelegate.swift */,
 				B5370805226F188600ACFA62 /* ViewController.swift */,
+				B532D6CF22706704000B8BA7 /* TaskGroup+.swift */,
+				B532D6D12270670A000B8BA7 /* Task+.swift */,
+				B532D6D322707ABB000B8BA7 /* DurationFormatter.swift */,
+				B532D6D922708517000B8BA7 /* SceneKitAssets.scnassets */,
 				B537080A226F188600ACFA62 /* Assets.xcassets */,
 				B537080C226F188600ACFA62 /* Main.storyboard */,
 				B537080F226F188600ACFA62 /* Info.plist */,
 				B5370810226F188600ACFA62 /* TickTask-macOS.entitlements */,
 				B5370807226F188600ACFA62 /* TickTask.xcdatamodeld */,
 				B53856D3226F1FE9003F9640 /* Database.swift */,
+				B5712213227A04F10070DB87 /* StatusBarIconView.swift */,
+				B5712215227AF7C00070DB87 /* Temp.swift */,
 			);
 			path = "TickTask-macOS";
 			sourceTree = "<group>";
@@ -415,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B532D6DA22708517000B8BA7 /* SceneKitAssets.scnassets in Resources */,
 				B537080B226F188600ACFA62 /* Assets.xcassets in Resources */,
 				B537080E226F188600ACFA62 /* Main.storyboard in Resources */,
 			);
@@ -465,10 +484,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B532D6D22270670A000B8BA7 /* Task+.swift in Sources */,
+				B5712214227A04F10070DB87 /* StatusBarIconView.swift in Sources */,
+				B5712216227AF7C00070DB87 /* Temp.swift in Sources */,
+				B532D6D422707ABB000B8BA7 /* DurationFormatter.swift in Sources */,
 				B5370806226F188600ACFA62 /* ViewController.swift in Sources */,
 				B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */,
 				B53856D4226F1FE9003F9640 /* Database.swift in Sources */,
 				B5370809226F188600ACFA62 /* TickTask.xcdatamodeld in Sources */,
+				B532D6D022706704000B8BA7 /* TaskGroup+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,7 +730,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -728,7 +752,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

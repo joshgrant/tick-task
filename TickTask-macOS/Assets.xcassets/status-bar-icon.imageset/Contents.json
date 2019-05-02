@@ -7,7 +7,7 @@
     },
     {
       "idiom" : "mac",
-      "filename" : "Clock-Light.png",
+      "filename" : "Artboard.png",
       "appearances" : [
         {
           "appearance" : "luminosity",
@@ -23,7 +23,7 @@
     },
     {
       "idiom" : "mac",
-      "filename" : "Clock-Light@2x.png",
+      "filename" : "Artboard@2x.png",
       "appearances" : [
         {
           "appearance" : "luminosity",

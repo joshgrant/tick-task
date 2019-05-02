@@ -64,19 +64,30 @@ class ViewController: NSViewController
     
     @objc func secondTimerUpdated(_ timer: Timer)
     {
-        if let _ = startDate
+        guard let dial = getDial() else { return }
+        
+        let currentTimeInterval = currentDurationWithoutCountdown - currentCountdownTimerValue()
+        let angle = timeIntervalToAngle(currentTimeInterval)
+        
+        configureInterfaceElementsWith(dial: dial, angle: angle)
+        
+        if currentTimeInterval <= 0
         {
-            let currentTimeInterval = currentDurationWithoutCountdown - currentCountdownTimerValue()
-            
-            updateStatusItemIconWithTimeInterval(timeInterval: currentTimeInterval)
-            updateDurationFieldWithTimeInterval(timeInterval: currentTimeInterval)
-            updateDialRotationWithTimeInterval(timeInterval: currentTimeInterval)
-            
-            if currentTimeInterval <= 0
-            {
-                countdownTimerDidComplete(timer: timer)
-            }
+            countdownTimerDidComplete(timer: timer)
         }
+    }
+    
+    func configureInterfaceElementsWith(dial: SCNNode, angle: CGFloat)
+    {
+        // Update the status bar icon...
+        // But this might be expensive, so we should think about when we should do this..
+        
+        statusItem?.button?.image = StatusBarIconView.imageWithRotation(angle: angle)
+        
+        dial.runAction(SCNAction.rotateTo(x: 0, y: angle, z: 0, duration: 0))
+        
+        updateDurationField(with: angle)
+        updateDialRotation(with: angle)
     }
     
     func requestAuthorizationToDisplayNotifications()
@@ -133,7 +144,7 @@ class ViewController: NSViewController
         case .began:
             userBeganDraggingDial(dial: dial, angle: angle)
         case .changed:
-            updateDialRotation(dial: dial, angle: angle)
+            configureInterfaceElementsWith(dial: dial, angle: angle)
         case .ended:
             userEndedDraggingDial(dial: dial, angle: angle)
         default:
@@ -195,14 +206,6 @@ class ViewController: NSViewController
         return angle
     }
     
-    func updateDialRotation(dial: SCNNode, angle: CGFloat)
-    {
-        dial.runAction(SCNAction.rotateTo(x: 0, y: angle, z: 0, duration: 0))
-        
-        updateDurationFieldWithTimeInterval(timeInterval: angleToTimeInterval(angle))
-        updateStatusItemIconWithTimeInterval(timeInterval: angleToTimeInterval(angle))
-    }
-    
     func getDial() -> SCNNode?
     {
         guard let scene = sceneView.scene else { return nil }
@@ -233,12 +236,13 @@ class ViewController: NSViewController
         dial.geometry?.firstMaterial?.emission.contents = color
     }
     
-    func updateDialRotationWithTimeInterval(timeInterval: TimeInterval)
+    func updateDialRotation(with angle: CGFloat)
     {
         guard let dial = getDial() else { return }
         
-        dial.runAction(SCNAction.rotateTo(x: 0, y: timeIntervalToAngle(timeInterval), z: 0, duration: 0))
+        dial.runAction(SCNAction.rotateTo(x: 0, y: angle, z: 0, duration: 0))
     }
+    
     
     func setTimerToActive()
     {
@@ -304,8 +308,9 @@ class ViewController: NSViewController
     
     // ---------------------------
     
-    func updateDurationFieldWithTimeInterval(timeInterval: TimeInterval)
+    func updateDurationField(with angle: CGFloat)
     {
+        let timeInterval = angleToTimeInterval(angle)
         // Separate components into minutes and seconds
         let minutes = Int(floor(timeInterval / 60))
         let seconds = Int(timeInterval) % 60
@@ -314,11 +319,6 @@ class ViewController: NSViewController
         
         // Then, set the duration field
         durationField.stringValue = string
-    }
-    
-    func updateStatusItemIconWithTimeInterval(timeInterval: TimeInterval)
-    {
-        statusItem?.button?.image = StatusBarIconView.imageWithRotation(angle: timeIntervalToAngle(timeInterval))
     }
     
     func currentCountdownTimerValue() -> TimeInterval
@@ -348,7 +348,7 @@ class ViewController: NSViewController
         
         Database.save()
         
-       resetTimerAndDate()
+        resetTimerAndDate()
         
     }
     

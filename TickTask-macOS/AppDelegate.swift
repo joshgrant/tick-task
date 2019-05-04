@@ -27,34 +27,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         viewController.statusItem = statusItem
     }
-    
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply
-    {
-        let context = Database.container.viewContext
-        
-        if !context.commitEditing()
-        {
-            return .terminateCancel
-        }
-        
-        if !context.hasChanges
-        {
-            return .terminateNow
-        }
-        
-        do
-        {
-            try context.save()
-        }
-        catch
-        {
-            print("Error saving state during application quit: \(error)")
-            
-            return .terminateCancel
-        }
-        
-        return .terminateNow
-    }
 }
 
 // MARK: Object Initialization
@@ -89,14 +61,6 @@ extension AppDelegate
         menu.addItem(viewControllerMenuItem(viewController: viewController))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(quitMenuItem())
-        
-        let item = NSMenuItem(title: "Hello", action: #selector(sex), keyEquivalent: "r")
-        item.keyEquivalentModifierMask = .option
-        item.allowsKeyEquivalentWhenHidden = true
-        item.isHidden = true
-//        item.
-        
-        menu.addItem(item)
         
         return menu
     }

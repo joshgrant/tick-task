@@ -13,6 +13,7 @@ class StatusBarIconView: NSView
 {
     static func imageWithRotation(angle: CGFloat) -> NSImage
     {
+        print("Sukc")
         
         let imageSize = CGSize(width: 22, height: 22)
         

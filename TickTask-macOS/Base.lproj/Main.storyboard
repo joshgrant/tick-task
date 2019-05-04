@@ -675,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="TickTask_macOS" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Tick_Task" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,7 +684,7 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController storyboardIdentifier="ViewController" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="TickTask_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Tick_Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="141"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -711,6 +711,12 @@
                                                     <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="qbK-Iq-0u5"/>
                                                 </connections>
                                             </panGestureRecognizer>
+                                            <panGestureRecognizer delaysSecondaryMouseButtonEvents="YES" id="r5U-Hh-Adb">
+                                                <buttonMask key="buttonMask" secondary="YES"/>
+                                                <connections>
+                                                    <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="jOl-k8-LU2"/>
+                                                </connections>
+                                            </panGestureRecognizer>
                                         </gestureRecognizers>
                                         <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </sceneView>
@@ -735,7 +741,8 @@
                     </view>
                     <connections>
                         <outlet property="durationField" destination="RED-zY-5Z7" id="v49-ja-6tm"/>
-                        <outlet property="panGesture" destination="9QM-9t-OPo" id="5z3-ki-d5Z"/>
+                        <outlet property="leftMousePan" destination="9QM-9t-OPo" id="5z3-ki-d5Z"/>
+                        <outlet property="rightMousePan" destination="r5U-Hh-Adb" id="DJq-Tz-kvY"/>
                         <outlet property="sceneView" destination="Tia-UI-DZh" id="Qqj-yG-NAQ"/>
                         <outlet property="stackView" destination="Ttx-Mz-rdC" id="enh-Lo-DFv"/>
                     </connections>
@@ -743,7 +750,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="wQ6-aY-828"/>
             </objects>
-            <point key="canvasLocation" x="-246" y="-48"/>
+            <point key="canvasLocation" x="-246" y="-48.5"/>
         </scene>
     </scenes>
 </document>

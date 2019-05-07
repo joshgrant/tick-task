@@ -39,7 +39,7 @@ extension AppDelegate
         
         if let button = statusItem.button
         {
-            button.image = StatusBarIconView.imageWithRotation(angle: 0)
+            button.image = NSImage.dialWithRotation(angle: 0)
         }
         
         statusItem.menu = menu
@@ -77,6 +77,7 @@ extension AppDelegate
     func quitMenuItem() -> NSMenuItem
     {
         let title = "Quit"
+        // TODO: Remove all notifications...
         let selector = #selector(NSApplication.terminate(_:))
         let keyEquivalent = "q"
         

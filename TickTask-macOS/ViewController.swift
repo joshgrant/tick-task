@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import AVFoundation
 import SceneKit
 import UserNotifications
 
@@ -25,6 +24,10 @@ class ViewController: NSViewController
 {
     // MARK: Shared Properties
     
+    @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
+        @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
+        }
+    }
     var secondTimer: Timer?
     var startDate: Date?
     var currentDurationWithoutCountdown: TimeInterval = 0
@@ -32,9 +35,28 @@ class ViewController: NSViewController
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     var statusItem: NSStatusItem?
     
+    @objc dynamic var durationString: String = "00m 00s"
+    
+    var isDarkMode: Bool {
+        get {
+            return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") != nil
+        }
+    }
+    
+    var countdownRemaining: TimeInterval {
+        get {
+            return (startDate != nil) ? Date().timeIntervalSince(startDate!) : TimeInterval.zero
+        }
+    }
+    
+    var currentInterval: TimeInterval {
+        get {
+            return currentDurationWithoutCountdown - countdownRemaining
+        }
+    }
+    
     // MARK: Interface Outlets
     
-    @IBOutlet weak var durationField: NSTextField!
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var leftMousePan: NSPanGestureRecognizer!
     @IBOutlet weak var rightMousePan: NSPanGestureRecognizer!
@@ -47,103 +69,105 @@ class ViewController: NSViewController
         self.view.translatesAutoresizingMaskIntoConstraints = true
         
         requestAuthorizationToDisplayNotifications()
-        
         configureSceneView()
+        configureLighting()
+        registerForNotifications(flag: true)
         
         super.viewDidLoad()
     }
     
-    @objc func secondTimerUpdated(_ timer: Timer)
+    override func viewWillDisappear()
     {
-        let currentTimeInterval = currentDurationWithoutCountdown - countdownRemaining
-        let angle = timeIntervalToAngle(currentTimeInterval)
+        registerForNotifications(flag: false)
+        super.viewWillDisappear()
+    }
+    
+    func updateDurationField(with angle: CGFloat)
+    {
+        let timeInterval = angle.toInterval()
         
-        configureInterfaceElementsWith(angle: angle)
+        durationString = "\(String(format: "%02d", timeInterval.minutes))m " +
+            "\(String(format: "%02d", timeInterval.seconds))s"
+    }
+}
+
+// MARK: Scene View
+extension ViewController
+{
+    func configureLighting()
+    {
+        guard let scene = sceneView.scene else { return }
         
-        if currentTimeInterval <= 0
+        if let light = scene.rootNode.childNode(withName: "Light", recursively: false)
         {
-            countdownTimerDidComplete(timer: timer)
+            light.light?.intensity = isDarkMode ? 0 : 10000
         }
     }
     
-    func configureInterfaceElementsWith(angle: CGFloat)
+    func configureInterfaceElements(angle: CGFloat? = nil, userUpdate: Bool = false)
     {
-        // Update the status bar icon...
-        // But this might be expensive, so we should think about when we should do this..
+        let angle: CGFloat = angle ?? currentInterval.toAngle()
         
-        // Only update it once a minute
-        if Int(countdownRemaining) % 60 == 0
+        if userUpdate || Int(countdownRemaining) % 60 == 0
         {
-            statusItem?.button?.image = StatusBarIconView.imageWithRotation(angle: angle)
+            statusItem?.button?.image = NSImage.dialWithRotation(angle: angle)
         }
         
         updateDurationField(with: angle)
         updateDialRotation(with: angle)
     }
     
-    func requestAuthorizationToDisplayNotifications()
-    {
-        let center = UNUserNotificationCenter.current()
-        
-        // Request permission to display alerts and play sounds.
-        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            // Enable or disable features based on authorization.
-        }
-    }
-    
     func configureSceneView()
     {
         if let sceneView = sceneView
         {
-            if let scene = SCNScene(named: "SceneKitAssets.scnassets/timer-3.scn")
+            if let scene = SCNScene(named: "./SceneKitAssets.scnassets/timer.scn")
             {
                 sceneView.scene = scene
                 sceneView.allowsCameraControl = false
-                sceneView.antialiasingMode = .multisampling16X
+                sceneView.antialiasingMode = .multisampling4X
                 sceneView.resignFirstResponder()
-                
-                guard let dial = getDial() else { return }
-                
-                setDial(dial, toState: .inactive)
             }
         }
+        
+        setDialTo(state: .inactive)
     }
-    
-    // MARK: Interface Actions
-    
+}
+
+// MARK: Gesture
+extension ViewController
+{
     @IBAction func handlePanGesture(_ gesture: NSPanGestureRecognizer)
     {
-        guard let dial = getDial() else { return }
-        
         let location = gesture.location(in: sceneView)
-        let origin = calculateOriginOfSceneView(sceneView: sceneView)
+        let origin = sceneView.center
         var angle: CGFloat = 0
         
         if gesture.isEqual(leftMousePan)
         {
-            angle = calculateAngleOfDialFromOrigin(origin: origin, andCursorLocation: location, divisions: numDivisions)
+            angle = location.angleFromPoint(point: origin, snap: CGFloat(numDivisions))
         }
         else if gesture.isEqual(rightMousePan)
         {
-            angle = calculateAngleOfDialFromOrigin(origin: origin, andCursorLocation: location, divisions: 60)
+            angle = location.angleFromPoint(point: origin, snap: 60)
         }
         
         switch gesture.state
         {
         case .began:
-            userBeganDraggingDial(dial: dial, angle: angle)
+            userBeganDragging(angle: angle)
         case .changed:
-            configureInterfaceElementsWith(angle: angle)
+            configureInterfaceElements(angle: angle, userUpdate: true)
         case .ended:
-            userEndedDraggingDial(dial: dial, angle: angle)
+            userEndedDragging(angle: angle)
         default:
             debugPrint("Gesture state not handled.")
         }
     }
     
-    func userBeganDraggingDial(dial: SCNNode, angle: CGFloat)
+    func userBeganDragging(angle: CGFloat)
     {
-        setDial(dial, toState: .userDragging)
+        setDialTo(state: .userDragging)
         
         secondTimer?.invalidate()
         secondTimer = nil
@@ -151,11 +175,11 @@ class ViewController: NSViewController
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
-    func userEndedDraggingDial(dial: SCNNode, angle: CGFloat)
+    func userEndedDragging(angle: CGFloat)
     {
         // Unless the user drags it back to zero...
         
-        if angle == 0
+        if Int(angle) == 0
         {
             userSetTimerDurationToZero()
         }
@@ -164,38 +188,11 @@ class ViewController: NSViewController
             setTimerToActive()
         }
     }
-    
-    func calculateOriginOfSceneView(sceneView: SCNView) -> NSPoint
-    {
-        return NSPoint(x: sceneView.bounds.size.width / 2.0, y: sceneView.bounds.size.height / 2.0)
-    }
-    
-    func calculateAngleOfDialFromOrigin(origin: NSPoint, andCursorLocation location: NSPoint, divisions: Int) -> CGFloat
-    {
-        // We calculate the angle of the mouse location from the origin
-        // Angle 0 is the right side of the unit circle
-        var angle = atan2(location.y - origin.y, location.x - origin.x)
-        
-        // Subtract pi/2 (90 degrees) to start the dial at the top
-        angle -= CGFloat.pi/2
-        
-        // Because the angle is weird,,, i.e it is -4.712 *and* 1.570 at the left, and because the
-        // top-left quadrant has positive numbers when everything else is negative, we do some adjustments to
-        // make the top left quadrant compliant with everything else
-        if angle > 0
-        {
-            angle = -CGFloat.pi * 2 + angle
-        }
-        
-        // Now we want to make sure the dial "snaps" to different locations.
-        // This is achieved by subtracting the remainder from the value
-        // This gives us twice the number of snaps (because a full rotation is 2 pi)
-        let remainder = angle.remainder(dividingBy: (CGFloat.pi * 2) / CGFloat(divisions))
-        angle -= remainder
-        
-        return angle
-    }
-    
+}
+
+// MARK: Dial
+extension ViewController
+{
     func getDial() -> SCNNode?
     {
         guard let scene = sceneView.scene else { return nil }
@@ -208,33 +205,24 @@ class ViewController: NSViewController
         return nil
     }
     
-    func setDial(_ dial: SCNNode, toState state: DialState)
+    func setDialTo(state: DialState)
     {
+        guard let dial = getDial() else { return }
+        
         let color: NSColor
         
         switch state
         {
         case .inactive:
-            color = NSColor(calibratedHue: 105.0/360.0, saturation: 0.77, brightness: 0.76, alpha: 1.0)
+            color = NSColor.systemGreen
         case .userDragging:
-            color = NSColor(calibratedHue: 48.0/360.0, saturation: 0.82, brightness: 0.9, alpha: 1.0)
+            color = NSColor.systemYellow
         case .countdown:
-            color = NSColor(calibratedHue: 3.0/360.0, saturation: 0.92, brightness: 1.0, alpha: 1.0)
+            color = NSColor.systemRed
         }
         
         dial.geometry?.firstMaterial?.diffuse.contents = color
         dial.geometry?.firstMaterial?.emission.contents = color
-        
-        print(sceneView.scene?.rootNode.childNodes)
-        
-        if let scene = sceneView.scene, let face = scene.rootNode.childNode(withName: "Face", recursively: false)
-        {
-            face.geometry?.material(named: "Border")?.diffuse.contents = NSColor.white
-            face.geometry?.material(named: "Border")?.emission.contents = NSColor.black
-            
-            face.geometry?.material(named: "Back")?.diffuse.contents = NSColor.black
-            face.geometry?.material(named: "Back")?.emission.contents = NSColor.black
-        }
     }
     
     func updateDialRotation(with angle: CGFloat)
@@ -243,25 +231,98 @@ class ViewController: NSViewController
         
         dial.runAction(SCNAction.rotateTo(x: 0, y: angle, z: 0, duration: 0))
     }
-    
-    
+}
+
+// MARK: Timer
+extension ViewController
+{
     func setTimerToActive()
     {
         guard let dial = getDial() else { return }
         
-        setDial(dial, toState: .countdown)
+        // We subtract 1 because when we convert the angle to the interval,
+        // we round it up. However, rounding it down causes some problems,
+        // so this is a fix, but not perfect...
+        // Also, this shouldn't rely on the rotation of the dial... there should
+        // be a less hacky way to achieve this...
+        currentDurationWithoutCountdown = dial.eulerAngles.y.toInterval() - 1
+        
+        guard currentDurationWithoutCountdown > 0 else { return }
+        
+        setDialTo(state: .countdown)
         
         startDate = Date()
         
-        currentDurationWithoutCountdown = angleToTimeInterval(dial.eulerAngles.y)
-        
         secondTimer = initializeSecondTimer()
         RunLoop.main.add(secondTimer!, forMode: .common)
-        
-        // We need more of this...
-        guard currentDurationWithoutCountdown > 0 else { return }
+        secondTimer?.fire()
         
         createNotification()
+    }
+    
+    func initializeSecondTimer() -> Timer
+    {
+        return Timer(timeInterval: 1.0,
+                     target: self,
+                     selector: #selector(secondTimerUpdated(_:)),
+                     userInfo: nil,
+                     repeats: true)
+    }
+    
+    func countdownTimerDidComplete(timer: Timer)
+    {
+        resetTimerAndDate()
+    }
+    
+    func userSetTimerDurationToZero()
+    {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+        resetTimerAndDate()
+    }
+    
+    func resetTimerAndDate()
+    {
+        setDialTo(state: .inactive)
+        
+        secondTimer?.invalidate()
+        secondTimer = nil
+        startDate = nil
+    }
+    
+    @objc func secondTimerUpdated(_ timer: Timer)
+    {
+        configureInterfaceElements()
+        
+        if currentInterval <= 0
+        {
+            countdownTimerDidComplete(timer: timer)
+        }
+    }
+}
+
+// MARK: Notifications
+extension ViewController
+{
+    func registerForNotifications(flag: Bool)
+    {
+        if flag
+        {
+            DistributedNotificationCenter.default.addObserver(self, selector: #selector(changeSystemColors(_:)), name: .init(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
+        }
+        else
+        {
+            DistributedNotificationCenter.default.removeObserver(self, name:
+                .init(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
+        }
+    }
+    
+    func requestAuthorizationToDisplayNotifications()
+    {
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+        }
     }
     
     func createNotification()
@@ -276,9 +337,14 @@ class ViewController: NSViewController
         }
     }
     
+    @objc func changeSystemColors(_ notification: NSNotification)
+    {
+        configureLighting()
+    }
+    
     func scheduleNotification()
     {
-        let minutes = minutesFromTimeInterval(timeInterval: self.currentDurationWithoutCountdown)
+        let minutes = self.currentDurationWithoutCountdown.minutes
         
         let content = UNMutableNotificationContent()
         content.title = "Task Done"
@@ -300,105 +366,5 @@ class ViewController: NSViewController
                 // Handle any errors.
             }
         }
-    }
-    
-    func initializeSecondTimer() -> Timer
-    {
-        return Timer(timeInterval: 1.0,
-                     target: self,
-                     selector: #selector(secondTimerUpdated(_:)),
-                     userInfo: nil,
-                     repeats: true)
-    }
-    
-    func updateDurationField(with angle: CGFloat)
-    {
-        let timeInterval = angleToTimeInterval(angle)
-        // Separate components into minutes and seconds
-        let minutes = minutesFromTimeInterval(timeInterval: timeInterval)
-        let seconds = secondsFromTimeInterval(timeInterval: timeInterval)
-        
-        let string = "\(String(format: "%02d", minutes))m \(String(format: "%02d", seconds))s"
-        
-        // Then, set the duration field
-        durationField.stringValue = string
-    }
-    
-    func minutesFromTimeInterval(timeInterval: TimeInterval) -> Int
-    {
-        return Int(floor(timeInterval / 60))
-    }
-    
-    func secondsFromTimeInterval(timeInterval: TimeInterval) -> Int
-    {
-        return Int(timeInterval) % 60
-    }
-    
-    var countdownRemaining: TimeInterval {
-        get {
-            return (startDate != nil) ? Date().timeIntervalSince(startDate!) : TimeInterval.zero
-        }
-    }
-    
-    func countdownTimerDidComplete(timer: Timer)
-    {
-        resetTimerAndDate()
-    }
-    
-    func userSetTimerDurationToZero()
-    {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        
-        resetTimerAndDate()
-    }
-    
-    func resetTimerAndDate()
-    {
-        guard let dial = getDial() else { return }
-        
-        setDial(dial, toState: .inactive)
-        
-        secondTimer?.invalidate()
-        secondTimer = nil
-        startDate = nil
-    }
-}
-
-// MARK: Utility Functions
-
-extension ViewController
-{
-    func timeIntervalToAngle(_ timeInterval: TimeInterval) -> CGFloat
-    {
-        // Start with the number of seconds and convert it to minutes
-        let minutes = CGFloat(timeInterval) / 60
-        
-        // Then, get a normalized value between 0 and 1
-        let normalized = minutes / maxMinutes
-        
-        // Then, interpolate that value between 0 and 2 pi
-        let interpolated = normalized * (CGFloat.pi * 2)
-        
-        // Then, convert the angle to a negative, because that's what we have
-        let angle = interpolated * -1
-        
-        return angle
-    }
-    
-    func angleToTimeInterval(_ angle: CGFloat) -> TimeInterval
-    {
-        // The angles are all negative, so we need to convert it to a positive angle
-        let positiveAngle = angle * -1
-        
-        // Start with the angle and convert it to a value from 0-1
-        let normalized = positiveAngle / (CGFloat.pi * 2)
-        
-        // Then, interpolate that value between 0 and maxMinutes (60)
-        let interpolated = normalized * maxMinutes
-        
-        // Then, convert the interpolated value to seconds
-        let seconds = interpolated * 60
-        
-        return TimeInterval(ceil(seconds))
     }
 }

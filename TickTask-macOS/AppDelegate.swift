@@ -76,7 +76,7 @@ extension AppDelegate
     
     func quitMenuItem() -> NSMenuItem
     {
-        let title = "Quit"
+        let title = NSLocalizedString("Quit", comment: "")
         // TODO: Remove all notifications...
         let selector = #selector(NSApplication.terminate(_:))
         let keyEquivalent = "q"

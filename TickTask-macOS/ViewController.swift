@@ -343,19 +343,19 @@ extension ViewController
         let minutes = self.currentDurationWithoutCountdown.minutes
         
         let minuteText: String
-        let completedText = String.localizedStringWithFormat("completed")
+        let completedText = NSLocalizedString("completed", comment: "")
         
         if minutes == 1
         {
-            minuteText = String.localizedStringWithFormat("minute")
+            minuteText = NSLocalizedString("minute", comment: "")
         }
         else
         {
-            minuteText = String.localizedStringWithFormat("minutes")
+            minuteText = NSLocalizedString("minutes", comment: "")
         }
         
         let content = UNMutableNotificationContent()
-        content.title = String.localizedStringWithFormat("Task Done")
+        content.title = NSLocalizedString("Task Done", comment: "")
         // The body of the notification. Use -[NSString localizedUserNotificationStringForKey:arguments:] to provide a string that will be localized at the time that the notification is presented.
         content.body = "\(minutes) \(minuteText) \(completedText)"
         content.sound = UNNotificationSound.default

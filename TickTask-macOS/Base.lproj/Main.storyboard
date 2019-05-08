@@ -703,7 +703,7 @@
                                             <binding destination="XfG-lQ-9wD" name="value" keyPath="durationString" id="CR4-lL-ae6"/>
                                         </connections>
                                     </textField>
-                                    <sceneView sceneName="timer-3.scn" autoenablesDefaultLighting="YES" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tia-UI-DZh">
+                                    <sceneView sceneName="timer-3.scn" autoenablesDefaultLighting="YES" allowsCameraControl="YES" preferredRenderingAPI="2" translatesAutoresizingMaskIntoConstraints="NO" id="Tia-UI-DZh">
                                         <rect key="frame" x="8" y="8" width="104" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="fzR-D4-HJS"/>

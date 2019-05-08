@@ -31,7 +31,7 @@ class ViewController: NSViewController
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     var statusItem: NSStatusItem?
     
-    @objc dynamic var durationString: String = "00m 00s"
+    @objc dynamic var durationString: String = NSLocalizedString("00m 00s", comment: "")
     
     var isDarkMode: Bool {
         get {

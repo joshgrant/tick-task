@@ -19,6 +19,31 @@ class ViewController: UIViewController
         if let scene = SCNScene(named: "./SceneKitAssets.scnassets/timer.scn")
         {
             sceneView.scene = scene
+            
+            if let light = scene.rootNode.childNode(withName: "Light", recursively: false)
+            {
+                // We don't have dark mode on iOS
+                light.light?.intensity = 200
+            }
+            
+            if let dial = scene.rootNode.childNode(withName: "Dial", recursively: false)
+            {
+                let color: UIColor = .green
+                
+                
+//                switch state
+//                {
+//                case .inactive:
+//                    color = NSColor.systemGreen
+//                case .userDragging:
+//                    color = NSColor.systemYellow
+//                case .countdown:
+//                    color = NSColor.systemRed
+//                }
+                
+                dial.geometry?.firstMaterial?.diffuse.contents = color
+                dial.geometry?.firstMaterial?.emission.contents = color
+            }
         }
         
         super.viewDidLoad()

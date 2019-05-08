@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B533BAAA2282F9F200D68D79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B533BAAC2282F9F200D68D79 /* Localizable.strings */; };
+		B533BAAE2282FC6900D68D79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B533BAAC2282F9F200D68D79 /* Localizable.strings */; };
 		B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370803226F188600ACFA62 /* AppDelegate.swift */; };
 		B5370806226F188600ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
 		B537080B226F188600ACFA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B537080A226F188600ACFA62 /* Assets.xcassets */; };
@@ -65,6 +67,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B533BAA52282F97B00D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		B533BAA62282F97B00D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		B533BAA72282F97B00D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B533BAAB2282F9F200D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B533BAAD2282F9F600D68D79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5370800226F188600ACFA62 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +196,7 @@
 				B542F786227EB2AC0045552D /* NSView+.swift */,
 				B542F788227EBF520045552D /* NSImage+.swift */,
 				B542F78A227EBFC10045552D /* NSPoint+.swift */,
+				B533BAAC2282F9F200D68D79 /* Localizable.strings */,
 			);
 			path = "TickTask-macOS";
 			sourceTree = "<group>";
@@ -411,6 +419,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = B53707F7226F188600ACFA62;
 			productRefGroup = B5370801226F188600ACFA62 /* Products */;
@@ -433,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B542F794227ECB590045552D /* SceneKitAssets.scnassets in Resources */,
+				B533BAAA2282F9F200D68D79 /* Localizable.strings in Resources */,
 				B537080B226F188600ACFA62 /* Assets.xcassets in Resources */,
 				B537080E226F188600ACFA62 /* Main.storyboard in Resources */,
 			);
@@ -456,6 +466,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B533BAAE2282FC6900D68D79 /* Localizable.strings in Resources */,
 				B5370846226F18A300ACFA62 /* LaunchScreen.storyboard in Resources */,
 				B5370843226F18A300ACFA62 /* Assets.xcassets in Resources */,
 				B542F795227ECB590045552D /* SceneKitAssets.scnassets in Resources */,
@@ -565,10 +576,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B533BAAC2282F9F200D68D79 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B533BAAB2282F9F200D68D79 /* fr */,
+				B533BAAD2282F9F600D68D79 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B537080C226F188600ACFA62 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B537080D226F188600ACFA62 /* Base */,
+				B533BAA52282F97B00D68D79 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -577,6 +598,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B537083D226F18A200ACFA62 /* Base */,
+				B533BAA62282F97B00D68D79 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -585,6 +607,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B5370845226F18A300ACFA62 /* Base */,
+				B533BAA72282F97B00D68D79 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -596,6 +619,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
@@ -660,6 +684,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";

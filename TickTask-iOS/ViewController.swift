@@ -16,7 +16,7 @@ class ViewController: UIViewController
     
     override func viewDidLoad()
     {
-        if let scene = SCNScene(named: "./SceneKitAssets.scnassets/timer.scn")
+        if let scene = SCNScene(named: "./timer.scn")
         {
             sceneView.scene = scene
             

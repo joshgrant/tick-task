@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B533BAAA2282F9F200D68D79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B533BAAC2282F9F200D68D79 /* Localizable.strings */; };
 		B533BAAE2282FC6900D68D79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B533BAAC2282F9F200D68D79 /* Localizable.strings */; };
+		B533BAB02283330B00D68D79 /* timer.scn in Resources */ = {isa = PBXBuildFile; fileRef = B533BAAF2283330B00D68D79 /* timer.scn */; };
+		B533BAB12283330B00D68D79 /* timer.scn in Resources */ = {isa = PBXBuildFile; fileRef = B533BAAF2283330B00D68D79 /* timer.scn */; };
 		B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370803226F188600ACFA62 /* AppDelegate.swift */; };
 		B5370806226F188600ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
 		B537080B226F188600ACFA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B537080A226F188600ACFA62 /* Assets.xcassets */; };
@@ -29,8 +31,6 @@
 		B542F789227EBF520045552D /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F788227EBF520045552D /* NSImage+.swift */; };
 		B542F78B227EBFC10045552D /* NSPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F78A227EBFC10045552D /* NSPoint+.swift */; };
 		B542F78D227EC9720045552D /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F78C227EC9720045552D /* CGFloat+.swift */; };
-		B542F794227ECB590045552D /* SceneKitAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B542F793227ECB590045552D /* SceneKitAssets.scnassets */; };
-		B542F795227ECB590045552D /* SceneKitAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B542F793227ECB590045552D /* SceneKitAssets.scnassets */; };
 		B542F797227ECD600045552D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F796227ECD600045552D /* UIView+.swift */; };
 		B542F799227ECDA90045552D /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F798227ECDA90045552D /* CGPoint+.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +72,7 @@
 		B533BAA72282F97B00D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B533BAAB2282F9F200D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B533BAAD2282F9F600D68D79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B533BAAF2283330B00D68D79 /* timer.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = timer.scn; sourceTree = "<group>"; };
 		B5370800226F188600ACFA62 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		B542F788227EBF520045552D /* NSImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+.swift"; sourceTree = "<group>"; };
 		B542F78A227EBFC10045552D /* NSPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+.swift"; sourceTree = "<group>"; };
 		B542F78C227EC9720045552D /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
-		B542F793227ECB590045552D /* SceneKitAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SceneKitAssets.scnassets; sourceTree = SOURCE_ROOT; };
 		B542F796227ECD600045552D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B542F798227ECDA90045552D /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,7 +158,6 @@
 		B53707F7226F188600ACFA62 = {
 			isa = PBXGroup;
 			children = (
-				B542F793227ECB590045552D /* SceneKitAssets.scnassets */,
 				B5370802226F188600ACFA62 /* TickTask-macOS */,
 				B5370818226F188600ACFA62 /* TickTaskTests */,
 				B5370823226F188600ACFA62 /* TickTaskUITests */,
@@ -185,6 +184,7 @@
 		B5370802226F188600ACFA62 /* TickTask-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				B533BAAF2283330B00D68D79 /* timer.scn */,
 				B5370803226F188600ACFA62 /* AppDelegate.swift */,
 				B5370805226F188600ACFA62 /* ViewController.swift */,
 				B537080A226F188600ACFA62 /* Assets.xcassets */,
@@ -441,10 +441,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B542F794227ECB590045552D /* SceneKitAssets.scnassets in Resources */,
 				B533BAAA2282F9F200D68D79 /* Localizable.strings in Resources */,
 				B537080B226F188600ACFA62 /* Assets.xcassets in Resources */,
 				B537080E226F188600ACFA62 /* Main.storyboard in Resources */,
+				B533BAB02283330B00D68D79 /* timer.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,8 +468,8 @@
 			files = (
 				B533BAAE2282FC6900D68D79 /* Localizable.strings in Resources */,
 				B5370846226F18A300ACFA62 /* LaunchScreen.storyboard in Resources */,
+				B533BAB12283330B00D68D79 /* timer.scn in Resources */,
 				B5370843226F18A300ACFA62 /* Assets.xcassets in Resources */,
-				B542F795227ECB590045552D /* SceneKitAssets.scnassets in Resources */,
 				B537083E226F18A200ACFA62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

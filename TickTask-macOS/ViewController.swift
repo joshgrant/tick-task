@@ -31,7 +31,7 @@ class ViewController: NSViewController
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     var statusItem: NSStatusItem?
     
-    @objc dynamic var durationString: String = "00m 00s"
+    @objc dynamic var durationString: String = NSLocalizedString("00m 00s", comment: "")
     
     var isDarkMode: Bool {
         get {
@@ -343,19 +343,19 @@ extension ViewController
         let minutes = self.currentDurationWithoutCountdown.minutes
         
         let minuteText: String
-        let completedText = String.localizedStringWithFormat("completed")
+        let completedText = NSLocalizedString("completed", comment: "")
         
         if minutes == 1
         {
-            minuteText = String.localizedStringWithFormat("minute")
+            minuteText = NSLocalizedString("minute", comment: "")
         }
         else
         {
-            minuteText = String.localizedStringWithFormat("minutes")
+            minuteText = NSLocalizedString("minutes", comment: "")
         }
         
         let content = UNMutableNotificationContent()
-        content.title = String.localizedStringWithFormat("Task Done")
+        content.title = NSLocalizedString("Task Done", comment: "")
         // The body of the notification. Use -[NSString localizedUserNotificationStringForKey:arguments:] to provide a string that will be localized at the time that the notification is presented.
         content.body = "\(minutes) \(minuteText) \(completedText)"
         content.sound = UNNotificationSound.default

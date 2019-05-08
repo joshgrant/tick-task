@@ -28,7 +28,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="timer.scn" preferredRenderingAPI="2" translatesAutoresizingMaskIntoConstraints="NO" id="Jun-6U-JFa">
+                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="timer.scn" translatesAutoresizingMaskIntoConstraints="NO" id="Jun-6U-JFa">
                                         <rect key="frame" x="0.0" y="444" width="374" height="374"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>

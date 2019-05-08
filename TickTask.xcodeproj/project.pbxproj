@@ -72,7 +72,7 @@
 		B533BAA72282F97B00D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B533BAAB2282F9F200D68D79 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B533BAAD2282F9F600D68D79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B533BAAF2283330B00D68D79 /* timer.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = timer.scn; sourceTree = "<group>"; };
+		B533BAAF2283330B00D68D79 /* timer.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = timer.scn; path = "TickTask-macOS/timer.scn"; sourceTree = SOURCE_ROOT; };
 		B5370800226F188600ACFA62 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };

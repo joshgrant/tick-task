@@ -24,10 +24,6 @@ class ViewController: NSViewController
 {
     // MARK: Shared Properties
     
-    @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
-        @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
-        }
-    }
     var secondTimer: Timer?
     var startDate: Date?
     var currentDurationWithoutCountdown: TimeInterval = 0

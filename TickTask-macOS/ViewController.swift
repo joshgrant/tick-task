@@ -96,7 +96,7 @@ extension ViewController
         
         if let light = scene.rootNode.childNode(withName: "Light", recursively: false)
         {
-            light.light?.intensity = isDarkMode ? 0 : 10000
+            light.light?.intensity = isDarkMode ? 200 : 5000
         }
     }
     
@@ -175,7 +175,7 @@ extension ViewController
     {
         // Unless the user drags it back to zero...
         
-        if Int(angle) == 0
+        if angle == 0
         {
             userSetTimerDurationToZero()
         }
@@ -342,12 +342,25 @@ extension ViewController
     {
         let minutes = self.currentDurationWithoutCountdown.minutes
         
+        let minuteText: String
+        let completedText = String.localizedStringWithFormat("completed")
+        
+        if minutes == 1
+        {
+            minuteText = String.localizedStringWithFormat("minute")
+        }
+        else
+        {
+            minuteText = String.localizedStringWithFormat("minutes")
+        }
+        
         let content = UNMutableNotificationContent()
-        content.title = "Task Done"
+        content.title = String.localizedStringWithFormat("Task Done")
         // The body of the notification. Use -[NSString localizedUserNotificationStringForKey:arguments:] to provide a string that will be localized at the time that the notification is presented.
-        content.body = "\(minutes) minutes completed"
+        content.body = "\(minutes) \(minuteText) \(completedText)"
         content.sound = UNNotificationSound.default
         
+        print(content.body)
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentDurationWithoutCountdown, repeats: false)
         

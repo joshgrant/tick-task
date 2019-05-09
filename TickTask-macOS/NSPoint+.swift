@@ -10,7 +10,7 @@ import Foundation
 
 extension NSPoint
 {
-    func angleFromPoint(point: NSPoint, snap: CGFloat = 12) -> CGFloat
+    func angleFromPoint(point: NSPoint) -> CGFloat
     {
         // We calculate the angle of the mouse location from the origin
         // Angle 0 is the right side of the unit circle
@@ -26,13 +26,6 @@ extension NSPoint
         {
             angle = CGFloat.pi * -2.0 + angle
         }
-        
-        // Now we want to make sure the dial "snaps" to different locations.
-        // This is achieved by subtracting the remainder from the value
-        // This gives us twice the number of snaps (because a full rotation is 2 pi)
-        let remainder = angle.remainder(dividingBy: (CGFloat.pi * 2) / snap)
-        
-        angle -= remainder
         
         return angle
     }

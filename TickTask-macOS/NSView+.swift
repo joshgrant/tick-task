@@ -16,4 +16,9 @@ extension NSView
                            y: self.bounds.size.height / 2.0)
         }
     }
+    
+    var topLevelView: NSView
+    {
+        return self.superview?.topLevelView ?? self
+    }
 }

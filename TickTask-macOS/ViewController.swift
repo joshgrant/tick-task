@@ -54,19 +54,17 @@ class ViewController: NSViewController
     // MARK: Interface Outlets
     
     @IBOutlet weak var stackView: NSStackView!
-    @IBOutlet weak var imageView: NSImageView!
-    
-    @IBOutlet weak var leftMousePan: NSGestureRecognizer!
-    @IBOutlet weak var rightMousePan: NSGestureRecognizer!
+    @IBOutlet weak var imageView: ImageView!
     
     // MARK: View Lifecycle
     
     override func viewDidLoad()
     {
-        self.view.translatesAutoresizingMaskIntoConstraints = true
+        view.translatesAutoresizingMaskIntoConstraints = true
         
         requestAuthorizationToDisplayNotifications()
-        self.imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
+        imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
+        imageView.delegate = self
         
         super.viewDidLoad()
     }
@@ -111,34 +109,72 @@ extension ViewController
     }
 }
 
+extension ViewController: ImageViewMouseDelegate
+{
+    func imageViewMouseDown(with event: NSEvent)
+    {
+        handlePanGesture(with: event)
+    }
+    
+    func imageViewMouseDragged(with event: NSEvent)
+    {
+        handlePanGesture(with: event)
+    }
+    
+    func imageViewMouseUp(with event: NSEvent)
+    {
+        handlePanGesture(with: event)
+    }
+    
+    func imageViewRightMouseDown(with event: NSEvent)
+    {
+        handlePanGesture(with: event)
+    }
+    
+    func imageViewRightMouseDragged(with event: NSEvent)
+    {
+        handlePanGesture(with: event)
+    }
+    
+    func imageViewRightMouseUp(with event: NSEvent)
+    {
+        handlePanGesture(with: event)
+    }
+}
+
 // MARK: Gesture
 extension ViewController
 {
-    @IBAction func handlePanGesture(_ gesture: NSPanGestureRecognizer)
+    func handlePanGesture(with event: NSEvent)
     {
-        let location = gesture.location(in: imageView)
+        let viewLocation = self.view.topLevelView.convert(event.locationInWindow, to: imageView)
         let origin = imageView.center
-        var angle: CGFloat = 0
+        var angle: CGFloat = viewLocation.angleFromPoint(point: origin)
         
-        if gesture.buttonMask == 0x1
-        {
-            angle = location.angleFromPoint(point: origin, snap: CGFloat(numDivisions))
-        }
-        else if gesture.buttonMask == 0x2
-        {
-            angle = location.angleFromPoint(point: origin, snap: 60)
-        }
+        print(event)
         
-        switch gesture.state
+        if (event.type == .rightMouseUp ||
+            event.type == .rightMouseDown ||
+            event.type == .rightMouseDragged ||
+            event.modifierFlags != .init(rawValue: 0))
         {
-        case .began:
+            angle.snap(to: 60)
+        }
+        else
+        {
+            angle.snap(to: 12)
+        }
+
+        switch event.type
+        {
+        case .leftMouseDown, .rightMouseDown:
             userBeganDragging(angle: angle)
-        case .changed:
+        case .leftMouseDragged, .rightMouseDragged:
             configureInterfaceElements(angle: angle, userUpdate: true)
-        case .ended:
+        case .leftMouseUp, .rightMouseUp:
             userEndedDragging(angle: angle)
         default:
-            debugPrint("Gesture state not handled.")
+            debugPrint("Event type not handled")
         }
     }
     
@@ -260,25 +296,13 @@ extension ViewController
     {
         let minutes = self.currentDurationWithoutCountdown.minutes
         
-        let minuteText: String
+        let minuteText = NSLocalizedString(minutes == 1 ? "minute" : "minutes", comment: "")
         let completedText = NSLocalizedString("completed", comment: "")
-        
-        if minutes == 1
-        {
-            minuteText = NSLocalizedString("minute", comment: "")
-        }
-        else
-        {
-            minuteText = NSLocalizedString("minutes", comment: "")
-        }
         
         let content = UNMutableNotificationContent()
         content.title = NSLocalizedString("Task Done", comment: "")
-        // The body of the notification. Use -[NSString localizedUserNotificationStringForKey:arguments:] to provide a string that will be localized at the time that the notification is presented.
         content.body = "\(minutes) \(minuteText) \(completedText)"
         content.sound = UNNotificationSound.default
-        
-        print(content.body)
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentDurationWithoutCountdown, repeats: false)
         

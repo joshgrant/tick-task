@@ -26,4 +26,13 @@ extension CGFloat
         
         return TimeInterval(interval)
     }
+    
+    mutating func snap(to snap: CGFloat)
+    {
+        // Now we want to make sure the dial "snaps" to different locations.
+        // This is achieved by subtracting the remainder from the value
+        // This gives us twice the number of snaps (because a full rotation is 2 pi)
+        let remainder = self.remainder(dividingBy: (CGFloat.pi * 2) / snap)
+        self -= remainder
+    }
 }

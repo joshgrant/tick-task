@@ -8,12 +8,55 @@
 
 import Cocoa
 
+protocol ImageViewMouseDelegate
+{
+    func imageViewMouseDown(with event: NSEvent)
+    func imageViewMouseDragged(with event: NSEvent)
+    func imageViewMouseUp(with event: NSEvent)
+    
+    func imageViewRightMouseDown(with event: NSEvent)
+    func imageViewRightMouseDragged(with event: NSEvent)
+    func imageViewRightMouseUp(with event: NSEvent)
+}
+
 class ImageView: NSImageView
 {
-    // We need this so that the gesture recognizers work???
+    var delegate: ImageViewMouseDelegate?
+    
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool
     {
         return true
+    }
+    
+    override var acceptsFirstResponder: Bool
+    {
+        return true
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        delegate?.imageViewMouseUp(with: event)
+    }
+    
+    override func mouseDragged(with event: NSEvent)
+    {
+        delegate?.imageViewMouseDragged(with: event)
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        delegate?.imageViewMouseDown(with: event)
+    }
+    
+    override func rightMouseDown(with event: NSEvent) {
+        delegate?.imageViewRightMouseDown(with: event)
+    }
+    
+    override func rightMouseDragged(with event: NSEvent)
+    {
+        delegate?.imageViewRightMouseDragged(with: event)
+    }
+    
+    override func rightMouseUp(with event: NSEvent) {
+        delegate?.imageViewRightMouseUp(with: event)
     }
 }
 

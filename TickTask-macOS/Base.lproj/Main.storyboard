@@ -707,19 +707,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="T6t-m3-KwT" secondAttribute="height" multiplier="1:1" id="bmP-g6-yLN"/>
                                         </constraints>
-                                        <gestureRecognizers>
-                                            <panGestureRecognizer delaysPrimaryMouseButtonEvents="YES" id="IkY-Ou-pAB">
-                                                <connections>
-                                                    <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="trh-TF-gfy"/>
-                                                </connections>
-                                            </panGestureRecognizer>
-                                            <panGestureRecognizer delaysSecondaryMouseButtonEvents="YES" id="a4s-zS-o9u">
-                                                <buttonMask key="buttonMask" secondary="YES"/>
-                                                <connections>
-                                                    <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="lta-qk-NI7"/>
-                                                </connections>
-                                            </panGestureRecognizer>
-                                        </gestureRecognizers>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="qaD-JV-Hrs"/>
                                     </imageView>
                                 </subviews>
@@ -743,8 +730,6 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="T6t-m3-KwT" id="uqr-Af-0XP"/>
-                        <outlet property="leftMousePan" destination="IkY-Ou-pAB" id="5SV-Tu-E8M"/>
-                        <outlet property="rightMousePan" destination="a4s-zS-o9u" id="rcu-vf-RZ3"/>
                         <outlet property="stackView" destination="Ttx-Mz-rdC" id="enh-Lo-DFv"/>
                     </connections>
                 </viewController>

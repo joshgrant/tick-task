@@ -63,7 +63,7 @@ extension NSImage
             
             return true
         }
-        
+        image.isTemplate = true
         return image
     }
 }
@@ -93,9 +93,9 @@ extension NSImage
             let dialFill = dialFillColor //NSColor(red: 0.459, green: 0.778, blue: 0.505, alpha: 1)
             let dialShadow = dialFill.blended(withFraction: 0.6, of: NSColor.black)!
             let color = dialFill.blended(withFraction: 0.4, of: NSColor.white)!
-            let color3 = NSColor.controlBackgroundColor.blended(withFraction: 0.3, of: .clear)!
-            let gradientColor = NSColor(red: 0, green: 0, blue: 0, alpha: 0.25)
-            let reverseColor = NSColor(red: 1, green: 1, blue: 1, alpha: 0.25)
+            let color3 = NSColor.controlBackgroundColor.blended(withFraction: 0.15, of: .clear)!
+            let gradientColor = NSColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+            let reverseColor = NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.4)
             
             //// Gradient Declarations
             let gradient = NSGradient(starting: gradientColor, ending: reverseColor)!
@@ -199,8 +199,6 @@ extension NSImage
             NSGraphicsContext.restoreGraphicsState()
             
             NSGraphicsContext.restoreGraphicsState()
-            
-            
             NSGraphicsContext.restoreGraphicsState()
             return true
         }

@@ -53,10 +53,10 @@ class ViewController: NSViewController
     
     // MARK: Interface Outlets
     
-    @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var leftMousePan: NSPanGestureRecognizer!
     @IBOutlet weak var rightMousePan: NSPanGestureRecognizer!
     @IBOutlet weak var stackView: NSStackView!
+    @IBOutlet weak var imageView: NSImageView!
     
     // MARK: View Lifecycle
     
@@ -65,9 +65,8 @@ class ViewController: NSViewController
         self.view.translatesAutoresizingMaskIntoConstraints = true
         
         requestAuthorizationToDisplayNotifications()
-        configureSceneView()
-        configureLighting()
         registerForNotifications(flag: true)
+        self.imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
         
         super.viewDidLoad()
     }
@@ -83,50 +82,38 @@ class ViewController: NSViewController
         let timeInterval = angle.toInterval()
         
         durationString = "\(String(format: "%02d", timeInterval.minutes))m " +
-            "\(String(format: "%02d", timeInterval.seconds))s"
+        "\(String(format: "%02d", timeInterval.seconds))s"
     }
 }
 
 // MARK: Scene View
 extension ViewController
 {
-    func configureLighting()
-    {
-        guard let scene = sceneView.scene else { return }
-        
-        if let light = scene.rootNode.childNode(withName: "Light", recursively: false)
-        {
-            light.light?.intensity = isDarkMode ? 200 : 5000
-        }
-    }
-    
     func configureInterfaceElements(angle: CGFloat? = nil, userUpdate: Bool = false)
     {
         let angle: CGFloat = angle ?? currentInterval.toAngle()
         
+        updateDurationField(with: angle)
+        
+        if userUpdate || Int(countdownRemaining) % 10 == 0
+        {
+            let state: DialState
+            if userUpdate
+            {
+                state = .userDragging
+            }
+            else
+            {
+                state = . countdown
+            }
+            
+            self.imageView.image = NSImage.interactionDialWithRotation(angle: angle, state: state)
+        }
+        
         if userUpdate || Int(countdownRemaining) % 60 == 0
         {
-            statusItem?.button?.image = NSImage.dialWithRotation(angle: angle)
+            statusItem?.button?.image = NSImage.statusItemDialWithRotation(angle: angle)
         }
-        
-        updateDurationField(with: angle)
-        updateDialRotation(with: angle)
-    }
-    
-    func configureSceneView()
-    {
-        if let sceneView = sceneView
-        {
-            if let scene = SCNScene(named: "./timer.scn")
-            {
-                sceneView.scene = scene
-                sceneView.allowsCameraControl = false
-                sceneView.antialiasingMode = .multisampling4X
-                sceneView.resignFirstResponder()
-            }
-        }
-        
-        setDialTo(state: .inactive)
     }
 }
 
@@ -135,8 +122,8 @@ extension ViewController
 {
     @IBAction func handlePanGesture(_ gesture: NSPanGestureRecognizer)
     {
-        let location = gesture.location(in: sceneView)
-        let origin = sceneView.center
+        let location = gesture.location(in: imageView)
+        let origin = imageView.center
         var angle: CGFloat = 0
         
         if gesture.isEqual(leftMousePan)
@@ -163,8 +150,6 @@ extension ViewController
     
     func userBeganDragging(angle: CGFloat)
     {
-        setDialTo(state: .userDragging)
-        
         secondTimer?.invalidate()
         secondTimer = nil
         
@@ -181,71 +166,28 @@ extension ViewController
         }
         else
         {
-            setTimerToActive()
+            setTimerToActive(angle: angle)
         }
-    }
-}
-
-// MARK: Dial
-extension ViewController
-{
-    func getDial() -> SCNNode?
-    {
-        guard let scene = sceneView.scene else { return nil }
-        
-        if let dial = scene.rootNode.childNode(withName: "Dial", recursively: false)
-        {
-            return dial
-        }
-        
-        return nil
-    }
-    
-    func setDialTo(state: DialState)
-    {
-        guard let dial = getDial() else { return }
-        
-        let color: NSColor
-        
-        switch state
-        {
-        case .inactive:
-            color = NSColor.systemGreen
-        case .userDragging:
-            color = NSColor.systemYellow
-        case .countdown:
-            color = NSColor.systemRed
-        }
-        
-        dial.geometry?.firstMaterial?.diffuse.contents = color
-        dial.geometry?.firstMaterial?.emission.contents = color
-    }
-    
-    func updateDialRotation(with angle: CGFloat)
-    {
-        guard let dial = getDial() else { return }
-        
-        dial.runAction(SCNAction.rotateTo(x: 0, y: angle, z: 0, duration: 0))
     }
 }
 
 // MARK: Timer
 extension ViewController
 {
-    func setTimerToActive()
+    func setTimerToActive(angle: CGFloat)
     {
-        guard let dial = getDial() else { return }
+        //        guard let dial = getDial() else { return }
         
         // We subtract 1 because when we convert the angle to the interval,
         // we round it up. However, rounding it down causes some problems,
         // so this is a fix, but not perfect...
         // Also, this shouldn't rely on the rotation of the dial... there should
         // be a less hacky way to achieve this...
-        currentDurationWithoutCountdown = dial.eulerAngles.y.toInterval() - 1
+        currentDurationWithoutCountdown = angle.toInterval()
         
         guard currentDurationWithoutCountdown > 0 else { return }
         
-        setDialTo(state: .countdown)
+        self.imageView.image = NSImage.interactionDialWithRotation(angle: angle, state: .countdown)
         
         startDate = Date()
         
@@ -258,7 +200,7 @@ extension ViewController
     
     func initializeSecondTimer() -> Timer
     {
-        return Timer(timeInterval: 1.0,
+        return Timer(timeInterval: 0.5,
                      target: self,
                      selector: #selector(secondTimerUpdated(_:)),
                      userInfo: nil,
@@ -279,7 +221,7 @@ extension ViewController
     
     func resetTimerAndDate()
     {
-        setDialTo(state: .inactive)
+        self.imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
         
         secondTimer?.invalidate()
         secondTimer = nil
@@ -335,7 +277,7 @@ extension ViewController
     
     @objc func changeSystemColors(_ notification: NSNotification)
     {
-        configureLighting()
+        //        configureLighting()
     }
     
     func scheduleNotification()

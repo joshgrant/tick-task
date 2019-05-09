@@ -39,7 +39,7 @@ extension AppDelegate
         
         if let button = statusItem.button
         {
-            button.image = NSImage.dialWithRotation(angle: 0)
+            button.image = NSImage.statusItemDialWithRotation(angle: 0)
         }
         
         statusItem.menu = menu

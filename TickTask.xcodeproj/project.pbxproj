@@ -31,6 +31,7 @@
 		B542F78D227EC9720045552D /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F78C227EC9720045552D /* CGFloat+.swift */; };
 		B542F797227ECD600045552D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F796227ECD600045552D /* UIView+.swift */; };
 		B542F799227ECDA90045552D /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F798227ECDA90045552D /* CGPoint+.swift */; };
+		B5BB041022846294008C8493 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB040F22846294008C8493 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		B542F78C227EC9720045552D /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		B542F796227ECD600045552D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B542F798227ECDA90045552D /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
+		B5BB040F22846294008C8493 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			children = (
 				B5370803226F188600ACFA62 /* AppDelegate.swift */,
 				B5370805226F188600ACFA62 /* ViewController.swift */,
+				B5BB040F22846294008C8493 /* ImageView.swift */,
 				B537080A226F188600ACFA62 /* Assets.xcassets */,
 				B537080C226F188600ACFA62 /* Main.storyboard */,
 				B537080F226F188600ACFA62 /* Info.plist */,
@@ -489,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BB041022846294008C8493 /* ImageView.swift in Sources */,
 				B542F787227EB2AC0045552D /* NSView+.swift in Sources */,
 				B542F789227EBF520045552D /* NSImage+.swift in Sources */,
 				B542F785227EAB0E0045552D /* TimeInterval+.swift in Sources */,

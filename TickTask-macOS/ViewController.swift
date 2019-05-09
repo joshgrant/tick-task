@@ -53,10 +53,11 @@ class ViewController: NSViewController
     
     // MARK: Interface Outlets
     
-    @IBOutlet weak var leftMousePan: NSPanGestureRecognizer!
-    @IBOutlet weak var rightMousePan: NSPanGestureRecognizer!
     @IBOutlet weak var stackView: NSStackView!
     @IBOutlet weak var imageView: NSImageView!
+    
+    @IBOutlet weak var leftMousePan: NSGestureRecognizer!
+    @IBOutlet weak var rightMousePan: NSGestureRecognizer!
     
     // MARK: View Lifecycle
     
@@ -65,16 +66,9 @@ class ViewController: NSViewController
         self.view.translatesAutoresizingMaskIntoConstraints = true
         
         requestAuthorizationToDisplayNotifications()
-        registerForNotifications(flag: true)
         self.imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
         
         super.viewDidLoad()
-    }
-    
-    override func viewWillDisappear()
-    {
-        registerForNotifications(flag: false)
-        super.viewWillDisappear()
     }
     
     func updateDurationField(with angle: CGFloat)
@@ -126,11 +120,11 @@ extension ViewController
         let origin = imageView.center
         var angle: CGFloat = 0
         
-        if gesture.isEqual(leftMousePan)
+        if gesture.buttonMask == 0x1
         {
             angle = location.angleFromPoint(point: origin, snap: CGFloat(numDivisions))
         }
-        else if gesture.isEqual(rightMousePan)
+        else if gesture.buttonMask == 0x2
         {
             angle = location.angleFromPoint(point: origin, snap: 60)
         }
@@ -242,19 +236,6 @@ extension ViewController
 // MARK: Notifications
 extension ViewController
 {
-    func registerForNotifications(flag: Bool)
-    {
-        if flag
-        {
-            DistributedNotificationCenter.default.addObserver(self, selector: #selector(changeSystemColors(_:)), name: .init(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
-        }
-        else
-        {
-            DistributedNotificationCenter.default.removeObserver(self, name:
-                .init(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
-        }
-    }
-    
     func requestAuthorizationToDisplayNotifications()
     {
         let center = UNUserNotificationCenter.current()
@@ -273,11 +254,6 @@ extension ViewController
             
             self.scheduleNotification()
         }
-    }
-    
-    @objc func changeSystemColors(_ notification: NSNotification)
-    {
-        //        configureLighting()
     }
     
     func scheduleNotification()

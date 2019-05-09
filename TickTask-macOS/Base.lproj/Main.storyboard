@@ -702,21 +702,21 @@
                                             <binding destination="XfG-lQ-9wD" name="value" keyPath="durationString" id="CR4-lL-ae6"/>
                                         </connections>
                                     </textField>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T6t-m3-KwT">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T6t-m3-KwT" customClass="ImageView" customModule="Tick_Task" customModuleProvider="target">
                                         <rect key="frame" x="8" y="8" width="104" height="104"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="T6t-m3-KwT" secondAttribute="height" multiplier="1:1" id="bmP-g6-yLN"/>
                                         </constraints>
                                         <gestureRecognizers>
-                                            <panGestureRecognizer delaysPrimaryMouseButtonEvents="YES" id="9QM-9t-OPo">
+                                            <panGestureRecognizer delaysPrimaryMouseButtonEvents="YES" id="IkY-Ou-pAB">
                                                 <connections>
-                                                    <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="qbK-Iq-0u5"/>
+                                                    <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="trh-TF-gfy"/>
                                                 </connections>
                                             </panGestureRecognizer>
-                                            <panGestureRecognizer delaysSecondaryMouseButtonEvents="YES" id="r5U-Hh-Adb">
+                                            <panGestureRecognizer delaysSecondaryMouseButtonEvents="YES" id="a4s-zS-o9u">
                                                 <buttonMask key="buttonMask" secondary="YES"/>
                                                 <connections>
-                                                    <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="jOl-k8-LU2"/>
+                                                    <action selector="handlePanGesture:" target="XfG-lQ-9wD" id="lta-qk-NI7"/>
                                                 </connections>
                                             </panGestureRecognizer>
                                         </gestureRecognizers>
@@ -743,8 +743,8 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="T6t-m3-KwT" id="uqr-Af-0XP"/>
-                        <outlet property="leftMousePan" destination="9QM-9t-OPo" id="5z3-ki-d5Z"/>
-                        <outlet property="rightMousePan" destination="r5U-Hh-Adb" id="DJq-Tz-kvY"/>
+                        <outlet property="leftMousePan" destination="IkY-Ou-pAB" id="5SV-Tu-E8M"/>
+                        <outlet property="rightMousePan" destination="a4s-zS-o9u" id="rcu-vf-RZ3"/>
                         <outlet property="stackView" destination="Ttx-Mz-rdC" id="enh-Lo-DFv"/>
                     </connections>
                 </viewController>

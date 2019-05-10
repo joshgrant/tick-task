@@ -12,7 +12,14 @@ extension TimeInterval
 {
     var minutes: Int {
         get {
-            return Int(floor(self / 60))
+            if self >= 0
+            {
+                return Int(floor(self / 60))
+            }
+            else
+            {
+                return Int(ceil(self / 60))
+            }
         }
     }
     
@@ -31,8 +38,10 @@ extension TimeInterval
         let normalized = minutes / maxMinutes
         
         // Then, interpolate that value between 0 and 2 pi
+        // Then, multiply it by negative one, because we want the dial to rotate to the right
+        // instead of the left
         let angle = normalized * (CGFloat.pi * 2) * -1
         
-        return angle
+        return CGFloat.minimum(angle, 0)
     }
 }

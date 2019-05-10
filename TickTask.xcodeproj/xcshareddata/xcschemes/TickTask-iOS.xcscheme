@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B53707FF226F188600ACFA62"
+               BlueprintIdentifier = "B5370835226F18A200ACFA62"
                BuildableName = "Tick Task.app"
-               BlueprintName = "TickTask-macOS"
+               BlueprintName = "TickTask-iOS"
                ReferencedContainer = "container:TickTask.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5E6617122855EB600E9A0BC"
-               BuildableName = "TickTask-macOSTests.xctest"
-               BlueprintName = "TickTask-macOSTests"
+               BlueprintIdentifier = "B5E6616322855EA100E9A0BC"
+               BuildableName = "TickTask-iOSTests.xctest"
+               BlueprintName = "TickTask-iOSTests"
                ReferencedContainer = "container:TickTask.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,9 +44,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5E6618D22855EDA00E9A0BC"
-               BuildableName = "TickTask-macOSUITests.xctest"
-               BlueprintName = "TickTask-macOSUITests"
+               BlueprintIdentifier = "B5E6617F22855EC800E9A0BC"
+               BuildableName = "TickTask-iOSUITests.xctest"
+               BlueprintName = "TickTask-iOSUITests"
                ReferencedContainer = "container:TickTask.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -54,9 +54,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B53707FF226F188600ACFA62"
+            BlueprintIdentifier = "B5370835226F18A200ACFA62"
             BuildableName = "Tick Task.app"
-            BlueprintName = "TickTask-macOS"
+            BlueprintName = "TickTask-iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -77,9 +77,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B53707FF226F188600ACFA62"
+            BlueprintIdentifier = "B5370835226F18A200ACFA62"
             BuildableName = "Tick Task.app"
-            BlueprintName = "TickTask-macOS"
+            BlueprintName = "TickTask-iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -96,9 +96,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B53707FF226F188600ACFA62"
+            BlueprintIdentifier = "B5370835226F18A200ACFA62"
             BuildableName = "Tick Task.app"
-            BlueprintName = "TickTask-macOS"
+            BlueprintName = "TickTask-iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

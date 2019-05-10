@@ -3,61 +3,61 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "Mac Icon16w.png",
+      "filename" : "Artboard16w.png",
       "scale" : "1x"
     },
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "Mac Icon16w@2x.png",
+      "filename" : "Artboard32w.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "Mac Icon32w.png",
+      "filename" : "Artboard32w-1.png",
       "scale" : "1x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "Mac Icon32w@2x-1.png",
+      "filename" : "Artboard64w.png",
       "scale" : "2x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "Mac Icon128w.png",
+      "filename" : "Artboard128w.png",
       "scale" : "1x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "Mac Icon128w@2x.png",
+      "filename" : "Artboard256w.png",
       "scale" : "2x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "Mac Icon256w.png",
+      "filename" : "Artboard256w-1.png",
       "scale" : "1x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "Mac Icon256w@2x.png",
+      "filename" : "Artboard512w.png",
       "scale" : "2x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "Mac Icon.png",
+      "filename" : "Artboard512w-1.png",
       "scale" : "1x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "Mac Icon@2x.png",
+      "filename" : "Artboard1024w.png",
       "scale" : "2x"
     }
   ],

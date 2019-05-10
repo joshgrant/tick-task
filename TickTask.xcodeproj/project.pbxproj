@@ -188,10 +188,10 @@
 				B542F78A227EBFC10045552D /* NSPoint+.swift */,
 				B542F786227EB2AC0045552D /* NSView+.swift */,
 				B5370810226F188600ACFA62 /* TickTask-macOS.entitlements */,
-				B5E6617322855EB600E9A0BC /* TickTask-macOSTests */,
-				B5E6618F22855EDA00E9A0BC /* TickTask-macOSUITests */,
 				B542F784227EAB0E0045552D /* TimeInterval+.swift */,
 				B5370805226F188600ACFA62 /* ViewController.swift */,
+				B5E6617322855EB600E9A0BC /* TickTask-macOSTests */,
+				B5E6618F22855EDA00E9A0BC /* TickTask-macOSUITests */,
 			);
 			path = "TickTask-macOS";
 			sourceTree = "<group>";
@@ -425,10 +425,10 @@
 			targets = (
 				B53707FF226F188600ACFA62 /* TickTask-macOS */,
 				B5370835226F18A200ACFA62 /* TickTask-iOS */,
-				B5E6616322855EA100E9A0BC /* TickTask-iOSTests */,
 				B5E6617122855EB600E9A0BC /* TickTask-macOSTests */,
-				B5E6617F22855EC800E9A0BC /* TickTask-iOSUITests */,
 				B5E6618D22855EDA00E9A0BC /* TickTask-macOSUITests */,
+				B5E6616322855EA100E9A0BC /* TickTask-iOSTests */,
+				B5E6617F22855EC800E9A0BC /* TickTask-iOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -834,7 +834,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOSTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-iOS/TickTask-iOSTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -860,7 +860,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOSTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-iOS/TickTask-iOSTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -887,7 +887,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-macOSTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -911,7 +911,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-macOSTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -934,7 +934,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOSUITests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-iOS/TickTask-iOSUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -959,7 +959,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOSUITests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-iOS/TickTask-iOSUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -985,7 +985,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-macOSUITests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1008,7 +1008,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-macOSUITests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

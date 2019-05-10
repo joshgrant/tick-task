@@ -28,6 +28,50 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5370814226F188600ACFA62"
+               BuildableName = "TickTask-macOSTests.xctest"
+               BlueprintName = "TickTask-macOSTests"
+               ReferencedContainer = "container:TickTask.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5370856226F18A300ACFA62"
+               BuildableName = "TickTask-iOSUITests.xctest"
+               BlueprintName = "TickTask-iOSUITests"
+               ReferencedContainer = "container:TickTask.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B537084B226F18A300ACFA62"
+               BuildableName = "TickTask-iOSTests.xctest"
+               BlueprintName = "TickTask-iOSTests"
+               ReferencedContainer = "container:TickTask.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B537081F226F188600ACFA62"
+               BuildableName = "TickTask-macOSUITests.xctest"
+               BlueprintName = "TickTask-macOSUITests"
+               ReferencedContainer = "container:TickTask.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

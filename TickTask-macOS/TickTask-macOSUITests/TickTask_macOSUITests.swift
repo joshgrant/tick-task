@@ -1,14 +1,14 @@
 //
-//  TickTaskUITests.swift
-//  TickTaskUITests
+//  TickTask_macOSUITests.swift
+//  TickTask-macOSUITests
 //
-//  Created by Joshua Grant on 4/23/19.
+//  Created by Joshua Grant on 5/10/19.
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
 import XCTest
 
-class TickTaskUITests: XCTestCase {
+class TickTask_macOSUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -33,12 +33,6 @@ class ViewController: NSViewController
     
     @objc dynamic var durationString: String = NSLocalizedString("00m 00s", comment: "")
     
-    var isDarkMode: Bool {
-        get {
-            return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") != nil
-        }
-    }
-    
     var countdownRemaining: TimeInterval {
         get {
             return (startDate != nil) ? Date().timeIntervalSince(startDate!) : TimeInterval.zero
@@ -89,16 +83,7 @@ extension ViewController
         
         if userUpdate || Int(countdownRemaining) % 10 == 0
         {
-            let state: DialState
-            if userUpdate
-            {
-                state = .userDragging
-            }
-            else
-            {
-                state = . countdown
-            }
-            
+            let state: DialState = userUpdate ? .userDragging : .countdown
             self.imageView.image = NSImage.interactionDialWithRotation(angle: angle, state: state)
         }
         
@@ -109,34 +94,10 @@ extension ViewController
     }
 }
 
+// MARK: Image View Mouse Delegate
 extension ViewController: ImageViewMouseDelegate
 {
-    func imageViewMouseDown(with event: NSEvent)
-    {
-        handlePanGesture(with: event)
-    }
-    
-    func imageViewMouseDragged(with event: NSEvent)
-    {
-        handlePanGesture(with: event)
-    }
-    
-    func imageViewMouseUp(with event: NSEvent)
-    {
-        handlePanGesture(with: event)
-    }
-    
-    func imageViewRightMouseDown(with event: NSEvent)
-    {
-        handlePanGesture(with: event)
-    }
-    
-    func imageViewRightMouseDragged(with event: NSEvent)
-    {
-        handlePanGesture(with: event)
-    }
-    
-    func imageViewRightMouseUp(with event: NSEvent)
+    func imageViewMouseEvent(_ event: NSEvent)
     {
         handlePanGesture(with: event)
     }
@@ -150,8 +111,6 @@ extension ViewController
         let viewLocation = self.view.topLevelView.convert(event.locationInWindow, to: imageView)
         let origin = imageView.center
         var angle: CGFloat = viewLocation.angleFromPoint(point: origin)
-        
-        print(event)
         
         if (event.type == .rightMouseUp ||
             event.type == .rightMouseDown ||
@@ -206,13 +165,6 @@ extension ViewController
 {
     func setTimerToActive(angle: CGFloat)
     {
-        //        guard let dial = getDial() else { return }
-        
-        // We subtract 1 because when we convert the angle to the interval,
-        // we round it up. However, rounding it down causes some problems,
-        // so this is a fix, but not perfect...
-        // Also, this shouldn't rely on the rotation of the dial... there should
-        // be a less hacky way to achieve this...
         currentDurationWithoutCountdown = angle.toInterval()
         
         guard currentDurationWithoutCountdown > 0 else { return }
@@ -285,9 +237,7 @@ extension ViewController
         let notificationCenter = UNUserNotificationCenter.current()
         
         notificationCenter.getNotificationSettings { (settings) in
-            // Do not schedule notifications if not authorized.
             guard settings.authorizationStatus == .authorized else { return }
-            
             self.scheduleNotification()
         }
     }

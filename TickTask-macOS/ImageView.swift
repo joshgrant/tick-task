@@ -10,13 +10,7 @@ import Cocoa
 
 protocol ImageViewMouseDelegate
 {
-    func imageViewMouseDown(with event: NSEvent)
-    func imageViewMouseDragged(with event: NSEvent)
-    func imageViewMouseUp(with event: NSEvent)
-    
-    func imageViewRightMouseDown(with event: NSEvent)
-    func imageViewRightMouseDragged(with event: NSEvent)
-    func imageViewRightMouseUp(with event: NSEvent)
+    func imageViewMouseEvent(_ event: NSEvent)
 }
 
 class ImageView: NSImageView
@@ -33,32 +27,33 @@ class ImageView: NSImageView
         return true
     }
     
-    override func mouseUp(with event: NSEvent) {
-        delegate?.imageViewMouseUp(with: event)
+    override func mouseUp(with event: NSEvent)
+    {
+        delegate?.imageViewMouseEvent(event)
     }
     
     override func mouseDragged(with event: NSEvent)
     {
-        delegate?.imageViewMouseDragged(with: event)
+        delegate?.imageViewMouseEvent(event)
     }
     
-    override func mouseDown(with event: NSEvent) {
-        delegate?.imageViewMouseDown(with: event)
+    override func mouseDown(with event: NSEvent)
+    {
+        delegate?.imageViewMouseEvent(event)
     }
     
-    override func rightMouseDown(with event: NSEvent) {
-        delegate?.imageViewRightMouseDown(with: event)
+    override func rightMouseDown(with event: NSEvent)
+    {
+        delegate?.imageViewMouseEvent(event)
     }
     
     override func rightMouseDragged(with event: NSEvent)
     {
-        delegate?.imageViewRightMouseDragged(with: event)
+        delegate?.imageViewMouseEvent(event)
     }
     
-    override func rightMouseUp(with event: NSEvent) {
-        delegate?.imageViewRightMouseUp(with: event)
+    override func rightMouseUp(with event: NSEvent)
+    {
+        delegate?.imageViewMouseEvent(event)
     }
 }
-
-// In the future, we might need to subclass the view to make sure that
-// we can accept first responder. But for now, this works well...

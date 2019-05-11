@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     var statusItem: NSStatusItem!
     var viewController: ViewController!
     var menu: NSMenu!
+    var contextMenu: NSMenu!
     
     var autoOpenItem: NSMenuItem!
 
@@ -29,61 +30,51 @@ class AppDelegate: NSObject, NSApplicationDelegate
     {
         viewController = initializeViewController()
         menu = initializeMenu(viewController: viewController)
+        contextMenu = initializeContextMenu()
         statusItem = initializeStatusItem(menu: menu)
         
         viewController.statusItem = statusItem
     }
 }
 
-// MARK: Object Initialization
+extension AppDelegate: RightClickViewDelegate
+{
+    func rightMouseEvent(with event: NSEvent)
+    {
+        switch event.type
+        {
+        case .rightMouseDown:
+            contextMenu.popUp(positioning: nil, at: NSPoint(x: 0, y: 22), in: statusItem.button)
+        default:
+            break
+        }
+    }
+}
 
-//class StatusBarButton: NSStatusBarButton
-//{
-//    override func mouseDown(with event: NSEvent)
-//    {
-//        print("MOuse down")
-//    }
-//
-//    override func mouseUp(with event: NSEvent)
-//    {
-//        print("Mouse up")
-//    }
-//}
+// MARK: Object Initialization
 
 extension AppDelegate
 {
     func initializeStatusItem(menu: NSMenu) -> NSStatusItem
     {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-//        statusItem.button = StatusBarButton(image: NSImage.statusItemDialWithRotation(angle: 0), target: self, action: #selector(statusItemButtonRightClick(sender:)))
         
         if let button = statusItem.button
         {
             button.image = NSImage.statusItemDialWithRotation(angle: 0)
-//            button.action = #selector(hello)
-//
-//            let rightClick = NSClickGestureRecognizer(target: self, action: #selector(statusItemButtonRightClick(sender:)))
-//            rightClick.buttonMask = kIOTimingIDSony_1600x1024_76hz
-//            button.addGestureRecognizer(rightClick)
-        }
 
-//        statusItem.action
+            let rightClickView = RightClickView(frame: button.frame)
+            rightClickView.delegate = self
+
+            button.addSubview(rightClickView)
+        }
         
         statusItem.menu = menu
         
         return statusItem
     }
+
     
-//    @objc func hello()
-//    {
-//        print("HEllo")
-//    }
-//    
-//    @objc func statusItemButtonRightClick(sender: NSStatusBarButton)
-//    {
-//        print("SEX")
-//    }
-//    
     func initializeViewController() -> ViewController
     {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
@@ -96,7 +87,14 @@ extension AppDelegate
         let menu = NSMenu()
 
         menu.addItem(viewControllerMenuItem(viewController: viewController))
-        menu.addItem(NSMenuItem.separator())
+        
+        return menu
+    }
+    
+    func initializeContextMenu() -> NSMenu
+    {
+        let menu = NSMenu()
+        
         menu.addItem(openMenuItem())
         menu.addItem(quitMenuItem())
         
@@ -114,8 +112,7 @@ extension AppDelegate
     
     func quitMenuItem() -> NSMenuItem
     {
-        let title = NSLocalizedString("Quit", comment: "")
-        // TODO: Remove all notifications...
+        let title = "quit_ticktask".localized
         let selector = #selector(NSApplication.terminate(_:))
         let keyEquivalent = "q"
         
@@ -126,12 +123,10 @@ extension AppDelegate
     
     func openMenuItem() -> NSMenuItem
     {
-        let title = NSLocalizedString("Auto Open", comment: "")
+        let title = "open_at_login".localized
         let selector = #selector(autoOpen)
         
-        autoOpenItem = NSMenuItem()
-        autoOpenItem.title = title
-        autoOpenItem.action = selector
+        autoOpenItem = NSMenuItem(title: title, action: selector, keyEquivalent: String())
         
         let autoOpen = UserDefaults.standard.bool(forKey: AppDelegate.autoOpenKey)
         autoOpenItem.state = autoOpen ? .on : .off

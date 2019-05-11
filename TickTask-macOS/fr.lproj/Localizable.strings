@@ -2,12 +2,12 @@
   Localizable.strings
   TickTask
 
-  Created by Joshua Grant on 5/8/19.
+  Created by Joshua Grant on 5/11/19.
   Copyright © 2019 joshgrant. All rights reserved.
 */
-"minutes" = "minutes";
-"minute" = "minute";
-"completed" = "completé";
-"Task Done" = "Tâche Accomplie";
-"Quit" = "Démissioner";
-"00m 00s" = "00m 00s";
+"open_at_login" = "Open at Login";
+"quit_ticktask" = "Quit TickTask";
+"time_remaining" = "Time Remaining: %@";
+"current_duration" = "%02dm %02ds";
+"timer_completed_title" = "Time's Up!";
+"timer_completed_description" = "%2d minute%@ completed";

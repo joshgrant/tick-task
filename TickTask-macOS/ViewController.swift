@@ -63,12 +63,11 @@ class ViewController: NSViewController
         super.viewDidLoad()
     }
     
-    func updateDurationField(with angle: CGFloat)
+    func durationString(with angle: CGFloat) -> String
     {
         let timeInterval = angle.toInterval()
-        
-        durationString = "\(String(format: "%02d", timeInterval.minutes))m " +
-        "\(String(format: "%02d", timeInterval.seconds))s"
+ 
+        return String(format: "current_duration".localized, timeInterval.minutes, timeInterval.seconds)
     }
 }
 
@@ -79,7 +78,8 @@ extension ViewController
     {
         let angle: CGFloat = angle ?? currentInterval.toAngle()
         
-        updateDurationField(with: angle)
+        // The way that cocoa bindings work allows this to update the field of text...
+        durationString = durationString(with: angle)
         
         if userUpdate || Int(countdownRemaining) % 10 == 0
         {
@@ -246,12 +246,15 @@ extension ViewController
     {
         let minutes = self.currentDurationWithoutCountdown.minutes
         
-        let minuteText = NSLocalizedString(minutes == 1 ? "minute" : "minutes", comment: "")
-        let completedText = NSLocalizedString("completed", comment: "")
+        let notificationTitle = "timer_completed_title".localized
+        // This isn't correct,
+        let notificationBody = String.localizedStringWithFormat("timer_completed_description",
+                                                                minutes,
+                                                                minutes == 1 ? "s" : "")
         
         let content = UNMutableNotificationContent()
-        content.title = NSLocalizedString("Task Done", comment: "")
-        content.body = "\(minutes) \(minuteText) \(completedText)"
+        content.title = notificationTitle
+        content.body = notificationBody
         content.sound = UNNotificationSound.default
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentDurationWithoutCountdown, repeats: false)

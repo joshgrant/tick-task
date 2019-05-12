@@ -31,7 +31,7 @@ class ViewController: NSViewController
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     var statusItem: NSStatusItem?
     
-    @objc dynamic var durationString: String = NSLocalizedString("00m 00s", comment: "")
+    @objc dynamic var durationString: String = DateComponentsFormatter.currentDurationFormatter.string(from: 0)!
     
     var countdownRemaining: TimeInterval {
         get {
@@ -65,9 +65,8 @@ class ViewController: NSViewController
     
     func durationString(with angle: CGFloat) -> String
     {
-        let timeInterval = angle.toInterval()
- 
-        return String(format: "current_duration".localized, timeInterval.minutes, timeInterval.seconds)
+        let dateComponents = angle.toInterval().dateComponents
+        return DateComponentsFormatter.currentDurationFormatter.string(from: dateComponents) ?? ""
     }
 }
 
@@ -244,13 +243,10 @@ extension ViewController
     
     func scheduleNotification()
     {
-        let minutes = self.currentDurationWithoutCountdown.minutes
+        let dateComponents = self.currentDurationWithoutCountdown.dateComponents
         
         let notificationTitle = "timer_completed_title".localized
-        // This isn't correct,
-        let notificationBody = String.localizedStringWithFormat("timer_completed_description",
-                                                                minutes,
-                                                                minutes == 1 ? "s" : "")
+        let notificationBody = DateComponentsFormatter.completedDurationFormatter.string(from: dateComponents) ?? ""
         
         let content = UNMutableNotificationContent()
         content.title = notificationTitle

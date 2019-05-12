@@ -25,6 +25,7 @@
 		B54DCE4C22872D8A000EC5BB /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DCE4B22872D8A000EC5BB /* String+.swift */; };
 		B54DCE4F22872F10000EC5BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE4E22872F10000EC5BB /* Main.storyboard */; };
 		B54DCE5222873871000EC5BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE5422873871000EC5BB /* Localizable.strings */; };
+		B54DCE6A228815B9000EC5BB /* DateComponentsFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DCE69228815B9000EC5BB /* DateComponentsFormatter+.swift */; };
 		B59C1F5122870B32000B0BA2 /* TickTask-macOSLauncher.app in Copy Helper App */ = {isa = PBXBuildFile; fileRef = B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5BB041022846294008C8493 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB040F22846294008C8493 /* ImageView.swift */; };
 		B5E6616722855EA100E9A0BC /* TickTask_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6616622855EA100E9A0BC /* TickTask_iOSTests.swift */; };
@@ -104,8 +105,18 @@
 		B54DCE4E22872F10000EC5BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B54DCE5322873871000EC5BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B54DCE5522873874000EC5BB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B54DCE69228815B9000EC5BB /* DateComponentsFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+.swift"; sourceTree = "<group>"; };
 		B59C1F5022870AFC000B0BA2 /* Tick Task.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tick Task.entitlements"; sourceTree = "<group>"; };
 		B5BB040F22846294008C8493 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		B5D1D546228823FD005C04E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B5D1D54722882409005C04E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5D1D54822882413005C04E0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B5D1D54922882417005C04E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5D1D54A22882426005C04E0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5D1D54D22885F94005C04E0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5D1D54E22885F9B005C04E0 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5D1D54F22885FA5005C04E0 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5D1D55022885FB0005C04E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-macOSLauncher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D56C622286B2BE00338BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5D56C632286B2BE00338BF6 /* TickTask_macOSLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask_macOSLauncher.entitlements; sourceTree = "<group>"; };
@@ -218,6 +229,7 @@
 				B542F784227EAB0E0045552D /* TimeInterval+.swift */,
 				B5370805226F188600ACFA62 /* ViewController.swift */,
 				B54DCE4B22872D8A000EC5BB /* String+.swift */,
+				B54DCE69228815B9000EC5BB /* DateComponentsFormatter+.swift */,
 				B5E6617322855EB600E9A0BC /* TickTask-macOSTests */,
 				B5E6618F22855EDA00E9A0BC /* TickTask-macOSUITests */,
 			);
@@ -481,6 +493,15 @@
 				Base,
 				en,
 				fr,
+				"zh-Hant",
+				ru,
+				"pt-BR",
+				de,
+				ja,
+				es,
+				hi,
+				it,
+				"zh-Hans",
 			);
 			mainGroup = B53707F7226F188600ACFA62;
 			productRefGroup = B5370801226F188600ACFA62 /* Products */;
@@ -569,6 +590,7 @@
 				B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */,
 				B542F78D227EC9720045552D /* CGFloat+.swift in Sources */,
 				B542F78B227EBFC10045552D /* NSPoint+.swift in Sources */,
+				B54DCE6A228815B9000EC5BB /* DateComponentsFormatter+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +676,15 @@
 			children = (
 				B54DCE5322873871000EC5BB /* en */,
 				B54DCE5522873874000EC5BB /* fr */,
+				B5D1D546228823FD005C04E0 /* zh-Hant */,
+				B5D1D54722882409005C04E0 /* ru */,
+				B5D1D54822882413005C04E0 /* pt-BR */,
+				B5D1D54922882417005C04E0 /* de */,
+				B5D1D54A22882426005C04E0 /* ja */,
+				B5D1D54D22885F94005C04E0 /* es */,
+				B5D1D54E22885F9B005C04E0 /* hi */,
+				B5D1D54F22885FA5005C04E0 /* it */,
+				B5D1D55022885FB0005C04E0 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

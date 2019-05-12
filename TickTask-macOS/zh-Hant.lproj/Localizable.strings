@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  TickTask
+
+  Created by Joshua Grant on 5/11/19.
+  Copyright © 2019 joshgrant. All rights reserved.
+*/
+"open_at_login" = "在登入時打開"; // Dock.lg
+"quit_ticktask" = "結束"; // Dock.lg
+"timer_completed_title" = "任務完成"; // Google translate

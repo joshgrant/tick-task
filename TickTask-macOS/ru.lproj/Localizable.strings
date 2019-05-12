@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  TickTask
+
+  Created by Joshua Grant on 5/11/19.
+  Copyright © 2019 joshgrant. All rights reserved.
+*/
+"open_at_login" = "Открывать при входе";
+"quit_ticktask" = "Завершить";
+"timer_completed_title" = "Время вышло";

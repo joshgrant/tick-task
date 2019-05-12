@@ -10,7 +10,7 @@ import Foundation
 
 extension TimeInterval
 {
-    var minutes: Int {
+    private var minutes: Int {
         get {
             if self >= 0
             {
@@ -23,10 +23,15 @@ extension TimeInterval
         }
     }
     
-    var seconds: Int {
+    private var seconds: Int {
         get {
             return Int(self) % 60
         }
+    }
+    
+    var dateComponents: DateComponents
+    {
+        return DateComponents(minute: minutes, second: seconds)
     }
     
     func toAngle(maxMinutes: CGFloat = 60) -> CGFloat

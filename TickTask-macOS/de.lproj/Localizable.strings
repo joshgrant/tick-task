@@ -5,6 +5,6 @@
   Created by Joshua Grant on 5/11/19.
   Copyright © 2019 joshgrant. All rights reserved.
 */
-"open_at_login" = "Ouvrir avec la session";
-"quit_ticktask" = "Quitter";
-"timer_completed_title" = "Tâche terminée";
+"open_at_login" = "Bei der Anmeldung öffnen";
+"quit_ticktask" = "Beenden";
+"timer_completed_title" = "Aufgabe erledigt";

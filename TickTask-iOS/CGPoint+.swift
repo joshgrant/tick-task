@@ -1,12 +1,12 @@
 //
-//  NSPoint+.swift
-//  TickTask-macOS
+//  CGPoint+.swift
+//  TickTask-iOS
 //
-//  Created by Joshua Grant on 5/5/19.
+//  Created by Joshua Grant on 5/15/19.
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension CGPoint
 {
@@ -17,7 +17,7 @@ extension CGPoint
         var angle = atan2(self.y - point.y,  self.x - point.x)
         
         // Subtract pi/2 (90 degrees) to start the dial at the top
-        angle -= CGFloat.pi / 2.0
+        angle += CGFloat.pi / 2.0
         
         // Because the angle is weird,,, i.e it is -4.712 *and* 1.570 at the left, and because the
         // top-left quadrant has positive numbers when everything else is negative, we do some adjustments to

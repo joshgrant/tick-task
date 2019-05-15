@@ -1,12 +1,12 @@
 //
-//  TimeInterval+.swift
-//  TickTask-macOS
+//  TimeInterval.swift
+//  TickTask-iOS
 //
-//  Created by Joshua Grant on 5/5/19.
+//  Created by Joshua Grant on 5/15/19.
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension TimeInterval
 {
@@ -40,12 +40,21 @@ extension TimeInterval
         let minutes = CGFloat(self) / 60
         
         // Then, get a normalized value between 0 and 1
-        let normalized = minutes / maxMinutes
+        // Also, account for the flipped iOS coordinate system
+        let normalized = 1.0 - (minutes / maxMinutes)
+        
+        print(normalized)
         
         // Then, interpolate that value between 0 and 2 pi
         // Then, multiply it by negative one, because we want the dial to rotate to the right
         // instead of the left
         let angle = normalized * (CGFloat.pi * 2) * -1
+        
+        // We have to adjust for iOS's flipped coordinate system
+        // Maybe we can simplify the maths
+//        let adjusted = CGFloat.pi * 2 - angle
+        
+//        print("Adjusted", adjusted)
         
         return CGFloat.minimum(angle, 0)
     }

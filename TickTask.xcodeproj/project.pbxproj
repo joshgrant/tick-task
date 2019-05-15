@@ -28,6 +28,11 @@
 		B58FF1F6228C327B00922A69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF1F4228C327B00922A69 /* LaunchScreen.storyboard */; };
 		B58FF201228C327B00922A69 /* TickTask_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF200228C327B00922A69 /* TickTask_iOSTests.swift */; };
 		B58FF20C228C327B00922A69 /* TickTask_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF20B228C327B00922A69 /* TickTask_iOSUITests.swift */; };
+		B58FF218228C338B00922A69 /* DialImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF217228C338B00922A69 /* DialImage.swift */; };
+		B58FF21D228C3DF400922A69 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF21C228C3DF400922A69 /* CGPoint+.swift */; };
+		B58FF220228C422E00922A69 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF21F228C422E00922A69 /* CGFloat+.swift */; };
+		B58FF222228C42A000922A69 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF221228C42A000922A69 /* TimeInterval.swift */; };
+		B58FF224228C44B200922A69 /* DateComponentsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */; };
 		B59C1F5122870B32000B0BA2 /* TickTask-macOSLauncher.app in Copy Helper App */ = {isa = PBXBuildFile; fileRef = B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5BB041022846294008C8493 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB040F22846294008C8493 /* ImageView.swift */; };
 		B5E6617522855EB600E9A0BC /* TickTask_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6617422855EB600E9A0BC /* TickTask_macOSTests.swift */; };
@@ -111,6 +116,12 @@
 		B58FF207228C327B00922A69 /* TickTask-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58FF20B228C327B00922A69 /* TickTask_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_iOSUITests.swift; sourceTree = "<group>"; };
 		B58FF20D228C327B00922A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B58FF217228C338B00922A69 /* DialImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialImage.swift; sourceTree = "<group>"; };
+		B58FF21C228C3DF400922A69 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
+		B58FF21E228C402300922A69 /* TickTask-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TickTask-iOS.entitlements"; sourceTree = "<group>"; };
+		B58FF21F228C422E00922A69 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		B58FF221228C42A000922A69 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentsFormatter.swift; sourceTree = "<group>"; };
 		B5BB040F22846294008C8493 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		B5D1D546228823FD005C04E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5D1D54722882409005C04E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -237,6 +248,7 @@
 		B58FF1EA228C327A00922A69 /* TickTask-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B58FF21E228C402300922A69 /* TickTask-iOS.entitlements */,
 				B58FF1FF228C327B00922A69 /* TickTask-iOSTests */,
 				B58FF20A228C327B00922A69 /* TickTask-iOSUITests */,
 				B58FF1EB228C327A00922A69 /* AppDelegate.swift */,
@@ -245,6 +257,11 @@
 				B58FF1F2228C327B00922A69 /* Assets.xcassets */,
 				B58FF1F4228C327B00922A69 /* LaunchScreen.storyboard */,
 				B58FF1F7228C327B00922A69 /* Info.plist */,
+				B58FF217228C338B00922A69 /* DialImage.swift */,
+				B58FF21C228C3DF400922A69 /* CGPoint+.swift */,
+				B58FF21F228C422E00922A69 /* CGFloat+.swift */,
+				B58FF221228C42A000922A69 /* TimeInterval.swift */,
+				B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */,
 			);
 			path = "TickTask-iOS";
 			sourceTree = "<group>";
@@ -445,6 +462,11 @@
 					};
 					B58FF1E8228C327A00922A69 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					B58FF1FB228C327B00922A69 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -588,8 +610,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B58FF21D228C3DF400922A69 /* CGPoint+.swift in Sources */,
+				B58FF222228C42A000922A69 /* TimeInterval.swift in Sources */,
+				B58FF218228C338B00922A69 /* DialImage.swift in Sources */,
 				B58FF1EE228C327A00922A69 /* ViewController.swift in Sources */,
 				B58FF1EC228C327A00922A69 /* AppDelegate.swift in Sources */,
+				B58FF220228C422E00922A69 /* CGFloat+.swift in Sources */,
+				B58FF224228C44B200922A69 /* DateComponentsFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +903,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_ENTITLEMENTS = "TickTask-iOS/TickTask-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
@@ -900,6 +928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_ENTITLEMENTS = "TickTask-iOS/TickTask-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;

@@ -25,14 +25,14 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Tick_Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="145"/>
+                        <rect key="frame" x="0.0" y="0.0" width="118" height="143"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ttx-Mz-rdC">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="145"/>
+                                <rect key="frame" x="0.0" y="0.0" width="118" height="143"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RED-zY-5Z7">
-                                        <rect key="frame" x="6" y="120" width="108" height="17"/>
+                                        <rect key="frame" x="2" y="118" width="114" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="00m 00s" id="yfR-97-WmA">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -43,14 +43,15 @@
                                         </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T6t-m3-KwT" customClass="ImageView" customModule="Tick_Task" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="8" width="104" height="104"/>
+                                        <rect key="frame" x="4" y="0.0" width="110" height="110"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="T6t-m3-KwT" secondAttribute="height" multiplier="1:1" id="bmP-g6-yLN"/>
+                                            <constraint firstAttribute="height" constant="110" id="ESj-A0-e56"/>
+                                            <constraint firstAttribute="width" constant="110" id="kyG-fK-z39"/>
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="qaD-JV-Hrs"/>
                                     </imageView>
                                 </subviews>
-                                <edgeInsets key="edgeInsets" left="8" right="8" top="8" bottom="8"/>
+                                <edgeInsets key="edgeInsets" left="4" right="4" top="8" bottom="0.0"/>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>

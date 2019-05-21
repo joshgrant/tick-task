@@ -43,5 +43,63 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>25deg-icon_20pt</string>
+				<string>25deg-icon_29pt</string>
+				<string>25deg-icon_40pt</string>
+				<string>25deg-icon_60pt</string>
+				<string>25deg-icon_76pt</string>
+				<string>25deg-icon_83.5</string>
+				<string>25deg-Icon</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>icon-0min</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>0deg-icon_20pt</string>
+					<string>0deg-icon_29pt</string>
+					<string>0deg-icon_40pt</string>
+					<string>0deg-icon_60pt</string>
+					<string>0deg-icon_76pt</string>
+					<string>0deg-icon_83.5</string>
+					<string>0deg-Icon</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>icon-5min</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>5deg-icon_20pt</string>
+					<string>5deg-icon_29pt</string>
+					<string>5deg-icon_40pt</string>
+					<string>5deg-icon_60pt</string>
+					<string>5deg-icon_76pt</string>
+					<string>5deg-icon_83.5</string>
+					<string>5deg-Icon</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>icon-25min</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<string></string>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

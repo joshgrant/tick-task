@@ -66,7 +66,7 @@
                         <action selector="handlePan:" destination="BYZ-38-t0r" id="1UD-VQ-dxr"/>
                     </connections>
                 </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="2" id="urj-9V-ECQ">
+                <panGestureRecognizer minimumNumberOfTouches="2" maximumNumberOfTouches="2" id="urj-9V-ECQ">
                     <connections>
                         <action selector="handlePan:" destination="BYZ-38-t0r" id="W6e-2T-lg2"/>
                     </connections>

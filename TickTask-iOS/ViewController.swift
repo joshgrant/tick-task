@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController
 {
@@ -76,6 +77,9 @@ class ViewController: UIViewController
         invalidateTimersAndDates()
         
         // Remove any pending notifications
+        
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
     }
     
     func userEndedDragging(angle: CGFloat)
@@ -117,6 +121,14 @@ class ViewController: UIViewController
     {
         currentDurationWithoutCountdown = angle.toInterval()
         
+        let number = Int(floor(currentDurationWithoutCountdown / 300) * 5)
+        
+        if UIApplication.shared.supportsAlternateIcons
+        {
+            UIApplication.shared.setAlternateIconName("icon-\(number)min") { (error) in
+            }
+        }
+        
         guard currentDurationWithoutCountdown > 0 else { return }
         
         imageView.image = DialImage.imageOfTickTask(angle: angle, size: imageView.bounds.size, state: .countdown)
@@ -126,6 +138,30 @@ class ViewController: UIViewController
         tick = initializeSecondTimer()
         RunLoop.main.add(tick!, forMode: .common)
         tick?.fire()
+        
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.criticalAlert, .sound, .alert, .badge]) { (success, error) in
+            print(success, error)
+        }
+        
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized
+            {
+                let content = UNMutableNotificationContent()
+                content.title = "Time's Up!"
+                content.body = "\(self.currentDurationWithoutCountdown.minutes) minutes completed"
+                content.sound = UNNotificationSound.default
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentDurationWithoutCountdown,
+                                                                repeats: false)
+                
+                let request = UNNotificationRequest(identifier: "tick_task_notification", content: content, trigger: trigger)
+                center.add(request, withCompletionHandler: { (error) in
+                    print("Add error", error)
+                })
+            }
+        }
     }
     
     func initializeSecondTimer() -> Timer
@@ -144,7 +180,7 @@ class ViewController: UIViewController
         if currentInterval <= 0
         {
             invalidateTimersAndDates()
-            configureInterfaceElements(state: .inactive)
+            configureInterfaceElements(state: .inactive, angle: 0)
         }
     }
 }

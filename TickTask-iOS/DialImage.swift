@@ -19,16 +19,12 @@ public class DialImage : NSObject {
     
     //// Drawing Methods
     
-    static func drawTickTask(frame targetFrame: CGRect, resizing: ResizingBehavior, angle: CGFloat, state: DialState) {
+    static func drawTickTask(frame targetFrame: CGRect, angle: CGFloat, state: DialState) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
         //// Resize to Target Frame
         context.saveGState()
-        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 110, height: 110), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 110, y: resizedFrame.height / 110)
-        let resizedShadowScale: CGFloat = min(resizedFrame.width / 110, resizedFrame.height / 110)
         
         let faceFill: UIColor
         
@@ -95,10 +91,22 @@ public class DialImage : NSObject {
         faceShadow.shadowOffset = CGSize(width: 0, height: 2)
         faceShadow.shadowBlurRadius = 4
         
+        /// MARK: VALUE
+        let baseOffset: CGFloat = 4
+        
+        func oval(target: CGRect, baseOffset: CGFloat, level: CGFloat) -> UIBezierPath
+        {
+            let origin = CGPoint(x: (baseOffset + 1) * level + 1, y: baseOffset * level + 1)
+            let size = CGSize(width: target.size.width - origin.x * 2, height: target.size.height - origin.y * 2)
+            return UIBezierPath(ovalIn: CGRect(origin: origin, size: size))
+        }
+        
         //// Oval 5 Drawing
-        let oval5Path = UIBezierPath(ovalIn: CGRect(x: 5, y: 3, width: 100, height: 100))
+        
+        let oval5Path = oval(target: targetFrame, baseOffset: baseOffset, level: 1)
+        
         context.saveGState()
-        context.setShadow(offset: CGSize(width: faceShadow.shadowOffset.width * resizedShadowScale, height: faceShadow.shadowOffset.height * resizedShadowScale), blur: faceShadow.shadowBlurRadius * resizedShadowScale, color: (faceShadow.shadowColor as! UIColor).cgColor)
+        context.setShadow(offset: CGSize(width: faceShadow.shadowOffset.width, height: faceShadow.shadowOffset.height), blur: faceShadow.shadowBlurRadius, color: (faceShadow.shadowColor as! UIColor).cgColor)
         faceFill.setFill()
         oval5Path.fill()
         context.restoreGState()
@@ -107,58 +115,47 @@ public class DialImage : NSObject {
         oval5Path.lineWidth = 1
         oval5Path.stroke()
         
-        
         //// Oval Drawing
-        let ovalPath = UIBezierPath(ovalIn: CGRect(x: 5, y: 3, width: 100, height: 100))
+        let ovalPath = oval(target: targetFrame, baseOffset: baseOffset, level: 1)
         context.saveGState()
         ovalPath.addClip()
-        context.drawLinearGradient(highlightTopGradient20a, start: CGPoint(x: 55, y: 3), end: CGPoint(x: 55, y: 103), options: [])
+        context.drawLinearGradient(highlightTopGradient20a, start: CGPoint(x: targetFrame.size.width / 2, y: 0), end: CGPoint(x: targetFrame.size.width / 2, y: targetFrame.size.height), options: [])
         context.restoreGState()
         
         
         //// Oval 4 Drawing
-        let oval4Path = UIBezierPath(ovalIn: CGRect(x: 7, y: 5, width: 96, height: 96))
+        let oval4Path = oval(target: targetFrame, baseOffset: baseOffset, level: 2)
         color3.setFill()
         oval4Path.fill()
         
         
         //// Oval 2 Drawing
-        let oval2Path = UIBezierPath(ovalIn: CGRect(x: 9, y: 7, width: 92, height: 92))
+        let oval2Path = oval(target: targetFrame, baseOffset: baseOffset, level: 3)
         context.saveGState()
         oval2Path.addClip()
-        context.drawLinearGradient(highlightBottomGradient20a, start: CGPoint(x: 55, y: 7), end: CGPoint(x: 55, y: 99), options: [])
+        context.drawLinearGradient(highlightBottomGradient20a,
+                                   start: CGPoint(x: targetFrame.size.width / 2,
+                                                  y: targetFrame.origin.y),
+                                   end: CGPoint(x: targetFrame.size.width / 2,
+                                                y: targetFrame.size.height), options: [])
         context.restoreGState()
         
         
         //// Oval 3 Drawing
-        let oval3Path = UIBezierPath(ovalIn: CGRect(x: 11, y: 9, width: 88, height: 88))
+        let oval3Path = oval(target: targetFrame, baseOffset: baseOffset, level: 4)
         color.setFill()
         oval3Path.fill()
         
         
         //// Bezier 2 Drawing
         context.saveGState()
-        context.translateBy(x: 55, y: 53)
+        // The base offset is to consider the shadow...
+        context.translateBy(x: targetFrame.width / 2, y: targetFrame.height / 2 - baseOffset)
         context.rotate(by: angle)
         
-        let bezier2Path = UIBezierPath()
-        bezier2Path.move(to: CGPoint(x: 0, y: -4.05))
-        bezier2Path.addCurve(to: CGPoint(x: -4.22, y: 0.12), controlPoint1: CGPoint(x: -2.33, y: -4.05), controlPoint2: CGPoint(x: -4.22, y: -2.19))
-        bezier2Path.addCurve(to: CGPoint(x: 0, y: 4.29), controlPoint1: CGPoint(x: -4.22, y: 2.42), controlPoint2: CGPoint(x: -2.33, y: 4.29))
-        bezier2Path.addLine(to: CGPoint(x: 0.06, y: 4.29))
-        bezier2Path.addCurve(to: CGPoint(x: 4.22, y: 0.12), controlPoint1: CGPoint(x: 2.36, y: 4.26), controlPoint2: CGPoint(x: 4.22, y: 2.4))
-        bezier2Path.addCurve(to: CGPoint(x: 0, y: -4.05), controlPoint1: CGPoint(x: 4.22, y: -2.19), controlPoint2: CGPoint(x: 2.33, y: -4.05))
-        bezier2Path.close()
-        bezier2Path.move(to: CGPoint(x: 2.87, y: -37.1))
-        bezier2Path.addCurve(to: CGPoint(x: 9.33, y: -1.72), controlPoint1: CGPoint(x: 3.22, y: -35.68), controlPoint2: CGPoint(x: 9.33, y: -1.72))
-        bezier2Path.addCurve(to: CGPoint(x: 0, y: 9.5), controlPoint1: CGPoint(x: 10.47, y: 4.59), controlPoint2: CGPoint(x: 5.7, y: 9.5))
-        bezier2Path.addCurve(to: CGPoint(x: -9.33, y: -1.72), controlPoint1: CGPoint(x: -5.69, y: 9.5), controlPoint2: CGPoint(x: -10.47, y: 4.59))
-        bezier2Path.addCurve(to: CGPoint(x: -2.87, y: -37.1), controlPoint1: CGPoint(x: -9.33, y: -1.72), controlPoint2: CGPoint(x: -3.06, y: -36.33))
-        bezier2Path.addCurve(to: CGPoint(x: 0, y: -39.5), controlPoint1: CGPoint(x: -2.52, y: -38.52), controlPoint2: CGPoint(x: -1.47, y: -39.5))
-        bezier2Path.addCurve(to: CGPoint(x: 2.87, y: -37.1), controlPoint1: CGPoint(x: 1.47, y: -39.5), controlPoint2: CGPoint(x: 2.52, y: -38.52))
-        bezier2Path.close()
+        let bezier2Path = dial(target: targetFrame)
         context.saveGState()
-        context.setShadow(offset: CGSize(width: dialShadow.shadowOffset.width * resizedShadowScale, height: dialShadow.shadowOffset.height * resizedShadowScale), blur: dialShadow.shadowBlurRadius * resizedShadowScale, color: (dialShadow.shadowColor as! UIColor).cgColor)
+        context.setShadow(offset: CGSize(width: dialShadow.shadowOffset.width, height: dialShadow.shadowOffset.height), blur: dialShadow.shadowBlurRadius, color: (dialShadow.shadowColor as! UIColor).cgColor)
         baseDial3.setFill()
         bezier2Path.fill()
         
@@ -169,7 +166,7 @@ public class DialImage : NSObject {
         context.setAlpha((dialInnerShadow.shadowColor as! UIColor).cgColor.alpha)
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         let bezier2OpaqueShadow = (dialInnerShadow.shadowColor as! UIColor).withAlphaComponent(1)
-        context.setShadow(offset: CGSize(width: dialInnerShadow.shadowOffset.width * resizedShadowScale, height: dialInnerShadow.shadowOffset.height * resizedShadowScale), blur: dialInnerShadow.shadowBlurRadius * resizedShadowScale, color: bezier2OpaqueShadow.cgColor)
+        context.setShadow(offset: CGSize(width: dialInnerShadow.shadowOffset.width, height: dialInnerShadow.shadowOffset.height), blur: dialInnerShadow.shadowBlurRadius, color: bezier2OpaqueShadow.cgColor)
         context.setBlendMode(.sourceOut)
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         
@@ -190,6 +187,109 @@ public class DialImage : NSObject {
         
         context.restoreGState()
         
+    }
+    
+    static func dial(target: CGRect) -> UIBezierPath
+    {
+        let path = UIBezierPath()
+        
+        let radius = 10.0
+        
+        // Taken from http://spencermortensen.com/articles/bezier-circle/
+        let controlPointFactor = 0.55191502449
+        
+        let controlOffset = radius * controlPointFactor
+        
+        // We start at the top of the circle
+        path.move(to: CGPoint(x: 0, y: -radius))
+        
+        // Then, we move to the right of the circle
+        path.addCurve(to: CGPoint(x: radius, y: 0),
+                      controlPoint1: CGPoint(x: controlOffset, y: -radius), // Our first control point is from the top of the circle
+                      controlPoint2: CGPoint(x: radius, y: -controlOffset)) // Our second control point is from the curve's point
+        
+        // Then, we move to the bottom of the circle
+        path.addCurve(to: CGPoint(x: 0, y: radius),
+                      controlPoint1: CGPoint(x: radius, y: controlOffset), // Our first control point is from the right of the circle
+                      controlPoint2: CGPoint(x: controlOffset, y: radius)) // Our second control point is from the bottom of the circle
+        
+        // Then, to the left of the circle
+        path.addCurve(to: CGPoint(x: -radius, y: 0),
+                      controlPoint1: CGPoint(x: -controlOffset, y: radius), // Our first control point is from the bottom of the circle
+                      controlPoint2: CGPoint(x: -radius, y: controlOffset)) // Our second control point is from the left of the circle
+        
+        // Then, back to the top
+        path.addCurve(to: CGPoint(x: 0, y: -radius),
+                      controlPoint1: CGPoint(x: -radius, y: -controlOffset), // Our first control point is from the left of the circle
+                      controlPoint2: CGPoint(x: -controlOffset, y: -radius)) // Our second control point is from the top of the circle
+        
+        path.close()
+        
+        return path
+        
+        // This sets the origin
+//        bezier2Path.move(to: CGPoint(x: 0, y: y1))
+        
+        // We first create the inner circle
+//        bezier2Path.addCurve(to: CGPoint(x: x2, y: y2),
+//                             controlPoint1: CGPoint(x: -x3, y: y1),
+//                             controlPoint2: CGPoint(x: x2, y: y3))
+//        bezier2Path.addCurve(to: CGPoint(x: 0, y: y4),
+//                             controlPoint1: CGPoint(x: x2, y: 2.42),
+//                             controlPoint2: CGPoint(x: -x3, y: y4))
+//
+//        bezier2Path.addCurve(to: CGPoint(x: -x2, y: y2),
+//                             controlPoint1: CGPoint(x: 2.36, y: 4.26),
+//                             controlPoint2: CGPoint(x: -x2, y: 2.4))
+//        bezier2Path.addCurve(to: CGPoint(x: 0, y: y1),
+//                             controlPoint1: CGPoint(x: -x2, y: y3),
+//                             controlPoint2: CGPoint(x: x3, y: y1))
+        
+//        bezier2Path.close()
+//
+//        // Then, we create the outer area
+//        bezier2Path.move(to: CGPoint(x: 2.87, y: -37.1))
+//
+//        bezier2Path.addCurve(to: CGPoint(x: 9.33, y: -1.72),
+//                             controlPoint1: CGPoint(x: 3.22, y: -35.68),
+//                             controlPoint2: CGPoint(x: 9.33, y: -1.72))
+//        bezier2Path.addCurve(to: CGPoint(x: 0, y: 9.5),
+//                             controlPoint1: CGPoint(x: 10.47, y: 4.59),
+//                             controlPoint2: CGPoint(x: 5.7, y: 9.5))
+//        bezier2Path.addCurve(to: CGPoint(x: -9.33, y: -1.72),
+//                             controlPoint1: CGPoint(x: -5.69, y: 9.5),
+//                             controlPoint2: CGPoint(x: -10.47, y: 4.59))
+//        bezier2Path.addCurve(to: CGPoint(x: -2.87, y: -37.1),
+//                             controlPoint1: CGPoint(x: -9.33, y: -1.72),
+//                             controlPoint2: CGPoint(x: -3.06, y: -36.33))
+//        bezier2Path.addCurve(to: CGPoint(x: 0, y: -39.5),
+//                             controlPoint1: CGPoint(x: -2.52, y: -38.52),
+//                             controlPoint2: CGPoint(x: -1.47, y: -39.5))
+//        bezier2Path.addCurve(to: CGPoint(x: 2.87, y: -37.1),
+//                             controlPoint1: CGPoint(x: 1.47, y: -39.5),
+//                             controlPoint2: CGPoint(x: 2.52, y: -38.52))
+//        bezier2Path.close()
+        
+        /* Original
+         let bezier2Path = UIBezierPath()
+         bezier2Path.move(to: CGPoint(x: 0, y: -4.05))
+         bezier2Path.addCurve(to: CGPoint(x: -4.22, y: 0.12), controlPoint1: CGPoint(x: -2.33, y: -4.05), controlPoint2: CGPoint(x: -4.22, y: -2.19))
+         bezier2Path.addCurve(to: CGPoint(x: 0, y: 4.29), controlPoint1: CGPoint(x: -4.22, y: 2.42), controlPoint2: CGPoint(x: -2.33, y: 4.29))
+         bezier2Path.addLine(to: CGPoint(x: 0.06, y: 4.29))
+         bezier2Path.addCurve(to: CGPoint(x: 4.22, y: 0.12), controlPoint1: CGPoint(x: 2.36, y: 4.26), controlPoint2: CGPoint(x: 4.22, y: 2.4))
+         bezier2Path.addCurve(to: CGPoint(x: 0, y: -4.05), controlPoint1: CGPoint(x: 4.22, y: -2.19), controlPoint2: CGPoint(x: 2.33, y: -4.05))
+         bezier2Path.close()
+         bezier2Path.move(to: CGPoint(x: 2.87, y: -37.1))
+         bezier2Path.addCurve(to: CGPoint(x: 9.33, y: -1.72), controlPoint1: CGPoint(x: 3.22, y: -35.68), controlPoint2: CGPoint(x: 9.33, y: -1.72))
+         bezier2Path.addCurve(to: CGPoint(x: 0, y: 9.5), controlPoint1: CGPoint(x: 10.47, y: 4.59), controlPoint2: CGPoint(x: 5.7, y: 9.5))
+         bezier2Path.addCurve(to: CGPoint(x: -9.33, y: -1.72), controlPoint1: CGPoint(x: -5.69, y: 9.5), controlPoint2: CGPoint(x: -10.47, y: 4.59))
+         bezier2Path.addCurve(to: CGPoint(x: -2.87, y: -37.1), controlPoint1: CGPoint(x: -9.33, y: -1.72), controlPoint2: CGPoint(x: -3.06, y: -36.33))
+         bezier2Path.addCurve(to: CGPoint(x: 0, y: -39.5), controlPoint1: CGPoint(x: -2.52, y: -38.52), controlPoint2: CGPoint(x: -1.47, y: -39.5))
+         bezier2Path.addCurve(to: CGPoint(x: 2.87, y: -37.1), controlPoint1: CGPoint(x: 1.47, y: -39.5), controlPoint2: CGPoint(x: 2.52, y: -38.52))
+         bezier2Path.close()
+         */
+        
+//        return bezier2Path
     }
     
     //// Generated Images
@@ -221,7 +321,6 @@ public class DialImage : NSObject {
         {
             UIGraphicsBeginImageContextWithOptions(size, false, 0)
             DialImage.drawTickTask(frame: CGRect(origin: CGPoint.zero, size: size),
-                                   resizing: .aspectFit,
                                    angle: angle,
                                    state: state)
             
@@ -230,54 +329,54 @@ public class DialImage : NSObject {
             
             if state == .selected
             {
-            let image = AngleImage(context: Model.context)
-            image.angle = Double(angle)
-            image.imageData = imageOfTickTask.pngData()
-            image.color = color
-            
-            Model.save()
+                let image = AngleImage(context: Model.context)
+                image.angle = Double(angle)
+                image.imageData = imageOfTickTask.pngData()
+                image.color = color
+                
+                Model.save()
             }
             
             return imageOfTickTask
         }
     }
     
-    @objc(DialImageResizingBehavior)
-    public enum ResizingBehavior: Int {
-        case aspectFit /// The content is proportionally resized to fit into the target rectangle.
-        case aspectFill /// The content is proportionally resized to completely fill the target rectangle.
-        case stretch /// The content is stretched to match the entire target rectangle.
-        case center /// The content is centered in the target rectangle, but it is NOT resized.
-        
-        public func apply(rect: CGRect, target: CGRect) -> CGRect {
-            if rect == target || target == CGRect.zero {
-                return rect
-            }
-            
-            var scales = CGSize.zero
-            scales.width = abs(target.width / rect.width)
-            scales.height = abs(target.height / rect.height)
-            
-            switch self {
-            case .aspectFit:
-                scales.width = min(scales.width, scales.height)
-                scales.height = scales.width
-            case .aspectFill:
-                scales.width = max(scales.width, scales.height)
-                scales.height = scales.width
-            case .stretch:
-                break
-            case .center:
-                scales.width = 1
-                scales.height = 1
-            }
-            
-            var result = rect.standardized
-            result.size.width *= scales.width
-            result.size.height *= scales.height
-            result.origin.x = target.minX + (target.width - result.width) / 2
-            result.origin.y = target.minY + (target.height - result.height) / 2
-            return result
-        }
-    }
+    //    @objc(DialImageResizingBehavior)
+    //    public enum ResizingBehavior: Int {
+    //        case aspectFit /// The content is proportionally resized to fit into the target rectangle.
+    //        case aspectFill /// The content is proportionally resized to completely fill the target rectangle.
+    //        case stretch /// The content is stretched to match the entire target rectangle.
+    //        case center /// The content is centered in the target rectangle, but it is NOT resized.
+    //
+    //        public func apply(rect: CGRect, target: CGRect) -> CGRect {
+    //            if rect == target || target == CGRect.zero {
+    //                return rect
+    //            }
+    //
+    //            var scales = CGSize.zero
+    //            scales.width = abs(target.width / rect.width)
+    //            scales.height = abs(target.height / rect.height)
+    //
+    //            switch self {
+    //            case .aspectFit:
+    //                scales.width = min(scales.width, scales.height)
+    //                scales.height = scales.width
+    //            case .aspectFill:
+    //                scales.width = max(scales.width, scales.height)
+    //                scales.height = scales.width
+    //            case .stretch:
+    //                break
+    //            case .center:
+    //                scales.width = 1
+    //                scales.height = 1
+    //            }
+    //
+    //            var result = rect.standardized
+    //            result.size.width *= scales.width
+    //            result.size.height *= scales.height
+    //            result.origin.x = target.minX + (target.width - result.width) / 2
+    //            result.origin.y = target.minY + (target.height - result.height) / 2
+    //            return result
+    //        }
+    //    }
 }

@@ -15,6 +15,26 @@ enum DialState
     case selected
 }
 
+struct BezierPoint
+{
+    var endPoint: CGPoint
+    var controlLeft: CGPoint
+    var controlRight: CGPoint
+}
+
+extension UIBezierPath
+{
+    func addCurve(to point: BezierPoint)
+    {
+        self.addCurve(to: point.endPoint,
+                      controlPoint1: point.controlLeft,
+                      controlPoint2: point.controlRight)
+    }
+}
+
+// TODO: Render the background as an image and only display the dial...
+// This will save some computation time...
+
 public class DialImage : NSObject {
     
     //// Drawing Methods
@@ -92,11 +112,11 @@ public class DialImage : NSObject {
         faceShadow.shadowBlurRadius = 4
         
         /// MARK: VALUE
-        let baseOffset: CGFloat = 4
+        let baseOffset: CGFloat = 5
         
         func oval(target: CGRect, baseOffset: CGFloat, level: CGFloat) -> UIBezierPath
         {
-            let origin = CGPoint(x: (baseOffset + 1) * level + 1, y: baseOffset * level + 1)
+            let origin = CGPoint(x: (baseOffset + 1) * level, y: baseOffset * level)
             let size = CGSize(width: target.size.width - origin.x * 2, height: target.size.height - origin.y * 2)
             return UIBezierPath(ovalIn: CGRect(origin: origin, size: size))
         }
@@ -155,7 +175,10 @@ public class DialImage : NSObject {
         
         let bezier2Path = dial(target: targetFrame)
         context.saveGState()
-        context.setShadow(offset: CGSize(width: dialShadow.shadowOffset.width, height: dialShadow.shadowOffset.height), blur: dialShadow.shadowBlurRadius, color: (dialShadow.shadowColor as! UIColor).cgColor)
+        context.setShadow(offset: CGSize(width: dialShadow.shadowOffset.width,
+                                         height: dialShadow.shadowOffset.height),
+                          blur: dialShadow.shadowBlurRadius,
+                          color: (dialShadow.shadowColor as! UIColor).cgColor)
         baseDial3.setFill()
         bezier2Path.fill()
         
@@ -166,7 +189,10 @@ public class DialImage : NSObject {
         context.setAlpha((dialInnerShadow.shadowColor as! UIColor).cgColor.alpha)
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         let bezier2OpaqueShadow = (dialInnerShadow.shadowColor as! UIColor).withAlphaComponent(1)
-        context.setShadow(offset: CGSize(width: dialInnerShadow.shadowOffset.width, height: dialInnerShadow.shadowOffset.height), blur: dialInnerShadow.shadowBlurRadius, color: bezier2OpaqueShadow.cgColor)
+        context.setShadow(offset: CGSize(width: dialInnerShadow.shadowOffset.width,
+                                         height: dialInnerShadow.shadowOffset.height),
+                          blur: dialInnerShadow.shadowBlurRadius,
+                          color: bezier2OpaqueShadow.cgColor)
         context.setBlendMode(.sourceOut)
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         
@@ -193,103 +219,156 @@ public class DialImage : NSObject {
     {
         let path = UIBezierPath()
         
-        let radius = 10.0
+        let radius: CGFloat = 10
         
         // Taken from http://spencermortensen.com/articles/bezier-circle/
-        let controlPointFactor = 0.55191502449
+        let controlPointFactor: CGFloat = 0.55191502449
         
         let controlOffset = radius * controlPointFactor
+        
+        let innerPoints = innerCircle(radius: radius, controlOffset: controlOffset)
         
         // We start at the top of the circle
         path.move(to: CGPoint(x: 0, y: -radius))
         
-        // Then, we move to the right of the circle
-        path.addCurve(to: CGPoint(x: radius, y: 0),
-                      controlPoint1: CGPoint(x: controlOffset, y: -radius), // Our first control point is from the top of the circle
-                      controlPoint2: CGPoint(x: radius, y: -controlOffset)) // Our second control point is from the curve's point
+        path.addCurve(to: innerPoints.right)
+        path.addCurve(to: innerPoints.bottom)
+        path.addCurve(to: innerPoints.left)
+        path.addCurve(to: innerPoints.top)
         
-        // Then, we move to the bottom of the circle
-        path.addCurve(to: CGPoint(x: 0, y: radius),
-                      controlPoint1: CGPoint(x: radius, y: controlOffset), // Our first control point is from the right of the circle
-                      controlPoint2: CGPoint(x: controlOffset, y: radius)) // Our second control point is from the bottom of the circle
+        path.close()
         
-        // Then, to the left of the circle
-        path.addCurve(to: CGPoint(x: -radius, y: 0),
-                      controlPoint1: CGPoint(x: -controlOffset, y: radius), // Our first control point is from the bottom of the circle
-                      controlPoint2: CGPoint(x: -radius, y: controlOffset)) // Our second control point is from the left of the circle
+        // NEGATIVE Y == UPWARDS
         
-        // Then, back to the top
-        path.addCurve(to: CGPoint(x: 0, y: -radius),
-                      controlPoint1: CGPoint(x: -radius, y: -controlOffset), // Our first control point is from the left of the circle
-                      controlPoint2: CGPoint(x: -controlOffset, y: -radius)) // Our second control point is from the top of the circle
+        let dialLength: CGFloat = 120
+        let bodyRadius: CGFloat = 30
+        let tipRadius: CGFloat = 10
+        
+        let curvePoints = outerDial(bodyCenter: CGPoint.zero,
+                                    bodyRadius: bodyRadius,
+                                    tipCenter: CGPoint(x: 0, y: -dialLength),
+                                    tipRadius: tipRadius)
+        
+        // Move to the top of the dial
+        path.move(to: curvePoints.tipTop.endPoint)
+        
+        path.addCurve(to: curvePoints.tipRight)
+        path.addCurve(to: curvePoints.bodyRight)
+        path.addCurve(to: curvePoints.bodyBottom)
+        path.addCurve(to: curvePoints.bodyLeft)
+        path.addCurve(to: curvePoints.tipLeft)
+        path.addCurve(to: curvePoints.tipTop)
         
         path.close()
         
         return path
+    }
+    
+    static func square(_ value: CGFloat) -> CGFloat
+    {
+        return value * value
+    }
+    
+    static func distance(p1: CGPoint, p2: CGPoint) -> CGFloat
+    {
+        let deltaX = p1.x - p2.x
+        let deltaY = p1.y - p2.y
+        return (square(deltaX) + square(deltaY)).squareRoot()
+    }
+    
+    static func innerCircle(radius: CGFloat, controlOffset: CGFloat) -> (
+        top: BezierPoint,
+        right: BezierPoint,
+        bottom: BezierPoint,
+        left: BezierPoint)
+    {
+        let top = BezierPoint(endPoint: CGPoint(x: 0, y: -radius),
+                              controlLeft: CGPoint(x: radius, y: -controlOffset),
+                              controlRight: CGPoint(x: controlOffset, y: -radius))
         
-        // This sets the origin
-//        bezier2Path.move(to: CGPoint(x: 0, y: y1))
+        let right = BezierPoint(endPoint: CGPoint(x: -radius, y: 0),
+                              controlLeft: CGPoint(x: -controlOffset, y: -radius),
+                              controlRight: CGPoint(x: -radius, y: -controlOffset))
         
-        // We first create the inner circle
-//        bezier2Path.addCurve(to: CGPoint(x: x2, y: y2),
-//                             controlPoint1: CGPoint(x: -x3, y: y1),
-//                             controlPoint2: CGPoint(x: x2, y: y3))
-//        bezier2Path.addCurve(to: CGPoint(x: 0, y: y4),
-//                             controlPoint1: CGPoint(x: x2, y: 2.42),
-//                             controlPoint2: CGPoint(x: -x3, y: y4))
-//
-//        bezier2Path.addCurve(to: CGPoint(x: -x2, y: y2),
-//                             controlPoint1: CGPoint(x: 2.36, y: 4.26),
-//                             controlPoint2: CGPoint(x: -x2, y: 2.4))
-//        bezier2Path.addCurve(to: CGPoint(x: 0, y: y1),
-//                             controlPoint1: CGPoint(x: -x2, y: y3),
-//                             controlPoint2: CGPoint(x: x3, y: y1))
+        let bottom = BezierPoint(endPoint: CGPoint(x: 0, y: radius),
+                                 controlLeft: CGPoint(x: -radius, y: controlOffset),
+                                 controlRight: CGPoint(x: -controlOffset, y: radius))
         
-//        bezier2Path.close()
-//
-//        // Then, we create the outer area
-//        bezier2Path.move(to: CGPoint(x: 2.87, y: -37.1))
-//
-//        bezier2Path.addCurve(to: CGPoint(x: 9.33, y: -1.72),
-//                             controlPoint1: CGPoint(x: 3.22, y: -35.68),
-//                             controlPoint2: CGPoint(x: 9.33, y: -1.72))
-//        bezier2Path.addCurve(to: CGPoint(x: 0, y: 9.5),
-//                             controlPoint1: CGPoint(x: 10.47, y: 4.59),
-//                             controlPoint2: CGPoint(x: 5.7, y: 9.5))
-//        bezier2Path.addCurve(to: CGPoint(x: -9.33, y: -1.72),
-//                             controlPoint1: CGPoint(x: -5.69, y: 9.5),
-//                             controlPoint2: CGPoint(x: -10.47, y: 4.59))
-//        bezier2Path.addCurve(to: CGPoint(x: -2.87, y: -37.1),
-//                             controlPoint1: CGPoint(x: -9.33, y: -1.72),
-//                             controlPoint2: CGPoint(x: -3.06, y: -36.33))
-//        bezier2Path.addCurve(to: CGPoint(x: 0, y: -39.5),
-//                             controlPoint1: CGPoint(x: -2.52, y: -38.52),
-//                             controlPoint2: CGPoint(x: -1.47, y: -39.5))
-//        bezier2Path.addCurve(to: CGPoint(x: 2.87, y: -37.1),
-//                             controlPoint1: CGPoint(x: 1.47, y: -39.5),
-//                             controlPoint2: CGPoint(x: 2.52, y: -38.52))
-//        bezier2Path.close()
+        let left = BezierPoint(endPoint: CGPoint(x: radius, y: 0),
+                                controlLeft: CGPoint(x: controlOffset, y: radius),
+                                controlRight: CGPoint(x: radius, y: controlOffset))
         
-        /* Original
-         let bezier2Path = UIBezierPath()
-         bezier2Path.move(to: CGPoint(x: 0, y: -4.05))
-         bezier2Path.addCurve(to: CGPoint(x: -4.22, y: 0.12), controlPoint1: CGPoint(x: -2.33, y: -4.05), controlPoint2: CGPoint(x: -4.22, y: -2.19))
-         bezier2Path.addCurve(to: CGPoint(x: 0, y: 4.29), controlPoint1: CGPoint(x: -4.22, y: 2.42), controlPoint2: CGPoint(x: -2.33, y: 4.29))
-         bezier2Path.addLine(to: CGPoint(x: 0.06, y: 4.29))
-         bezier2Path.addCurve(to: CGPoint(x: 4.22, y: 0.12), controlPoint1: CGPoint(x: 2.36, y: 4.26), controlPoint2: CGPoint(x: 4.22, y: 2.4))
-         bezier2Path.addCurve(to: CGPoint(x: 0, y: -4.05), controlPoint1: CGPoint(x: 4.22, y: -2.19), controlPoint2: CGPoint(x: 2.33, y: -4.05))
-         bezier2Path.close()
-         bezier2Path.move(to: CGPoint(x: 2.87, y: -37.1))
-         bezier2Path.addCurve(to: CGPoint(x: 9.33, y: -1.72), controlPoint1: CGPoint(x: 3.22, y: -35.68), controlPoint2: CGPoint(x: 9.33, y: -1.72))
-         bezier2Path.addCurve(to: CGPoint(x: 0, y: 9.5), controlPoint1: CGPoint(x: 10.47, y: 4.59), controlPoint2: CGPoint(x: 5.7, y: 9.5))
-         bezier2Path.addCurve(to: CGPoint(x: -9.33, y: -1.72), controlPoint1: CGPoint(x: -5.69, y: 9.5), controlPoint2: CGPoint(x: -10.47, y: 4.59))
-         bezier2Path.addCurve(to: CGPoint(x: -2.87, y: -37.1), controlPoint1: CGPoint(x: -9.33, y: -1.72), controlPoint2: CGPoint(x: -3.06, y: -36.33))
-         bezier2Path.addCurve(to: CGPoint(x: 0, y: -39.5), controlPoint1: CGPoint(x: -2.52, y: -38.52), controlPoint2: CGPoint(x: -1.47, y: -39.5))
-         bezier2Path.addCurve(to: CGPoint(x: 2.87, y: -37.1), controlPoint1: CGPoint(x: 1.47, y: -39.5), controlPoint2: CGPoint(x: 2.52, y: -38.52))
-         bezier2Path.close()
-         */
+        return (top, right, bottom, left)
+    }
+    
+    static func outerDial(bodyCenter: CGPoint, bodyRadius: CGFloat, tipCenter: CGPoint, tipRadius: CGFloat) -> (
+        tipTop: BezierPoint,
+        tipRight: BezierPoint,
+        tipLeft: BezierPoint,
+        bodyBottom: BezierPoint,
+        bodyRight: BezierPoint,
+        bodyLeft: BezierPoint)
+    {
+        let specialFactor: CGFloat = 0.85
         
-//        return bezier2Path
+        let distanceCenters = distance(p1: bodyCenter, p2: tipCenter)
+        let differenceRadius = (bodyRadius - tipRadius)
+        
+        // We use the pythagorean theorem to find the third side of a right triangle
+        // a^2 + b^2 = c^2
+        // In this case, we have a^2 and c^2 but not b^2
+        let distanceTangents = (square(distanceCenters) - square(differenceRadius)).squareRoot()
+        
+        // Now we use the law of sines to find the angle that the tangent is from the center of the circle
+        let theta = asin(distanceTangents / distanceCenters)
+        
+        // We have to get the angle that is 90° - theta
+        let thetaComplement = (CGFloat.pi / 2) - theta
+        
+        // We know that the cosine of theta = x / radius, and the sine of theta = y / radius
+        // Also, upwards (on the screen) is negative
+        let bodyRight = BezierPoint(endPoint: CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
+                                                      y: bodyCenter.y - bodyRadius * sin(thetaComplement)),
+                                    controlLeft: CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
+                                                        y: bodyCenter.y - bodyRadius * sin(thetaComplement)) ,
+                                    controlRight: CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
+                                                          y: bodyCenter.y - bodyRadius * sin(thetaComplement)))
+        
+        let bodyLeft = BezierPoint(endPoint: CGPoint(x: bodyRight.endPoint.x * -1, y: bodyRight.endPoint.y),
+                                   controlLeft: CGPoint(x: bodyRight.controlRight.x * -1, y: bodyRight.controlRight.y),
+                                   controlRight: CGPoint(x: bodyRight.controlLeft.x * -1, y: bodyRight.controlLeft.y))
+        
+        // Now, we have to find the points on the top circle. It's similar to the bottom one, but we use a different radius
+        
+        let tipRight = BezierPoint(endPoint: CGPoint(x: tipCenter.x + (tipRadius * cos(thetaComplement)),
+                                                     y: tipCenter.y + (tipRadius * sin(thetaComplement))),
+                                   controlLeft: CGPoint(x: tipCenter.x + (tipRadius * cos(thetaComplement)),
+                                                        y: tipCenter.y + (tipRadius * sin(thetaComplement))),
+                                    controlRight: CGPoint(x: tipCenter.x + (tipRadius * cos(thetaComplement)),
+                                                          y: tipCenter.y + (tipRadius * sin(thetaComplement))))
+        
+        let tipLeft = BezierPoint(endPoint: CGPoint(x: tipRight.endPoint.x * -1,
+                                                    y: tipRight.endPoint.y),
+                                  controlLeft: CGPoint(x: tipRight.controlRight.x * -1, y: tipRight.controlRight.y),
+                                  controlRight: CGPoint(x: tipRight.controlLeft.x * -1, y: tipRight.controlLeft.y))
+        
+        // Now, for the easy control point origins. Negative y is upwards
+        
+        let tipTop = BezierPoint(endPoint: CGPoint(x: tipCenter.x,
+                                                   y: tipCenter.y - tipRadius),
+                                 controlLeft: CGPoint(x: tipCenter.x - tipRadius * specialFactor,
+                                                      y: tipCenter.y - tipRadius),
+                                 controlRight: CGPoint(x: tipCenter.x + tipRadius * specialFactor,
+                                                       y: tipCenter.y - tipRadius))
+        
+        let bodyBottom = BezierPoint(endPoint: CGPoint(x: bodyCenter.x,
+                                                       y: bodyCenter.y + bodyRadius),
+                                     controlLeft: CGPoint(x: bodyCenter.x - bodyRadius * specialFactor,
+                                                          y: bodyCenter.y + bodyRadius),
+                                     controlRight: CGPoint(x: bodyCenter.x + bodyRadius * specialFactor,
+                                                           y: bodyCenter.y + bodyRadius))
+        
+        return (tipTop, tipRight, tipLeft, bodyBottom, bodyRight, bodyLeft)
     }
     
     //// Generated Images
@@ -340,43 +419,4 @@ public class DialImage : NSObject {
             return imageOfTickTask
         }
     }
-    
-    //    @objc(DialImageResizingBehavior)
-    //    public enum ResizingBehavior: Int {
-    //        case aspectFit /// The content is proportionally resized to fit into the target rectangle.
-    //        case aspectFill /// The content is proportionally resized to completely fill the target rectangle.
-    //        case stretch /// The content is stretched to match the entire target rectangle.
-    //        case center /// The content is centered in the target rectangle, but it is NOT resized.
-    //
-    //        public func apply(rect: CGRect, target: CGRect) -> CGRect {
-    //            if rect == target || target == CGRect.zero {
-    //                return rect
-    //            }
-    //
-    //            var scales = CGSize.zero
-    //            scales.width = abs(target.width / rect.width)
-    //            scales.height = abs(target.height / rect.height)
-    //
-    //            switch self {
-    //            case .aspectFit:
-    //                scales.width = min(scales.width, scales.height)
-    //                scales.height = scales.width
-    //            case .aspectFill:
-    //                scales.width = max(scales.width, scales.height)
-    //                scales.height = scales.width
-    //            case .stretch:
-    //                break
-    //            case .center:
-    //                scales.width = 1
-    //                scales.height = 1
-    //            }
-    //
-    //            var result = rect.standardized
-    //            result.size.width *= scales.width
-    //            result.size.height *= scales.height
-    //            result.origin.x = target.minX + (target.width - result.width) / 2
-    //            result.origin.y = target.minY + (target.height - result.height) / 2
-    //            return result
-    //        }
-    //    }
 }

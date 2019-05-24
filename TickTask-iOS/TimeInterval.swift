@@ -43,8 +43,6 @@ extension TimeInterval
         // Also, account for the flipped iOS coordinate system
         let normalized = 1.0 - (minutes / maxMinutes)
         
-        print(normalized)
-        
         // Then, interpolate that value between 0 and 2 pi
         // Then, multiply it by negative one, because we want the dial to rotate to the right
         // instead of the left

@@ -194,15 +194,52 @@ public class DialImage : NSObject {
     
     //// Generated Images
     
-    static func imageOfTickTask(angle: CGFloat, size: CGSize, state: DialState) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        //        DialImage.drawTickTask(angle: angle)
-        DialImage.drawTickTask(frame: CGRect(origin: CGPoint.zero, size: size), resizing: .aspectFit, angle: angle, state: state)
+    static func imageOfTickTask(angle: CGFloat, size: CGSize, state: DialState) -> UIImage
+    {
+        let color: String
         
-        let imageOfTickTask = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+        switch state
+        {
+        case .countdown:
+            color = "red"
+        case .inactive:
+            color = "green"
+        case .selected:
+            color = "yellow"
+        }
         
-        return imageOfTickTask
+        // We only want to save the images when the user is modifying the dial image,
+        // because otherwise the app would take a huge amount of space...
+        if state == .selected,
+            let image = AngleImage.image(with: angle, color: color),
+            let imageData = image.imageData,
+            let final = UIImage(data: imageData)
+        {
+            return final
+        }
+        else
+        {
+            UIGraphicsBeginImageContextWithOptions(size, false, 0)
+            DialImage.drawTickTask(frame: CGRect(origin: CGPoint.zero, size: size),
+                                   resizing: .aspectFit,
+                                   angle: angle,
+                                   state: state)
+            
+            let imageOfTickTask = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            
+            if state == .selected
+            {
+            let image = AngleImage(context: Model.context)
+            image.angle = Double(angle)
+            image.imageData = imageOfTickTask.pngData()
+            image.color = color
+            
+            Model.save()
+            }
+            
+            return imageOfTickTask
+        }
     }
     
     @objc(DialImageResizingBehavior)

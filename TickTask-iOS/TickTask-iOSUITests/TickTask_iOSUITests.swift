@@ -26,9 +26,17 @@ class TickTask_iOSUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testDrawSpeed() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        self.measure {
+            DialImage.drawTickTask(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 414, height: 414)),
+                                   resizing: .aspectFit,
+                                   angle: 0,
+                                   state: .inactive)
+        }
+        
     }
 
 }

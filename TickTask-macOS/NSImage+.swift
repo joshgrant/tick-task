@@ -95,7 +95,7 @@ extension NSImage
             let highlightBottomGradient20aColor = faceFill.blended(withFraction: 0.1, of: NSColor.white)!
             let highlightBottomGradient20aColor3 = faceFill.blended(withFraction: 0.6, of: NSColor.black)!
             let color = faceFill.blended(withFraction: 0.1, of: NSColor.black)!
-            let baseDial = NSColor(hue: faceFill.hueComponent, saturation: faceFill.saturationComponent, brightness: 0.8, alpha: faceFill.alphaComponent)
+            let baseDial = NSColor(hue: faceFill.hueComponent, saturation: faceFill.saturationComponent, brightness: 0.95, alpha: faceFill.alphaComponent)
             let baseDial2 = baseDial.withAlphaComponent(1)
             let baseDial3 = NSColor(hue: baseDial2.hueComponent, saturation: 0.5, brightness: baseDial2.brightnessComponent, alpha: baseDial2.alphaComponent)
             let baseDial4 = baseDial3.blended(withFraction: 0.3, of: NSColor.black)!

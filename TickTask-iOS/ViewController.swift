@@ -47,8 +47,10 @@ class ViewController: UIViewController
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer)
     {
         let location = sender.location(in: imageView)
-        let origin = imageView.center
-        var angle: CGFloat = location.angleFromPoint(point: origin)
+//        let origin = imageView.center
+        let center = CGPoint(x: imageView.bounds.origin.x + imageView.bounds.size.width / 2,
+                             y: imageView.bounds.origin.y + imageView.bounds.size.height / 2)
+        var angle: CGFloat = location.angleFromPoint(point: center)
         
         if (sender.isEqual(doublePanGesture))
         {
@@ -121,14 +123,6 @@ class ViewController: UIViewController
     {
         currentDurationWithoutCountdown = angle.toInterval()
         
-        let number = Int(floor(currentDurationWithoutCountdown / 300) * 5)
-        
-        if UIApplication.shared.supportsAlternateIcons
-        {
-            UIApplication.shared.setAlternateIconName("icon-\(number)min") { (error) in
-            }
-        }
-        
         guard currentDurationWithoutCountdown > 0 else { return }
         
         imageView.image = DialImage.imageOfTickTask(angle: angle, size: imageView.bounds.size, state: .countdown)
@@ -142,7 +136,7 @@ class ViewController: UIViewController
         let center = UNUserNotificationCenter.current()
         
         center.requestAuthorization(options: [.criticalAlert, .sound, .alert, .badge]) { (success, error) in
-            print(success, error)
+//            print(success, error)
         }
         
         center.getNotificationSettings { (settings) in
@@ -158,7 +152,7 @@ class ViewController: UIViewController
                 
                 let request = UNNotificationRequest(identifier: "tick_task_notification", content: content, trigger: trigger)
                 center.add(request, withCompletionHandler: { (error) in
-                    print("Add error", error)
+//                    print("Add error", error)
                 })
             }
         }

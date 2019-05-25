@@ -153,7 +153,7 @@ class ViewController: UIViewController
         currentDurationWithoutCountdown = angle.toInterval()
         
         guard currentDurationWithoutCountdown > 0 else { return }
-
+        
         dialView.faceImageView.image = faceImageCountdown
         dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: .countdown)
         
@@ -163,15 +163,27 @@ class ViewController: UIViewController
         RunLoop.main.add(tick!, forMode: .common)
         tick?.fire()
         
+        requestAuthorizationToDisplayNotifications()
+    }
+    
+    func requestAuthorizationToDisplayNotifications()
+    {
         let center = UNUserNotificationCenter.current()
         
         center.requestAuthorization(options: [.criticalAlert, .sound, .alert, .badge]) { (success, error) in
-//            print(success, error)
-        }
-        
-        center.getNotificationSettings { (settings) in
-            if settings.authorizationStatus == .authorized
-            {
+            
+            if let error = error { print(error) }
+            
+            guard success else { return }
+            
+            center.getNotificationSettings { (settings) in
+                guard settings.authorizationStatus == .authorized else { return }
+                
+                // Register for remote (aka push) notifications (on the main thread)
+//                DispatchQueue.main.async {
+//                    UIApplication.shared.registerForRemoteNotifications()
+//                }
+                
                 let content = UNMutableNotificationContent()
                 content.title = "Time's Up!"
                 content.body = "\(self.currentDurationWithoutCountdown.minutes) minutes completed"
@@ -182,7 +194,7 @@ class ViewController: UIViewController
                 
                 let request = UNNotificationRequest(identifier: "tick_task_notification", content: content, trigger: trigger)
                 center.add(request, withCompletionHandler: { (error) in
-//                    print("Add error", error)
+                    //                    print("Add error", error)
                 })
             }
         }

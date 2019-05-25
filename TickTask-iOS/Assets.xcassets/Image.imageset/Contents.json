@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "macOS_256.png",
+      "filename" : "macOS_128.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "macOS_512.png",
+      "filename" : "macOS_256.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "macOS_512@2x.png",
+      "filename" : "macOS_512.png",
       "scale" : "3x"
     }
   ],

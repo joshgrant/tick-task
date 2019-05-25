@@ -16,6 +16,7 @@
 		B52273E62299646900B00C95 /* DialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E52299646900B00C95 /* DialState.swift */; };
 		B52273E82299894900B00C95 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E72299894900B00C95 /* DialView.swift */; };
 		B52273EA2299972200B00C95 /* Suck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E92299972200B00C95 /* Suck.swift */; };
+		B522742C2299C3B800B00C95 /* Dial.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522742B2299C3B800B00C95 /* Dial.swift */; };
 		B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370803226F188600ACFA62 /* AppDelegate.swift */; };
 		B5370806226F188600ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
 		B537080B226F188600ACFA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B537080A226F188600ACFA62 /* Assets.xcassets */; };
@@ -101,6 +102,7 @@
 		B52273E52299646900B00C95 /* DialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialState.swift; sourceTree = "<group>"; };
 		B52273E72299894900B00C95 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		B52273E92299972200B00C95 /* Suck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suck.swift; sourceTree = "<group>"; };
+		B522742B2299C3B800B00C95 /* Dial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
 		B5370800226F188600ACFA62 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				B58FF221228C42A000922A69 /* TimeInterval.swift */,
 				B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */,
 				B52273E92299972200B00C95 /* Suck.swift */,
+				B522742B2299C3B800B00C95 /* Dial.swift */,
 				B52273DC2297F9FA00B00C95 /* Model.swift */,
 				B52273D72297C50800B00C95 /* Assets.xcassets */,
 				B52273D92297F9EF00B00C95 /* Model.xcdatamodeld */,
@@ -644,6 +647,7 @@
 				B58FF222228C42A000922A69 /* TimeInterval.swift in Sources */,
 				B52273DF2297FB1500B00C95 /* AngleImage+.swift in Sources */,
 				B52273E42299643D00B00C95 /* Color.swift in Sources */,
+				B522742C2299C3B800B00C95 /* Dial.swift in Sources */,
 				B58FF218228C338B00922A69 /* DialImage.swift in Sources */,
 				B52273DB2297F9EF00B00C95 /* Model.xcdatamodeld in Sources */,
 				B58FF1EE228C327A00922A69 /* ViewController.swift in Sources */,

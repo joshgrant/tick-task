@@ -170,7 +170,7 @@ class ViewController: UIViewController
     {
         let center = UNUserNotificationCenter.current()
         
-        center.requestAuthorization(options: [.criticalAlert, .sound, .alert, .badge]) { (success, error) in
+        center.requestAuthorization(options: [.sound, .alert, .badge]) { (success, error) in
             
             if let error = error { print(error) }
             

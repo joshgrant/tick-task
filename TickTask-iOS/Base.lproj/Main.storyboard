@@ -30,16 +30,38 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fta-Ck-tnm">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fi5-Dh-XDB" customClass="DialView" customModule="TickTask_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="120" width="320" height="320"/>
-                                        <gestureRecognizers/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cA0-mC-NwN">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wyd-9S-TRb">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="320" id="SuQ-nV-lZQ"/>
-                                            <constraint firstAttribute="width" constant="320" id="XKc-04-VPA"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wyd-9S-TRb" secondAttribute="trailing" id="4CY-Bk-5Ca"/>
+                                            <constraint firstAttribute="width" secondItem="fi5-Dh-XDB" secondAttribute="height" multiplier="1:1" id="Fgp-xw-opA"/>
+                                            <constraint firstItem="cA0-mC-NwN" firstAttribute="top" secondItem="fi5-Dh-XDB" secondAttribute="top" id="N8D-dM-N1D"/>
+                                            <constraint firstAttribute="bottom" secondItem="cA0-mC-NwN" secondAttribute="bottom" id="RfS-uP-nNM"/>
+                                            <constraint firstItem="Wyd-9S-TRb" firstAttribute="leading" secondItem="fi5-Dh-XDB" secondAttribute="leading" id="Tv6-1O-qcN"/>
+                                            <constraint firstItem="Wyd-9S-TRb" firstAttribute="top" secondItem="fi5-Dh-XDB" secondAttribute="top" id="Vl1-jy-D6g"/>
+                                            <constraint firstItem="cA0-mC-NwN" firstAttribute="leading" secondItem="fi5-Dh-XDB" secondAttribute="leading" id="kry-SW-0py"/>
+                                            <constraint firstAttribute="trailing" secondItem="cA0-mC-NwN" secondAttribute="trailing" id="p2a-Oj-gbN"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wyd-9S-TRb" secondAttribute="bottom" id="pzb-HH-prh"/>
                                         </constraints>
-                                    </imageView>
+                                        <connections>
+                                            <outlet property="dialImageView" destination="Wyd-9S-TRb" id="Rau-Z1-tPF"/>
+                                            <outlet property="faceImageView" destination="cA0-mC-NwN" id="xYr-3R-Hst"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="fi5-Dh-XDB" firstAttribute="width" secondItem="2hS-be-Mwi" secondAttribute="width" id="BPN-F2-gYo"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,8 +77,8 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="dialView" destination="fi5-Dh-XDB" id="w1u-5w-wes"/>
                         <outlet property="doublePanGesture" destination="urj-9V-ECQ" id="lR3-XR-Kf8"/>
-                        <outlet property="imageView" destination="fta-Ck-tnm" id="nhA-47-mz5"/>
                         <outlet property="label" destination="FkW-Q0-y2I" id="ZLD-eK-gyM"/>
                         <outlet property="singlePanGesture" destination="uhE-Tt-SGB" id="y9l-gc-YIz"/>
                     </connections>
@@ -73,6 +95,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="63.75" y="38.75"/>
         </scene>
     </scenes>
 </document>

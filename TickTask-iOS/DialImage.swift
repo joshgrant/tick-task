@@ -8,148 +8,309 @@
 
 import UIKit
 
-enum DialState
+class DialImage
 {
-    case inactive
-    case countdown
-    case selected
-}
-
-struct BezierPoint
-{
-    var endPoint: CGPoint
-    var controlLeft: CGPoint
-    var controlRight: CGPoint
-}
-
-extension UIBezierPath
-{
-    func addCurve(to point: BezierPoint)
-    {
-        self.addCurve(to: point.endPoint,
-                      controlPoint1: point.controlLeft,
-                      controlPoint2: point.controlRight)
+    var frame: CGRect
+    
+    var redHue: CGFloat = 0.0
+    var greenHue: CGFloat = 0.35
+    var yellowHue: CGFloat = 0.15
+    
+    var dialStrokeWidth: CGFloat = 3
+    
+    var fillComponents = Color(hue: 0.0, saturation: 0.043, brightness: 0.25, alpha: 0.6)
+    
+    var greenFill: Color {
+        return Color(hue: greenHue,
+                     saturation: fillComponents.saturation,
+                     brightness: fillComponents.brightness,
+                     alpha: fillComponents.alpha)
     }
-}
-
-// TODO: Render the background as an image and only display the dial...
-// This will save some computation time...
-
-public class DialImage : NSObject {
     
-    //// Drawing Methods
+    var redFill: Color {
+        return Color(hue: redHue,
+                     saturation: fillComponents.saturation,
+                     brightness: fillComponents.brightness,
+                     alpha: fillComponents.alpha)
+    }
     
-    static func drawTickTask(frame targetFrame: CGRect, angle: CGFloat, state: DialState) {
-        //// General Declarations
+    var yellowFill: Color {
+        return Color(hue: yellowHue,
+                     saturation: fillComponents.saturation,
+                     brightness: fillComponents.brightness,
+                     alpha: fillComponents.alpha)
+    }
+    
+    func dialStroke(with state: DialState) -> Color
+    {
+        return dialFill(with: state).colorByApplying(brightnessModification: { (brightness) -> CGFloat in
+            return brightness * 0.7
+        }, alphaModification: { (alpha) -> CGFloat in
+            return 1.0
+        })
+    }
+    
+    func dialFill(with state: DialState) -> Color
+    {
+        return faceFill(with: state).colorBySetting(saturation: 0.55,
+                                                    brightness: 0.7,
+                                                    alpha: 1.0)
+    }
+    
+    var dialShadowColor: Color {
+        return Color(hue: 0, saturation: 0, brightness: 0, alpha: 0.3)
+    }
+    
+    var dialInnerShadowColor: Color {
+        return Color(hue: 0, saturation: 0, brightness: 1, alpha: 0.5)
+    }
+    
+    var dialShadow: NSShadow {
+        let shadow = NSShadow()
+        shadow.shadowColor = dialShadowColor.uiColor
+        shadow.shadowOffset = CGSize.zero
+        shadow.shadowBlurRadius = 8
+        return shadow
+    }
+    
+    var dialInnerShadow: NSShadow {
+        let shadow = NSShadow()
+        shadow.shadowColor = dialInnerShadowColor.uiColor
+        shadow.shadowOffset = CGSize(width: 0, height: dialStrokeWidth * 1.5)
+        shadow.shadowBlurRadius = 0
+        return shadow
+    }
+    
+    var faceShadow: NSShadow {
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.black
+        shadow.shadowOffset = CGSize(width: 0, height: 8)
+        shadow.shadowBlurRadius = 16
+        return shadow
+    }
+    
+    func highlightTopGradient(fill: Color) -> CGGradient
+    {
+        //highlightTopGradient20aColor
+        let highlightTopGradientTopColor = fill.colorByApplying(brightnessAndAlphaModification: { (value) -> CGFloat in
+            return value * 0.9 + 0.1
+        })
+        
+        //highlightTopGradient20aColor2
+        let highlightTopGradientBottomColor = fill.colorByApplying(brightnessModification: { (brightness) -> CGFloat in
+            return brightness * 0.9
+        }, alphaModification: { (alpha) -> CGFloat in
+            return alpha * 0.9 + 0.1
+        })
+        
+        return CGGradient(colorsSpace: nil,
+                          colors: [
+                            highlightTopGradientTopColor.cgColor,
+                            highlightTopGradientBottomColor.cgColor] as CFArray,
+                          locations: [0, 1])!
+    }
+    
+    func highlightBottomGradient(fill: Color) -> CGGradient
+    {
+        //highlightBottomGradient20aColor3
+        let highlightBottomGradientTopColor = fill.colorByApplying(
+            brightnessModification: { (brightness) -> CGFloat in
+                return brightness * 0.4
+        }, alphaModification: { (alpha) -> CGFloat in
+            return alpha * 0.4 + 0.6
+        })
+        
+        //highlightBottomGradient20aColor
+        let highlightBottomGradientBottomColor = fill.colorByApplying(allModification: { (value) -> CGFloat in
+            return value * 0.9 + 0.1
+        })
+        
+        return CGGradient(colorsSpace: nil,
+                          colors: [
+                            highlightBottomGradientTopColor.cgColor,
+                            highlightBottomGradientBottomColor.cgColor] as CFArray,
+                          locations: [0, 1])!
+    }
+    
+    
+    func faceFill(with state: DialState) -> Color
+    {
+        switch state
+        {
+        case .inactive: return greenFill
+        case .countdown: return redFill
+        case .selected: return yellowFill
+        }
+    }
+    
+    init(frame: CGRect)
+    {
+        self.frame = frame
+    }
+    
+    func drawFace(state: DialState)
+    {
         let context = UIGraphicsGetCurrentContext()!
         
-        //// Resize to Target Frame
+        let baseOffset: CGFloat = 5 // The offset of the ovals. Larger offset = larger borders
+        let fill = faceFill(with: state)
+        
+        let color3 = fill.colorByApplying(brightnessModification: { (brightness) -> CGFloat in
+            return brightness * 0.9 + 0.1
+        }, alphaModification: { (alpha) -> CGFloat in
+            return alpha * 0.9 + 0.1
+        })
+        
+        let color = fill.colorByApplying(brightnessModification: { (brightness) -> CGFloat in
+            return brightness * 0.9
+        }, alphaModification: { (alpha) -> CGFloat in
+            return alpha * 0.9 + 0.1
+        })
+        
+        // We want to cache this result...
+        oval5(context: context,
+              targetFrame: frame,
+              baseOffset: baseOffset,
+              faceFill: fill.uiColor,
+              faceShadow: faceShadow)
+        
+        oval(context: context,
+             targetFrame: frame,
+             baseOffset: baseOffset,
+             highlightTopGradient20a: highlightTopGradient(fill: fill))
+        
+        oval4(targetFrame: frame,
+              baseOffset: baseOffset,
+              color3: color3.uiColor)
+        
+        oval2(context: context,
+              targetFrame: frame,
+              baseOffset: baseOffset,
+              highlightBottomGradient20a: highlightBottomGradient(fill: fill))
+        
+        oval3(targetFrame: frame,
+              baseOffset: baseOffset,
+              color: color.uiColor)
+    }
+    
+    
+    func drawDial(angle: CGFloat, state: DialState)
+    {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
+        // Rotate the context
+        context.saveGState()
+        context.translateBy(x: frame.width / 2, y: frame.height / 2)
+        context.rotate(by: angle)
+        
+        let path = dial(target: frame)
+        
         context.saveGState()
         
-        let faceFill: UIColor
+        // Outer shadow
+        context.setShadow(offset: dialShadow.shadowOffset,
+                          blur: dialShadow.shadowBlurRadius,
+                          color: dialShadowColor.cgColor)
         
-        switch state {
-        case .inactive:
-            faceFill = UIColor(hue: 0.35, saturation: 0.043, brightness: 0.25, alpha: 0.6)
-        case .countdown:
-            faceFill = UIColor(hue: 0.0, saturation: 0.043, brightness: 0.25, alpha: 0.6)
-        case .selected:
-            faceFill = UIColor(hue: 0.15, saturation: 0.043, brightness: 0.25, alpha: 0.6)
-        }
+        // Fill the dial
+        dialFill(with: state).uiColor.setFill()
+        path.fill()
         
-        //// Color Declarations
-        let white20a = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.200)
-        //        let faceFill = UIColor(red: 0.250, green: 0.249, blue: 0.239, alpha: 0.600)
-        var faceFillRedComponent: CGFloat = 1
-        var faceFillGreenComponent: CGFloat = 1
-        var faceFillBlueComponent: CGFloat = 1
-        faceFill.getRed(&faceFillRedComponent, green: &faceFillGreenComponent, blue: &faceFillBlueComponent, alpha: nil)
+        // Draw the inner shadow
         
-        var faceFillHueComponent: CGFloat = 1
-        var faceFillSaturationComponent: CGFloat = 1
-        var faceFillBrightnessComponent: CGFloat = 1
-        faceFill.getHue(&faceFillHueComponent, saturation: &faceFillSaturationComponent, brightness: &faceFillBrightnessComponent, alpha: nil)
-        
-        let highlightTopGradient20aColor = UIColor(red: (faceFillRedComponent * 0.9 + 0.1), green: (faceFillGreenComponent * 0.9 + 0.1), blue: (faceFillBlueComponent * 0.9 + 0.1), alpha: (faceFill.cgColor.alpha * 0.9 + 0.1))
-        let highlightTopGradient20aColor2 = UIColor(red: (faceFillRedComponent * 0.9), green: (faceFillGreenComponent * 0.9), blue: (faceFillBlueComponent * 0.9), alpha: (faceFill.cgColor.alpha * 0.9 + 0.1))
-        let highlightBottomGradient20aColor = UIColor(red: (faceFillRedComponent * 0.9 + 0.1), green: (faceFillGreenComponent * 0.9 + 0.1), blue: (faceFillBlueComponent * 0.9 + 0.1), alpha: (faceFill.cgColor.alpha * 0.9 + 0.1))
-        let highlightBottomGradient20aColor3 = UIColor(red: (faceFillRedComponent * 0.4), green: (faceFillGreenComponent * 0.4), blue: (faceFillBlueComponent * 0.4), alpha: (faceFill.cgColor.alpha * 0.4 + 0.6))
-        let color = UIColor(red: (faceFillRedComponent * 0.9), green: (faceFillGreenComponent * 0.9), blue: (faceFillBlueComponent * 0.9), alpha: (faceFill.cgColor.alpha * 0.9 + 0.1))
-        let baseDial = UIColor(hue: faceFillHueComponent, saturation: faceFillSaturationComponent, brightness: 0.8, alpha: faceFill.cgColor.alpha)
-        let baseDial2 = baseDial.withAlphaComponent(1)
-        var baseDial2HueComponent: CGFloat = 1
-        var baseDial2SaturationComponent: CGFloat = 1
-        var baseDial2BrightnessComponent: CGFloat = 1
-        baseDial2.getHue(&baseDial2HueComponent, saturation: &baseDial2SaturationComponent, brightness: &baseDial2BrightnessComponent, alpha: nil)
-        
-        let baseDial3 = UIColor(hue: baseDial2HueComponent, saturation: 0.5, brightness: baseDial2BrightnessComponent, alpha: baseDial2.cgColor.alpha)
-        var baseDial3RedComponent: CGFloat = 1
-        var baseDial3GreenComponent: CGFloat = 1
-        var baseDial3BlueComponent: CGFloat = 1
-        baseDial3.getRed(&baseDial3RedComponent, green: &baseDial3GreenComponent, blue: &baseDial3BlueComponent, alpha: nil)
-        
-        let baseDial4 = UIColor(red: (baseDial3RedComponent * 0.7), green: (baseDial3GreenComponent * 0.7), blue: (baseDial3BlueComponent * 0.7), alpha: (baseDial3.cgColor.alpha * 0.7 + 0.3))
-        let color3 = UIColor(red: (faceFillRedComponent * 0.9 + 0.1), green: (faceFillGreenComponent * 0.9 + 0.1), blue: (faceFillBlueComponent * 0.9 + 0.1), alpha: (faceFill.cgColor.alpha * 0.9 + 0.1))
-        let dialInnerShadowColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.500)
-        let faceBackgroundShadow = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 1.000)
-        
-        //// Gradient Declarations
-        let highlightTopGradient20a = CGGradient(colorsSpace: nil, colors: [highlightTopGradient20aColor.cgColor, highlightTopGradient20aColor2.cgColor] as CFArray, locations: [0, 1])!
-        let highlightBottomGradient20a = CGGradient(colorsSpace: nil, colors: [highlightBottomGradient20aColor3.cgColor, highlightBottomGradient20aColor.cgColor] as CFArray, locations: [0, 1])!
-        
-        //// Shadow Declarations
-        let dialShadow = NSShadow()
-        dialShadow.shadowColor = UIColor.black.withAlphaComponent(0.5)
-        dialShadow.shadowOffset = CGSize(width: 0, height: 0)
-        dialShadow.shadowBlurRadius = 4
-        let dialInnerShadow = NSShadow()
-        dialInnerShadow.shadowColor = dialInnerShadowColor
-        dialInnerShadow.shadowOffset = CGSize(width: 0, height: 2)
-        dialInnerShadow.shadowBlurRadius = 0
-        let faceShadow = NSShadow()
-        faceShadow.shadowColor = faceBackgroundShadow
-        faceShadow.shadowOffset = CGSize(width: 0, height: 2)
-        faceShadow.shadowBlurRadius = 4
-        
-        /// MARK: VALUE
-        let baseOffset: CGFloat = 5
-        
-        func oval(target: CGRect, baseOffset: CGFloat, level: CGFloat) -> UIBezierPath
+        func fillShadow()
         {
-            let origin = CGPoint(x: (baseOffset + 1) * level, y: baseOffset * level)
-            let size = CGSize(width: target.size.width - origin.x * 2, height: target.size.height - origin.y * 2)
-            return UIBezierPath(ovalIn: CGRect(origin: origin, size: size))
+            context.beginTransparencyLayer(auxiliaryInfo: nil)
+            dialInnerShadowColor.uiColor.setFill()
+            path.fill()
+            context.endTransparencyLayer()
         }
         
-        //// Oval 5 Drawing
-        
-        let oval5Path = oval(target: targetFrame, baseOffset: baseOffset, level: 1)
+        func shadowBlendMode()
+        {
+            context.beginTransparencyLayer(auxiliaryInfo: nil)
+            
+            context.setShadow(offset: dialInnerShadow.shadowOffset,
+                              blur: dialInnerShadow.shadowBlurRadius,
+                              color: dialInnerShadowColor.colorBySetting(alpha: 1.0).cgColor)
+            context.setBlendMode(.sourceOut)
+            
+            fillShadow()
+            
+            context.endTransparencyLayer()
+        }
         
         context.saveGState()
-        context.setShadow(offset: CGSize(width: faceShadow.shadowOffset.width, height: faceShadow.shadowOffset.height), blur: faceShadow.shadowBlurRadius, color: (faceShadow.shadowColor as! UIColor).cgColor)
+        context.clip(to: path.bounds)
+        
+        shadowBlendMode()
+        
+        context.restoreGState()
+        
+        dialStroke(with: state).uiColor.setStroke()
+        path.lineWidth = dialStrokeWidth
+        path.stroke()
+        
+        context.restoreGState()
+        
+        context.restoreGState()
+    }
+    
+    func oval(target: CGRect, baseOffset: CGFloat, level: CGFloat) -> UIBezierPath
+    {
+        let shadowSize = (faceShadow.shadowBlurRadius / 2) + faceShadow.shadowOffset.height
+        
+        let x = baseOffset * level + shadowSize
+        let y = baseOffset * level + shadowSize
+        let w = target.size.width - x * 2
+        let h = target.size.height - y * 2
+        
+        return UIBezierPath(ovalIn: CGRect(x: x, y: y, width: w, height: h))
+    }
+    
+    func oval5(context: CGContext, targetFrame: CGRect, baseOffset: CGFloat, faceFill: UIColor, faceShadow: NSShadow)
+    {
+        let oval5Path = oval(target: targetFrame, baseOffset: baseOffset, level: 1)
+        context.saveGState()
+        
+        context.setShadow(offset: CGSize(width: faceShadow.shadowOffset.width,
+                                         height: faceShadow.shadowOffset.height),
+                          blur: faceShadow.shadowBlurRadius,
+                          color: (faceShadow.shadowColor as! UIColor).cgColor)
+        
         faceFill.setFill()
         oval5Path.fill()
         context.restoreGState()
         
-        white20a.setStroke()
+        UIColor(white: 1.0, alpha: 0.2).setStroke()
         oval5Path.lineWidth = 1
         oval5Path.stroke()
-        
-        //// Oval Drawing
+    }
+    
+    func oval(context: CGContext, targetFrame: CGRect, baseOffset: CGFloat, highlightTopGradient20a: CGGradient)
+    {
         let ovalPath = oval(target: targetFrame, baseOffset: baseOffset, level: 1)
         context.saveGState()
         ovalPath.addClip()
-        context.drawLinearGradient(highlightTopGradient20a, start: CGPoint(x: targetFrame.size.width / 2, y: 0), end: CGPoint(x: targetFrame.size.width / 2, y: targetFrame.size.height), options: [])
+        context.drawLinearGradient(highlightTopGradient20a,
+                                   start: CGPoint(x: targetFrame.size.width / 2,
+                                                  y: 0),
+                                   end: CGPoint(x: targetFrame.size.width / 2,
+                                                y: targetFrame.size.height),
+                                   options: [])
         context.restoreGState()
-        
-        
-        //// Oval 4 Drawing
+    }
+    
+    func oval4(targetFrame: CGRect, baseOffset: CGFloat, color3: UIColor)
+    {
         let oval4Path = oval(target: targetFrame, baseOffset: baseOffset, level: 2)
         color3.setFill()
         oval4Path.fill()
+    }
+    
+    func oval2(context: CGContext, targetFrame: CGRect, baseOffset: CGFloat, highlightBottomGradient20a: CGGradient)
+    {
         
-        
-        //// Oval 2 Drawing
         let oval2Path = oval(target: targetFrame, baseOffset: baseOffset, level: 3)
         context.saveGState()
         oval2Path.addClip()
@@ -159,165 +320,36 @@ public class DialImage : NSObject {
                                    end: CGPoint(x: targetFrame.size.width / 2,
                                                 y: targetFrame.size.height), options: [])
         context.restoreGState()
-        
-        
-        //// Oval 3 Drawing
+    }
+    
+    func oval3(targetFrame: CGRect, baseOffset: CGFloat, color: UIColor)
+    {
         let oval3Path = oval(target: targetFrame, baseOffset: baseOffset, level: 4)
         color.setFill()
         oval3Path.fill()
-        
-        
-        //// Bezier 2 Drawing
-        context.saveGState()
-        // The base offset is to consider the shadow...
-        context.translateBy(x: targetFrame.width / 2, y: targetFrame.height / 2 - baseOffset)
-        context.rotate(by: angle)
-        
-        let bezier2Path = dial(target: targetFrame)
-        context.saveGState()
-        context.setShadow(offset: CGSize(width: dialShadow.shadowOffset.width,
-                                         height: dialShadow.shadowOffset.height),
-                          blur: dialShadow.shadowBlurRadius,
-                          color: (dialShadow.shadowColor as! UIColor).cgColor)
-        baseDial3.setFill()
-        bezier2Path.fill()
-        
-        ////// Bezier 2 Inner Shadow
-        context.saveGState()
-        context.clip(to: bezier2Path.bounds)
-        context.setShadow(offset: CGSize.zero, blur: 0)
-        context.setAlpha((dialInnerShadow.shadowColor as! UIColor).cgColor.alpha)
-        context.beginTransparencyLayer(auxiliaryInfo: nil)
-        let bezier2OpaqueShadow = (dialInnerShadow.shadowColor as! UIColor).withAlphaComponent(1)
-        context.setShadow(offset: CGSize(width: dialInnerShadow.shadowOffset.width,
-                                         height: dialInnerShadow.shadowOffset.height),
-                          blur: dialInnerShadow.shadowBlurRadius,
-                          color: bezier2OpaqueShadow.cgColor)
-        context.setBlendMode(.sourceOut)
-        context.beginTransparencyLayer(auxiliaryInfo: nil)
-        
-        bezier2OpaqueShadow.setFill()
-        bezier2Path.fill()
-        
-        context.endTransparencyLayer()
-        context.endTransparencyLayer()
-        context.restoreGState()
-        
-        context.restoreGState()
-        
-        baseDial4.setStroke()
-        bezier2Path.lineWidth = 1
-        bezier2Path.stroke()
-        
-        context.restoreGState()
-        
-        context.restoreGState()
-        
     }
-    
-    static func dial(target: CGRect) -> UIBezierPath
+    //
+    func dial(target: CGRect) -> UIBezierPath
     {
         let path = UIBezierPath()
         
-        let radius: CGFloat = 10
+        let size = target.size.width - (faceShadow.shadowOffset.height + faceShadow.shadowBlurRadius / 2) * 2
         
-        // Taken from http://spencermortensen.com/articles/bezier-circle/
-        let controlPointFactor: CGFloat = 0.55191502449
+        let innerCircleRadius: CGFloat = size * 0.039
+        let dialLength: CGFloat = size * 0.37
+        let bodyRadius: CGFloat = size * 0.09
+        let tipRadius: CGFloat = size *  0.03
         
-        let controlOffset = radius * controlPointFactor
+        let bodyCenter = CGPoint.zero
+        let tipCenter = CGPoint(x: 0, y: -dialLength)
         
-        let innerPoints = innerCircle(radius: radius, controlOffset: controlOffset)
-        
-        // We start at the top of the circle
-        path.move(to: CGPoint(x: 0, y: -radius))
-        
-        path.addCurve(to: innerPoints.right)
-        path.addCurve(to: innerPoints.bottom)
-        path.addCurve(to: innerPoints.left)
-        path.addCurve(to: innerPoints.top)
-        
-        path.close()
-        
-        // NEGATIVE Y == UPWARDS
-        
-        let dialLength: CGFloat = 120
-        let bodyRadius: CGFloat = 30
-        let tipRadius: CGFloat = 10
-        
-        let curvePoints = outerDial(bodyCenter: CGPoint.zero,
-                                    bodyRadius: bodyRadius,
-                                    tipCenter: CGPoint(x: 0, y: -dialLength),
-                                    tipRadius: tipRadius)
-        
-        // Move to the top of the dial
-        path.move(to: curvePoints.tipTop.endPoint)
-        
-        path.addCurve(to: curvePoints.tipRight)
-        path.addCurve(to: curvePoints.bodyRight)
-        path.addCurve(to: curvePoints.bodyBottom)
-        path.addCurve(to: curvePoints.bodyLeft)
-        path.addCurve(to: curvePoints.tipLeft)
-        path.addCurve(to: curvePoints.tipTop)
-        
-        path.close()
-        
-        return path
-    }
-    
-    static func square(_ value: CGFloat) -> CGFloat
-    {
-        return value * value
-    }
-    
-    static func distance(p1: CGPoint, p2: CGPoint) -> CGFloat
-    {
-        let deltaX = p1.x - p2.x
-        let deltaY = p1.y - p2.y
-        return (square(deltaX) + square(deltaY)).squareRoot()
-    }
-    
-    static func innerCircle(radius: CGFloat, controlOffset: CGFloat) -> (
-        top: BezierPoint,
-        right: BezierPoint,
-        bottom: BezierPoint,
-        left: BezierPoint)
-    {
-        let top = BezierPoint(endPoint: CGPoint(x: 0, y: -radius),
-                              controlLeft: CGPoint(x: radius, y: -controlOffset),
-                              controlRight: CGPoint(x: controlOffset, y: -radius))
-        
-        let right = BezierPoint(endPoint: CGPoint(x: -radius, y: 0),
-                              controlLeft: CGPoint(x: -controlOffset, y: -radius),
-                              controlRight: CGPoint(x: -radius, y: -controlOffset))
-        
-        let bottom = BezierPoint(endPoint: CGPoint(x: 0, y: radius),
-                                 controlLeft: CGPoint(x: -radius, y: controlOffset),
-                                 controlRight: CGPoint(x: -controlOffset, y: radius))
-        
-        let left = BezierPoint(endPoint: CGPoint(x: radius, y: 0),
-                                controlLeft: CGPoint(x: controlOffset, y: radius),
-                                controlRight: CGPoint(x: radius, y: controlOffset))
-        
-        return (top, right, bottom, left)
-    }
-    
-    static func outerDial(bodyCenter: CGPoint, bodyRadius: CGFloat, tipCenter: CGPoint, tipRadius: CGFloat) -> (
-        tipTop: BezierPoint,
-        tipRight: BezierPoint,
-        tipLeft: BezierPoint,
-        bodyBottom: BezierPoint,
-        bodyRight: BezierPoint,
-        bodyLeft: BezierPoint)
-    {
-        let specialFactor: CGFloat = 0.85
-        
-        let distanceCenters = distance(p1: bodyCenter, p2: tipCenter)
+        let distanceCenters = bodyCenter.distance(to: tipCenter)
         let differenceRadius = (bodyRadius - tipRadius)
         
         // We use the pythagorean theorem to find the third side of a right triangle
         // a^2 + b^2 = c^2
         // In this case, we have a^2 and c^2 but not b^2
-        let distanceTangents = (square(distanceCenters) - square(differenceRadius)).squareRoot()
+        let distanceTangents = (distanceCenters.squared - differenceRadius.squared).squareRoot()
         
         // Now we use the law of sines to find the angle that the tangent is from the center of the circle
         let theta = asin(distanceTangents / distanceCenters)
@@ -325,98 +357,94 @@ public class DialImage : NSObject {
         // We have to get the angle that is 90° - theta
         let thetaComplement = (CGFloat.pi / 2) - theta
         
-        // We know that the cosine of theta = x / radius, and the sine of theta = y / radius
-        // Also, upwards (on the screen) is negative
-        let bodyRight = BezierPoint(endPoint: CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
-                                                      y: bodyCenter.y - bodyRadius * sin(thetaComplement)),
-                                    controlLeft: CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
-                                                        y: bodyCenter.y - bodyRadius * sin(thetaComplement)) ,
-                                    controlRight: CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
-                                                          y: bodyCenter.y - bodyRadius * sin(thetaComplement)))
+        // Move to the top of the dial
         
-        let bodyLeft = BezierPoint(endPoint: CGPoint(x: bodyRight.endPoint.x * -1, y: bodyRight.endPoint.y),
-                                   controlLeft: CGPoint(x: bodyRight.controlRight.x * -1, y: bodyRight.controlRight.y),
-                                   controlRight: CGPoint(x: bodyRight.controlLeft.x * -1, y: bodyRight.controlLeft.y))
+        let bodyRight = CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
+                                y: bodyCenter.y - bodyRadius * sin(thetaComplement))
         
-        // Now, we have to find the points on the top circle. It's similar to the bottom one, but we use a different radius
+        path.addArc(withCenter: CGPoint.zero,
+                    radius: innerCircleRadius,
+                    startAngle: 0,
+                    endAngle: CGFloat.pi * 2,
+                    clockwise: false)
         
-        let tipRight = BezierPoint(endPoint: CGPoint(x: tipCenter.x + (tipRadius * cos(thetaComplement)),
-                                                     y: tipCenter.y + (tipRadius * sin(thetaComplement))),
-                                   controlLeft: CGPoint(x: tipCenter.x + (tipRadius * cos(thetaComplement)),
-                                                        y: tipCenter.y + (tipRadius * sin(thetaComplement))),
-                                    controlRight: CGPoint(x: tipCenter.x + (tipRadius * cos(thetaComplement)),
-                                                          y: tipCenter.y + (tipRadius * sin(thetaComplement))))
+        path.close()
         
-        let tipLeft = BezierPoint(endPoint: CGPoint(x: tipRight.endPoint.x * -1,
-                                                    y: tipRight.endPoint.y),
-                                  controlLeft: CGPoint(x: tipRight.controlRight.x * -1, y: tipRight.controlRight.y),
-                                  controlRight: CGPoint(x: tipRight.controlLeft.x * -1, y: tipRight.controlLeft.y))
+        path.move(to: bodyRight)
         
-        // Now, for the easy control point origins. Negative y is upwards
+        path.addArc(withCenter: bodyCenter,
+                    radius: bodyRadius,
+                    startAngle: -thetaComplement,
+                    endAngle: CGFloat.pi + thetaComplement,
+                    clockwise: true)
+        path.addArc(withCenter: tipCenter,
+                    radius: tipRadius,
+                    startAngle: CGFloat.pi + thetaComplement, endAngle: -thetaComplement, clockwise: true)
+        path.close()
         
-        let tipTop = BezierPoint(endPoint: CGPoint(x: tipCenter.x,
-                                                   y: tipCenter.y - tipRadius),
-                                 controlLeft: CGPoint(x: tipCenter.x - tipRadius * specialFactor,
-                                                      y: tipCenter.y - tipRadius),
-                                 controlRight: CGPoint(x: tipCenter.x + tipRadius * specialFactor,
-                                                       y: tipCenter.y - tipRadius))
-        
-        let bodyBottom = BezierPoint(endPoint: CGPoint(x: bodyCenter.x,
-                                                       y: bodyCenter.y + bodyRadius),
-                                     controlLeft: CGPoint(x: bodyCenter.x - bodyRadius * specialFactor,
-                                                          y: bodyCenter.y + bodyRadius),
-                                     controlRight: CGPoint(x: bodyCenter.x + bodyRadius * specialFactor,
-                                                           y: bodyCenter.y + bodyRadius))
-        
-        return (tipTop, tipRight, tipLeft, bodyBottom, bodyRight, bodyLeft)
+        return path
     }
     
     //// Generated Images
     
-    static func imageOfTickTask(angle: CGFloat, size: CGSize, state: DialState) -> UIImage
+//    func imageOfTickTask(angle: CGFloat, size: CGSize, state: DialState) -> UIImage
+//    {
+//        let color: String
+//
+//        switch state
+//        {
+//        case .countdown:
+//            color = "red"
+//        case .inactive:
+//            color = "green"
+//        case .selected:
+//            color = "yellow"
+//        }
+//
+//        // We only want to save the images when the user is modifying the dial image,
+//        // because otherwise the app would take a huge amount of space...
+//        if let cachedImage = loadCachedImage(state: state, angle: angle, color: color)
+//        {
+//            return cachedImage
+//        }
+//        else
+//        {
+//            UIGraphicsBeginImageContextWithOptions(size, false, 0)
+//
+//            // Maybe we should have two image views, or something, for faster loading...
+//            drawFace(state: state)
+//            drawDial(angle: angle, state: state)
+//
+//            let imageOfTickTask = UIGraphicsGetImageFromCurrentImageContext()!
+//            UIGraphicsEndImageContext()
+//
+//            cacheImage(state: state, angle: angle, imageData: imageOfTickTask.pngData(), color: color)
+//
+//            return imageOfTickTask
+//        }
+//    }
+    
+    func dialImage(angle: CGFloat, state: DialState) -> UIImage
     {
-        let color: String
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
         
-        switch state
-        {
-        case .countdown:
-            color = "red"
-        case .inactive:
-            color = "green"
-        case .selected:
-            color = "yellow"
-        }
+        drawDial(angle: angle, state: state)
         
-        // We only want to save the images when the user is modifying the dial image,
-        // because otherwise the app would take a huge amount of space...
-        if state == .selected,
-            let image = AngleImage.image(with: angle, color: color),
-            let imageData = image.imageData,
-            let final = UIImage(data: imageData)
-        {
-            return final
-        }
-        else
-        {
-            UIGraphicsBeginImageContextWithOptions(size, false, 0)
-            DialImage.drawTickTask(frame: CGRect(origin: CGPoint.zero, size: size),
-                                   angle: angle,
-                                   state: state)
-            
-            let imageOfTickTask = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-            
-            if state == .selected
-            {
-                let image = AngleImage(context: Model.context)
-                image.angle = Double(angle)
-                image.imageData = imageOfTickTask.pngData()
-                image.color = color
-                
-                Model.save()
-            }
-            
-            return imageOfTickTask
-        }
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    func faceImage(state: DialState) -> UIImage
+    {
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+
+        drawFace(state: state)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return image
     }
 }

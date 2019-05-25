@@ -12,7 +12,7 @@ import UserNotifications
 class ViewController: UIViewController
 {
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var dialView: DialView!
     
     @IBOutlet weak var singlePanGesture: UIPanGestureRecognizer!
     @IBOutlet weak var doublePanGesture: UIPanGestureRecognizer!
@@ -22,6 +22,12 @@ class ViewController: UIViewController
     var currentDurationWithoutCountdown: TimeInterval = 0
     var maxMinutes: CGFloat = 60.0
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
+    
+    var dialImage: DialImage!
+    
+    var faceImageInactive: UIImage!
+    var faceImageSelected: UIImage!
+    var faceImageCountdown: UIImage!
     
     var countdownRemaining: TimeInterval {
         get {
@@ -38,18 +44,41 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // This initializes the class, not the actual image
+        dialImage = DialImage(frame: self.dialView.bounds)
+        
+        faceImageInactive = dialImage.faceImage(state: .inactive)
+        faceImageSelected = dialImage.faceImage(state: .selected)
+        faceImageCountdown = dialImage.faceImage(state: .countdown)
+        
         configureInterfaceElements(state: .inactive)
+        
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle
+    {
+        return .lightContent
+    }
+    
+    func dialFaceImageForState(state: DialState) -> UIImage
+    {
+        switch state
+        {
+        case .countdown: return faceImageCountdown
+        case .selected: return faceImageSelected
+        case .inactive: return faceImageInactive
+        }
     }
     
     // MARK: Interface Actions
     
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer)
     {
-        let location = sender.location(in: imageView)
-//        let origin = imageView.center
-        let center = CGPoint(x: imageView.bounds.origin.x + imageView.bounds.size.width / 2,
-                             y: imageView.bounds.origin.y + imageView.bounds.size.height / 2)
+        let location = sender.location(in: dialView)
+        let center = CGPoint(x: dialView.bounds.origin.x + dialView.bounds.size.width / 2,
+                             y: dialView.bounds.origin.y + dialView.bounds.size.height / 2)
         var angle: CGFloat = location.angleFromPoint(point: center)
         
         if (sender.isEqual(doublePanGesture))
@@ -78,18 +107,17 @@ class ViewController: UIViewController
     {
         invalidateTimersAndDates()
         
-        // Remove any pending notifications
-        
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
     }
     
     func userEndedDragging(angle: CGFloat)
     {
-        if angle == 0
+        if angle.distance(to: -CGFloat.pi * 2) == 0
         {
             invalidateTimersAndDates()
-            imageView.image = DialImage.imageOfTickTask(angle: 0, size: imageView.bounds.size, state: .inactive)
+            dialView.faceImageView.image = faceImageInactive
+            dialView.dialImageView.image = dialImage.dialImage(angle: 0, state: .inactive)
         }
         else
         {
@@ -114,7 +142,8 @@ class ViewController: UIViewController
     {
         let angle: CGFloat = angle ?? currentInterval.toAngle()
         
-        imageView.image = DialImage.imageOfTickTask(angle: angle, size: imageView.bounds.size, state: state)
+        dialView.faceImageView.image = dialFaceImageForState(state: state)
+        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: state)
         
         label.text = durationString(with: angle)
     }
@@ -124,8 +153,9 @@ class ViewController: UIViewController
         currentDurationWithoutCountdown = angle.toInterval()
         
         guard currentDurationWithoutCountdown > 0 else { return }
-        
-        imageView.image = DialImage.imageOfTickTask(angle: angle, size: imageView.bounds.size, state: .countdown)
+
+        dialView.faceImageView.image = faceImageCountdown
+        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: .countdown)
         
         startDate = Date()
         

@@ -12,6 +12,10 @@
 		B52273DB2297F9EF00B00C95 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B52273D92297F9EF00B00C95 /* Model.xcdatamodeld */; };
 		B52273DD2297F9FA00B00C95 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273DC2297F9FA00B00C95 /* Model.swift */; };
 		B52273DF2297FB1500B00C95 /* AngleImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273DE2297FB1500B00C95 /* AngleImage+.swift */; };
+		B52273E42299643D00B00C95 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E32299643D00B00C95 /* Color.swift */; };
+		B52273E62299646900B00C95 /* DialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E52299646900B00C95 /* DialState.swift */; };
+		B52273E82299894900B00C95 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E72299894900B00C95 /* DialView.swift */; };
+		B52273EA2299972200B00C95 /* Suck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E92299972200B00C95 /* Suck.swift */; };
 		B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370803226F188600ACFA62 /* AppDelegate.swift */; };
 		B5370806226F188600ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
 		B537080B226F188600ACFA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B537080A226F188600ACFA62 /* Assets.xcassets */; };
@@ -93,6 +97,10 @@
 		B52273DA2297F9EF00B00C95 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B52273DC2297F9FA00B00C95 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B52273DE2297FB1500B00C95 /* AngleImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AngleImage+.swift"; sourceTree = "<group>"; };
+		B52273E32299643D00B00C95 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B52273E52299646900B00C95 /* DialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialState.swift; sourceTree = "<group>"; };
+		B52273E72299894900B00C95 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
+		B52273E92299972200B00C95 /* Suck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suck.swift; sourceTree = "<group>"; };
 		B5370800226F188600ACFA62 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -261,13 +269,17 @@
 				B58FF1ED228C327A00922A69 /* ViewController.swift */,
 				B58FF1EF228C327A00922A69 /* Main.storyboard */,
 				B58FF1F4228C327B00922A69 /* LaunchScreen.storyboard */,
+				B52273E72299894900B00C95 /* DialView.swift */,
 				B58FF1F7228C327B00922A69 /* Info.plist */,
 				B58FF217228C338B00922A69 /* DialImage.swift */,
+				B52273E32299643D00B00C95 /* Color.swift */,
+				B52273E52299646900B00C95 /* DialState.swift */,
 				B52273DE2297FB1500B00C95 /* AngleImage+.swift */,
 				B58FF21C228C3DF400922A69 /* CGPoint+.swift */,
 				B58FF21F228C422E00922A69 /* CGFloat+.swift */,
 				B58FF221228C42A000922A69 /* TimeInterval.swift */,
 				B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */,
+				B52273E92299972200B00C95 /* Suck.swift */,
 				B52273DC2297F9FA00B00C95 /* Model.swift */,
 				B52273D72297C50800B00C95 /* Assets.xcassets */,
 				B52273D92297F9EF00B00C95 /* Model.xcdatamodeld */,
@@ -467,12 +479,18 @@
 							com.apple.HardenedRuntime = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					B58FF1E8228C327A00922A69 = {
 						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -619,14 +637,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52273E82299894900B00C95 /* DialView.swift in Sources */,
 				B52273DD2297F9FA00B00C95 /* Model.swift in Sources */,
+				B52273E62299646900B00C95 /* DialState.swift in Sources */,
 				B58FF21D228C3DF400922A69 /* CGPoint+.swift in Sources */,
 				B58FF222228C42A000922A69 /* TimeInterval.swift in Sources */,
 				B52273DF2297FB1500B00C95 /* AngleImage+.swift in Sources */,
+				B52273E42299643D00B00C95 /* Color.swift in Sources */,
 				B58FF218228C338B00922A69 /* DialImage.swift in Sources */,
 				B52273DB2297F9EF00B00C95 /* Model.xcdatamodeld in Sources */,
 				B58FF1EE228C327A00922A69 /* ViewController.swift in Sources */,
 				B58FF1EC228C327A00922A69 /* AppDelegate.swift in Sources */,
+				B52273EA2299972200B00C95 /* Suck.swift in Sources */,
 				B58FF220228C422E00922A69 /* CGFloat+.swift in Sources */,
 				B58FF224228C44B200922A69 /* DateComponentsFormatter.swift in Sources */,
 			);

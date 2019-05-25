@@ -10,6 +10,14 @@ import UIKit
 
 extension CGPoint
 {
+    func distance(to point: CGPoint) -> CGFloat
+    {
+        let deltaX = point.x - self.x
+        let deltaY = point.y - self.y
+        
+        return (deltaX.squared + deltaY.squared).squareRoot()
+    }
+    
     func angleFromPoint(point: CGPoint) -> CGFloat
     {
         // We calculate the angle of the mouse location from the origin

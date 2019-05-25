@@ -10,6 +10,11 @@ import UIKit
 
 extension CGFloat
 {
+    var squared: CGFloat
+    {
+        return self * self
+    }
+    
     func toInterval(maxMinutes: CGFloat = 60) -> TimeInterval
     {   
         // Start with the angle and convert it to a value from 0-1

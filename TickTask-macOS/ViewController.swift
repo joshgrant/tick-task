@@ -228,6 +228,7 @@ extension ViewController
         let center = UNUserNotificationCenter.current()
         
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            guard granted else { return }
         }
     }
     
@@ -237,6 +238,12 @@ extension ViewController
         
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
+            
+            // Register for push notifications
+//            DispatchQueue.main.async {
+//                NSApp.registerForRemoteNotifications()
+//            }
+            
             self.scheduleNotification()
         }
     }

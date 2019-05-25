@@ -35,6 +35,18 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         viewController.statusItem = statusItem
     }
+    
+    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
+    {
+        print("Failed to register: \(error)")
+    }
 }
 
 extension AppDelegate: RightClickViewDelegate

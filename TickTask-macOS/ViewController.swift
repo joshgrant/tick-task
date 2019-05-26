@@ -13,13 +13,6 @@ import UserNotifications
 let currentTaskGroupNameKey = "currentTaskGroupName"
 let currentTaskDurationKey = "currentTaskDuration"
 
-//enum DialState
-//{
-//    case inactive
-//    case userDragging
-//    case countdown
-//}
-
 class ViewController: NSViewController
 {
     // MARK: Shared Properties

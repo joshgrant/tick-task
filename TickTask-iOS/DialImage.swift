@@ -428,7 +428,7 @@ class DialImage
     {
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
         
-        drawDial(angle: angle, state: state)
+//        drawDial(angle: angle, state: state)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -440,7 +440,9 @@ class DialImage
     {
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
 
-        drawFace(state: state)
+//        drawFace(state: state)
+        
+        Dial.drawDraw(frame: frame) // For testing purposes
 
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()

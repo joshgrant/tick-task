@@ -31,12 +31,7 @@ class TickTask_iOSUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         self.measure {
-            DialImage.drawTickTask(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 414, height: 414)),
-                                   resizing: .aspectFit,
-                                   angle: 0,
-                                   state: .inactive)
         }
-        
     }
 
 }

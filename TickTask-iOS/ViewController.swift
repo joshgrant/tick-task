@@ -12,10 +12,11 @@ import UserNotifications
 class ViewController: UIViewController
 {
     @IBOutlet weak var label: UILabel!
+    
+    @IBOutlet weak var faceView: FaceView!
     @IBOutlet weak var dialView: DialView!
     
-    @IBOutlet weak var singlePanGesture: UIPanGestureRecognizer!
-    @IBOutlet weak var doublePanGesture: UIPanGestureRecognizer!
+    @IBOutlet weak var panGesture: UIPanGestureRecognizer!
     
     var tick: Timer?
     var startDate: Date?
@@ -45,13 +46,6 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         
-        // This initializes the class, not the actual image
-//        dialImage = DialImage(frame: self.dialView.bounds)
-        
-//        faceImageInactive = dialImage.faceImage(state: .inactive)
-//        faceImageSelected = dialImage.faceImage(state: .selected)
-//        faceImageCountdown = dialImage.faceImage(state: .countdown)
-        
         configureInterfaceElements(state: .inactive)
         
         setNeedsStatusBarAppearanceUpdate()
@@ -61,42 +55,29 @@ class ViewController: UIViewController
     {
         return .lightContent
     }
-    
-//    func dialFaceImageForState(state: DialState) -> UIImage
-//    {
-//        switch state
-//        {
-//        case .countdown: return faceImageCountdown
-//        case .selected: return faceImageSelected
-//        case .inactive: return faceImageInactive
-//        }
-//    }
-//    
+
     // MARK: Interface Actions
+    
+    var number: Int = 0
     
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer)
     {
         let location = sender.location(in: dialView)
-        let center = CGPoint(x: dialView.bounds.origin.x + dialView.bounds.size.width / 2,
-                             y: dialView.bounds.origin.y + dialView.bounds.size.height / 2)
+        let center = dialView.bounds.center
         var angle: CGFloat = location.angleFromPoint(point: center)
         
-        if (sender.isEqual(doublePanGesture))
-        {
-            angle.snap(to: 60)
-        }
-        else if (sender.isEqual(singlePanGesture))
-        {
-            angle.snap(to: 12)
-        }
+        // When the user lets go, the number of touches goes to 1...
         
         switch sender.state
         {
         case .began:
             userBeganDragging()
         case .changed:
+            number = sender.numberOfTouches
+            angle.snap(to: number <= 1 ? 12 : 60)
             configureInterfaceElements(state: .selected, angle: angle)
         case .ended:
+            angle.snap(to: number <= 1 ? 12 : 60)
             userEndedDragging(angle: angle)
         default:
             break
@@ -116,8 +97,7 @@ class ViewController: UIViewController
         if angle.distance(to: -CGFloat.pi * 2) == 0
         {
             invalidateTimersAndDates()
-//            dialView.faceImageView.image = faceImageInactive
-//            dialView.dialImageView.image = dialImage.dialImage(angle: 0, state: .inactive)
+            configureInterfaceElements(state: .inactive, angle: angle)
         }
         else
         {
@@ -142,8 +122,9 @@ class ViewController: UIViewController
     {
         let angle: CGFloat = angle ?? currentInterval.toAngle()
         
-//        dialView.faceImageView.image = dialFaceImageForState(state: state)
-//        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: state)
+        dialView.angle = angle
+        dialView.state = state
+        dialView.setNeedsDisplay()
         
         label.text = durationString(with: angle)
     }
@@ -154,8 +135,7 @@ class ViewController: UIViewController
         
         guard currentDurationWithoutCountdown > 0 else { return }
         
-//        dialView.faceImageView.image = faceImageCountdown
-//        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: .countdown)
+        configureInterfaceElements(state: .countdown, angle: angle)
         
         startDate = Date()
         
@@ -194,7 +174,6 @@ class ViewController: UIViewController
                 
                 let request = UNNotificationRequest(identifier: "tick_task_notification", content: content, trigger: trigger)
                 center.add(request, withCompletionHandler: { (error) in
-                    //                    print("Add error", error)
                 })
             }
         }
@@ -216,7 +195,7 @@ class ViewController: UIViewController
         if currentInterval <= 0
         {
             invalidateTimersAndDates()
-            configureInterfaceElements(state: .inactive, angle: 0)
+            configureInterfaceElements(state: .inactive, angle: -CGFloat.pi * 2)
         }
     }
 }

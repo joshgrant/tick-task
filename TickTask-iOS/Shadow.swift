@@ -6,7 +6,7 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 enum ShadowType
 {
@@ -54,7 +54,7 @@ struct Shadow
         return Shadow(color: Color.dialInnerHighlight,
                       blur: 0,
                       spread: 0,
-                      offset: CGSize(width: 0, height: 1 * scaleFactor),
+                      offset: CGSize(width: 0, height: 0.5 * scaleFactor),
                       type: .inner)
     }
     
@@ -63,13 +63,13 @@ struct Shadow
         return Shadow(color: Color.dialInnerShadow,
                       blur: 0,
                       spread: 0,
-                      offset: CGSize(width: 0, height: -1 * scaleFactor),
+                      offset: CGSize(width: 0, height: -0.5 * scaleFactor),
                       type: .inner)
     }
     
     // MARK: Drawing
     
-    func draw(with context: CGContext, in path: UIBezierPath)
+    func draw(with context: CGContext, in path: Path)
     {
         switch type
         {
@@ -80,29 +80,29 @@ struct Shadow
         }
     }
     
-    fileprivate func drawOuterShadow(with context: CGContext, in path: UIBezierPath)
+    fileprivate func drawOuterShadow(with context: CGContext, in path: Path)
     {
         context.pushPop {
-            context.beginPath()
-            context.addPath(path.cgPath)
             context.setShadow(shadow: self)
-            self.color.uiColor.setFill()
+            color.setFill()
             path.fill()
         }
     }
     
-    fileprivate func drawInnerShadow(with context: CGContext, in path: UIBezierPath)
+    fileprivate func drawInnerShadow(with context: CGContext, in path: Path)
     {
         context.pushPop {
-            UIRectClip(path.bounds)
-            context.pushPopTransparency(in: path.bounds) {
-                color.uiColor.setFill()
-                path.fill()
-                context.setBlendMode(.destinationOut)
-                context.pushPopTransparency(in: path.bounds) {
-                    context.translateBy(x: offset.width, y: offset.height)
-                    context.setShadow(shadow: self)
-                    UIColor.black.setFill()
+            context.clip(to: path.bounds)
+            context.setShadow(offset: CGSize.zero, blur: 0)
+            context.setAlpha(color.cgColor.alpha)
+            context.pushPopTransparency() {
+                let opaqueShadow = color.colorBySetting(alpha: 1.0)
+                context.setShadow(offset: offset,
+                                  blur: blur,
+                                  color: opaqueShadow.cgColor)
+                context.setBlendMode(.sourceOut)
+                context.pushPopTransparency() {
+                    opaqueShadow.setFill()
                     path.fill()
                 }
             }

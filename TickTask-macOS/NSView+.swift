@@ -10,13 +10,6 @@ import Cocoa
 
 extension NSView
 {
-    var center: NSPoint {
-        get {
-            return NSPoint(x: self.bounds.size.width / 2.0,
-                           y: self.bounds.size.height / 2.0)
-        }
-    }
-    
     var topLevelView: NSView
     {
         return self.superview?.topLevelView ?? self

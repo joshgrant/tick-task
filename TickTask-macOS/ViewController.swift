@@ -13,12 +13,12 @@ import UserNotifications
 let currentTaskGroupNameKey = "currentTaskGroupName"
 let currentTaskDurationKey = "currentTaskDuration"
 
-enum DialState
-{
-    case inactive
-    case userDragging
-    case countdown
-}
+//enum DialState
+//{
+//    case inactive
+//    case userDragging
+//    case countdown
+//}
 
 class ViewController: NSViewController
 {
@@ -48,7 +48,8 @@ class ViewController: NSViewController
     // MARK: Interface Outlets
     
     @IBOutlet weak var stackView: NSStackView!
-    @IBOutlet weak var imageView: ImageView!
+    @IBOutlet weak var dialView: DialView!
+    @IBOutlet weak var faceView: FaceView!
     
     // MARK: View Lifecycle
     
@@ -57,8 +58,7 @@ class ViewController: NSViewController
         view.translatesAutoresizingMaskIntoConstraints = true
         
         requestAuthorizationToDisplayNotifications()
-        imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
-        imageView.delegate = self
+        dialView.delegate = self
         
         super.viewDidLoad()
     }
@@ -82,8 +82,10 @@ extension ViewController
         
         if userUpdate || Int(countdownRemaining) % 10 == 0
         {
-            let state: DialState = userUpdate ? .userDragging : .countdown
-            self.imageView.image = NSImage.interactionDialWithRotation(angle: angle, state: state)
+            let state: DialState = userUpdate ? .selected : .countdown
+            dialView.state = state
+            dialView.angle = angle
+            dialView.setNeedsDisplay(dialView.bounds)
         }
         
         if userUpdate || Int(countdownRemaining) % 60 == 0
@@ -94,9 +96,9 @@ extension ViewController
 }
 
 // MARK: Image View Mouse Delegate
-extension ViewController: ImageViewMouseDelegate
+extension ViewController: DialViewDelegate
 {
-    func imageViewMouseEvent(_ event: NSEvent)
+    func dialViewMouseEvent(_ event: NSEvent)
     {
         handlePanGesture(with: event)
     }
@@ -107,8 +109,8 @@ extension ViewController
 {
     func handlePanGesture(with event: NSEvent)
     {
-        let viewLocation = self.view.topLevelView.convert(event.locationInWindow, to: imageView)
-        let origin = imageView.center
+        let viewLocation = self.view.topLevelView.convert(event.locationInWindow, to: dialView)
+        let origin = dialView.frame.center
         var angle: CGFloat = viewLocation.angleFromPoint(point: origin)
         
         if (event.type == .rightMouseUp ||
@@ -168,7 +170,7 @@ extension ViewController
         
         guard currentDurationWithoutCountdown > 0 else { return }
         
-        self.imageView.image = NSImage.interactionDialWithRotation(angle: angle, state: .countdown)
+        configureInterfaceElements(angle: angle, userUpdate: false)
         
         startDate = Date()
         
@@ -202,7 +204,7 @@ extension ViewController
     
     func resetTimerAndDate()
     {
-        self.imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
+//        self.imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
         
         secondTimer?.invalidate()
         secondTimer = nil

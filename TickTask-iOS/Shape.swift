@@ -6,7 +6,11 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(OSX)
+import AppKit
+#endif
 
 // Perhaps Circle should extend shape?
 
@@ -14,7 +18,7 @@ class Shape
 {
     var frame: CGRect?
     
-    var path: UIBezierPath
+    var path: Path
     
     var shadows: [Shadow] = []
     
@@ -23,12 +27,12 @@ class Shape
     
     var borders: [Border] = []
     
-    init(path: UIBezierPath)
+    init(path: Path)
     {
         self.path = path
     }
     
-    init(path: UIBezierPath, fill: Color)
+    init(path: Path, fill: Color)
     {
         self.path = path
         self.fills = [fill]
@@ -45,6 +49,7 @@ class Shape
         drawBorders(context: context)
     }
     
+    #if os(iOS)
     func drawImage(frame: CGRect) -> UIImage
     {
         UIGraphicsBeginImageContext(frame.size)
@@ -57,6 +62,8 @@ class Shape
         
         return image
     }
+    #elseif os(macOS)
+    #endif
 
     func drawOuterShadows(context: CGContext)
     {

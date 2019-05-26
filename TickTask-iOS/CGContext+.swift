@@ -6,7 +6,7 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 extension CGContext
 {

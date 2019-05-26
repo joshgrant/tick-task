@@ -8,29 +8,20 @@
 
 import UIKit
 
-enum DialState
-{
-    case inactive
-    case countdown
-    case selected
-}
-
 @IBDesignable class DialView: UIView
 {
-    @IBInspectable var angle: CGFloat = 0 {
-        didSet {
-            self.setNeedsDisplay()
-        }
-    }
+    @IBInspectable var angle: CGFloat = 0
+    
+    var state: DialState = .inactive
     
     override func draw(_ rect: CGRect)
     {
-        let context = UIGraphicsGetCurrentContext()!
+        guard let context = UIGraphicsGetCurrentContext() else { return }
         
         let drawingData = DrawingData(rect: rect)
         
         let dialShape = DialShape(frame: frame, scaleFactor: drawingData.scaleFactor)
         
-        dialShape.draw(context: context, angle: angle)
+        dialShape.draw(context: context, angle: angle, state: state)
     }
 }

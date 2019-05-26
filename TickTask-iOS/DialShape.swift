@@ -6,13 +6,17 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(OSX)
+import AppKit
+#endif
 
 class DialShape: Shape
 {
     init(frame: CGRect, scaleFactor: CGFloat)
     {
-        super.init(path: DialShape.path(with: frame, scaleFactor: scaleFactor))
+        super.init(path: DialShape.dialPath(with: frame, scaleFactor: scaleFactor))
         
         self.frame = frame
         
@@ -33,21 +37,33 @@ class DialShape: Shape
         ]
     }
     
-    func draw(context: CGContext, angle: CGFloat)
+    func draw(context: CGContext, angle: CGFloat, state: DialState)
     {
+        switch state {
+        case .countdown:
+            self.fills = [Color.dialFillCountdown]
+        case .inactive:
+            self.fills = [Color.dialFillInactive]
+        case .selected:
+            self.fills = [Color.dialFillSelected]
+        }
+        
         context.pushPop {
-            // Setting the origin of the coordinate system to 0, 0
             if let frame = frame
             {
                 context.translateBy(x: frame.size.width / 2,
                                     y: frame.size.height / 2)
             }
             context.rotate(by: angle)
-            super.draw(context: context)
+            drawOuterShadows(context: context)
+            drawGradients(context: context)
+            drawFills(context: context)
+            drawInnerShadows(context: context)
+            drawBorders(context: context)
         }
     }
     
-    static func path(with frame: CGRect, scaleFactor: CGFloat) -> UIBezierPath
+    static func dialPath(with frame: CGRect, scaleFactor: CGFloat) -> Path
     {
         let dialLength = 32 * scaleFactor
         let bodyRadius = 8.205 * scaleFactor
@@ -75,9 +91,9 @@ class DialShape: Shape
         let bodyRight = CGPoint(x: bodyCenter.x + bodyRadius * cos(thetaComplement),
                                 y: bodyCenter.y - bodyRadius * sin(thetaComplement))
         
-        let path = UIBezierPath()
+        let path = Path()
         
-        path.addArc(withCenter: bodyCenter, radius: innerCircleRadius,
+        path.addArc(center: bodyCenter, radius: innerCircleRadius,
                     startAngle: 0,
                     endAngle: CGFloat.pi * 2,
                     clockwise: false)
@@ -86,12 +102,12 @@ class DialShape: Shape
         
         path.move(to: bodyRight)
         
-        path.addArc(withCenter: bodyCenter,
+        path.addArc(center: bodyCenter,
                     radius: bodyRadius,
                     startAngle: -thetaComplement,
                     endAngle: CGFloat.pi + thetaComplement,
                     clockwise: true)
-        path.addArc(withCenter: tipCenter,
+        path.addArc(center: tipCenter,
                     radius: tipRadius,
                     startAngle: CGFloat.pi + thetaComplement, endAngle: -thetaComplement, clockwise: true)
         

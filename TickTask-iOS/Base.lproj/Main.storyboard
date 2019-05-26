@@ -37,12 +37,12 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fi5-Dh-XDB" customClass="DialView" customModule="TickTask_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="fi5-Dh-XDB" secondAttribute="height" multiplier="1:1" id="OGd-6h-kFF"/>
-                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="angle">
-                                                        <real key="value" value="21"/>
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -65,33 +65,28 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="2hS-be-Mwi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1jD-hG-KOr"/>
                             <constraint firstItem="2hS-be-Mwi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="REs-sh-pFh"/>
-                            <constraint firstItem="2hS-be-Mwi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bbI-XQ-wSg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2hS-be-Mwi" secondAttribute="trailing" id="TB1-pd-3p2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="urj-9V-ECQ" appends="YES" id="ZqS-JI-X4E"/>
-                            <outletCollection property="gestureRecognizers" destination="uhE-Tt-SGB" appends="YES" id="rgn-js-zDv"/>
+                            <outletCollection property="gestureRecognizers" destination="sca-ZZ-hEd" appends="YES" id="9EZ-5U-jyr"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="dialView" destination="fi5-Dh-XDB" id="w1u-5w-wes"/>
-                        <outlet property="doublePanGesture" destination="urj-9V-ECQ" id="lR3-XR-Kf8"/>
+                        <outlet property="dialView" destination="fi5-Dh-XDB" id="wad-bs-VAy"/>
+                        <outlet property="faceView" destination="T4h-al-A8V" id="CI5-pU-gro"/>
                         <outlet property="label" destination="FkW-Q0-y2I" id="ZLD-eK-gyM"/>
-                        <outlet property="singlePanGesture" destination="uhE-Tt-SGB" id="y9l-gc-YIz"/>
+                        <outlet property="panGesture" destination="sca-ZZ-hEd" id="hxn-cM-WI2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="uhE-Tt-SGB">
+                <panGestureRecognizer delaysTouchesEnded="NO" minimumNumberOfTouches="1" id="sca-ZZ-hEd">
                     <connections>
-                        <action selector="handlePan:" destination="BYZ-38-t0r" id="1UD-VQ-dxr"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="2" maximumNumberOfTouches="2" id="urj-9V-ECQ">
-                    <connections>
-                        <action selector="handlePan:" destination="BYZ-38-t0r" id="W6e-2T-lg2"/>
+                        <action selector="handlePan:" destination="BYZ-38-t0r" id="OH7-b4-jwT"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

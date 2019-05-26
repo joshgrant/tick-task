@@ -6,7 +6,11 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(OSX)
+import AppKit
+#endif
 
 typealias ColorModification = (CGFloat) -> CGFloat
 
@@ -20,17 +24,17 @@ struct Color
     static var dialFillInactive: Color { return Color(hue: 0.42, saturation: 0.9, brightness: 1.0, alpha: 1.0) }
     static var dialFillSelected: Color { return Color(hue: 66.0 / 360.0, saturation: 0.66, brightness: 1.0, alpha: 1.0)
     }
-    static var dialFillCountdown: Color { return Color(hue: 0, saturation: 0.75, brightness: 1, alpha: 1) }
+    static var dialFillCountdown: Color { return Color(hue: 0, saturation: 0.7, brightness: 1, alpha: 1) }
     
-    static var dialOuterDropShadow: Color { return Color(brightness: 0.0, alpha: 0.5) }
+    static var dialOuterDropShadow: Color { return Color(brightness: 0.0, alpha: 0.6) }
     static var dialOuterStrokeShadow: Color { return Color(brightness: 0.0, alpha: 0.2) }
-    static var dialInnerHighlight: Color { return Color(brightness: 1.0, alpha: 0.5) }
+    static var dialInnerHighlight: Color { return Color(brightness: 1.0, alpha: 0.4) }
     static var dialInnerShadow: Color { return Color(brightness: 0.0, alpha: 0.3) }
     
-    static var outerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.2) }
+    static var outerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.25) }
     static var outerRimGradientShadow: Color { return faceFill.mix(brightness: 0.0, alpha: 0.4) }
     
-    static var innerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.1) }
+    static var innerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.25) }
     static var innerRimGradientShadow: Color { return faceFill.mix(brightness: 0.0, alpha: 0.4) }
     
     // MARK: Properties
@@ -50,15 +54,24 @@ struct Color
         self.alpha = alpha
     }
     
-    var uiColor: UIColor {
+    #if os(iOS)
+    var color: UIColor {
         return UIColor(hue: hue,
                        saturation: saturation,
                        brightness: brightness,
                        alpha: alpha)
     }
+    #elseif os(OSX)
+    var color: NSColor {
+        return NSColor(hue: hue,
+                        saturation: saturation,
+                        brightness: brightness,
+                        alpha: alpha)
+    }
+    #endif
     
     var cgColor: CGColor {
-        return uiColor.cgColor
+        return color.cgColor
     }
     
     func mix(with color: Color) -> Color
@@ -112,11 +125,21 @@ struct Color
     
     // MARK: Drawing
     
-    func draw(with context: CGContext, in path: UIBezierPath)
+    func draw(with context: CGContext, in path: Path)
     {
         context.pushPop {
-            uiColor.setFill()
+            self.setFill()
             path.fill()
         }
+    }
+    
+    func setFill()
+    {
+        color.setFill()
+    }
+    
+    func setStroke()
+    {
+        color.setStroke()
     }
 }

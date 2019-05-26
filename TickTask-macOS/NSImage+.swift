@@ -84,7 +84,7 @@ extension NSImage
                 faceFill = NSColor(calibratedHue: 0.35, saturation: 0.043, brightness: 0.25, alpha: 0.6)
             case .countdown:
                 faceFill = NSColor(calibratedHue: 0.0, saturation: 0.043, brightness: 0.25, alpha: 0.6)
-            case .userDragging:
+            case .selected:
                 faceFill = NSColor(calibratedHue: 0.15, saturation: 0.043, brightness: 0.25, alpha: 0.6)
             }
             

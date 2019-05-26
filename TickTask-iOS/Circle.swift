@@ -6,13 +6,13 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 class Circle: Shape
 {
     private init(fill: Color?, gradient: Gradient?, shadow: Shadow?, border: Border?, ovalBounds: CGRect)
     {
-        super.init(path: UIBezierPath(ovalIn: ovalBounds))
+        super.init(path: Path(ovalIn: ovalBounds))
         
         if let fill = fill
         {
@@ -56,5 +56,62 @@ class Circle: Shape
         
         return CGRect(origin: origin, size: CGSize(width: frame.size.width - origin.x * 2,
                                                    height: frame.size.height - origin.y * 2))
+    }
+    
+    // MARK: Global Instances
+    
+    static func faceBackgroundCircle(with drawingData: DrawingData) -> Circle
+    {
+        return Circle(fill: Color.faceFill,
+               shadow: Shadow.faceDropShadow(with: drawingData.scaleFactor),
+               border: nil,
+               ovalBounds: Circle.boundsWithLevel(level: 0,
+                                                  frame: drawingData.rect,
+                                                  offset: drawingData.padding,
+                                                  borderWidth: drawingData.rimThickness))
+    }
+    
+    static func outerRimCircle(with drawingData: DrawingData) -> Circle
+    {
+        return Circle(fill: Gradient.outerRimGradient,
+                      shadow: nil,
+                      border: Border.faceOuterBorder(with: drawingData.scaleFactor),
+                      ovalBounds: Circle.boundsWithLevel(level: 0,
+                                                         frame: drawingData.rect,
+                                                         offset: drawingData.padding,
+                                                         borderWidth: drawingData.rimThickness))
+    }
+    
+    static func centerRimCircle(with drawingData: DrawingData) -> Circle
+    {
+        return Circle(fill: Color.faceFill,
+               shadow: nil,
+               border: nil,
+               ovalBounds: Circle.boundsWithLevel(level: 1,
+                                                  frame: drawingData.rect,
+                                                  offset: drawingData.padding,
+                                                  borderWidth: drawingData.rimThickness))
+    }
+    
+    static func innerRimCircle(with drawingData: DrawingData) -> Circle
+    {
+        return Circle(fill: Gradient.innerRimGradient,
+                      shadow: nil,
+                      border: nil,
+                      ovalBounds: Circle.boundsWithLevel(level: 2,
+                                                         frame: drawingData.rect,
+                                                         offset: drawingData.padding,
+                                                         borderWidth: drawingData.rimThickness))
+    }
+    
+    static func faceInnerCircle(with drawingData: DrawingData) -> Circle
+    {
+        return Circle(fill: Color.faceFill,
+               shadow: nil,
+               border: nil,
+               ovalBounds: Circle.boundsWithLevel(level: 3,
+                                                  frame: drawingData.rect,
+                                                  offset: drawingData.padding,
+                                                  borderWidth: drawingData.rimThickness))
     }
 }

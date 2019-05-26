@@ -42,14 +42,26 @@
                                             <binding destination="XfG-lQ-9wD" name="value" keyPath="durationString" id="CR4-lL-ae6"/>
                                         </connections>
                                     </textField>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T6t-m3-KwT" customClass="ImageView" customModule="Tick_Task" customModuleProvider="target">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="PbT-Ku-dc1">
                                         <rect key="frame" x="4" y="0.0" width="110" height="110"/>
+                                        <subviews>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="6Iy-iY-iXk" customClass="FaceView" customModule="Tick_Task" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                            </customView>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HMW-T1-LtX" customClass="DialView" customModule="Tick_Task" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </customView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="110" id="ESj-A0-e56"/>
-                                            <constraint firstAttribute="width" constant="110" id="kyG-fK-z39"/>
+                                            <constraint firstItem="6Iy-iY-iXk" firstAttribute="top" secondItem="PbT-Ku-dc1" secondAttribute="top" id="UlL-ty-B1r"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Iy-iY-iXk" secondAttribute="bottom" id="Wxc-UK-sWP"/>
+                                            <constraint firstAttribute="height" constant="110" id="aNT-ho-mul"/>
+                                            <constraint firstItem="6Iy-iY-iXk" firstAttribute="leading" secondItem="PbT-Ku-dc1" secondAttribute="leading" id="abr-Gt-Clg"/>
+                                            <constraint firstAttribute="width" constant="110" id="gfX-Wq-gQj"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Iy-iY-iXk" secondAttribute="trailing" id="sLE-EV-mlN"/>
                                         </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="qaD-JV-Hrs"/>
-                                    </imageView>
+                                    </customView>
                                 </subviews>
                                 <edgeInsets key="edgeInsets" left="4" right="4" top="8" bottom="0.0"/>
                                 <visibilityPriorities>
@@ -70,7 +82,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="T6t-m3-KwT" id="uqr-Af-0XP"/>
+                        <outlet property="dialView" destination="HMW-T1-LtX" id="e5Y-Xo-1q5"/>
+                        <outlet property="faceView" destination="6Iy-iY-iXk" id="b4B-HD-ddl"/>
                         <outlet property="stackView" destination="Ttx-Mz-rdC" id="enh-Lo-DFv"/>
                     </connections>
                 </viewController>

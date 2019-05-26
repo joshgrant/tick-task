@@ -6,7 +6,7 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 struct Gradient
 {
@@ -40,7 +40,7 @@ struct Gradient
     
     // MARK: Drawing
     
-    func draw(with context: CGContext, in path: UIBezierPath)
+    func draw(with context: CGContext, in path: Path)
     {
         if let cgGradient = cgGradient
         {

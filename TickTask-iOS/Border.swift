@@ -6,7 +6,7 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 enum BorderType
 {
@@ -33,10 +33,10 @@ struct Border
     
     static func faceOuterBorder(with scaleFactor: CGFloat) -> Border
     {
-        return Border(width: 0.5 * scaleFactor, color: Color(brightness: 1, alpha: 0.3), type: .center)
+        return Border(width: 0.5 * scaleFactor, color: Color(brightness: 1, alpha: 0.2), type: .center)
     }
     
-    func draw(with context: CGContext, in path: UIBezierPath)
+    func draw(with context: CGContext, in path: Path)
     {
         context.pushPop {
             path.lineWidth = width
@@ -47,15 +47,15 @@ struct Border
             switch type
             {
             case .outer:
-                context.addRect(path.bounds.insetBy(dx: -path.lineWidth * 2, dy: -path.lineWidth * 2))
+                context.addRect(path.bounds.insetBy(dx: -width * 2, dy: -width * 2))
             case .center:
-                context.addRect(path.bounds.insetBy(dx: -path.lineWidth, dy: -path.lineWidth))
+                context.addRect(path.bounds.insetBy(dx: -width, dy: -width))
             default:
                 break
             }
             
             context.clip(using: .evenOdd)
-            color.uiColor.setStroke()
+            color.setStroke()
             path.stroke()
         }
     }

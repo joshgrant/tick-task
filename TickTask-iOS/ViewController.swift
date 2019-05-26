@@ -23,11 +23,11 @@ class ViewController: UIViewController
     var maxMinutes: CGFloat = 60.0
     var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     
-    var dialImage: DialImage!
+//    var dialImage: DialImage!
     
-    var faceImageInactive: UIImage!
-    var faceImageSelected: UIImage!
-    var faceImageCountdown: UIImage!
+//    var faceImageInactive: UIImage!
+//    var faceImageSelected: UIImage!
+//    var faceImageCountdown: UIImage!
     
     var countdownRemaining: TimeInterval {
         get {
@@ -46,11 +46,11 @@ class ViewController: UIViewController
         super.viewDidLoad()
         
         // This initializes the class, not the actual image
-        dialImage = DialImage(frame: self.dialView.bounds)
+//        dialImage = DialImage(frame: self.dialView.bounds)
         
-        faceImageInactive = dialImage.faceImage(state: .inactive)
-        faceImageSelected = dialImage.faceImage(state: .selected)
-        faceImageCountdown = dialImage.faceImage(state: .countdown)
+//        faceImageInactive = dialImage.faceImage(state: .inactive)
+//        faceImageSelected = dialImage.faceImage(state: .selected)
+//        faceImageCountdown = dialImage.faceImage(state: .countdown)
         
         configureInterfaceElements(state: .inactive)
         
@@ -62,16 +62,16 @@ class ViewController: UIViewController
         return .lightContent
     }
     
-    func dialFaceImageForState(state: DialState) -> UIImage
-    {
-        switch state
-        {
-        case .countdown: return faceImageCountdown
-        case .selected: return faceImageSelected
-        case .inactive: return faceImageInactive
-        }
-    }
-    
+//    func dialFaceImageForState(state: DialState) -> UIImage
+//    {
+//        switch state
+//        {
+//        case .countdown: return faceImageCountdown
+//        case .selected: return faceImageSelected
+//        case .inactive: return faceImageInactive
+//        }
+//    }
+//    
     // MARK: Interface Actions
     
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer)
@@ -116,8 +116,8 @@ class ViewController: UIViewController
         if angle.distance(to: -CGFloat.pi * 2) == 0
         {
             invalidateTimersAndDates()
-            dialView.faceImageView.image = faceImageInactive
-            dialView.dialImageView.image = dialImage.dialImage(angle: 0, state: .inactive)
+//            dialView.faceImageView.image = faceImageInactive
+//            dialView.dialImageView.image = dialImage.dialImage(angle: 0, state: .inactive)
         }
         else
         {
@@ -142,8 +142,8 @@ class ViewController: UIViewController
     {
         let angle: CGFloat = angle ?? currentInterval.toAngle()
         
-        dialView.faceImageView.image = dialFaceImageForState(state: state)
-        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: state)
+//        dialView.faceImageView.image = dialFaceImageForState(state: state)
+//        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: state)
         
         label.text = durationString(with: angle)
     }
@@ -154,8 +154,8 @@ class ViewController: UIViewController
         
         guard currentDurationWithoutCountdown > 0 else { return }
         
-        dialView.faceImageView.image = faceImageCountdown
-        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: .countdown)
+//        dialView.faceImageView.image = faceImageCountdown
+//        dialView.dialImageView.image = dialImage.dialImage(angle: angle, state: .countdown)
         
         startDate = Date()
         

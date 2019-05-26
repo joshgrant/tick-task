@@ -10,14 +10,45 @@ import UIKit
 
 typealias ColorModification = (CGFloat) -> CGFloat
 
-typealias Modification = (CGFloat, CGFloat, CGFloat, CGFloat) -> (CGFloat, CGFloat, CGFloat, CGFloat)
-
 struct Color
 {
+    // MARK: Color Types
+    
+    static var faceFill: Color { return Color(brightness: 0.11, alpha: 1.0) }
+    static var faceDropShadow: Color { return Color(brightness: 0.0, alpha: 0.8) }
+    
+    static var dialFillInactive: Color { return Color(hue: 0.42, saturation: 0.9, brightness: 1.0, alpha: 1.0) }
+    static var dialFillSelected: Color { return Color(hue: 66.0 / 360.0, saturation: 0.66, brightness: 1.0, alpha: 1.0)
+    }
+    static var dialFillCountdown: Color { return Color(hue: 0, saturation: 0.75, brightness: 1, alpha: 1) }
+    
+    static var dialOuterDropShadow: Color { return Color(brightness: 0.0, alpha: 0.5) }
+    static var dialOuterStrokeShadow: Color { return Color(brightness: 0.0, alpha: 0.2) }
+    static var dialInnerHighlight: Color { return Color(brightness: 1.0, alpha: 0.5) }
+    static var dialInnerShadow: Color { return Color(brightness: 0.0, alpha: 0.3) }
+    
+    static var outerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.2) }
+    static var outerRimGradientShadow: Color { return faceFill.mix(brightness: 0.0, alpha: 0.4) }
+    
+    static var innerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.1) }
+    static var innerRimGradientShadow: Color { return faceFill.mix(brightness: 0.0, alpha: 0.4) }
+    
+    // MARK: Properties
+    
     var hue: CGFloat
     var saturation: CGFloat
     var brightness: CGFloat
     var alpha: CGFloat
+    
+    // MARK: Initialization
+    
+    init(hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 1)
+    {
+        self.hue = hue
+        self.saturation = saturation
+        self.brightness = brightness
+        self.alpha = alpha
+    }
     
     var uiColor: UIColor {
         return UIColor(hue: hue,
@@ -30,12 +61,21 @@ struct Color
         return uiColor.cgColor
     }
     
-//    func colorByApplying(modification: Modification)
-//    {
-//
-//
-//        return Color(hue: mod, saturation: <#T##CGFloat#>, brightness: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
-//    }
+    func mix(with color: Color) -> Color
+    {
+        return Color(hue: color.hue * 0.5 + self.hue * 0.5,
+                     saturation: color.saturation * 0.5 + self.saturation * 0.5,
+                     brightness: color.brightness * 0.5 + self.brightness * 0.5,
+                     alpha: color.alpha * 0.5 + self.alpha * 0.5)
+    }
+    
+    func mix(brightness: CGFloat, alpha: CGFloat) -> Color
+    {
+        return Color(hue: hue,
+                     saturation: saturation,
+                     brightness: brightness * alpha + (1.0 - alpha) * self.brightness,
+                     alpha: alpha)
+    }
     
     func colorBySetting(hue: CGFloat? = nil, saturation: CGFloat? = nil, brightness: CGFloat? = nil, alpha: CGFloat? = nil) -> Color
     {
@@ -68,5 +108,15 @@ struct Color
                                saturationModification: allModification,
                                brightnessModification: allModification,
                                alphaModification: allModification)
+    }
+    
+    // MARK: Drawing
+    
+    func draw(with context: CGContext, in path: UIBezierPath)
+    {
+        context.pushPop {
+            uiColor.setFill()
+            path.fill()
+        }
     }
 }

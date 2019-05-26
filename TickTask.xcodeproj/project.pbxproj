@@ -9,14 +9,8 @@
 /* Begin PBXBuildFile section */
 		B51ECFAA2286BB1C00B1EBC9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51ECFA92286BB1C00B1EBC9 /* main.swift */; };
 		B52273D82297C50800B00C95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B52273D72297C50800B00C95 /* Assets.xcassets */; };
-		B52273DB2297F9EF00B00C95 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B52273D92297F9EF00B00C95 /* Model.xcdatamodeld */; };
-		B52273DD2297F9FA00B00C95 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273DC2297F9FA00B00C95 /* Model.swift */; };
-		B52273DF2297FB1500B00C95 /* AngleImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273DE2297FB1500B00C95 /* AngleImage+.swift */; };
 		B52273E42299643D00B00C95 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E32299643D00B00C95 /* Color.swift */; };
-		B52273E62299646900B00C95 /* DialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E52299646900B00C95 /* DialState.swift */; };
-		B52273E82299894900B00C95 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E72299894900B00C95 /* DialView.swift */; };
-		B52273EA2299972200B00C95 /* Suck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52273E92299972200B00C95 /* Suck.swift */; };
-		B522742C2299C3B800B00C95 /* Dial.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522742B2299C3B800B00C95 /* Dial.swift */; };
+		B522742C2299C3B800B00C95 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522742B2299C3B800B00C95 /* DialView.swift */; };
 		B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370803226F188600ACFA62 /* AppDelegate.swift */; };
 		B5370806226F188600ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
 		B537080B226F188600ACFA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B537080A226F188600ACFA62 /* Assets.xcassets */; };
@@ -36,13 +30,23 @@
 		B58FF1F6228C327B00922A69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF1F4228C327B00922A69 /* LaunchScreen.storyboard */; };
 		B58FF201228C327B00922A69 /* TickTask_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF200228C327B00922A69 /* TickTask_iOSTests.swift */; };
 		B58FF20C228C327B00922A69 /* TickTask_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF20B228C327B00922A69 /* TickTask_iOSUITests.swift */; };
-		B58FF218228C338B00922A69 /* DialImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF217228C338B00922A69 /* DialImage.swift */; };
 		B58FF21D228C3DF400922A69 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF21C228C3DF400922A69 /* CGPoint+.swift */; };
 		B58FF220228C422E00922A69 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF21F228C422E00922A69 /* CGFloat+.swift */; };
 		B58FF222228C42A000922A69 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF221228C42A000922A69 /* TimeInterval.swift */; };
 		B58FF224228C44B200922A69 /* DateComponentsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */; };
 		B59C1F5122870B32000B0BA2 /* TickTask-macOSLauncher.app in Copy Helper App */ = {isa = PBXBuildFile; fileRef = B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5BB041022846294008C8493 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB040F22846294008C8493 /* ImageView.swift */; };
+		B5CEA88C229A96E5008DB140 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA88B229A96E5008DB140 /* Circle.swift */; };
+		B5CEA88F229A9713008DB140 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA88E229A9713008DB140 /* Gradient.swift */; };
+		B5CEA891229A972A008DB140 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA890229A972A008DB140 /* Border.swift */; };
+		B5CEA893229A9740008DB140 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA892229A9740008DB140 /* Shadow.swift */; };
+		B5CEA896229A9769008DB140 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA895229A9769008DB140 /* CGSize+.swift */; };
+		B5CEA898229A977D008DB140 /* CGContext+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA897229A977D008DB140 /* CGContext+.swift */; };
+		B5CEA89A229AC11C008DB140 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA899229AC11C008DB140 /* Shape.swift */; };
+		B5CEA89C229AC1F9008DB140 /* CGRect+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA89B229AC1F9008DB140 /* CGRect+.swift */; };
+		B5CEA89E229AC99B008DB140 /* DialShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA89D229AC99B008DB140 /* DialShape.swift */; };
+		B5CEA8A1229AE43A008DB140 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8A0229AE43A008DB140 /* FaceView.swift */; };
+		B5CEA8A3229AE54A008DB140 /* DrawingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8A2229AE54A008DB140 /* DrawingData.swift */; };
 		B5E6617522855EB600E9A0BC /* TickTask_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6617422855EB600E9A0BC /* TickTask_macOSTests.swift */; };
 		B5E6619122855EDA00E9A0BC /* TickTask_macOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6619022855EDA00E9A0BC /* TickTask_macOSUITests.swift */; };
 /* End PBXBuildFile section */
@@ -95,14 +99,8 @@
 /* Begin PBXFileReference section */
 		B51ECFA92286BB1C00B1EBC9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B52273D72297C50800B00C95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B52273DA2297F9EF00B00C95 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		B52273DC2297F9FA00B00C95 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		B52273DE2297FB1500B00C95 /* AngleImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AngleImage+.swift"; sourceTree = "<group>"; };
 		B52273E32299643D00B00C95 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		B52273E52299646900B00C95 /* DialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialState.swift; sourceTree = "<group>"; };
-		B52273E72299894900B00C95 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
-		B52273E92299972200B00C95 /* Suck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suck.swift; sourceTree = "<group>"; };
-		B522742B2299C3B800B00C95 /* Dial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
+		B522742B2299C3B800B00C95 /* DialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		B5370800226F188600ACFA62 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,13 +130,23 @@
 		B58FF207228C327B00922A69 /* TickTask-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58FF20B228C327B00922A69 /* TickTask_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_iOSUITests.swift; sourceTree = "<group>"; };
 		B58FF20D228C327B00922A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B58FF217228C338B00922A69 /* DialImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialImage.swift; sourceTree = "<group>"; };
 		B58FF21C228C3DF400922A69 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
 		B58FF21E228C402300922A69 /* TickTask-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TickTask-iOS.entitlements"; sourceTree = "<group>"; };
 		B58FF21F228C422E00922A69 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		B58FF221228C42A000922A69 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentsFormatter.swift; sourceTree = "<group>"; };
 		B5BB040F22846294008C8493 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		B5CEA88B229A96E5008DB140 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		B5CEA88E229A9713008DB140 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		B5CEA890229A972A008DB140 /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
+		B5CEA892229A9740008DB140 /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
+		B5CEA895229A9769008DB140 /* CGSize+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
+		B5CEA897229A977D008DB140 /* CGContext+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext+.swift"; sourceTree = "<group>"; };
+		B5CEA899229AC11C008DB140 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		B5CEA89B229AC1F9008DB140 /* CGRect+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+.swift"; sourceTree = "<group>"; };
+		B5CEA89D229AC99B008DB140 /* DialShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialShape.swift; sourceTree = "<group>"; };
+		B5CEA8A0229AE43A008DB140 /* FaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
+		B5CEA8A2229AE54A008DB140 /* DrawingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingData.swift; sourceTree = "<group>"; };
 		B5D1D546228823FD005C04E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5D1D54722882409005C04E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5D1D54822882413005C04E0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -269,23 +277,15 @@
 				B58FF20A228C327B00922A69 /* TickTask-iOSUITests */,
 				B58FF1EB228C327A00922A69 /* AppDelegate.swift */,
 				B58FF1ED228C327A00922A69 /* ViewController.swift */,
+				B522742B2299C3B800B00C95 /* DialView.swift */,
+				B5CEA8A0229AE43A008DB140 /* FaceView.swift */,
 				B58FF1EF228C327A00922A69 /* Main.storyboard */,
 				B58FF1F4228C327B00922A69 /* LaunchScreen.storyboard */,
-				B52273E72299894900B00C95 /* DialView.swift */,
 				B58FF1F7228C327B00922A69 /* Info.plist */,
-				B58FF217228C338B00922A69 /* DialImage.swift */,
-				B52273E32299643D00B00C95 /* Color.swift */,
-				B52273E52299646900B00C95 /* DialState.swift */,
-				B52273DE2297FB1500B00C95 /* AngleImage+.swift */,
-				B58FF21C228C3DF400922A69 /* CGPoint+.swift */,
-				B58FF21F228C422E00922A69 /* CGFloat+.swift */,
-				B58FF221228C42A000922A69 /* TimeInterval.swift */,
-				B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */,
-				B52273E92299972200B00C95 /* Suck.swift */,
-				B522742B2299C3B800B00C95 /* Dial.swift */,
-				B52273DC2297F9FA00B00C95 /* Model.swift */,
+				B5CEA894229A975C008DB140 /* Extensions */,
+				B5CEA88D229A96F8008DB140 /* Drawing */,
+				B5CEA89F229AE1F5008DB140 /* Utility */,
 				B52273D72297C50800B00C95 /* Assets.xcassets */,
-				B52273D92297F9EF00B00C95 /* Model.xcdatamodeld */,
 			);
 			path = "TickTask-iOS";
 			sourceTree = "<group>";
@@ -306,6 +306,42 @@
 				B58FF20D228C327B00922A69 /* Info.plist */,
 			);
 			path = "TickTask-iOSUITests";
+			sourceTree = "<group>";
+		};
+		B5CEA88D229A96F8008DB140 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				B5CEA8A2229AE54A008DB140 /* DrawingData.swift */,
+				B52273E32299643D00B00C95 /* Color.swift */,
+				B5CEA88B229A96E5008DB140 /* Circle.swift */,
+				B5CEA88E229A9713008DB140 /* Gradient.swift */,
+				B5CEA890229A972A008DB140 /* Border.swift */,
+				B5CEA892229A9740008DB140 /* Shadow.swift */,
+				B5CEA899229AC11C008DB140 /* Shape.swift */,
+				B5CEA89D229AC99B008DB140 /* DialShape.swift */,
+			);
+			name = Drawing;
+			sourceTree = "<group>";
+		};
+		B5CEA894229A975C008DB140 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B58FF21C228C3DF400922A69 /* CGPoint+.swift */,
+				B58FF21F228C422E00922A69 /* CGFloat+.swift */,
+				B5CEA895229A9769008DB140 /* CGSize+.swift */,
+				B5CEA897229A977D008DB140 /* CGContext+.swift */,
+				B5CEA89B229AC1F9008DB140 /* CGRect+.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		B5CEA89F229AE1F5008DB140 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B58FF221228C42A000922A69 /* TimeInterval.swift */,
+				B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		B5D56C5A2286B2BD00338BF6 /* TickTask-macOSLauncher */ = {
@@ -640,21 +676,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B52273E82299894900B00C95 /* DialView.swift in Sources */,
-				B52273DD2297F9FA00B00C95 /* Model.swift in Sources */,
-				B52273E62299646900B00C95 /* DialState.swift in Sources */,
+				B5CEA893229A9740008DB140 /* Shadow.swift in Sources */,
+				B5CEA891229A972A008DB140 /* Border.swift in Sources */,
+				B5CEA898229A977D008DB140 /* CGContext+.swift in Sources */,
 				B58FF21D228C3DF400922A69 /* CGPoint+.swift in Sources */,
+				B5CEA8A3229AE54A008DB140 /* DrawingData.swift in Sources */,
+				B5CEA88F229A9713008DB140 /* Gradient.swift in Sources */,
+				B5CEA89C229AC1F9008DB140 /* CGRect+.swift in Sources */,
 				B58FF222228C42A000922A69 /* TimeInterval.swift in Sources */,
-				B52273DF2297FB1500B00C95 /* AngleImage+.swift in Sources */,
 				B52273E42299643D00B00C95 /* Color.swift in Sources */,
-				B522742C2299C3B800B00C95 /* Dial.swift in Sources */,
-				B58FF218228C338B00922A69 /* DialImage.swift in Sources */,
-				B52273DB2297F9EF00B00C95 /* Model.xcdatamodeld in Sources */,
+				B522742C2299C3B800B00C95 /* DialView.swift in Sources */,
+				B5CEA89E229AC99B008DB140 /* DialShape.swift in Sources */,
+				B5CEA896229A9769008DB140 /* CGSize+.swift in Sources */,
+				B5CEA88C229A96E5008DB140 /* Circle.swift in Sources */,
 				B58FF1EE228C327A00922A69 /* ViewController.swift in Sources */,
+				B5CEA89A229AC11C008DB140 /* Shape.swift in Sources */,
 				B58FF1EC228C327A00922A69 /* AppDelegate.swift in Sources */,
-				B52273EA2299972200B00C95 /* Suck.swift in Sources */,
 				B58FF220228C422E00922A69 /* CGFloat+.swift in Sources */,
 				B58FF224228C44B200922A69 /* DateComponentsFormatter.swift in Sources */,
+				B5CEA8A1229AE43A008DB140 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1317,19 +1357,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		B52273D92297F9EF00B00C95 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B52273DA2297F9EF00B00C95 /* Model.xcdatamodel */,
-			);
-			currentVersion = B52273DA2297F9EF00B00C95 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = B53707F8226F188600ACFA62 /* Project object */;
 }

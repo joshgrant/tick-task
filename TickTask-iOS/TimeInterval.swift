@@ -48,12 +48,6 @@ extension TimeInterval
         // instead of the left
         let angle = normalized * (CGFloat.pi * 2) * -1
         
-        // We have to adjust for iOS's flipped coordinate system
-        // Maybe we can simplify the maths
-//        let adjusted = CGFloat.pi * 2 - angle
-        
-//        print("Adjusted", adjusted)
-        
         return CGFloat.minimum(angle, 0)
     }
 }

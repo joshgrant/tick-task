@@ -18,44 +18,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2hS-be-Mwi">
-                                <rect key="frame" x="0.0" y="36" width="375" height="495"/>
+                            <stackView opaque="NO" contentMode="center" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2hS-be-Mwi">
+                                <rect key="frame" x="0.0" y="125.5" width="375" height="436"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0m 0s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkW-Q0-y2I">
-                                        <rect key="frame" x="138.5" y="0.0" width="98" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="Dit-Wo-oE2"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fi5-Dh-XDB" customClass="DialView" customModule="TickTask_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="120" width="375" height="375"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOm-Bf-Ilz">
+                                        <rect key="frame" x="0.0" y="61" width="375" height="375"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cA0-mC-NwN">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4h-al-A8V" customClass="FaceView" customModule="TickTask_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wyd-9S-TRb">
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fi5-Dh-XDB" customClass="DialView" customModule="TickTask_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                            </imageView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fi5-Dh-XDB" secondAttribute="height" multiplier="1:1" id="OGd-6h-kFF"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                        <real key="value" value="21"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Wyd-9S-TRb" secondAttribute="trailing" id="4CY-Bk-5Ca"/>
-                                            <constraint firstAttribute="width" secondItem="fi5-Dh-XDB" secondAttribute="height" multiplier="1:1" id="Fgp-xw-opA"/>
-                                            <constraint firstItem="cA0-mC-NwN" firstAttribute="top" secondItem="fi5-Dh-XDB" secondAttribute="top" id="N8D-dM-N1D"/>
-                                            <constraint firstAttribute="bottom" secondItem="cA0-mC-NwN" secondAttribute="bottom" id="RfS-uP-nNM"/>
-                                            <constraint firstItem="Wyd-9S-TRb" firstAttribute="leading" secondItem="fi5-Dh-XDB" secondAttribute="leading" id="Tv6-1O-qcN"/>
-                                            <constraint firstItem="Wyd-9S-TRb" firstAttribute="top" secondItem="fi5-Dh-XDB" secondAttribute="top" id="Vl1-jy-D6g"/>
-                                            <constraint firstItem="cA0-mC-NwN" firstAttribute="leading" secondItem="fi5-Dh-XDB" secondAttribute="leading" id="kry-SW-0py"/>
-                                            <constraint firstAttribute="trailing" secondItem="cA0-mC-NwN" secondAttribute="trailing" id="p2a-Oj-gbN"/>
-                                            <constraint firstAttribute="bottom" secondItem="Wyd-9S-TRb" secondAttribute="bottom" id="pzb-HH-prh"/>
+                                            <constraint firstItem="T4h-al-A8V" firstAttribute="leading" secondItem="eOm-Bf-Ilz" secondAttribute="leading" id="0Qe-Cf-Mh1"/>
+                                            <constraint firstAttribute="trailing" secondItem="fi5-Dh-XDB" secondAttribute="trailing" id="DzR-Gd-fpa"/>
+                                            <constraint firstItem="fi5-Dh-XDB" firstAttribute="top" secondItem="eOm-Bf-Ilz" secondAttribute="top" id="OAW-Nc-V7Y"/>
+                                            <constraint firstAttribute="width" secondItem="eOm-Bf-Ilz" secondAttribute="height" multiplier="1:1" id="YHZ-02-cUV"/>
+                                            <constraint firstItem="T4h-al-A8V" firstAttribute="top" secondItem="eOm-Bf-Ilz" secondAttribute="top" id="YvE-ZD-xEo"/>
+                                            <constraint firstAttribute="bottom" secondItem="fi5-Dh-XDB" secondAttribute="bottom" id="bNH-bQ-Ecf"/>
+                                            <constraint firstAttribute="bottom" secondItem="T4h-al-A8V" secondAttribute="bottom" id="qVk-9Z-MaF"/>
+                                            <constraint firstAttribute="trailing" secondItem="T4h-al-A8V" secondAttribute="trailing" id="tOK-QV-jYR"/>
+                                            <constraint firstItem="fi5-Dh-XDB" firstAttribute="leading" secondItem="eOm-Bf-Ilz" secondAttribute="leading" id="uCy-8z-lKT"/>
                                         </constraints>
-                                        <connections>
-                                            <outlet property="dialImageView" destination="Wyd-9S-TRb" id="Rau-Z1-tPF"/>
-                                            <outlet property="faceImageView" destination="cA0-mC-NwN" id="xYr-3R-Hst"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <gestureRecognizers/>
@@ -63,9 +66,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2hS-be-Mwi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6aV-bH-1pM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2hS-be-Mwi" secondAttribute="trailing" id="UWp-3J-5hy"/>
-                            <constraint firstItem="Wyd-9S-TRb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="xTi-1L-yfM"/>
+                            <constraint firstItem="2hS-be-Mwi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1jD-hG-KOr"/>
+                            <constraint firstItem="2hS-be-Mwi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="REs-sh-pFh"/>
+                            <constraint firstItem="2hS-be-Mwi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bbI-XQ-wSg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -92,7 +95,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="63.75" y="38.75"/>
+            <point key="canvasLocation" x="-1297" y="-37"/>
         </scene>
     </scenes>
 </document>

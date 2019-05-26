@@ -154,6 +154,8 @@ extension ViewController
     }
 }
 
+// TODO: SHARE THE TIMER
+
 // MARK: Timer
 extension ViewController
 {
@@ -163,6 +165,7 @@ extension ViewController
         
         guard currentDurationWithoutCountdown > 0 else { return }
         
+        // .countdown
         configureInterfaceElements(angle: angle, userUpdate: false)
         
         startDate = Date()
@@ -197,7 +200,8 @@ extension ViewController
     
     func resetTimerAndDate()
     {
-//        self.imageView.image = NSImage.interactionDialWithRotation(angle: 0, state: .inactive)
+        // .inactive
+        configureInterfaceElements(angle: 0, userUpdate: false)
         
         secondTimer?.invalidate()
         secondTimer = nil

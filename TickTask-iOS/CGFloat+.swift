@@ -21,8 +21,12 @@ extension CGFloat
         // Start with the angle and convert it to a value from 0-1
         // Because we're rotating the dial to the right instead of the left
         // The angles are different than the unit circle's
-        // Also, account for iOS's flipped coordinate system
+        #if os(iOS)
+        // Account for iOS's flipped coordinate system
         let normalized = 1.0 - (self / (CGFloat.pi * 2) * -1)
+        #elseif os(OSX)
+        let normalized = self / (CGFloat.pi * 2) * -1
+        #endif
         
         // Then, interpolate that value between 0 and maxMinutes (60)
         let interpolated = normalized * maxMinutes
@@ -30,7 +34,11 @@ extension CGFloat
         // Then, convert the interpolated value to seconds
         let seconds = interpolated * 60
         
+        #if os(iOS)
         let interval = seconds.rounded()
+        #elseif os(OSX)
+        let interval = ceil(CGFloat.maximum(seconds, 0))
+        #endif
         
         return TimeInterval(interval)
     }
@@ -44,38 +52,3 @@ extension CGFloat
         self -= remainder
     }
 }
-
-/* MAC VERSION
- 
- extension CGFloat
- {
- func toInterval(maxMinutes: CGFloat = 60) -> TimeInterval
- {
- // Start with the angle and convert it to a value from 0-1
- // Because we're rotating the dial to the right instead of the left
- // The angles are different than the unit circle's
- let normalized = self / (CGFloat.pi * 2) * -1
- 
- // Then, interpolate that value between 0 and maxMinutes (60)
- let interpolated = normalized * maxMinutes
- 
- // Then, convert the interpolated value to seconds
- let seconds = interpolated * 60
- 
- // Then, remove noise and set lower bound to 0
- let interval = ceil(CGFloat.maximum(seconds, 0))
- 
- return TimeInterval(interval)
- }
- 
- mutating func snap(to snap: CGFloat)
- {
- // Now we want to make sure the dial "snaps" to different locations.
- // This is achieved by subtracting the remainder from the value
- // This gives us twice the number of snaps (because a full rotation is 2 pi)
- let remainder = self.remainder(dividingBy: (CGFloat.pi * 2) / snap)
- self -= remainder
- }
- }
- 
- */

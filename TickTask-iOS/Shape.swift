@@ -12,7 +12,9 @@ import UIKit
 import AppKit
 #endif
 
-// Perhaps Circle should extend shape?
+// TODO: The drawing code for macOS is currently balls
+// what I need to do is reverse the coordinate system,
+// and fix everything...
 
 class Shape
 {
@@ -40,8 +42,6 @@ class Shape
     
     func draw(context: CGContext)
     {
-        // TODO: pass the implementation to the drawing classes.
-        // For example, shadows should draw themselves...
         drawOuterShadows(context: context)
         drawGradients(context: context)
         drawFills(context: context)

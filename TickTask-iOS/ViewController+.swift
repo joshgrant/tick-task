@@ -11,7 +11,6 @@ import UIKit
 #elseif os(OSX)
 import Cocoa
 #endif
-import UserNotifications
 
 extension ViewController
 {
@@ -42,8 +41,6 @@ extension ViewController
     func userBeganDragging(angle: CGFloat)
     {
         invalidateTimersAndDates()
-        
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func userEndedDragging(angle: CGFloat)

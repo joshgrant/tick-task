@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import UserNotifications
 
 extension ViewController
 {
@@ -34,6 +35,8 @@ extension ViewController
         ViewController.timer?.invalidate()
         ViewController.timer = nil
         ViewController.start = nil
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func initializeTimer() -> Timer
@@ -59,7 +62,7 @@ extension ViewController
         RunLoop.main.add(ViewController.timer!, forMode: .common)
         ViewController.timer?.fire()
         
-        requestAuthorizationToDisplayNotifications() // MAC: createNotification
+        createNotification()
     }
     
     @objc func timerUpdated(_ timer: Timer)
@@ -69,8 +72,6 @@ extension ViewController
         if ViewController.currentInterval <= 0
         {
             invalidateTimersAndDates()
-            
-            // Setting the angle like this sucks...
             configureInterfaceElements(state: .inactive, angle: -CGFloat.pi * 2)
         }
     }

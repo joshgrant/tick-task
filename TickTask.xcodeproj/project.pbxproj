@@ -71,6 +71,7 @@
 		B5CEA8EA229BAF72008DB140 /* ViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8E8229BAF72008DB140 /* ViewController+Notifications.swift */; };
 		B5CEA8EC229BB0A5008DB140 /* ViewController+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8EB229BB0A5008DB140 /* ViewController+Timer.swift */; };
 		B5CEA8ED229BB0A5008DB140 /* ViewController+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8EB229BB0A5008DB140 /* ViewController+Timer.swift */; };
+		B5CEA8EE229BC414008DB140 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE5422873871000EC5BB /* Localizable.strings */; };
 		B5E6617522855EB600E9A0BC /* TickTask_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6617422855EB600E9A0BC /* TickTask_macOSTests.swift */; };
 		B5E6619122855EDA00E9A0BC /* TickTask_macOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6619022855EDA00E9A0BC /* TickTask_macOSUITests.swift */; };
 /* End PBXBuildFile section */
@@ -651,6 +652,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B58FF1F6228C327B00922A69 /* LaunchScreen.storyboard in Resources */,
+				B5CEA8EE229BC414008DB140 /* Localizable.strings in Resources */,
 				B52273D82297C50800B00C95 /* Assets.xcassets in Resources */,
 				B58FF1F1228C327A00922A69 /* Main.storyboard in Resources */,
 			);

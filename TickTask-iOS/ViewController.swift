@@ -35,31 +35,56 @@ class ViewController: UIViewController
 
     // MARK: Interface Actions
     
-    var number: Int = 0
-    
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer)
     {
         let location = sender.location(in: dialView)
         let center = dialView.bounds.center
         var angle: CGFloat = location.angleFromPoint(point: center)
         
-        // When the user lets go, the number of touches goes to 1...
+        angle.snap(to: bestGuessForNumberOfTouches() == 1 ? 12 : 60)
         
         switch sender.state
         {
         case .began:
             userBeganDragging(angle: angle)
         case .changed:
-            number = sender.numberOfTouches
-            angle.snap(to: number <= 1 ? 12 : 60)
+            trackTouch(sender: sender)
             configureInterfaceElements(state: .selected, angle: angle)
         case .ended:
-            // So when the user lets go, we don't lose the last touch...
-            angle.snap(to: number <= 1 ? 12 : 60)
             userEndedDragging(angle: angle)
         default:
             break
         }
+    }
+    
+    // This creates a buffer so that when the user takes their fingers off
+    // the screen, it won't think they have just one finger
+    var previousNumberOfTouches: [Int] = []
+    
+    func trackTouch(sender: UIPanGestureRecognizer, keep amount: Int = 3)
+    {
+        previousNumberOfTouches.append(sender.numberOfTouches)
+        
+        if previousNumberOfTouches.count > amount
+        {
+            previousNumberOfTouches.removeFirst()
+        }
+    }
+    
+    func bestGuessForNumberOfTouches() -> Int
+    {
+        guard previousNumberOfTouches.count > 0 else { return 0 }
+        
+        var total: CGFloat = 0
+        
+        for numberOfTouches in previousNumberOfTouches
+        {
+            total += CGFloat(numberOfTouches)
+        }
+        
+        total /= CGFloat(previousNumberOfTouches.count)
+        
+        return Int(total.rounded())
     }
 }
 

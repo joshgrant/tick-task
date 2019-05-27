@@ -9,22 +9,22 @@
 #if os(iOS)
 import UIKit
 #elseif os(OSX)
-import AppKit
+import Cocoa
 #endif
 
 class DialShape: Shape
 {
-    init(frame: CGRect, scaleFactor: CGFloat)
+    init(drawingData: DrawingData)
     {
-        super.init(path: DialShape.dialPath(with: frame, scaleFactor: scaleFactor))
+        super.init(path: DialShape.dialPath(drawingData: drawingData))
         
-        self.frame = frame
+        self.frame = drawingData.rect
         
         self.shadows = [
-            Shadow.dialOuterStrokeShadow(with: scaleFactor),
-            Shadow.dialOuterDropShadow(with: scaleFactor),
-            Shadow.dialInnerShadow(with: scaleFactor),
-            Shadow.dialInnerHighlight(with: scaleFactor)
+            Shadow.dialOuterStrokeShadow(with: drawingData.scaleFactor),
+            Shadow.dialOuterDropShadow(with: drawingData.scaleFactor),
+            Shadow.dialInnerShadow(with: drawingData.scaleFactor),
+            Shadow.dialInnerHighlight(with: drawingData.scaleFactor)
         ]
         
         self.fills = [
@@ -32,8 +32,8 @@ class DialShape: Shape
         ]
         
         self.borders = [
-            Border.dialInnerBorder(with: scaleFactor),
-            Border.dialOuterBorder(with: scaleFactor)
+            Border.dialInnerBorder(with: drawingData.scaleFactor),
+            Border.dialOuterBorder(with: drawingData.scaleFactor)
         ]
     }
     
@@ -63,12 +63,12 @@ class DialShape: Shape
         }
     }
     
-    static func dialPath(with frame: CGRect, scaleFactor: CGFloat) -> Path
+    static func dialPath(drawingData: DrawingData, withCenter: Bool = true) -> Path
     {
-        let dialLength = 32 * scaleFactor
-        let bodyRadius = 8.205 * scaleFactor
-        let tipRadius = 2.35 * scaleFactor
-        let innerCircleRadius = 3.69 * scaleFactor
+        let dialLength = 32 * drawingData.scaleFactor
+        let bodyRadius = 8.205 * drawingData.scaleFactor
+        let tipRadius = 2.35 * drawingData.scaleFactor
+        let innerCircleRadius = 3.69 * drawingData.scaleFactor
         
         let bodyCenter = CGPoint(x: 0, y: 0)
         let tipCenter = CGPoint(x: bodyCenter.x, y: bodyCenter.y - dialLength)
@@ -93,12 +93,23 @@ class DialShape: Shape
         
         let path = Path()
         
-        path.addArc(center: bodyCenter, radius: innerCircleRadius,
-                    startAngle: 0,
-                    endAngle: CGFloat.pi * 2,
-                    clockwise: false)
+        #if os(iOS)
+        let clockwise = false
+        #elseif os(OSX)
+        path.windingRule = .evenOdd
+        let clockwise = true
+        #endif
         
-        path.close()
+        if withCenter
+        {
+            path.addArc(center: bodyCenter,
+                        radius: innerCircleRadius,
+                        startAngle: 0,
+                        endAngle: CGFloat.pi * 2,
+                        clockwise: clockwise)
+            
+            path.close()
+        }
         
         path.move(to: bodyRight)
         
@@ -109,7 +120,9 @@ class DialShape: Shape
                     clockwise: true)
         path.addArc(center: tipCenter,
                     radius: tipRadius,
-                    startAngle: CGFloat.pi + thetaComplement, endAngle: -thetaComplement, clockwise: true)
+                    startAngle: CGFloat.pi + thetaComplement,
+                    endAngle: -thetaComplement,
+                    clockwise: true)
         
         path.close()
         

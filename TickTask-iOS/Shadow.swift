@@ -54,7 +54,7 @@ struct Shadow
         return Shadow(color: Color.dialInnerHighlight,
                       blur: 0,
                       spread: 0,
-                      offset: CGSize(width: 0, height: 0.5 * scaleFactor),
+                      offset: CGSize(width: 0, height: 1 * scaleFactor),
                       type: .inner)
     }
     
@@ -63,7 +63,7 @@ struct Shadow
         return Shadow(color: Color.dialInnerShadow,
                       blur: 0,
                       spread: 0,
-                      offset: CGSize(width: 0, height: -0.5 * scaleFactor),
+                      offset: CGSize(width: 0, height: -1 * scaleFactor),
                       type: .inner)
     }
     
@@ -97,6 +97,9 @@ struct Shadow
             context.setAlpha(color.cgColor.alpha)
             context.pushPopTransparency() {
                 let opaqueShadow = color.colorBySetting(alpha: 1.0)
+                #if os(OSX)
+                let offset = CGSize(width: self.offset.width, height: self.offset.height * -1)
+                #endif
                 context.setShadow(offset: offset,
                                   blur: blur,
                                   color: opaqueShadow.cgColor)

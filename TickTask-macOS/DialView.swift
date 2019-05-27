@@ -36,8 +36,13 @@ protocol DialViewDelegate
         
         let drawingData = DrawingData(rect: rect)
         
-        let dialShape = DialShape(frame: frame, scaleFactor: drawingData.scaleFactor)
-        
-        dialShape.draw(context: context, angle: angle, state: state)
+        context.pushPop {
+            context.translateBy(x: 0, y: rect.size.height)
+            context.scaleBy(x: 1, y: -1)
+            
+            let dialShape = DialShape(drawingData: drawingData)
+            
+            dialShape.draw(context: context, angle: angle, state: state)
+        }
     }
 }

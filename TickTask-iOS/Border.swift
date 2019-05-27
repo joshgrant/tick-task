@@ -28,7 +28,7 @@ struct Border
     
     static func dialInnerBorder(with scaleFactor: CGFloat) -> Border
     {
-        return Border(width: 1 * scaleFactor, color: Color(brightness: 1, alpha: 0.2), type: .inner)
+        return Border(width: 1 * scaleFactor, color: Color(brightness: 1, alpha: 0.1), type: .inner)
     }
     
     static func faceOuterBorder(with scaleFactor: CGFloat) -> Border

@@ -24,12 +24,12 @@ extension CGPoint
         // Angle 0 is the right side of the unit circle
         var angle = atan2(self.y - point.y,  self.x - point.x)
         
-        #if os(iOS)
+//        #if os(iOS)
         // Subtract pi/2 (90 degrees) to start the dial at the top
         angle += CGFloat.pi / 2.0
-        #elseif os(OSX)
-        angle -= CGFloat.pi / 2.0
-        #endif
+//        #elseif os(OSX)
+//        angle -= CGFloat.pi / 2.0
+//        #endif
         
         // Because the angle is weird,,, i.e it is -4.712 *and* 1.570 at the left, and because the
         // top-left quadrant has positive numbers when everything else is negative, we do some adjustments to

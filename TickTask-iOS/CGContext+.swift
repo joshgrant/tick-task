@@ -12,7 +12,15 @@ extension CGContext
 {
     func setShadow(shadow: Shadow)
     {
-        self.setShadow(offset: shadow.offset, blur: shadow.blur, color: shadow.color.cgColor)
+        #if os(iOS)
+        self.setShadow(offset: shadow.offset,
+                       blur: shadow.blur,
+                       color: shadow.color.cgColor)
+        #elseif os(OSX)
+        self.setShadow(offset: shadow.offset.applying(CGAffineTransform(scaleX: 1, y: -1)),
+                       blur: shadow.blur,
+                       color: shadow.color.cgColor)
+        #endif
     }
     
     func pushPop(closure: () -> ())

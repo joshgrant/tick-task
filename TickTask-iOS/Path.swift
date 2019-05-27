@@ -9,7 +9,7 @@
 #if os(iOS)
 import UIKit
 #elseif os(OSX)
-import AppKit
+import Cocoa
 #endif
 
 class Path
@@ -38,6 +38,20 @@ class Path
             return bezierPath.cgPath
         }
     }
+    
+    #if os(OSX)
+    var windingRule: NSBezierPath.WindingRule
+    {
+        get {
+            return bezierPath.windingRule
+        }
+        set
+        {
+            bezierPath.windingRule = newValue
+        }
+    }
+    #endif
+    
     
     init()
     {
@@ -100,9 +114,9 @@ class Path
         #elseif os(OSX)
         bezierPath.appendArc(withCenter: center,
                              radius: radius,
-                             startAngle: startAngle,
-                             endAngle: endAngle,
-                             clockwise: clockwise)
+                             startAngle: startAngle * (180 / CGFloat.pi),
+                             endAngle: endAngle * (180 / CGFloat.pi),
+                             clockwise: !clockwise)
         #endif
     }
     

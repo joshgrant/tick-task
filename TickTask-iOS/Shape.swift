@@ -9,12 +9,8 @@
 #if os(iOS)
 import UIKit
 #elseif os(OSX)
-import AppKit
+import Cocoa
 #endif
-
-// TODO: The drawing code for macOS is currently balls
-// what I need to do is reverse the coordinate system,
-// and fix everything...
 
 class Shape
 {

@@ -9,7 +9,7 @@
 #if os(iOS)
 import UIKit
 #elseif os(OSX)
-import AppKit
+import Cocoa
 #endif
 
 typealias ColorModification = (CGFloat) -> CGFloat
@@ -18,24 +18,24 @@ struct Color
 {
     // MARK: Color Types
     
-    static var faceFill: Color { return Color(brightness: 0.11, alpha: 1.0) }
+    static var faceFill: Color { return Color(brightness: 0.11) }
     static var faceDropShadow: Color { return Color(brightness: 0.0, alpha: 0.8) }
     
-    static var dialFillInactive: Color { return Color(hue: 0.42, saturation: 0.9, brightness: 1.0, alpha: 1.0) }
-    static var dialFillSelected: Color { return Color(hue: 66.0 / 360.0, saturation: 0.66, brightness: 1.0, alpha: 1.0)
+    static var dialFillInactive: Color { return Color(hue: 0.39, saturation: 0.9, brightness: 1.0) }
+    static var dialFillSelected: Color { return Color(hue: 0.18, saturation: 0.66, brightness: 1.0)
     }
-    static var dialFillCountdown: Color { return Color(hue: 0, saturation: 0.7, brightness: 1, alpha: 1) }
+    static var dialFillCountdown: Color { return Color(hue: 0.0, saturation: 0.65, brightness: 1.0) }
     
-    static var dialOuterDropShadow: Color { return Color(brightness: 0.0, alpha: 0.6) }
-    static var dialOuterStrokeShadow: Color { return Color(brightness: 0.0, alpha: 0.2) }
-    static var dialInnerHighlight: Color { return Color(brightness: 1.0, alpha: 0.4) }
-    static var dialInnerShadow: Color { return Color(brightness: 0.0, alpha: 0.3) }
+    static var dialOuterDropShadow: Color { return Color(alpha: 0.6) }
+    static var dialOuterStrokeShadow: Color { return Color(alpha: 0.2) }
+    static var dialInnerHighlight: Color { return Color(brightness: 1.0, alpha: 0.3) }
+    static var dialInnerShadow: Color { return Color(alpha: 0.3) }
     
-    static var outerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.25) }
-    static var outerRimGradientShadow: Color { return faceFill.mix(brightness: 0.0, alpha: 0.4) }
+    static var outerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.3) }
+    static var outerRimGradientShadow: Color { return faceFill.mix(alpha: 0.4) }
     
-    static var innerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.25) }
-    static var innerRimGradientShadow: Color { return faceFill.mix(brightness: 0.0, alpha: 0.4) }
+    static var innerRimGradientHighlight: Color { return faceFill.mix(brightness: 1.0, alpha: 0.3) }
+    static var innerRimGradientShadow: Color { return faceFill.mix(alpha: 0.4) }
     
     // MARK: Properties
     
@@ -82,7 +82,7 @@ struct Color
                      alpha: color.alpha * 0.5 + self.alpha * 0.5)
     }
     
-    func mix(brightness: CGFloat, alpha: CGFloat) -> Color
+    func mix(brightness: CGFloat = 0, alpha: CGFloat = 1) -> Color
     {
         return Color(hue: hue,
                      saturation: saturation,

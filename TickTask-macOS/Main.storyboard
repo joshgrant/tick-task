@@ -38,9 +38,6 @@
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="XfG-lQ-9wD" name="value" keyPath="durationString" id="CR4-lL-ae6"/>
-                                        </connections>
                                     </textField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="PbT-Ku-dc1">
                                         <rect key="frame" x="4" y="0.0" width="110" height="110"/>
@@ -84,6 +81,7 @@
                     <connections>
                         <outlet property="dialView" destination="HMW-T1-LtX" id="e5Y-Xo-1q5"/>
                         <outlet property="faceView" destination="6Iy-iY-iXk" id="b4B-HD-ddl"/>
+                        <outlet property="label" destination="RED-zY-5Z7" id="cci-NW-sXz"/>
                         <outlet property="stackView" destination="Ttx-Mz-rdC" id="enh-Lo-DFv"/>
                     </connections>
                 </viewController>

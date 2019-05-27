@@ -41,12 +41,12 @@ extension TimeInterval
         let minutes = CGFloat(self) / 60
         
         // Then, get a normalized value between 0 and 1
-        #if os(iOS)
+//        #if os(iOS)
         // Account for the flipped coordinate system on iOS
         let normalized = 1.0 - (minutes / maxMinutes)
-        #elseif os(OSX)
-        let normalized = minutes / maxMinutes
-        #endif
+//        #elseif os(OSX)
+//        let normalized = minutes / maxMinutes
+//        #endif
         
         // Then, interpolate that value between 0 and 2 pi
         // Then, multiply it by negative one, because we want the dial to rotate to the right

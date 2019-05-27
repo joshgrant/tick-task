@@ -15,8 +15,7 @@ extension NSBezierPath {
         var points = [CGPoint](repeating: .zero, count: 3)
         for i in 0 ..< self.elementCount
         {
-            let type = self.element(at: i, associatedPoints: &points)
-            
+            let type = self.element(at: i, associatedPoints: &points)            
             switch type {
             case .moveTo:
                 path.move(to: points[0])

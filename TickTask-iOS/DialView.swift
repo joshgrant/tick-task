@@ -20,7 +20,7 @@ import UIKit
         
         let drawingData = DrawingData(rect: rect)
         
-        let dialShape = DialShape(frame: frame, scaleFactor: drawingData.scaleFactor)
+        let dialShape = DialShape(drawingData: drawingData)
         
         dialShape.draw(context: context, angle: angle, state: state)
     }

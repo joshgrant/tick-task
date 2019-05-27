@@ -13,7 +13,6 @@
 		B522742C2299C3B800B00C95 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522742B2299C3B800B00C95 /* DialView.swift */; };
 		B5370804226F188600ACFA62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370803226F188600ACFA62 /* AppDelegate.swift */; };
 		B5370806226F188600ACFA62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5370805226F188600ACFA62 /* ViewController.swift */; };
-		B537080B226F188600ACFA62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B537080A226F188600ACFA62 /* Assets.xcassets */; };
 		B542F785227EAB0E0045552D /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F784227EAB0E0045552D /* TimeInterval+.swift */; };
 		B542F787227EB2AC0045552D /* NSView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542F786227EB2AC0045552D /* NSView+.swift */; };
 		B54DCE4A228722D0000EC5BB /* RightClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DCE49228722D0000EC5BB /* RightClickView.swift */; };
@@ -71,6 +70,7 @@
 		B5CEA8ED229BB0A5008DB140 /* ViewController+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8EB229BB0A5008DB140 /* ViewController+Timer.swift */; };
 		B5CEA8EE229BC414008DB140 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE5422873871000EC5BB /* Localizable.strings */; };
 		B5CEA8F0229BF412008DB140 /* NSEvent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8EF229BF412008DB140 /* NSEvent+.swift */; };
+		B5CEA8F2229C50A7008DB140 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B52273D72297C50800B00C95 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,7 +95,6 @@
 		B5370800226F188600ACFA62 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5370803226F188600ACFA62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5370805226F188600ACFA62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B537080A226F188600ACFA62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B537080F226F188600ACFA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5370810226F188600ACFA62 /* TickTask-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TickTask-macOS.entitlements"; sourceTree = "<group>"; };
 		B542F784227EAB0E0045552D /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
@@ -200,7 +199,6 @@
 			children = (
 				B54DCE5422873871000EC5BB /* Localizable.strings */,
 				B5370803226F188600ACFA62 /* AppDelegate.swift */,
-				B537080A226F188600ACFA62 /* Assets.xcassets */,
 				B5BB040F22846294008C8493 /* DialView.swift */,
 				B537080F226F188600ACFA62 /* Info.plist */,
 				B5CEA8E3229B9D4E008DB140 /* FaceView.swift */,
@@ -439,8 +437,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B537080B226F188600ACFA62 /* Assets.xcassets in Resources */,
 				B54DCE5222873871000EC5BB /* Localizable.strings in Resources */,
+				B5CEA8F2229C50A7008DB140 /* Assets.xcassets in Resources */,
 				B54DCE4F22872F10000EC5BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

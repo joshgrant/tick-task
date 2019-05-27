@@ -39,9 +39,8 @@ class ViewController: UIViewController
     {
         let location = sender.location(in: dialView)
         let center = dialView.bounds.center
-        var angle: CGFloat = location.angleFromPoint(point: center)
-        
-        angle.snap(to: bestGuessForNumberOfTouches() == 1 ? 12 : 60)
+        let snap: CGFloat = bestGuessForNumberOfTouches() == 1 ? 12 : 60
+        let angle: CGFloat = location.angleFromPoint(point: center, snapTo: snap)
         
         switch sender.state
         {

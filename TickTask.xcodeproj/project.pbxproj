@@ -24,8 +24,6 @@
 		B58FF1EE228C327A00922A69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF1ED228C327A00922A69 /* ViewController.swift */; };
 		B58FF1F1228C327A00922A69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF1EF228C327A00922A69 /* Main.storyboard */; };
 		B58FF1F6228C327B00922A69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF1F4228C327B00922A69 /* LaunchScreen.storyboard */; };
-		B58FF201228C327B00922A69 /* TickTask_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF200228C327B00922A69 /* TickTask_iOSTests.swift */; };
-		B58FF20C228C327B00922A69 /* TickTask_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF20B228C327B00922A69 /* TickTask_iOSUITests.swift */; };
 		B58FF21D228C3DF400922A69 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF21C228C3DF400922A69 /* CGPoint+.swift */; };
 		B58FF220228C422E00922A69 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF21F228C422E00922A69 /* CGFloat+.swift */; };
 		B58FF224228C44B200922A69 /* DateComponentsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF223228C44B200922A69 /* DateComponentsFormatter.swift */; };
@@ -72,40 +70,8 @@
 		B5CEA8EC229BB0A5008DB140 /* ViewController+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8EB229BB0A5008DB140 /* ViewController+Timer.swift */; };
 		B5CEA8ED229BB0A5008DB140 /* ViewController+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8EB229BB0A5008DB140 /* ViewController+Timer.swift */; };
 		B5CEA8EE229BC414008DB140 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE5422873871000EC5BB /* Localizable.strings */; };
-		B5E6617522855EB600E9A0BC /* TickTask_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6617422855EB600E9A0BC /* TickTask_macOSTests.swift */; };
-		B5E6619122855EDA00E9A0BC /* TickTask_macOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6619022855EDA00E9A0BC /* TickTask_macOSUITests.swift */; };
+		B5CEA8F0229BF412008DB140 /* NSEvent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8EF229BF412008DB140 /* NSEvent+.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B58FF1FD228C327B00922A69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B53707F8226F188600ACFA62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B58FF1E8228C327A00922A69;
-			remoteInfo = "TickTask-iOS";
-		};
-		B58FF208228C327B00922A69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B53707F8226F188600ACFA62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B58FF1E8228C327A00922A69;
-			remoteInfo = "TickTask-iOS";
-		};
-		B5E6617722855EB600E9A0BC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B53707F8226F188600ACFA62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B53707FF226F188600ACFA62;
-			remoteInfo = "TickTask-macOS";
-		};
-		B5E6619322855EDA00E9A0BC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B53707F8226F188600ACFA62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B53707FF226F188600ACFA62;
-			remoteInfo = "TickTask-macOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		B5D56C6B2286B38900338BF6 /* Copy Helper App */ = {
@@ -146,10 +112,8 @@
 		B58FF1F0228C327A00922A69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B58FF1F5228C327B00922A69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58FF1F7228C327B00922A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B58FF1FC228C327B00922A69 /* TickTask-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58FF200228C327B00922A69 /* TickTask_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_iOSTests.swift; sourceTree = "<group>"; };
 		B58FF202228C327B00922A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B58FF207228C327B00922A69 /* TickTask-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58FF20B228C327B00922A69 /* TickTask_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_iOSUITests.swift; sourceTree = "<group>"; };
 		B58FF20D228C327B00922A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58FF21C228C3DF400922A69 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
@@ -175,6 +139,7 @@
 		B5CEA8E5229BA945008DB140 /* ViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+.swift"; sourceTree = "<group>"; };
 		B5CEA8E8229BAF72008DB140 /* ViewController+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Notifications.swift"; sourceTree = "<group>"; };
 		B5CEA8EB229BB0A5008DB140 /* ViewController+Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Timer.swift"; sourceTree = "<group>"; };
+		B5CEA8EF229BF412008DB140 /* NSEvent+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEvent+.swift"; sourceTree = "<group>"; };
 		B5D1D546228823FD005C04E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5D1D54722882409005C04E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5D1D54822882413005C04E0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -187,10 +152,8 @@
 		B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-macOSLauncher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D56C622286B2BE00338BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5D56C632286B2BE00338BF6 /* TickTask_macOSLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask_macOSLauncher.entitlements; sourceTree = "<group>"; };
-		B5E6617222855EB600E9A0BC /* TickTask-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E6617422855EB600E9A0BC /* TickTask_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_macOSTests.swift; sourceTree = "<group>"; };
 		B5E6617622855EB600E9A0BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5E6618E22855EDA00E9A0BC /* TickTask-macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TickTask-macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E6619022855EDA00E9A0BC /* TickTask_macOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickTask_macOSUITests.swift; sourceTree = "<group>"; };
 		B5E6619222855EDA00E9A0BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,35 +173,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B58FF1F9228C327B00922A69 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B58FF204228C327B00922A69 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B5D56C562286B2BD00338BF6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5E6616F22855EB600E9A0BC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5E6618B22855EDA00E9A0BC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -262,12 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				B5370800226F188600ACFA62 /* Tick Task.app */,
-				B5E6617222855EB600E9A0BC /* TickTask-macOSTests.xctest */,
-				B5E6618E22855EDA00E9A0BC /* TickTask-macOSUITests.xctest */,
 				B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */,
 				B58FF1E9228C327A00922A69 /* TickTask-iOS.app */,
-				B58FF1FC228C327B00922A69 /* TickTask-iOSTests.xctest */,
-				B58FF207228C327B00922A69 /* TickTask-iOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -281,8 +212,7 @@
 				B5BB040F22846294008C8493 /* DialView.swift */,
 				B537080F226F188600ACFA62 /* Info.plist */,
 				B5CEA8E3229B9D4E008DB140 /* FaceView.swift */,
-				B542F788227EBF520045552D /* NSImage+.swift */,
-				B542F786227EB2AC0045552D /* NSView+.swift */,
+				B5CEA8F1229BF417008DB140 /* Extensions */,
 				B54DCE4E22872F10000EC5BB /* Main.storyboard */,
 				B54DCE49228722D0000EC5BB /* RightClickView.swift */,
 				B5370810226F188600ACFA62 /* TickTask-macOS.entitlements */,
@@ -385,6 +315,16 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		B5CEA8F1229BF417008DB140 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B542F788227EBF520045552D /* NSImage+.swift */,
+				B5CEA8EF229BF412008DB140 /* NSEvent+.swift */,
+				B542F786227EB2AC0045552D /* NSView+.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		B5D56C5A2286B2BD00338BF6 /* TickTask-macOSLauncher */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,42 +391,6 @@
 			productReference = B58FF1E9228C327A00922A69 /* TickTask-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B58FF1FB228C327B00922A69 /* TickTask-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B58FF215228C327B00922A69 /* Build configuration list for PBXNativeTarget "TickTask-iOSTests" */;
-			buildPhases = (
-				B58FF1F8228C327B00922A69 /* Sources */,
-				B58FF1F9228C327B00922A69 /* Frameworks */,
-				B58FF1FA228C327B00922A69 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B58FF1FE228C327B00922A69 /* PBXTargetDependency */,
-			);
-			name = "TickTask-iOSTests";
-			productName = "TickTask-iOSTests";
-			productReference = B58FF1FC228C327B00922A69 /* TickTask-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B58FF206228C327B00922A69 /* TickTask-iOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B58FF216228C327B00922A69 /* Build configuration list for PBXNativeTarget "TickTask-iOSUITests" */;
-			buildPhases = (
-				B58FF203228C327B00922A69 /* Sources */,
-				B58FF204228C327B00922A69 /* Frameworks */,
-				B58FF205228C327B00922A69 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B58FF209228C327B00922A69 /* PBXTargetDependency */,
-			);
-			name = "TickTask-iOSUITests";
-			productName = "TickTask-iOSUITests";
-			productReference = B58FF207228C327B00922A69 /* TickTask-iOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		B5D56C582286B2BD00338BF6 /* TickTask-macOSLauncher */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5D56C662286B2BE00338BF6 /* Build configuration list for PBXNativeTarget "TickTask-macOSLauncher" */;
@@ -503,42 +407,6 @@
 			productName = "TickTask-macOSLauncher";
 			productReference = B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */;
 			productType = "com.apple.product-type.application";
-		};
-		B5E6617122855EB600E9A0BC /* TickTask-macOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B5E6617922855EB600E9A0BC /* Build configuration list for PBXNativeTarget "TickTask-macOSTests" */;
-			buildPhases = (
-				B5E6616E22855EB600E9A0BC /* Sources */,
-				B5E6616F22855EB600E9A0BC /* Frameworks */,
-				B5E6617022855EB600E9A0BC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B5E6617822855EB600E9A0BC /* PBXTargetDependency */,
-			);
-			name = "TickTask-macOSTests";
-			productName = "TickTask-macOSTests";
-			productReference = B5E6617222855EB600E9A0BC /* TickTask-macOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B5E6618D22855EDA00E9A0BC /* TickTask-macOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B5E6619522855EDA00E9A0BC /* Build configuration list for PBXNativeTarget "TickTask-macOSUITests" */;
-			buildPhases = (
-				B5E6618A22855EDA00E9A0BC /* Sources */,
-				B5E6618B22855EDA00E9A0BC /* Frameworks */,
-				B5E6618C22855EDA00E9A0BC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B5E6619422855EDA00E9A0BC /* PBXTargetDependency */,
-			);
-			name = "TickTask-macOSUITests";
-			productName = "TickTask-macOSUITests";
-			productReference = B5E6618E22855EDA00E9A0BC /* TickTask-macOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -575,14 +443,6 @@
 							};
 						};
 					};
-					B58FF1FB228C327B00922A69 = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = B58FF1E8228C327A00922A69;
-					};
-					B58FF206228C327B00922A69 = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = B58FF1E8228C327A00922A69;
-					};
 					B5D56C582286B2BD00338BF6 = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
@@ -591,14 +451,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					B5E6617122855EB600E9A0BC = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = B53707FF226F188600ACFA62;
-					};
-					B5E6618D22855EDA00E9A0BC = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = B53707FF226F188600ACFA62;
 					};
 				};
 			};
@@ -627,11 +479,7 @@
 			targets = (
 				B53707FF226F188600ACFA62 /* TickTask-macOS */,
 				B5D56C582286B2BD00338BF6 /* TickTask-macOSLauncher */,
-				B5E6617122855EB600E9A0BC /* TickTask-macOSTests */,
-				B5E6618D22855EDA00E9A0BC /* TickTask-macOSUITests */,
 				B58FF1E8228C327A00922A69 /* TickTask-iOS */,
-				B58FF1FB228C327B00922A69 /* TickTask-iOSTests */,
-				B58FF206228C327B00922A69 /* TickTask-iOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -658,35 +506,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B58FF1FA228C327B00922A69 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B58FF205228C327B00922A69 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B5D56C572286B2BD00338BF6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5E6617022855EB600E9A0BC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5E6618C22855EDA00E9A0BC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -713,6 +533,7 @@
 				B5CEA8C2229B2293008DB140 /* CGContext+.swift in Sources */,
 				B5CEA8D1229B2857008DB140 /* Path.swift in Sources */,
 				B5CEA8E6229BA945008DB140 /* ViewController+.swift in Sources */,
+				B5CEA8F0229BF412008DB140 /* NSEvent+.swift in Sources */,
 				B542F785227EAB0E0045552D /* TimeInterval+.swift in Sources */,
 				B5CEA8C0229B226C008DB140 /* DrawingData.swift in Sources */,
 				B5CEA8C7229B26CE008DB140 /* Circle.swift in Sources */,
@@ -764,22 +585,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B58FF1F8228C327B00922A69 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B58FF201228C327B00922A69 /* TickTask_iOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B58FF203228C327B00922A69 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B58FF20C228C327B00922A69 /* TickTask_iOSUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B5D56C552286B2BD00338BF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -788,46 +593,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5E6616E22855EB600E9A0BC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5E6617522855EB600E9A0BC /* TickTask_macOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5E6618A22855EDA00E9A0BC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5E6619122855EDA00E9A0BC /* TickTask_macOSUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B58FF1FE228C327B00922A69 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B58FF1E8228C327A00922A69 /* TickTask-iOS */;
-			targetProxy = B58FF1FD228C327B00922A69 /* PBXContainerItemProxy */;
-		};
-		B58FF209228C327B00922A69 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B58FF1E8228C327A00922A69 /* TickTask-iOS */;
-			targetProxy = B58FF208228C327B00922A69 /* PBXContainerItemProxy */;
-		};
-		B5E6617822855EB600E9A0BC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B53707FF226F188600ACFA62 /* TickTask-macOS */;
-			targetProxy = B5E6617722855EB600E9A0BC /* PBXContainerItemProxy */;
-		};
-		B5E6619422855EDA00E9A0BC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B53707FF226F188600ACFA62 /* TickTask-macOS */;
-			targetProxy = B5E6619322855EDA00E9A0BC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B54DCE5422873871000EC5BB /* Localizable.strings */ = {
@@ -1094,114 +860,6 @@
 			};
 			name = Release;
 		};
-		B58FF210228C327B00922A69 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOS/TickTask-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask-iOS.app/TickTask-iOS";
-			};
-			name = Debug;
-		};
-		B58FF211228C327B00922A69 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOS/TickTask-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TickTask-iOS.app/TickTask-iOS";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		B58FF212228C327B00922A69 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOS/TickTask-iOSUITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "TickTask-iOS";
-			};
-			name = Debug;
-		};
-		B58FF213228C327B00922A69 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "TickTask-iOS/TickTask-iOSUITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "TickTask-iOS";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		B5D56C642286B2BE00338BF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1255,100 +913,6 @@
 			};
 			name = Release;
 		};
-		B5E6617A22855EB600E9A0BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tick Task.app/Contents/MacOS/Tick Task";
-			};
-			name = Debug;
-		};
-		B5E6617B22855EB600E9A0BC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tick Task.app/Contents/MacOS/Tick Task";
-			};
-			name = Release;
-		};
-		B5E6619622855EDA00E9A0BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "TickTask-macOS";
-			};
-			name = Debug;
-		};
-		B5E6619722855EDA00E9A0BC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 685257RUQP;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/TickTask-macOS/TickTask-macOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "TickTask-macOS";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1379,47 +943,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B58FF215228C327B00922A69 /* Build configuration list for PBXNativeTarget "TickTask-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B58FF210228C327B00922A69 /* Debug */,
-				B58FF211228C327B00922A69 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B58FF216228C327B00922A69 /* Build configuration list for PBXNativeTarget "TickTask-iOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B58FF212228C327B00922A69 /* Debug */,
-				B58FF213228C327B00922A69 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		B5D56C662286B2BE00338BF6 /* Build configuration list for PBXNativeTarget "TickTask-macOSLauncher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5D56C642286B2BE00338BF6 /* Debug */,
 				B5D56C652286B2BE00338BF6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B5E6617922855EB600E9A0BC /* Build configuration list for PBXNativeTarget "TickTask-macOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B5E6617A22855EB600E9A0BC /* Debug */,
-				B5E6617B22855EB600E9A0BC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B5E6619522855EDA00E9A0BC /* Build configuration list for PBXNativeTarget "TickTask-macOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B5E6619622855EDA00E9A0BC /* Debug */,
-				B5E6619722855EDA00E9A0BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

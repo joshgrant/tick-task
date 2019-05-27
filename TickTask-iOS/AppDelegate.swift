@@ -32,4 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {
         print("Failed to register: \(error)")
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Received!")
+    }
 }

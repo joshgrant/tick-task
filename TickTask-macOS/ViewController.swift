@@ -26,8 +26,6 @@ class ViewController: NSViewController
         self.configureInterfaceElements(state: .inactive)
         requestAuthorizationToDisplayNotifications()
         
-        print(self.view.gestureRecognizers)
-        
         super.viewDidLoad()
     }
 }
@@ -51,19 +49,8 @@ extension ViewController
             .applying(CGAffineTransform(scaleX: 1, y: -1))
         
         let origin = dialView.frame.center
-        var angle: CGFloat = viewLocation.angleFromPoint(point: origin)
-        
-        if (event.type == .rightMouseUp ||
-            event.type == .rightMouseDown ||
-            event.type == .rightMouseDragged ||
-            event.modifierFlags != .init(rawValue: 0))
-        {
-            angle.snap(to: 60)
-        }
-        else
-        {
-            angle.snap(to: 12)
-        }
+        let snap: CGFloat = event.rightMouseOrModifierKey ? 60 : 12
+        let angle: CGFloat = viewLocation.angleFromPoint(point: origin, snapTo: snap)
 
         switch event.type
         {

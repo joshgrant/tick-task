@@ -11,12 +11,13 @@ import UserNotifications
 
 class ViewController: UIViewController
 {
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var label: UILabel!
-    
     @IBOutlet weak var faceView: FaceView!
     @IBOutlet weak var dialView: DialView!
     
     @IBOutlet weak var panGesture: UIPanGestureRecognizer!
+    @IBOutlet weak var dialWidthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -25,6 +26,14 @@ class ViewController: UIViewController
         configureInterfaceElements(state: .inactive)
         requestAuthorizationToDisplayNotifications()
         
+        // This only needs to get called when we update the drawing code
+        // Shouldn't really be ever... But these are for the launch screen...
+        // drawPrerenderedImages()
+        
+        configureStackAxis(size: view.frame.size)
+        dialWidthConstraint.constant = view.frame.size.width
+        dialWidthConstraint.priority = UILayoutPriority.required
+        
         setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -32,7 +41,24 @@ class ViewController: UIViewController
     {
         return .lightContent
     }
-
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        configureStackAxis(size: size)
+    }
+    
+    func configureStackAxis(size: CGSize)
+    {
+        if size.width > size.height // Landscape
+        {
+            self.stackView.axis = .horizontal
+        }
+        else // Portrait
+        {
+            self.stackView.axis = .vertical
+        }
+    }
+    
     // MARK: Interface Actions
     
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer)
@@ -53,6 +79,52 @@ class ViewController: UIViewController
             userEndedDragging(angle: angle)
         default:
             break
+        }
+    }
+    
+    // MARK: Render Image
+    
+    func drawPrerenderedImages()
+    {
+        let sizes: [CGSize] = [
+            CGSize(square: 320),
+            CGSize(square: 320 * 2),
+            CGSize(square: 320 * 3),
+            CGSize(square: 375),
+            CGSize(square: 375 * 2),
+            CGSize(square: 375 * 3),
+            CGSize(square: 414),
+            CGSize(square: 414 * 2),
+            CGSize(square: 414 * 3),
+            CGSize(square: 768),
+            CGSize(square: 768 * 2),
+            CGSize(square: 768 * 3),
+            CGSize(square: 1024),
+            CGSize(square: 1024 * 2),
+            CGSize(square: 1024 * 3),
+        ]
+        
+        var images: [UIImage] = []
+        
+        for size in sizes
+        {
+            UIGraphicsBeginImageContext(size)
+            faceView.draw(CGRect(origin: CGPoint.zero, size: size))
+            dialView.draw(CGRect(origin: CGPoint.zero, size: size))
+            let image = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            images.append(image)
+        }
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths.first ?? ""
+        print(documentsDirectory)
+        
+        for image in images
+        {
+            FileManager.default.createFile(atPath: "\(documentsDirectory)/\(Int(image.size.width)).png",
+                contents: image.pngData(),
+                attributes: nil)
         }
     }
     
@@ -87,3 +159,14 @@ class ViewController: UIViewController
     }
 }
 
+extension ViewController: UNUserNotificationCenterDelegate
+{
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+}

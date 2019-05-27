@@ -44,22 +44,6 @@ class Shape
         drawInnerShadows(context: context)
         drawBorders(context: context)
     }
-    
-    #if os(iOS)
-    func drawImage(frame: CGRect) -> UIImage
-    {
-        UIGraphicsBeginImageContext(frame.size)
-        
-        let context = UIGraphicsGetCurrentContext()!
-        draw(context: context)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    #elseif os(macOS)
-    #endif
 
     func drawOuterShadows(context: CGContext)
     {

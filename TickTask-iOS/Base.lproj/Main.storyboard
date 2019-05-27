@@ -44,10 +44,11 @@
                                             <constraint firstItem="T4h-al-A8V" firstAttribute="leading" secondItem="eOm-Bf-Ilz" secondAttribute="leading" id="0Qe-Cf-Mh1"/>
                                             <constraint firstAttribute="trailing" secondItem="fi5-Dh-XDB" secondAttribute="trailing" id="DzR-Gd-fpa"/>
                                             <constraint firstItem="fi5-Dh-XDB" firstAttribute="top" secondItem="eOm-Bf-Ilz" secondAttribute="top" id="OAW-Nc-V7Y"/>
-                                            <constraint firstAttribute="width" secondItem="eOm-Bf-Ilz" secondAttribute="height" multiplier="1:1" id="YHZ-02-cUV"/>
                                             <constraint firstItem="T4h-al-A8V" firstAttribute="top" secondItem="eOm-Bf-Ilz" secondAttribute="top" id="YvE-ZD-xEo"/>
+                                            <constraint firstAttribute="width" secondItem="eOm-Bf-Ilz" secondAttribute="height" multiplier="1:1" id="awP-Wr-xIM"/>
                                             <constraint firstAttribute="bottom" secondItem="fi5-Dh-XDB" secondAttribute="bottom" id="bNH-bQ-Ecf"/>
                                             <constraint firstAttribute="bottom" secondItem="T4h-al-A8V" secondAttribute="bottom" id="qVk-9Z-MaF"/>
+                                            <constraint firstAttribute="width" priority="1" constant="41" id="tHg-Vy-Jgz"/>
                                             <constraint firstAttribute="trailing" secondItem="T4h-al-A8V" secondAttribute="trailing" id="tOK-QV-jYR"/>
                                             <constraint firstItem="fi5-Dh-XDB" firstAttribute="leading" secondItem="eOm-Bf-Ilz" secondAttribute="leading" id="uCy-8z-lKT"/>
                                         </constraints>
@@ -59,9 +60,9 @@
                         <color key="backgroundColor" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="2hS-be-Mwi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1jD-hG-KOr"/>
+                            <constraint firstItem="2hS-be-Mwi" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="Q1z-wG-uHf"/>
                             <constraint firstItem="2hS-be-Mwi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="REs-sh-pFh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2hS-be-Mwi" secondAttribute="trailing" id="TB1-pd-3p2"/>
+                            <constraint firstItem="2hS-be-Mwi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vG8-S6-sT0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -70,9 +71,11 @@
                     </view>
                     <connections>
                         <outlet property="dialView" destination="fi5-Dh-XDB" id="wad-bs-VAy"/>
+                        <outlet property="dialWidthConstraint" destination="tHg-Vy-Jgz" id="5so-KA-NAH"/>
                         <outlet property="faceView" destination="T4h-al-A8V" id="CI5-pU-gro"/>
                         <outlet property="label" destination="FkW-Q0-y2I" id="ZLD-eK-gyM"/>
                         <outlet property="panGesture" destination="sca-ZZ-hEd" id="hxn-cM-WI2"/>
+                        <outlet property="stackView" destination="2hS-be-Mwi" id="BbS-zv-qwL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -82,7 +85,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1297" y="-37"/>
+            <point key="canvasLocation" x="-1297.6011994002999" y="-37.600000000000001"/>
         </scene>
     </scenes>
 </document>

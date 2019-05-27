@@ -25,6 +25,7 @@ extension ViewController
             // Fallback on earlier versions
             options = [.alert, .sound, .badge]
         }
+        center.delegate = self
         #elseif os(OSX)
         options = [.alert, .sound, .criticalAlert, .badge]
         #endif
@@ -62,6 +63,8 @@ extension ViewController
         content.body = notificationBody
         content.sound = UNNotificationSound.default
         
+        print(ViewController.fullDuration)
+        
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: ViewController.fullDuration,
                                                         repeats: false)
         
@@ -71,8 +74,9 @@ extension ViewController
                                             trigger: trigger)
 
         UNUserNotificationCenter.current().add(request) { (error) in
-            if error != nil {
-                // Handle any errors.
+            if let error = error
+            {
+                debugPrint("Error adding the notification: \(error)")
             }
         }
     }

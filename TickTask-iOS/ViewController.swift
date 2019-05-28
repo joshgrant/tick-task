@@ -26,10 +26,6 @@ class ViewController: UIViewController
         configureInterfaceElements(state: .inactive)
         requestAuthorizationToDisplayNotifications()
         
-        // This only needs to get called when we update the drawing code
-        // Shouldn't really be ever... But these are for the launch screen...
-//         drawPrerenderedImages()
-        
         configureStackAxis(size: view.frame.size)
         dialWidthConstraint.constant = view.frame.size.width
         dialWidthConstraint.priority = UILayoutPriority.required
@@ -79,55 +75,6 @@ class ViewController: UIViewController
             userEndedDragging(angle: angle)
         default:
             break
-        }
-    }
-    
-    // MARK: Render Image
-    
-    func drawPrerenderedImages()
-    {
-        let sizes: [CGSize] = [
-            CGSize(square: 320),
-            CGSize(square: 320 * 2),
-            CGSize(square: 320 * 3),
-            CGSize(square: 375),
-            CGSize(square: 375 * 2),
-            CGSize(square: 375 * 3),
-            CGSize(square: 414),
-            CGSize(square: 414 * 2),
-            CGSize(square: 414 * 3),
-            CGSize(square: 768),
-            CGSize(square: 768 * 2),
-            CGSize(square: 768 * 3),
-            CGSize(square: 1024),
-            CGSize(square: 1024 * 2),
-            CGSize(square: 1024 * 3),
-            CGSize(square: 110),
-            CGSize(square: 220),
-        ]
-        
-        var images: [UIImage] = []
-        
-        for size in sizes
-        {
-            UIGraphicsBeginImageContext(size)
-            faceView.draw(CGRect(origin: CGPoint.zero, size: size))
-//            dialView.angle = TimeInterval(exactly: 60 * 30)!.toAngle()
-            dialView.draw(CGRect(origin: CGPoint.zero, size: size))
-            let image = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-            images.append(image)
-        }
-        
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths.first ?? ""
-        print(documentsDirectory)
-        
-        for image in images
-        {
-            FileManager.default.createFile(atPath: "\(documentsDirectory)/\(Int(image.size.width)).png",
-                contents: image.pngData(),
-                attributes: nil)
         }
     }
     

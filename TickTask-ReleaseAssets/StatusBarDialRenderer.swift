@@ -10,30 +10,26 @@ import Cocoa
 
 class StatusBarDialRenderer: Renderer
 {
-    override class func nameWith(duration: Int, dimension: Int) -> String
-    {
-        return "StatusBarDial_\(duration)_\(dimension)"
+    override var prefix: String {
+        return "StatusBarDial"
     }
     
-    override class func imageWith(duration: Int, dimension: Int) -> NSImage
-    {
-        let angleRadians = TimeInterval(exactly: duration * 60)!.toAngle()
-        return NSImage.statusItemDialWithRotation(angle: angleRadians,
-                                                  size: CGSize(square: CGFloat(dimension)))
+    override var image: NSImage {
+        return NSImage.statusItemDialWithRotation(angle: angle, size: size)
     }
     
     override class func render()
     {
         let infos: [StatusBarDialRenderer] = [
             StatusBarDialRenderer(duration: 0, dimension: 22),
-            StatusBarDialRenderer(duration: 0, dimension: 22 * 2),
-            StatusBarDialRenderer(duration: 0, dimension: 22 * 3),
+            StatusBarDialRenderer(duration: 0, dimension: 22, scale: 2),
+            StatusBarDialRenderer(duration: 0, dimension: 22, scale: 3),
             StatusBarDialRenderer(duration: 25, dimension: 22),
-            StatusBarDialRenderer(duration: 25, dimension: 22 * 2),
-            StatusBarDialRenderer(duration: 25, dimension: 22 * 3),
-            StatusBarDialRenderer(duration: 35, dimension: 22),
-            StatusBarDialRenderer(duration: 35, dimension: 22 * 2),
-            StatusBarDialRenderer(duration: 35, dimension: 22 * 3),
+            StatusBarDialRenderer(duration: 25, dimension: 22, scale: 2),
+            StatusBarDialRenderer(duration: 25, dimension: 22, scale: 3),
+            StatusBarDialRenderer(duration: 12.4, dimension: 22),
+            StatusBarDialRenderer(duration: 12.4, dimension: 22, scale: 2),
+            StatusBarDialRenderer(duration: 12.4, dimension: 22, scale: 3),
         ]
         
         for info in infos

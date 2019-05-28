@@ -17,8 +17,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         print(StatusBarDialRenderer.path)
         
-        StatusBarDialRenderer.render()
-        DialRenderer.render()
+//        StatusBarDialRenderer.render()
+//        DialRenderer.render()
+        
+        print("Done")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

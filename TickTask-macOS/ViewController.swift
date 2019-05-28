@@ -12,6 +12,7 @@ class ViewController: NSViewController
 {
     // MARK: Shared Properties
     var statusItem: NSStatusItem?
+    @IBOutlet weak var statusItemImageView: NSImageView?
 
     // MARK: Interface Outlets
     @IBOutlet weak var stackView: NSStackView!

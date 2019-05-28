@@ -10,16 +10,25 @@ import Cocoa
 
 class DialRenderer: Renderer
 {
-    override class func nameWith(duration: Int, dimension: Int) -> String
-    {
-        return "Dial_\(duration)_\(dimension)"
+    override var prefix: String {
+        return "Dial"
     }
     
-    override class func imageWith(duration: Int, dimension: Int) -> NSImage
-    {
-        let size = CGSize(square: CGFloat(dimension))
+    override var image: NSImage {
         
-        let image = NSImage(size: size, flipped: false) { (bounds) -> Bool in
+        let state: DialState
+        
+        switch duration
+        {
+        case 0:
+            state = .inactive
+        case 25:
+            state = .selected
+        default:
+            state = .countdown
+        }
+        
+        let image = NSImage(size: size, flipped: true) { (bounds) -> Bool in
             let drawingData = DrawingData(rect: bounds)
             
             guard let context = NSGraphicsContext.current?.cgContext else {
@@ -33,9 +42,7 @@ class DialRenderer: Renderer
             Circle.innerRimCircle(with: drawingData).draw(context: context)
             Circle.faceInnerCircle(with: drawingData).draw(context: context)
             
-            let angleRadians = TimeInterval(exactly: duration * 60)!.toAngle()
-            
-            DialShape(drawingData: drawingData).draw(context: context, angle: angleRadians, state: .inactive)
+            DialShape(drawingData: drawingData).draw(context: context, angle: self.angle, state: state)
             
             return true
         }
@@ -47,29 +54,29 @@ class DialRenderer: Renderer
     {
         let infos: [DialRenderer] = [
             DialRenderer(duration: 0, dimension: 320),
-            DialRenderer(duration: 0, dimension: 320 * 2),
-            DialRenderer(duration: 0, dimension: 320 * 3),
+            DialRenderer(duration: 0, dimension: 320, scale: 2),
+            DialRenderer(duration: 0, dimension: 320, scale: 3),
             DialRenderer(duration: 0, dimension: 375),
-            DialRenderer(duration: 0, dimension: 375 * 2),
-            DialRenderer(duration: 0, dimension: 375 * 3),
+            DialRenderer(duration: 0, dimension: 375, scale: 2),
+            DialRenderer(duration: 0, dimension: 375, scale: 3),
             DialRenderer(duration: 0, dimension: 414),
-            DialRenderer(duration: 0, dimension: 414 * 2),
-            DialRenderer(duration: 0, dimension: 414 * 3),
+            DialRenderer(duration: 0, dimension: 414, scale: 2),
+            DialRenderer(duration: 0, dimension: 414, scale: 3),
             DialRenderer(duration: 0, dimension: 768),
-            DialRenderer(duration: 0, dimension: 768 * 2),
-            DialRenderer(duration: 0, dimension: 768 * 3),
+            DialRenderer(duration: 0, dimension: 768, scale: 2),
+            DialRenderer(duration: 0, dimension: 768, scale: 3),
             DialRenderer(duration: 0, dimension: 1024),
-            DialRenderer(duration: 0, dimension: 1024 * 2),
-            DialRenderer(duration: 0, dimension: 1024 * 3),
+            DialRenderer(duration: 0, dimension: 1024, scale: 2),
+            DialRenderer(duration: 0, dimension: 1024, scale: 3),
             DialRenderer(duration: 0, dimension: 110),
-            DialRenderer(duration: 0, dimension: 110 * 2),
-            DialRenderer(duration: 0, dimension: 110 * 3),
+            DialRenderer(duration: 0, dimension: 110, scale: 2),
+            DialRenderer(duration: 0, dimension: 110, scale: 3),
             DialRenderer(duration: 25, dimension: 110),
-            DialRenderer(duration: 25, dimension: 110 * 2),
-            DialRenderer(duration: 25, dimension: 110 * 3),
-            DialRenderer(duration: 35, dimension: 110),
-            DialRenderer(duration: 35, dimension: 110 * 2),
-            DialRenderer(duration: 35, dimension: 110 * 3),
+            DialRenderer(duration: 25, dimension: 110, scale: 2),
+            DialRenderer(duration: 25, dimension: 110, scale: 3),
+            DialRenderer(duration: 12.4, dimension: 110),
+            DialRenderer(duration: 12.4, dimension: 110, scale: 2),
+            DialRenderer(duration: 12.4, dimension: 110, scale: 3),
         ]
         
         for info in infos

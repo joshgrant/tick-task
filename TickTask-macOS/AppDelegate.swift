@@ -34,8 +34,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         statusItem = initializeStatusItem(menu: menu)
         
         viewController.statusItem = statusItem
-        
-//        prerenderStatusBarIcon()
     }
     
     func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)

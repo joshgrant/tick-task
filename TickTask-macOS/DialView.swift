@@ -15,8 +15,25 @@ protocol DialViewDelegate
 
 @IBDesignable class DialView: NSView
 {
-    @IBInspectable var angle: CGFloat = 0
+    @IBInspectable var duration: CGFloat {
+        get {
+            return CGFloat(angle.toInterval() / 60.0)
+        }
+        set {
+            angle = TimeInterval(duration * 60.0).toAngle()
+        }
+    }
     
+    @IBInspectable var dialState: Int {
+        get {
+            return state.rawValue
+        }
+        set {
+            state = DialState(rawValue: newValue) ?? .inactive
+        }
+    }
+    
+    var angle: CGFloat = 0
     var state: DialState = .inactive
     
     var delegate: DialViewDelegate?

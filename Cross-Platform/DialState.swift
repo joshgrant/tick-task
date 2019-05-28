@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DialState
+enum DialState: Int
 {
     case inactive
     case countdown

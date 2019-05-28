@@ -10,38 +10,55 @@ import Cocoa
 
 class Renderer
 {
-    var name: String
-    var image: NSImage
+    var duration: CGFloat
+    var dimension: Int
+    var scale: Int
     
-    static var path: String {
-        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
+    var size: CGSize {
+        return CGSize(square: CGFloat(dimension * scale))
     }
     
-    class func nameWith(duration: Int, dimension: Int) -> String
-    {
+    var angle: CGFloat {
+        return TimeInterval(exactly: duration * 60)!.toAngle()
+    }
+    
+    var prefix: String {
         return ""
     }
     
-    class func imageWith(duration: Int, dimension: Int) -> NSImage
-    {
+    var name: String {
+        let postfix = "@\(scale)x"
+        return "\(prefix)_\(Int(duration))_\(dimension)\(scale == 1 ? "" : postfix)"
+    }
+    
+    var image: NSImage {
         return NSImage()
+    }
+    
+    static var path: String {
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
     }
     
     class func render() {}
     
     // MARK: Initialization
     
-    init(duration: Int, dimension: Int)
+    init(duration: CGFloat, dimension: Int, scale: Int = 1)
     {
-        self.name = Renderer.nameWith(duration: duration, dimension: dimension)
-        self.image = Renderer.imageWith(duration: duration, dimension: dimension)
+        self.duration = duration
+        self.dimension = dimension
+        self.scale = scale
     }
     
     func createFile(basePath: String = Renderer.path)
     {
+        guard let data = image.tiffRepresentation else { return }
+        guard let bitmap = NSBitmapImageRep(data: data) else { return }
+        guard let png = bitmap.representation(using: .png, properties: [:]) else { return }
+        
         FileManager.default.createFile(
-            atPath: "\(basePath)/\(name).tiff",
-            contents: image.tiffRepresentation,
+            atPath: "\(basePath)/\(name).png",
+            contents: png,
             attributes: nil)
     }
 }

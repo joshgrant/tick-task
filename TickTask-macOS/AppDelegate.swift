@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     var contextMenu: NSMenu!
     
     var autoOpenItem: NSMenuItem!
-
+    
     // MARK: Application Lifecycle
     
     func applicationDidFinishLaunching(_ aNotification: Notification)
@@ -34,18 +34,49 @@ class AppDelegate: NSObject, NSApplicationDelegate
         statusItem = initializeStatusItem(menu: menu)
         
         viewController.statusItem = statusItem
+        
+        prerenderStatusBarIcon()
     }
     
     func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
-        print("Device Token: \(token)")
+//        print("Device Token: \(token)")
     }
     
     func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        print("Failed to register: \(error)")
+        debugPrint("Failed to register: \(error)")
+    }
+}
+
+extension AppDelegate
+{
+    fileprivate func prerenderStatusBarIcon()
+    {
+        let angle25Minutes = TimeInterval(exactly: 60 * 25)!.toAngle()
+        let angle30Minutes = TimeInterval(exactly: 60 * 30)!.toAngle()
+        
+        let images: [String: NSImage] = [
+            "0_22" : NSImage.statusItemDialWithRotation(angle: 0, size: CGSize(square: 22)),
+            "0_44" :  NSImage.statusItemDialWithRotation(angle: 0, size: CGSize(square: 44)),
+            "0_66" : NSImage.statusItemDialWithRotation(angle: 0, size: CGSize(square: 66)),
+            "25_22" : NSImage.statusItemDialWithRotation(angle: angle25Minutes, size: CGSize(square: 22)),
+            "25_44" :  NSImage.statusItemDialWithRotation(angle: angle25Minutes, size: CGSize(square: 44)),
+            "25_66" : NSImage.statusItemDialWithRotation(angle: angle25Minutes, size: CGSize(square: 66)),
+            "30_22" : NSImage.statusItemDialWithRotation(angle: angle30Minutes, size: CGSize(square: 22)),
+            "30_44" :  NSImage.statusItemDialWithRotation(angle: angle30Minutes, size: CGSize(square: 44)),
+            "30_66" : NSImage.statusItemDialWithRotation(angle: angle30Minutes, size: CGSize(square: 66)),
+        ]
+        
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
+        print(path)
+        
+        for (name, image) in images
+        {
+            FileManager.default.createFile(atPath: "\(path)/\(name).tiff", contents: image.tiffRepresentation, attributes: nil)
+        }
     }
 }
 
@@ -74,10 +105,10 @@ extension AppDelegate
         if let button = statusItem.button
         {
             button.image = NSImage.statusItemDialWithRotation(angle: 0)
-
+            
             let rightClickView = RightClickView(frame: button.frame)
             rightClickView.delegate = self
-
+            
             button.addSubview(rightClickView)
         }
         
@@ -85,7 +116,7 @@ extension AppDelegate
         
         return statusItem
     }
-
+    
     
     func initializeViewController() -> ViewController
     {
@@ -97,7 +128,7 @@ extension AppDelegate
     func initializeMenu(viewController: ViewController) -> NSMenu
     {
         let menu = NSMenu()
-
+        
         menu.addItem(viewControllerMenuItem(viewController: viewController))
         
         return menu

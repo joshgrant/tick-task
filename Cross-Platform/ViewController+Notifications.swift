@@ -63,8 +63,6 @@ extension ViewController
         content.body = notificationBody
         content.sound = UNNotificationSound.default
         
-        print(ViewController.fullDuration)
-        
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: ViewController.fullDuration,
                                                         repeats: false)
         

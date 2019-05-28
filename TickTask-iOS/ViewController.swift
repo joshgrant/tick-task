@@ -28,7 +28,7 @@ class ViewController: UIViewController
         
         // This only needs to get called when we update the drawing code
         // Shouldn't really be ever... But these are for the launch screen...
-        // drawPrerenderedImages()
+//         drawPrerenderedImages()
         
         configureStackAxis(size: view.frame.size)
         dialWidthConstraint.constant = view.frame.size.width
@@ -102,6 +102,8 @@ class ViewController: UIViewController
             CGSize(square: 1024),
             CGSize(square: 1024 * 2),
             CGSize(square: 1024 * 3),
+            CGSize(square: 110),
+            CGSize(square: 220),
         ]
         
         var images: [UIImage] = []
@@ -110,6 +112,7 @@ class ViewController: UIViewController
         {
             UIGraphicsBeginImageContext(size)
             faceView.draw(CGRect(origin: CGPoint.zero, size: size))
+//            dialView.angle = TimeInterval(exactly: 60 * 30)!.toAngle()
             dialView.draw(CGRect(origin: CGPoint.zero, size: size))
             let image = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()

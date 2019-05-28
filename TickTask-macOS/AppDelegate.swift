@@ -35,13 +35,13 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         viewController.statusItem = statusItem
         
-        prerenderStatusBarIcon()
+//        prerenderStatusBarIcon()
     }
     
     func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let token = tokenParts.joined()
+//        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+//        let token = tokenParts.joined()
 //        print("Device Token: \(token)")
     }
     

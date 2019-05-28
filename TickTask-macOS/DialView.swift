@@ -11,6 +11,7 @@ import Cocoa
 protocol DialViewDelegate
 {
     func dialViewMouseEvent(_ event: NSEvent)
+    func dialViewAngleDurationUpdate(angle: CGFloat)
 }
 
 @IBDesignable class DialView: NSView
@@ -20,7 +21,8 @@ protocol DialViewDelegate
             return CGFloat(angle.toInterval() / 60.0)
         }
         set {
-            angle = TimeInterval(duration * 60.0).toAngle()
+            angle = TimeInterval(newValue * 60.0).toAngle()
+            delegate?.dialViewAngleDurationUpdate(angle: angle)
         }
     }
     

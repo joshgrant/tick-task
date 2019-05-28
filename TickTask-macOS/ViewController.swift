@@ -38,6 +38,11 @@ extension ViewController: DialViewDelegate
     {
         handlePanGesture(with: event)
     }
+    
+    func dialViewAngleDurationUpdate(angle: CGFloat)
+    {
+        self.statusItemImageView?.image = NSImage.statusItemDialWithRotation(angle: angle)
+    }
 }
 
 // MARK: Gesture

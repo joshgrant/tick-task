@@ -8,3 +8,6 @@
 "open_at_login" = "Open at Login"; // Dock
 "quit_ticktask" = "Quit TickTask"; // Dock
 "timer_completed_title" = "Time's Up!";
+"simple" = "simple";
+"focused" = "focused";
+"menubar" = "menubar";

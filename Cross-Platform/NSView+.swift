@@ -68,6 +68,15 @@ extension NSView
         }
     }
     
+    @IBInspectable var backgroundColor: NSColor {
+        get {
+            return NSColor(cgColor: layer?.backgroundColor ?? .clear) ?? .clear
+        }
+        set {
+            layer?.backgroundColor = newValue.cgColor
+        }
+    }
+    
     func setShadowPath()
     {
         if layer?.shadowPath == nil

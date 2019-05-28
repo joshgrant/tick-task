@@ -22,7 +22,6 @@ protocol DialViewDelegate
         }
         set {
             angle = TimeInterval(newValue * 60.0).toAngle()
-            delegate?.dialViewAngleDurationUpdate(angle: angle)
         }
     }
     
@@ -35,7 +34,12 @@ protocol DialViewDelegate
         }
     }
     
-    var angle: CGFloat = 0
+    var angle: CGFloat = 0 {
+        didSet {
+            delegate?.dialViewAngleDurationUpdate(angle: angle)
+        }
+    }
+    
     var state: DialState = .inactive
     
     var delegate: DialViewDelegate?

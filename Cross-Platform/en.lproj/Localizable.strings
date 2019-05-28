@@ -11,3 +11,15 @@
 "simple" = "simple";
 "focused" = "focused";
 "menubar" = "menubar";
+"timer" = "timer";
+"subtitle" = "Keeping time simple";
+"promotional_text" = "Timers should be simple, so we created Tick Task to help keep track of your time.";
+"description" = "Features:
+• Lives in the menu bar for quick access
+• Simply rotate the timer dial to set an alarm
+• Peek at how much time is left with the menu bar icon
+• Get notified when your timer completes
+• Use the right mouse (or control-mouse) to make the snapping more precise
+• Right-click the menu to open Tick Task at login";
+
+"keywords" = "timer, task, focused, simple, pomodoro, countdown, interval, track, menu, menubar, time, blocking";

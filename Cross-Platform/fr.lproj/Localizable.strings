@@ -8,3 +8,17 @@
 "open_at_login" = "Ouvrir avec la session";
 "quit_ticktask" = "Quitter";
 "timer_completed_title" = "Tâche terminée";
+"simple" = "simple";
+"focused" = "concentré";
+"menubar" = "barre de menu";
+"timer" = "minuteur";
+"subtitle" = "Garder le temps simple";
+"promotional_text" = "Les minuteurs doivent être simples, nous avons donc créé Tick Task pour vous aider à garder une trace de votre temps.";
+"description" = "Caractéristiques:
+• Fait partie dans la barre de menu pour un accès rapide
+• Il suffit de tourner la minuterie pour régler une alarme
+• Regardez combien de temps il reste avec l'icône de la barre de menus
+• Recevez une notification lorsque votre minuterie est terminée
+• Utilisez la souris droite (ou la molette de commande) pour rendre la durée plus précise
+• Cliquez-droit, sur le menu pour ouvrir Tick Task lors de la connexion";
+"keywords" = "minuterie, tâche, concentré, simple, pomodoro, compte à rebours, intervalle, piste, menu";

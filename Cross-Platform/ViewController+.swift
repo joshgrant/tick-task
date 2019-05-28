@@ -35,8 +35,6 @@ extension ViewController
         label.stringValue = durationString(with: angle)
         // We only want to update this infrequently...
         statusItem?.button?.image = NSImage.statusItemDialWithRotation(angle: angle)
-        statusItemImageView?.image = NSImage.statusItemDialWithRotation(angle: angle, size: statusItemImageView?.bounds.size ?? CGSize(square: 22))
-        statusItemImageView?.image?.isTemplate = false
         #endif
     }
     

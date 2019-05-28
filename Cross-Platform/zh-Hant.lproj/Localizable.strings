@@ -8,3 +8,17 @@
 "open_at_login" = "在登入時打開"; // Dock.lg
 "quit_ticktask" = "結束"; // Dock.lg
 "timer_completed_title" = "任務完成"; // Google translate
+"simple" = "簡單";
+"focused" = "重點";
+"menubar" = "菜單欄";
+"timer" = "計時器";
+"subtitle" = "保持時間簡單";
+"promotional_text" = "定時器應該很簡單，所以我們創建了Tick Task來幫助跟踪你的時間。";
+"description" = "特徵：
+•住在菜單欄中以便快速訪問
+•只需旋轉定時器轉盤即可設置鬧鐘
+•使用菜單欄圖標查看剩餘時間
+•計時器完成時收到通知
+•使用鼠標右鍵（或控制鼠標）使捕捉更精確
+•右鍵單擊菜單以在登錄時打開“勾選任務”";
+"keywords" = "計時器，任務，集中，簡單，番茄鐘，倒計時，間隔，跟踪，菜單，菜單欄，時間，阻止";

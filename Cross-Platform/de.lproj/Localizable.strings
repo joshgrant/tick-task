@@ -8,3 +8,17 @@
 "open_at_login" = "Bei der Anmeldung öffnen";
 "quit_ticktask" = "Beenden";
 "timer_completed_title" = "Aufgabe erledigt";
+"simple" = "einfach";
+"focused" = "konzentriert";
+"menubar" = "menüleiste";
+"timer" = "timer";
+"subtitle" = "Zeit einfach halten";
+"promotional_text" = "Die Timer sollten einfach sein, deshalb haben wir Tick Task erstellt, um Ihre Zeit im Auge zu behalten.";
+"description" = "Eigenschaften:
+• Lebt in der Menüleiste für den schnellen Zugriff
+• Drehen Sie einfach den Timer, um einen Alarm einzustellen
+• Sehen Sie mit dem Menüleistensymbol nach, wie viel Zeit noch übrig ist
+• Lassen Sie sich benachrichtigen, wenn Ihr Timer abgelaufen ist
+• Verwenden Sie die rechte Maustaste (oder die Steuermaus), um die Dauer zu präzisieren
+• Klicken Sie mit der rechten Maustaste auf das Menü, um beim Anmelden das Kontrollkästchen Task zu öffnen";
+"keywords" = "timer, aufgabe, fokussiert, einfach, pomodoro, countdown, intervall, spur, menü, menüleiste, zeit, b";

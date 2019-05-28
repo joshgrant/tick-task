@@ -8,3 +8,17 @@
 "open_at_login" = "Apri al login"; // Dock
 "quit_ticktask" = "Esci"; // Dock
 "timer_completed_title" = "Compito completato";
+"simple" = "semplice";
+"focused" = "focalizzata";
+"menubar" = "barra dei menu";
+"timer" = "timer";
+"subtitle" = "Mantenere il tempo semplice";
+"promotional_text" = "I timer dovrebbero essere semplici, quindi abbiamo creato Tick Task per tenere traccia del tuo tempo.";
+"description" = "Caratteristiche:
+• Vive nella barra dei menu per un rapido accesso
+• Basta ruotare il quadrante del timer per impostare un allarme
+• Scopri quanto tempo rimane con l'icona della barra dei menu
+• Ricevi una notifica al termine del tuo timer
+• Usa il tasto destro del mouse (o il control-mouse) per rendere la durata più precisa
+• Fare clic con il tasto destro del mouse sul menu per aprire Tick Task al login";
+"keywords" = "timer, attività, concentrato, semplice, pomodoro, conto alla rovescia, intervallo, traccia, menu, ba";

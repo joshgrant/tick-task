@@ -8,3 +8,17 @@
 "open_at_login" = "Abrir no Início da Sessão";
 "quit_ticktask" = "Encerrar";
 "timer_completed_title" = "Tarefa completa";
+"simple" = "simples";
+"focused" = "focado";
+"menubar" = "barra de menu";
+"timer" = "cronômetro";
+"subtitle" = "Mantendo o tempo simples";
+"promotional_text" = "Os temporizadores devem ser simples, por isso criamos o Tick Task para ajudar a controlar o seu tempo.";
+"description" = "Características:
+• Vive na barra de menu para acesso rápido
+• Basta girar o dial do temporizador para definir um alarme
+• Espreite quanto tempo resta com o ícone da barra de menu
+• Seja notificado quando o seu temporizador terminar
+• Use o mouse direito (ou controle-mouse) para tornar a duração mais precisa
+• Clique com o botão direito do mouse no menu para abrir Tick Task no login";
+"keywords" = "timer, tarefa, focada, simples, pomodoro, contagem regressiva, intervalo, faixa, menu, menu, tempo";

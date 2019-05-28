@@ -636,6 +636,25 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
+                                        <menuItem title="Simple Window" keyEquivalent="1" id="0fm-Tu-foE" userLabel="Window 1">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="B8D-0N-5wS" kind="show" id="bwN-Qd-rLF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Focused Window" keyEquivalent="2" id="Cej-4Y-Rvc" userLabel="Window 2">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="JpV-eh-rbb" kind="show" id="dv0-bP-fHf"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Menubar Window" keyEquivalent="3" id="H9v-Pv-7AG" userLabel="Window 3">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="RAw-8A-8Pf" kind="show" id="VF7-4X-I0u"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Eoy-Yg-PKe"/>
                                         <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
                                             <connections>
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
@@ -688,23 +707,43 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="2560"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="EuN-yx-DUJ" kind="relationship" relationship="window.shadowedContentViewController" id="w1s-h5-w8R"/>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="rOJ-zH-Acu"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="-621" y="1009"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="3z5-iE-Qm4">
+            <objects>
+                <windowController id="JpV-eh-rbb" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="hrO-3q-x6r">
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="929" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="2560"/>
+                        <connections>
+                            <outlet property="delegate" destination="JpV-eh-rbb" id="ECF-1P-grZ"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Db2-gg-fYL" kind="relationship" relationship="window.shadowedContentViewController" id="TbK-0r-38r"/>
+                    </connections>
+                </windowController>
+                <customObject id="VmY-ou-1pa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-621" y="1521"/>
         </scene>
         <!--SimpleController-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="SimpleController" storyboardIdentifier="SimpleController" id="XfG-lQ-9wD" customClass="ViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SimpleController" storyboardIdentifier="SimpleController" id="XfG-lQ-9wD" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="720" height="450"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -761,6 +800,11 @@
                                                         <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9E-Yk-utR" customClass="DialView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </customView>
                                                     </subviews>
                                                     <constraints>
@@ -858,6 +902,9 @@
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.simpleText" id="dSm-Qy-Z8g"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
@@ -893,13 +940,16 @@
         <!--FocusedController-->
         <scene sceneID="HJB-Xt-jMI">
             <objects>
-                <viewController title="FocusedController" storyboardIdentifier="FocusedController" id="Db2-gg-fYL" customClass="ViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="FocusedController" storyboardIdentifier="FocusedController" id="Db2-gg-fYL" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="rNm-qo-hkl">
                         <rect key="frame" x="0.0" y="0.0" width="720" height="450"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="nFQ-1g-XNP" customClass="GradientView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="720" height="450"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="720" id="GJ3-bN-zYf"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startingColor">
                                         <color key="value" red="1" green="0.91296576237882843" blue="0.4275203339041096" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1033,7 +1083,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Agd-6X-9Pf">
                                             <rect key="frame" x="3" y="0.0" width="22" height="22"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StatusBarDial_0_22" id="xVC-kX-ZvL"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StatusBarDial_25_22" id="xVC-kX-ZvL"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1058,6 +1108,9 @@
                                     <color key="textColor" white="0.0" alpha="0.98255565069999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="Db2-gg-fYL" name="value" keyPath="self.focusedText" id="p4j-TD-3Io"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
@@ -1065,7 +1118,7 @@
                             <constraint firstAttribute="trailing" secondItem="nFQ-1g-XNP" secondAttribute="trailing" id="8zf-jf-wgu"/>
                             <constraint firstItem="GU5-GG-BOB" firstAttribute="leading" secondItem="rNm-qo-hkl" secondAttribute="leading" id="9uh-OH-c0m"/>
                             <constraint firstAttribute="trailing" secondItem="GU5-GG-BOB" secondAttribute="trailing" id="HqZ-77-Eof"/>
-                            <constraint firstItem="5MW-Tn-oU6" firstAttribute="leading" secondItem="rNm-qo-hkl" secondAttribute="leading" constant="120" id="IfZ-b2-Sye"/>
+                            <constraint firstItem="5MW-Tn-oU6" firstAttribute="leading" secondItem="rNm-qo-hkl" secondAttribute="leading" priority="250" constant="120" id="IfZ-b2-Sye"/>
                             <constraint firstAttribute="trailing" secondItem="QcJ-Fm-1hE" secondAttribute="trailing" constant="120" id="Ldc-gv-TeF"/>
                             <constraint firstItem="nFQ-1g-XNP" firstAttribute="leading" secondItem="rNm-qo-hkl" secondAttribute="leading" id="NAa-a5-88l"/>
                             <constraint firstAttribute="bottom" secondItem="nFQ-1g-XNP" secondAttribute="bottom" id="TUA-NI-TF9"/>
@@ -1093,7 +1146,7 @@
         <!--MenubarController-->
         <scene sceneID="Zy8-y6-kYF">
             <objects>
-                <viewController title="MenubarController" storyboardIdentifier="MenubarController" id="EuN-yx-DUJ" customClass="ViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MenubarController" storyboardIdentifier="MenubarController" id="EuN-yx-DUJ" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="788-dT-sBX">
                         <rect key="frame" x="0.0" y="0.0" width="720" height="450"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1114,6 +1167,9 @@
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ysz-ZO-xdU" customClass="GradientView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
                                 <rect key="frame" x="360" y="0.0" width="360" height="450"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="WPe-rq-5lH"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startingColor">
                                         <color key="value" red="1" green="0.28825984589999998" blue="0.3001221818" alpha="1" colorSpace="calibratedRGB"/>
@@ -1149,9 +1205,9 @@
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RhN-Y1-Lrc">
                                                     <rect key="frame" x="2" y="118" width="114" height="17"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="21m 18s" id="Sx2-1f-7Hm">
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="12m 24s" id="Sx2-1f-7Hm">
                                                         <font key="font" metaFont="system"/>
-                                                        <color key="textColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
@@ -1165,11 +1221,8 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="angle">
-                                                                    <real key="value" value="0.0"/>
-                                                                </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                                                    <real key="value" value="20.34"/>
+                                                                    <real key="value" value="12.4"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="dialState">
                                                                     <integer key="value" value="1"/>
@@ -1237,7 +1290,7 @@
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nD6-Zc-6G9">
                                                 <rect key="frame" x="3" y="0.0" width="22" height="22"/>
-                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StatusBarDial_0_22" id="dxI-I7-rUc"/>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StatusBarDial_12_22" id="dxI-I7-rUc"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -1269,7 +1322,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SHO-RR-IYP">
                                             <rect key="frame" x="3" y="0.0" width="22" height="22"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StatusBarDial_0_22" id="gBB-7M-3mT"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StatusBarDial_12_22" id="gBB-7M-3mT"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1284,7 +1337,7 @@
                                 <color key="fillColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Af-Wc-x1P">
-                                <rect key="frame" x="459" y="189" width="143" height="72"/>
+                                <rect key="frame" x="418" y="189" width="143" height="72"/>
                                 <shadow key="shadow" blurRadius="4">
                                     <size key="offset" width="0.0" height="2"/>
                                     <color key="color" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1294,30 +1347,36 @@
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="EuN-yx-DUJ" name="value" keyPath="self.timerText" id="gfj-5h-9T3"/>
+                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3VR-uL-s4M">
-                                <rect key="frame" x="118" y="189" width="243" height="72"/>
+                                <rect key="frame" x="152" y="203" width="150" height="44"/>
                                 <shadow key="shadow" blurRadius="4">
                                     <size key="offset" width="0.0" height="2"/>
                                     <color key="color" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </shadow>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="menubar" id="9rW-cP-tJp">
-                                    <font key="font" metaFont="systemSemibold" size="60"/>
+                                    <font key="font" metaFont="systemSemibold" size="36"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="EuN-yx-DUJ" name="value" keyPath="self.menubarText" id="6rC-LP-gHj"/>
+                                </connections>
                             </textField>
                             <box boxType="custom" cornerRadius="5" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="i0O-hF-1bC">
-                                <rect key="frame" x="78" y="384" width="162" height="48"/>
+                                <rect key="frame" x="83" y="384" width="157" height="48"/>
                                 <view key="contentView" id="Q2O-Yr-kBX">
-                                    <rect key="frame" x="1" y="1" width="160" height="46"/>
+                                    <rect key="frame" x="1" y="1" width="155" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView wantsLayer="YES" appearanceType="vibrantDark" blendingMode="withinWindow" material="menu" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="Qy0-Ag-PVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="160" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="155" height="46"/>
                                             <subviews>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="H2d-ar-abs" customClass="GradientView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="23" width="160" height="19"/>
+                                                    <rect key="frame" x="0.0" y="23" width="155" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="Izz-12-BpQ"/>
                                                     </constraints>
@@ -1334,33 +1393,40 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </customView>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vFS-bl-w3W">
-                                                    <rect key="frame" x="20" y="25" width="142" height="18"/>
+                                                    <rect key="frame" x="20" y="25" width="95" height="18"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Open at Login" id="idH-kc-dUy">
                                                         <font key="font" metaFont="system" size="14"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="EuN-yx-DUJ" name="value" keyPath="self.openText" id="r2N-69-lrM"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="02g-Nk-pmQ">
                                                     <rect key="frame" x="20" y="3" width="91" height="18"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Quit TickTask" id="ddN-KG-C13">
                                                         <font key="font" metaFont="system" size="14"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="EuN-yx-DUJ" name="value" keyPath="self.quitText" id="g31-d7-LDi"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ecj-td-VT7">
-                                                    <rect key="frame" x="126" y="3" width="27" height="18"/>
+                                                    <rect key="frame" x="121" y="3" width="27" height="18"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="⌘Q" id="8LJ-BQ-ECT">
                                                         <font key="font" metaFont="system" size="14"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ecj-td-VT7" firstAttribute="bottom" secondItem="02g-Nk-pmQ" secondAttribute="bottom" id="0HX-s3-9co"/>
-                                                <constraint firstItem="ecj-td-VT7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="02g-Nk-pmQ" secondAttribute="trailing" id="1gE-gZ-s1z"/>
+                                                <constraint firstItem="ecj-td-VT7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="02g-Nk-pmQ" secondAttribute="trailing" constant="10" id="1gE-gZ-s1z"/>
+                                                <constraint firstItem="ecj-td-VT7" firstAttribute="leading" secondItem="vFS-bl-w3W" secondAttribute="trailing" constant="10" id="9xx-mY-9o0"/>
                                                 <constraint firstAttribute="trailing" secondItem="ecj-td-VT7" secondAttribute="trailing" constant="9" id="Byn-a4-L6L"/>
                                                 <constraint firstItem="vFS-bl-w3W" firstAttribute="top" secondItem="Qy0-Ag-PVc" secondAttribute="top" constant="3" id="HXy-KF-Ac5"/>
                                                 <constraint firstItem="02g-Nk-pmQ" firstAttribute="leading" secondItem="Qy0-Ag-PVc" secondAttribute="leading" constant="22" id="KoE-1M-1XU"/>
@@ -1368,7 +1434,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="02g-Nk-pmQ" secondAttribute="bottom" constant="3" id="Uhf-T9-D2R"/>
                                                 <constraint firstItem="02g-Nk-pmQ" firstAttribute="top" secondItem="vFS-bl-w3W" secondAttribute="bottom" constant="4" id="X3s-Sm-duN"/>
                                                 <constraint firstItem="ecj-td-VT7" firstAttribute="top" secondItem="02g-Nk-pmQ" secondAttribute="top" id="Xi4-4Q-l4M"/>
-                                                <constraint firstAttribute="trailing" secondItem="vFS-bl-w3W" secondAttribute="trailing" id="eNU-LO-DNm"/>
                                                 <constraint firstItem="H2d-ar-abs" firstAttribute="centerY" secondItem="vFS-bl-w3W" secondAttribute="centerY" constant="2" id="kTk-9x-lzm"/>
                                                 <constraint firstAttribute="trailing" secondItem="H2d-ar-abs" secondAttribute="trailing" id="plw-Hw-1MY"/>
                                                 <constraint firstItem="H2d-ar-abs" firstAttribute="leading" secondItem="Qy0-Ag-PVc" secondAttribute="leading" id="tuC-mu-JA4"/>
@@ -1396,34 +1461,34 @@
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="8oZ-SM-Clo"/>
-                                    <constraint firstAttribute="width" constant="162" id="9he-8g-t6U"/>
                                 </constraints>
                                 <color key="borderColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nW2-tc-Qpp" secondAttribute="bottom" constant="10" id="0lf-4T-3Ya"/>
+                            <constraint firstItem="Ysz-ZO-xdU" firstAttribute="leading" secondItem="3VR-uL-s4M" secondAttribute="trailing" constant="60" id="1sO-2D-dNg"/>
                             <constraint firstAttribute="bottom" secondItem="OXs-oY-aB6" secondAttribute="bottom" id="5qm-Fy-oxs"/>
                             <constraint firstAttribute="bottom" secondItem="Ysz-ZO-xdU" secondAttribute="bottom" id="8jP-gs-No6"/>
                             <constraint firstItem="fi4-jR-7Vs" firstAttribute="top" secondItem="788-dT-sBX" secondAttribute="top" id="AHP-NV-jOX"/>
                             <constraint firstItem="gn6-kB-aIJ" firstAttribute="top" secondItem="788-dT-sBX" secondAttribute="top" id="CP9-eX-nDK"/>
                             <constraint firstItem="Wxf-gj-5a0" firstAttribute="top" secondItem="788-dT-sBX" secondAttribute="top" id="EEe-10-CGv"/>
                             <constraint firstItem="OXs-oY-aB6" firstAttribute="width" secondItem="Ysz-ZO-xdU" secondAttribute="width" id="IZl-jt-d7u"/>
+                            <constraint firstItem="3VR-uL-s4M" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="788-dT-sBX" secondAttribute="leading" constant="20" id="JGD-Nu-ulv"/>
                             <constraint firstAttribute="trailing" secondItem="gn6-kB-aIJ" secondAttribute="trailing" id="Osh-PA-62w"/>
                             <constraint firstItem="gn6-kB-aIJ" firstAttribute="leading" secondItem="788-dT-sBX" secondAttribute="leading" id="Pwg-7N-ftz"/>
                             <constraint firstItem="Ysz-ZO-xdU" firstAttribute="top" secondItem="788-dT-sBX" secondAttribute="top" id="Q4R-1F-m93"/>
                             <constraint firstAttribute="trailing" secondItem="Ysz-ZO-xdU" secondAttribute="trailing" id="QIh-Q5-Frz"/>
                             <constraint firstItem="i0O-hF-1bC" firstAttribute="top" secondItem="gn6-kB-aIJ" secondAttribute="bottom" constant="-4" id="gWa-wE-dmW"/>
-                            <constraint firstItem="3Af-Wc-x1P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3VR-uL-s4M" secondAttribute="trailing" id="hPd-kS-O3F"/>
                             <constraint firstItem="nW2-tc-Qpp" firstAttribute="top" secondItem="gn6-kB-aIJ" secondAttribute="bottom" constant="-4" id="i8c-Lj-Pj5"/>
-                            <constraint firstItem="3VR-uL-s4M" firstAttribute="leading" secondItem="788-dT-sBX" secondAttribute="leading" constant="120" id="j6y-am-6wq"/>
                             <constraint firstAttribute="trailing" secondItem="fi4-jR-7Vs" secondAttribute="trailing" constant="120" id="kF0-cw-cYM"/>
                             <constraint firstItem="i0O-hF-1bC" firstAttribute="trailing" secondItem="Wxf-gj-5a0" secondAttribute="trailing" id="mut-TY-24g"/>
-                            <constraint firstAttribute="trailing" secondItem="3Af-Wc-x1P" secondAttribute="trailing" constant="120" id="pbJ-B0-nXU"/>
                             <constraint firstItem="nW2-tc-Qpp" firstAttribute="trailing" secondItem="fi4-jR-7Vs" secondAttribute="trailing" constant="1" id="qoH-Vl-mub"/>
                             <constraint firstItem="3Af-Wc-x1P" firstAttribute="centerY" secondItem="788-dT-sBX" secondAttribute="centerY" id="r9Y-ys-2ZK"/>
+                            <constraint firstItem="3Af-Wc-x1P" firstAttribute="leading" secondItem="OXs-oY-aB6" secondAttribute="trailing" constant="60" id="rM7-sl-b3H"/>
                             <constraint firstItem="3VR-uL-s4M" firstAttribute="centerY" secondItem="788-dT-sBX" secondAttribute="centerY" id="t1m-9p-Q36"/>
                             <constraint firstItem="Ysz-ZO-xdU" firstAttribute="leading" secondItem="OXs-oY-aB6" secondAttribute="trailing" id="uC6-MJ-YMo"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Af-Wc-x1P" secondAttribute="trailing" id="uLX-Fy-873"/>
                             <constraint firstItem="OXs-oY-aB6" firstAttribute="top" secondItem="788-dT-sBX" secondAttribute="top" id="v62-6N-ALS"/>
                             <constraint firstItem="Ysz-ZO-xdU" firstAttribute="leading" secondItem="Wxf-gj-5a0" secondAttribute="trailing" constant="120" id="wEd-mQ-JiN"/>
                             <constraint firstItem="OXs-oY-aB6" firstAttribute="leading" secondItem="788-dT-sBX" secondAttribute="leading" id="xaL-1X-K4R"/>
@@ -1438,11 +1503,34 @@
                     </connections>
                 </viewController>
                 <customObject id="I8G-u9-jMU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="d5n-Br-WHc"/>
             </objects>
             <point key="canvasLocation" x="75" y="2034"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="YGG-UB-Cg0">
+            <objects>
+                <windowController id="RAw-8A-8Pf" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="i3A-hV-bHm">
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="929" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="2560"/>
+                        <connections>
+                            <outlet property="delegate" destination="RAw-8A-8Pf" id="anT-nk-vvY"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="EuN-yx-DUJ" kind="relationship" relationship="window.shadowedContentViewController" id="iQN-6e-R8Z"/>
+                    </connections>
+                </windowController>
+                <customObject id="SHR-LZ-mwf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-621" y="2034"/>
         </scene>
     </scenes>
     <resources>
         <image name="StatusBarDial_0_22" width="22" height="22"/>
+        <image name="StatusBarDial_12_22" width="22" height="22"/>
+        <image name="StatusBarDial_25_22" width="22" height="22"/>
     </resources>
 </document>

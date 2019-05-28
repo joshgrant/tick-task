@@ -8,12 +8,11 @@
 
 import Cocoa
 
-class ViewController: NSViewController
+class ViewController: NSViewController, DialViewDelegate
 {
     // MARK: Shared Properties
     var statusItem: NSStatusItem?
-    @IBOutlet weak var statusItemImageView: NSImageView?
-
+    
     // MARK: Interface Outlets
     @IBOutlet weak var stackView: NSStackView!
     @IBOutlet weak var dialView: DialView!
@@ -29,20 +28,15 @@ class ViewController: NSViewController
         
         super.viewDidLoad()
     }
-}
-
-// MARK: Dial View Delegate
-extension ViewController: DialViewDelegate
-{
+    
+    // MARK: Dial View Delegate
+    
     func dialViewMouseEvent(_ event: NSEvent)
     {
         handlePanGesture(with: event)
     }
     
-    func dialViewAngleDurationUpdate(angle: CGFloat)
-    {
-        self.statusItemImageView?.image = NSImage.statusItemDialWithRotation(angle: angle)
-    }
+    func dialViewAngleDurationUpdate(angle: CGFloat) {}
 }
 
 // MARK: Gesture
@@ -57,7 +51,7 @@ extension ViewController
         let origin = dialView.frame.center
         let snap: CGFloat = event.rightMouseOrModifierKey ? 60 : 12
         let angle: CGFloat = viewLocation.angleFromPoint(point: origin, snapTo: snap)
-
+        
         switch event.type
         {
         case .leftMouseDown, .rightMouseDown:

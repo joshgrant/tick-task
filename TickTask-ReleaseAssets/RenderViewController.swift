@@ -77,6 +77,8 @@ class RenderViewController: ViewController
             viewWidth.constant = CGFloat(SizeClass.iPad.rawValue.width / 2)
             viewHeight.constant = CGFloat(SizeClass.iPad.rawValue.height / 2)
         }
+        
+        super.mouseUp(with: event)
     }
     
     override func viewDidLoad()

@@ -5,7 +5,6 @@
 //  Created by Joshua Grant on 5/9/19.
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
-
 import Cocoa
 
 protocol DialViewDelegate

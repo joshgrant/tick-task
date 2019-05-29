@@ -18,6 +18,9 @@ extension ViewController
     static var maxMinutes: CGFloat = 60.0
     static var numDivisions: Int = 12 // Corresponds to 5 minute intervals
     
+    // This timer helps when the user drags out of the view (on mac)...
+    static var inactivityTimer: Timer?
+    
     static var countdownRemaining: TimeInterval {
         get {
             return (start != nil) ? Date().timeIntervalSince(start!) : TimeInterval.zero
@@ -35,6 +38,9 @@ extension ViewController
         ViewController.timer?.invalidate()
         ViewController.timer = nil
         ViewController.start = nil
+        
+        ViewController.inactivityTimer?.invalidate()
+        ViewController.inactivityTimer = nil
         
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
@@ -63,6 +69,12 @@ extension ViewController
         ViewController.timer?.fire()
         
         createNotification()
+    }
+    
+    func startInactivityTimer()
+    {
+        ViewController.inactivityTimer = Timer(timeInterval: 2.0, target: self, selector: #selector(inactivityTimerTriggered(timer:)), userInfo: nil, repeats: false)
+        RunLoop.main.add(ViewController.inactivityTimer!, forMode: .common)
     }
     
     @objc func timerUpdated(_ timer: Timer)

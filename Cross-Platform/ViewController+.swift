@@ -45,6 +45,8 @@ extension ViewController
     
     func userEndedDragging(angle: CGFloat)
     {
+        print("Hello")
+        
         // Setting the angle like this sucks...
         if angle.distance(to: -CGFloat.pi * 2) == 0
         {

@@ -19,17 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {        
         return true
     }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
-    {
-//        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-//        let token = tokenParts.joined()
-//        print("Device Token: \(token)")
-    //03150f3d03afb6f5ad31b730cc8b8bffda01b555bb4b62ea2ab5d46f014eacbb
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
-    {
-        debugPrint("Failed to register: \(error)")
-    }
+//
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+//    {
+////        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+////        let token = tokenParts.joined()
+////        print("Device Token: \(token)")
+//    //03150f3d03afb6f5ad31b730cc8b8bffda01b555bb4b62ea2ab5d46f014eacbb
+//    }
+//
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
+//    {
+//        debugPrint("Failed to register: \(error)")
+//    }
 }

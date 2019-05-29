@@ -12,7 +12,6 @@ class ViewController: NSViewController, DialViewDelegate
 {
     // MARK: Properties
     var statusItem: NSStatusItem?
-    var lastAngle: CGFloat?
     
     // MARK: Interface Outlets
     @IBOutlet weak var stackView: NSStackView!
@@ -53,7 +52,7 @@ extension ViewController
         let snap: CGFloat = event.rightMouseOrModifierKey ? 60 : 12
         let angle: CGFloat = viewLocation.angleFromPoint(point: origin, snapTo: snap)
         
-        lastAngle = angle
+        ViewController.lastAngle = angle
         
         invalidateTimersAndDates()
         
@@ -70,14 +69,6 @@ extension ViewController
             userEndedDragging(angle: angle)
         default:
             debugPrint("Event type not handled")
-        }
-    }
-    
-    @objc func inactivityTimerTriggered(timer: Timer)
-    {
-        if let angle = lastAngle
-        {
-            userEndedDragging(angle: angle)
         }
     }
 }

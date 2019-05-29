@@ -32,7 +32,6 @@ class DialRenderer: Renderer
             let drawingData = DrawingData(rect: bounds)
             
             guard let context = NSGraphicsContext.current?.cgContext else {
-                debugPrint("No context")
                 return false
             }
             

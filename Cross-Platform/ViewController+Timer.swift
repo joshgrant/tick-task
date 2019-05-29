@@ -17,6 +17,7 @@ extension ViewController
     static var fullDuration: TimeInterval = 0
     static var maxMinutes: CGFloat = 60.0
     static var numDivisions: Int = 12 // Corresponds to 5 minute intervals
+    static var lastAngle: CGFloat?
     
     // This timer helps when the user drags out of the view (on mac)...
     static var inactivityTimer: Timer?
@@ -85,6 +86,14 @@ extension ViewController
         {
             invalidateTimersAndDates()
             configureInterfaceElements(state: .inactive, angle: -CGFloat.pi * 2)
+        }
+    }
+    
+    @objc func inactivityTimerTriggered(timer: Timer)
+    {
+        if let angle = ViewController.lastAngle
+        {
+            userEndedDragging(angle: angle)
         }
     }
 }

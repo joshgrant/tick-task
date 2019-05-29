@@ -9,18 +9,14 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-
+class AppDelegate: NSObject, NSApplicationDelegate
+{
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
-        // Insert code here to initialize your application
-        
-        print(StatusBarDialRenderer.path)
-        
+//        print(StatusBarDialRenderer.path)
 //        StatusBarDialRenderer.render()
 //        DialRenderer.render()
-        
-        print("Done")
+//        print("Done")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

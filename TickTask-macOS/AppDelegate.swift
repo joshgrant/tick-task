@@ -49,35 +49,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
     }
 }
 
-extension AppDelegate
-{
-    fileprivate func prerenderStatusBarIcon()
-    {
-        let angle25Minutes = TimeInterval(exactly: 60 * 25)!.toAngle()
-        let angle30Minutes = TimeInterval(exactly: 60 * 30)!.toAngle()
-        
-        let images: [String: NSImage] = [
-            "0_22" : NSImage.statusItemDialWithRotation(angle: 0, size: CGSize(square: 22)),
-            "0_44" :  NSImage.statusItemDialWithRotation(angle: 0, size: CGSize(square: 44)),
-            "0_66" : NSImage.statusItemDialWithRotation(angle: 0, size: CGSize(square: 66)),
-            "25_22" : NSImage.statusItemDialWithRotation(angle: angle25Minutes, size: CGSize(square: 22)),
-            "25_44" :  NSImage.statusItemDialWithRotation(angle: angle25Minutes, size: CGSize(square: 44)),
-            "25_66" : NSImage.statusItemDialWithRotation(angle: angle25Minutes, size: CGSize(square: 66)),
-            "30_22" : NSImage.statusItemDialWithRotation(angle: angle30Minutes, size: CGSize(square: 22)),
-            "30_44" :  NSImage.statusItemDialWithRotation(angle: angle30Minutes, size: CGSize(square: 44)),
-            "30_66" : NSImage.statusItemDialWithRotation(angle: angle30Minutes, size: CGSize(square: 66)),
-        ]
-        
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
-        print(path)
-        
-        for (name, image) in images
-        {
-            FileManager.default.createFile(atPath: "\(path)/\(name).tiff", contents: image.tiffRepresentation, attributes: nil)
-        }
-    }
-}
-
 extension AppDelegate: RightClickViewDelegate
 {
     func rightMouseEvent(with event: NSEvent)

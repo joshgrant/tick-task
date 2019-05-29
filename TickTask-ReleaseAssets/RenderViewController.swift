@@ -87,8 +87,6 @@ class RenderViewController: ViewController
         
         guard let identifier = self.identifier?.rawValue else { return }
         
-        print(identifier)
-        
         switch identifier
         {
         case "iOS_Simple", "iOS_Timer":

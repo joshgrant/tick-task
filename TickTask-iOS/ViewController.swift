@@ -128,8 +128,8 @@ extension ViewController: UIGestureRecognizerDelegate
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
     {
         let location = gestureRecognizer.location(in: dialView)
-        print(location, dialView.bounds.center, dialView.bounds.width)
-        print(location.distance(to: dialView.bounds.center))
+//        print(location, dialView.bounds.center, dialView.bounds.width)
+//        print(location.distance(to: dialView.bounds.center))
         let radius = (dialView.bounds.width / 2)
         if location.distance(to: dialView.bounds.center) > radius
         {

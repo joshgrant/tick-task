@@ -12,6 +12,8 @@
 "focused" = "enfocado";
 "menubar" = "barra de menús";
 "timer" = "minutero";
+"now" = "ahora";
+"mobile" = "móvil";
 "subtitle" = "Mantener el tiempo simple";
 "promotional_text" = "Los temporizadores deben ser simples, por lo que creamos Tick Task para ayudar a mantener un registro de su tiempo.";
 "description" = "Caracteristicas:

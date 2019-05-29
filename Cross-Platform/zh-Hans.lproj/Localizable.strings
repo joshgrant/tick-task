@@ -12,6 +12,8 @@
 "focused" = "重点";
 "menubar" = "菜单栏";
 "timer" = "计时器";
+"now" = "现在";
+"mobile" = "移动";
 "subtitle" = "保持时间简单";
 "promotional_text" = "定时器应该很简单，所以我们创建了Tick Task来帮助跟踪你的时间。";
 "description" = "特征：

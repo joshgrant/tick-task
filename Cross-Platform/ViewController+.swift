@@ -14,7 +14,7 @@ import Cocoa
 
 extension ViewController
 {
-    func durationString(with angle: CGFloat) -> String
+    static func durationString(with angle: CGFloat) -> String
     {
         let dateComponents = angle.toInterval().dateComponents
         return DateComponentsFormatter.currentDurationFormatter.string(from: dateComponents) ?? ""
@@ -32,7 +32,7 @@ extension ViewController
         label.text = durationString(with: angle)
         #elseif os(OSX)
         dialView.setNeedsDisplay(dialView.bounds)
-        label.stringValue = durationString(with: angle)
+        label.stringValue = ViewController.durationString(with: angle)
         // We only want to update this infrequently...
         statusItem?.button?.image = NSImage.statusItemDialWithRotation(angle: angle)
         #endif

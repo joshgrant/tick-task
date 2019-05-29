@@ -34,17 +34,32 @@ class RenderViewController: ViewController
         return "quit_ticktask".localized
     }
     
+    @objc var mobileText: String {
+        return "mobile".localized
+    }
+    
+    @objc var timesUpText: String {
+        return "timer_completed_title".localized
+    }
+    
+    @objc var durationText: String = ViewController.durationString(with: 0)
+    
+    @objc var nowText: String {
+        return "now".localized
+    }
+    
     @IBOutlet weak var statusItemImageView: NSImageView?
+    
+    @IBOutlet var viewWidth: NSLayoutConstraint!
+    @IBOutlet var viewHeight: NSLayoutConstraint!
     
     override func dialViewAngleDurationUpdate(angle: CGFloat)
     {
+        self.durationText = ViewController.durationString(with: angle)
         self.statusItemImageView?.image = NSImage.statusItemDialWithRotation(angle: angle)
         self.statusItemImageView?.image?.isTemplate = false
-    }
-    
-    override func keyDown(with event: NSEvent)
-    {
-        //
-        
+//        
+//        viewWidth.constant = 1000
+//        view.needsLayout = true
     }
 }

@@ -1,4 +1,4 @@
-//
+
 //  NSView+.swift
 //  TickTask-macOS
 //
@@ -15,6 +15,7 @@ extension NSView
             return layer?.cornerRadius ?? 0
         }
         set {
+            self.wantsLayer = true
             layer?.cornerRadius = newValue
             layer?.masksToBounds = newValue > 0
         }
@@ -25,6 +26,7 @@ extension NSView
             return layer?.borderWidth ?? 0
         }
         set {
+            self.wantsLayer = true
             layer?.borderWidth = newValue
         }
     }
@@ -34,53 +36,48 @@ extension NSView
             return NSColor(cgColor: layer?.borderColor ?? CGColor.clear) ?? NSColor.clear
         }
         set {
+            self.wantsLayer = true
             layer?.borderColor = newValue.cgColor
         }
     }
     
-    @IBInspectable var shadowColor: NSColor {
-        get {
-            return NSColor(cgColor: layer?.shadowColor ?? .clear) ?? .clear
-        }
-        set {
-            setShadowPath()
-            layer?.shadowColor = newValue.cgColor
-        }
-    }
-    
-    @IBInspectable var shadowOffset: CGSize {
-        get {
-            return layer?.shadowOffset ?? CGSize.zero
-        }
-        set {
-            setShadowPath()
-            layer?.shadowOffset = newValue
-        }
-    }
-    
-    @IBInspectable var shadowBlur: CGFloat {
-        get {
-            return layer?.shadowRadius ?? 0
-        }
-        set {
-            setShadowPath()
-            layer?.shadowRadius = newValue
-        }
-    }
-    
-    @IBInspectable var backgroundColor: NSColor {
-        get {
-            return NSColor(cgColor: layer?.backgroundColor ?? .clear) ?? .clear
-        }
-        set {
-            layer?.backgroundColor = newValue.cgColor
-        }
-    }
+//    @IBInspectable var shadowColor: NSColor {
+//        get {
+//            return NSColor(cgColor: layer?.shadowColor ?? .clear) ?? .clear
+//        }
+//        set {
+//            setShadowPath()
+//            self.wantsLayer = true
+//            layer?.shadowColor = newValue.cgColor
+//        }
+//    }
+//    
+//    @IBInspectable var shadowOffset: CGSize {
+//        get {
+//            return layer?.shadowOffset ?? CGSize.zero
+//        }
+//        set {
+//            setShadowPath()
+//            self.wantsLayer = true
+//            layer?.shadowOffset = newValue
+//        }
+//    }
+//    
+//    @IBInspectable var shadowBlur: CGFloat {
+//        get {
+//            return layer?.shadowRadius ?? 0
+//        }
+//        set {
+//            setShadowPath()
+//            self.wantsLayer = true
+//            layer?.shadowRadius = newValue
+//        }
+//    }
     
     func setShadowPath()
     {
-        if layer?.shadowPath == nil
-        {
+//        if layer?.shadowPath == nil
+//        {
             if let radius = layer?.cornerRadius, radius > 0
             {
                 layer?.shadowPath = NSBezierPath(roundedRect: bounds, xRadius: radius, yRadius: radius).cgPath
@@ -89,7 +86,7 @@ extension NSView
             {
                 layer?.shadowPath = NSBezierPath(rect: bounds).cgPath
             }
-        }
+//        }
     }
     
     var renderImage: NSImage {

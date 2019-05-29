@@ -17,6 +17,9 @@
 		B54DCE5222873871000EC5BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE5422873871000EC5BB /* Localizable.strings */; };
 		B58FF1EC228C327A00922A69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF1EB228C327A00922A69 /* AppDelegate.swift */; };
 		B58FF1EE228C327A00922A69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF1ED228C327A00922A69 /* ViewController.swift */; };
+		B5905570229EA55E001C57AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B52273D72297C50800B00C95 /* Assets.xcassets */; };
+		B59958D1229E78DB00C0019D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59958B4229E738B00C0019D /* GradientView.swift */; };
+		B59958D3229E83E600C0019D /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59958D2229E83E600C0019D /* BackgroundView.swift */; };
 		B59C1F5122870B32000B0BA2 /* TickTask-macOSLauncher.app in Copy Helper App */ = {isa = PBXBuildFile; fileRef = B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5A18BDE229D8A2400A2237A /* RenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A18BDD229D8A2400A2237A /* RenderViewController.swift */; };
 		B5BB041022846294008C8493 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB040F22846294008C8493 /* DialView.swift */; };
@@ -144,6 +147,8 @@
 		B58FF1ED228C327A00922A69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B58FF1F7228C327B00922A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58FF21E228C402300922A69 /* TickTask-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TickTask-iOS.entitlements"; sourceTree = "<group>"; };
+		B59958B4229E738B00C0019D /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		B59958D2229E83E600C0019D /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B5A18BDD229D8A2400A2237A /* RenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderViewController.swift; sourceTree = "<group>"; };
 		B5BB040F22846294008C8493 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		B5CEA8A0229AE43A008DB140 /* FaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
@@ -278,6 +283,7 @@
 				B5CEA8A0229AE43A008DB140 /* FaceView.swift */,
 				B58FF1EB228C327A00922A69 /* AppDelegate.swift */,
 				B58FF1ED228C327A00922A69 /* ViewController.swift */,
+				B59958B4229E738B00C0019D /* GradientView.swift */,
 				B5CEA920229D0E7C008DB140 /* LaunchScreen.storyboard */,
 				B5CEA921229D0E7C008DB140 /* Main.storyboard */,
 				B58FF1F7228C327B00922A69 /* Info.plist */,
@@ -313,6 +319,7 @@
 				B5CEA996229D1D27008DB140 /* StatusBarDialRenderer.swift */,
 				B5CEA998229D1D3E008DB140 /* DialRenderer.swift */,
 				B5CEA9A4229D3F1F008DB140 /* GradientView.swift */,
+				B59958D2229E83E600C0019D /* BackgroundView.swift */,
 			);
 			path = "TickTask-ReleaseAssets";
 			sourceTree = "<group>";
@@ -573,6 +580,7 @@
 			files = (
 				B5CEA8FE229D0CF1008DB140 /* Assets.xcassets in Resources */,
 				B5CEA909229D0D23008DB140 /* Localizable.strings in Resources */,
+				B5905570229EA55E001C57AC /* Assets.xcassets in Resources */,
 				B5CEA901229D0CF1008DB140 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +646,7 @@
 				B5CEA974229D0F28008DB140 /* DialState.swift in Sources */,
 				B5CEA95F229D0F28008DB140 /* CGSize+.swift in Sources */,
 				B58FF1EC228C327A00922A69 /* AppDelegate.swift in Sources */,
+				B59958D1229E78DB00C0019D /* GradientView.swift in Sources */,
 				B5CEA977229D0F28008DB140 /* DateComponentsFormatter+.swift in Sources */,
 				B5CEA8A1229AE43A008DB140 /* FaceView.swift in Sources */,
 				B5CEA96E229D0F28008DB140 /* Border.swift in Sources */,
@@ -676,6 +685,7 @@
 				B5CEA987229D0F28008DB140 /* Circle.swift in Sources */,
 				B5CEA948229D0F28008DB140 /* String+.swift in Sources */,
 				B5CEA997229D1D27008DB140 /* StatusBarDialRenderer.swift in Sources */,
+				B59958D3229E83E600C0019D /* BackgroundView.swift in Sources */,
 				B5CEA9AB229D5FC6008DB140 /* RightClickView.swift in Sources */,
 				B5CEA969229D0F28008DB140 /* DialShape.swift in Sources */,
 				B5CEA995229D11CE008DB140 /* Renderer.swift in Sources */,

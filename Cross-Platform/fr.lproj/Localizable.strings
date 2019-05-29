@@ -12,6 +12,8 @@
 "focused" = "concentré";
 "menubar" = "barre de menu";
 "timer" = "minuteur";
+"now" = "à présent";
+"mobile" = "mobile";
 "subtitle" = "Garder le temps simple";
 "promotional_text" = "Les minuteurs doivent être simples, nous avons donc créé Tick Task pour vous aider à garder une trace de votre temps.";
 "description" = "Caractéristiques:

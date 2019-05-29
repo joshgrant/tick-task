@@ -12,6 +12,8 @@
 "focused" = "focused";
 "menubar" = "menubar";
 "timer" = "timer";
+"now" = "now";
+"mobile" = "mobile";
 "subtitle" = "Keeping time simple";
 "promotional_text" = "Timers should be simple, so we created Tick Task to help keep track of your time.";
 "description" = "Features:

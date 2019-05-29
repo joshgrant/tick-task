@@ -61,12 +61,28 @@ struct Color
                        brightness: brightness,
                        alpha: alpha)
     }
+    
+    init(color: UIColor)
+    {
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        
+        self.hue = hue
+        self.saturation = saturation
+        self.brightness = brightness
+        self.alpha = alpha
+    }
+    
     #elseif os(OSX)
     var color: NSColor {
         return NSColor(hue: hue,
-                        saturation: saturation,
-                        brightness: brightness,
-                        alpha: alpha)
+                       saturation: saturation,
+                       brightness: brightness,
+                       alpha: alpha)
     }
     #endif
     

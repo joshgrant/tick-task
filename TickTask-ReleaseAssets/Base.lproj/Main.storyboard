@@ -1588,7 +1588,7 @@
         <!--iOS_Simple-->
         <scene sceneID="TJR-d4-Kuz">
             <objects>
-                <viewController title="iOS_Simple" storyboardIdentifier="iOS_Simple" id="QPG-OK-P6f" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="iOS_Simple" identifier="iOS_Simple" storyboardIdentifier="iOS_Simple" id="QPG-OK-P6f" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5yK-6A-1iM">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="1104"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1671,7 +1671,7 @@
                                             <constraint firstAttribute="trailing" secondItem="PFr-AS-drm" secondAttribute="trailing" constant="40" id="0sL-Xe-PUT"/>
                                             <constraint firstItem="7Le-4s-gDx" firstAttribute="leading" secondItem="v9J-Gj-CtF" secondAttribute="leading" id="aws-Jh-95t"/>
                                             <constraint firstItem="PFr-AS-drm" firstAttribute="leading" secondItem="v9J-Gj-CtF" secondAttribute="leading" constant="40" id="fOt-Sa-VLe"/>
-                                            <constraint firstItem="7Le-4s-gDx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="v9J-Gj-CtF" secondAttribute="top" constant="20" id="fRA-ar-j8S"/>
+                                            <constraint firstItem="7Le-4s-gDx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="v9J-Gj-CtF" secondAttribute="top" priority="900" constant="20" id="fRA-ar-j8S"/>
                                             <constraint firstAttribute="trailing" secondItem="7Le-4s-gDx" secondAttribute="trailing" id="lf8-Mq-B4p"/>
                                             <constraint firstItem="7Le-4s-gDx" firstAttribute="centerY" secondItem="v9J-Gj-CtF" secondAttribute="centerY" constant="-10" id="vDJ-Sb-CbF"/>
                                         </constraints>
@@ -1796,7 +1796,7 @@
         <!--iOS_Mobile-->
         <scene sceneID="7Cz-zu-Ehx">
             <objects>
-                <viewController title="iOS_Mobile" storyboardIdentifier="iOS_Mobile" id="dIC-IO-98Y" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="iOS_Mobile" identifier="iOS_Mobile" storyboardIdentifier="iOS_Mobile" id="dIC-IO-98Y" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Pv2-Lz-tLo">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="1104"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1838,6 +1838,9 @@
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="dIC-IO-98Y" name="value" keyPath="self.durationText" id="b0z-r1-LFL"/>
+                                                        </connections>
                                                     </textField>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="nf2-RC-Adr">
                                                         <rect key="frame" x="40" y="0.0" width="541" height="541"/>
@@ -1888,6 +1891,7 @@
                                             <constraint firstAttribute="trailing" secondItem="5dJ-C6-uqV" secondAttribute="trailing" id="Phg-0Y-rt1"/>
                                             <constraint firstItem="5dJ-C6-uqV" firstAttribute="centerY" secondItem="Vd9-yd-WhC" secondAttribute="centerY" constant="-10" id="dXA-27-9OE"/>
                                             <constraint firstItem="5dJ-C6-uqV" firstAttribute="leading" secondItem="Vd9-yd-WhC" secondAttribute="leading" id="nxX-O6-eJC"/>
+                                            <constraint firstItem="5dJ-C6-uqV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Vd9-yd-WhC" secondAttribute="top" priority="900" constant="20" id="utT-5x-dtf"/>
                                             <constraint firstItem="nf2-RC-Adr" firstAttribute="leading" secondItem="Vd9-yd-WhC" secondAttribute="leading" constant="40" id="zoU-zf-rnX"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -1951,7 +1955,7 @@
         <!--iOS_Focused-->
         <scene sceneID="Aty-RK-dh0">
             <objects>
-                <viewController title="iOS_Focused" storyboardIdentifier="iOS_Focused" id="ETP-tc-Xsh" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="iOS_Focused" identifier="iOS_Focused" storyboardIdentifier="iOS_Focused" id="ETP-tc-Xsh" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zwz-Kd-Syv">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="1104"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2043,7 +2047,7 @@
                                             <constraint firstAttribute="trailing" secondItem="dnx-Sb-0CK" secondAttribute="trailing" constant="40" id="G92-uI-pjR"/>
                                             <constraint firstItem="g58-wj-WES" firstAttribute="centerY" secondItem="YD8-YZ-wkz" secondAttribute="centerY" constant="-10" id="NSu-MU-umT"/>
                                             <constraint firstItem="g58-wj-WES" firstAttribute="leading" secondItem="YD8-YZ-wkz" secondAttribute="leading" id="P7J-TT-7pR"/>
-                                            <constraint firstItem="g58-wj-WES" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YD8-YZ-wkz" secondAttribute="top" constant="20" id="Qxd-eQ-imE"/>
+                                            <constraint firstItem="g58-wj-WES" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YD8-YZ-wkz" secondAttribute="top" priority="900" constant="20" id="Qxd-eQ-imE"/>
                                             <constraint firstItem="dnx-Sb-0CK" firstAttribute="leading" secondItem="YD8-YZ-wkz" secondAttribute="leading" constant="40" id="a3p-uo-8PW"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -2102,13 +2106,14 @@
                 </viewController>
                 <customObject id="kcU-3o-Gh8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="k07-T7-xQs"/>
+                <userDefaultsController id="XZB-Xd-LHe"/>
             </objects>
             <point key="canvasLocation" x="1431" y="2258"/>
         </scene>
         <!--iOS_Timer-->
         <scene sceneID="LFE-4F-xfz">
             <objects>
-                <viewController title="iOS_Timer" storyboardIdentifier="iOS_Timer" id="L4d-Ji-yzF" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="iOS_Timer" identifier="iOS_Timer" storyboardIdentifier="iOS_Timer" id="L4d-Ji-yzF" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Mer-O5-KW8">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="1104"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2257,6 +2262,9 @@
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="L4d-Ji-yzF" name="value" keyPath="self.durationText" id="gXl-63-Ykp"/>
+                                                        </connections>
                                                     </textField>
                                                     <customView verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="k6P-tM-Pm1">
                                                         <rect key="frame" x="40" y="0.0" width="541" height="541"/>
@@ -2292,10 +2300,11 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="XkI-eB-9hA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0In-S5-WNG" secondAttribute="bottom" constant="27" id="7N1-Ib-b7B"/>
+                                            <constraint firstItem="XkI-eB-9hA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sEO-Sz-cdv" secondAttribute="top" priority="900" constant="20" id="4sv-Pk-Vpj"/>
                                             <constraint firstItem="XkI-eB-9hA" firstAttribute="leading" secondItem="sEO-Sz-cdv" secondAttribute="leading" id="Ak7-bB-5Uu"/>
                                             <constraint firstItem="0In-S5-WNG" firstAttribute="top" secondItem="sEO-Sz-cdv" secondAttribute="top" constant="20" id="D6M-m1-gPn"/>
                                             <constraint firstItem="0In-S5-WNG" firstAttribute="centerX" secondItem="sEO-Sz-cdv" secondAttribute="centerX" id="HTW-yX-Swk"/>
+                                            <constraint firstItem="XkI-eB-9hA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0In-S5-WNG" secondAttribute="bottom" constant="27" id="JVU-w9-uoI"/>
                                             <constraint firstItem="XkI-eB-9hA" firstAttribute="centerY" secondItem="sEO-Sz-cdv" secondAttribute="centerY" priority="900" constant="-10" id="aV8-Wk-P1L"/>
                                             <constraint firstAttribute="trailing" secondItem="XkI-eB-9hA" secondAttribute="trailing" id="lUb-9Q-bgb"/>
                                             <constraint firstAttribute="trailing" secondItem="k6P-tM-Pm1" secondAttribute="trailing" constant="40" id="top-kB-IEe"/>

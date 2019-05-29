@@ -58,15 +58,10 @@ class RenderViewController: ViewController
         self.durationText = ViewController.durationString(with: angle)
         self.statusItemImageView?.image = NSImage.statusItemDialWithRotation(angle: angle)
         self.statusItemImageView?.image?.isTemplate = false
-//        
-//        viewWidth.constant = 1000
-//        view.needsLayout = true
     }
     
     override func mouseUp(with event: NSEvent)
     {
-//        print(event.locationInWindow)
-        
         if event.locationInWindow.x < view.window!.frame.size.width * 0.33
         {
             viewWidth.constant = CGFloat(SizeClass.iPhone.rawValue.width / 2)
@@ -82,5 +77,36 @@ class RenderViewController: ViewController
             viewWidth.constant = CGFloat(SizeClass.iPad.rawValue.width / 2)
             viewHeight.constant = CGFloat(SizeClass.iPad.rawValue.height / 2)
         }
+    }
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        guard let identifier = self.identifier?.rawValue else { return }
+        
+        print(identifier)
+        
+        switch identifier
+        {
+        case "iOS_Simple", "iOS_Timer":
+            let angle = defaultAngle
+            self.label.stringValue = ViewController.durationString(with: defaultAngle)
+            self.dialView.angle = angle
+            self.dialView.state = .inactive
+        case "iOS_Focused":
+            let angle = TimeInterval(25 * 60).toAngle()
+            self.label.stringValue = ViewController.durationString(with: angle)
+            self.dialView.angle = angle
+            self.dialView.state = .selected
+        case "iOS_Mobile":
+            let angle = TimeInterval(12.96 * 60).toAngle()
+            self.label.stringValue = ViewController.durationString(with: angle)
+            self.dialView.angle = angle
+            self.dialView.state = .countdown
+        default:
+            break
+        }
+        
     }
 }

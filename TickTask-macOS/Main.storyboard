@@ -80,7 +80,6 @@
                     </view>
                     <connections>
                         <outlet property="dialView" destination="HMW-T1-LtX" id="e5Y-Xo-1q5"/>
-                        <outlet property="dialWidthConstraint" destination="gfX-Wq-gQj" id="AIG-Zi-3eX"/>
                         <outlet property="faceView" destination="6Iy-iY-iXk" id="b4B-HD-ddl"/>
                         <outlet property="label" destination="RED-zY-5Z7" id="cci-NW-sXz"/>
                         <outlet property="stackView" destination="Ttx-Mz-rdC" id="enh-Lo-DFv"/>

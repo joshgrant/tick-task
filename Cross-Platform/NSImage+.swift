@@ -20,7 +20,7 @@ extension NSImage
             let scaleFactor = size.width / 22.0
             
             let borderRect = NSRect(x: 3.5 * scaleFactor,
-                                    y: 3.5 * scaleFactor,
+                                    y: 2.5 * scaleFactor,
                                     width: 16 * scaleFactor,
                                     height: 16 * scaleFactor)
             

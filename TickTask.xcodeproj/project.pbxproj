@@ -892,7 +892,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-macOSDebug";
 				PRODUCT_NAME = "Tick Task";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;

@@ -8,20 +8,23 @@
 
 import Cocoa
 
-if NSRunningApplication.runningApplications(withBundleIdentifier: "me.joshgrant.TickTask-macOS").isEmpty
+#if DEBUG
+if NSRunningApplication.runningApplications(withBundleIdentifier: "me.joshgrant.TickTask-macOSDebug").isEmpty
 {
-    #if DEBUG
     let path = Bundle.main.bundlePath
     var components = path.components(separatedBy: CharacterSet.init(charactersIn: "/"))
     components.removeLast()
     components.append("Tick Task.app")
     NSWorkspace.shared.launchApplication(components.joined(separator: "/"))
-    #else
+}
+#else
+if NSRunningApplication.runningApplications(withBundleIdentifier: "me.joshgrant.TickTask-macOS").isEmpty
+{
     let path = Bundle.main.bundlePath
     var components = path.components(separatedBy: CharacterSet.init(charactersIn: "/"))
     components.removeLast(4)
     NSWorkspace.shared.launchApplication(components.joined(separator: "/"))
-    #endif
 }
+#endif
 
 NSApplication.shared.terminate(nil)

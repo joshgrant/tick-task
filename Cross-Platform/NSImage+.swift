@@ -28,7 +28,7 @@ extension NSImage
             
             let borderPath = NSBezierPath(ovalIn: borderRect)
             borderPath.lineWidth = 1 * scaleFactor
-            NSColor.controlTextColor.setStroke()
+            NSColor.white.setStroke()
             borderPath.stroke()
             
             // Update the graphics context
@@ -39,7 +39,7 @@ extension NSImage
                 
                 let path = DialShape.dialPath(drawingData: drawingData, withCenter: false)
                 path.windingRule = .evenOdd
-                NSColor.controlTextColor.setFill()
+                NSColor.white.setFill()
                 path.fill()
             }
             

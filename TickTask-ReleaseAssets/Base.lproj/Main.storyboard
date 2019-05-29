@@ -1590,14 +1590,14 @@
             <objects>
                 <viewController title="iOS_Simple" storyboardIdentifier="iOS_Simple" id="QPG-OK-P6f" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5yK-6A-1iM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="621" height="1104"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="7Nf-Ng-1DL" customClass="GradientView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="621" height="1104"/>
                                 <subviews>
                                     <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aIB-tc-ltB">
-                                        <rect key="frame" x="70" y="388" width="180" height="72"/>
+                                        <rect key="frame" x="221" y="1012" width="180" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="72" id="GeH-li-QG9"/>
                                         </constraints>
@@ -1615,13 +1615,13 @@
                                         </connections>
                                     </textField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="v9J-Gj-CtF" customClass="BackgroundView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-20" width="320" height="388"/>
+                                        <rect key="frame" x="0.0" y="-20" width="621" height="1012"/>
                                         <subviews>
-                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-4s-gDx">
-                                                <rect key="frame" x="0.0" y="208" width="320" height="0.0"/>
+                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-4s-gDx">
+                                                <rect key="frame" x="0.0" y="211" width="621" height="611"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Oc-3C-q0r">
-                                                        <rect key="frame" x="109" y="-50" width="102" height="50"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Oc-3C-q0r">
+                                                        <rect key="frame" x="260" y="561" width="102" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="IO0-bu-mNt"/>
                                                         </constraints>
@@ -1632,13 +1632,13 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="PFr-AS-drm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                                        <rect key="frame" x="40" y="0.0" width="541" height="541"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="gLv-9p-9qx" customClass="FaceView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="541" height="541"/>
                                                             </customView>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="gmR-UZ-FzM" customClass="DialView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="541" height="541"/>
                                                             </customView>
                                                         </subviews>
                                                         <constraints>
@@ -1654,6 +1654,9 @@
                                                         </constraints>
                                                     </customView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="gmR-UZ-FzM" firstAttribute="top" secondItem="4Oc-3C-q0r" secondAttribute="bottom" constant="20" id="3Vt-o6-Ucr"/>
+                                                </constraints>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
@@ -1665,14 +1668,16 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="4Oc-3C-q0r" firstAttribute="top" secondItem="v9J-Gj-CtF" secondAttribute="top" constant="180" id="51q-1t-hbK"/>
+                                            <constraint firstAttribute="trailing" secondItem="PFr-AS-drm" secondAttribute="trailing" constant="40" id="0sL-Xe-PUT"/>
                                             <constraint firstItem="7Le-4s-gDx" firstAttribute="leading" secondItem="v9J-Gj-CtF" secondAttribute="leading" id="aws-Jh-95t"/>
+                                            <constraint firstItem="PFr-AS-drm" firstAttribute="leading" secondItem="v9J-Gj-CtF" secondAttribute="leading" constant="40" id="fOt-Sa-VLe"/>
+                                            <constraint firstItem="7Le-4s-gDx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="v9J-Gj-CtF" secondAttribute="top" constant="20" id="fRA-ar-j8S"/>
                                             <constraint firstAttribute="trailing" secondItem="7Le-4s-gDx" secondAttribute="trailing" id="lf8-Mq-B4p"/>
                                             <constraint firstItem="7Le-4s-gDx" firstAttribute="centerY" secondItem="v9J-Gj-CtF" secondAttribute="centerY" constant="-10" id="vDJ-Sb-CbF"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="background">
-                                                <color key="value" white="0.1060402397" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="corner">
                                                 <real key="value" value="8"/>
@@ -1689,9 +1694,9 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="v9J-Gj-CtF" secondAttribute="bottom" constant="-20" id="5dw-HG-7aR"/>
                                     <constraint firstItem="v9J-Gj-CtF" firstAttribute="top" secondItem="aIB-tc-ltB" secondAttribute="bottom" constant="20" id="Eq8-y7-mZU"/>
-                                    <constraint firstAttribute="height" constant="480" id="Gw2-qM-nkX"/>
+                                    <constraint firstAttribute="height" constant="1104" id="Gw2-qM-nkX"/>
                                     <constraint firstItem="v9J-Gj-CtF" firstAttribute="leading" secondItem="7Nf-Ng-1DL" secondAttribute="leading" id="MC4-J2-gkl"/>
-                                    <constraint firstAttribute="width" constant="320" id="XUG-BV-ywd"/>
+                                    <constraint firstAttribute="width" constant="621" id="XUG-BV-ywd"/>
                                     <constraint firstItem="aIB-tc-ltB" firstAttribute="top" secondItem="7Nf-Ng-1DL" secondAttribute="top" constant="20" id="hKJ-OM-zKx"/>
                                     <constraint firstAttribute="trailing" secondItem="v9J-Gj-CtF" secondAttribute="trailing" id="oqg-2V-Fet"/>
                                     <constraint firstItem="aIB-tc-ltB" firstAttribute="centerX" secondItem="7Nf-Ng-1DL" secondAttribute="centerX" id="yJa-WO-WTT"/>
@@ -1788,10 +1793,10 @@
             </objects>
             <point key="canvasLocation" x="808" y="2258"/>
         </scene>
-        <!--iOS_Simple-->
+        <!--iOS_Mobile-->
         <scene sceneID="7Cz-zu-Ehx">
             <objects>
-                <viewController title="iOS_Simple" storyboardIdentifier="iOS_Mobile" id="dIC-IO-98Y" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="iOS_Mobile" storyboardIdentifier="iOS_Mobile" id="dIC-IO-98Y" customClass="RenderViewController" customModule="Tick_Task_Release_Assets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Pv2-Lz-tLo">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="1104"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1821,10 +1826,10 @@
                                         <rect key="frame" x="0.0" y="-20" width="621" height="1012"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dJ-C6-uqV">
-                                                <rect key="frame" x="0.0" y="200" width="621" height="632"/>
+                                                <rect key="frame" x="0.0" y="211" width="621" height="611"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qO3-H6-Cnv">
-                                                        <rect key="frame" x="243" y="582" width="136" height="50"/>
+                                                        <rect key="frame" x="243" y="561" width="136" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="qAD-Bn-VvX"/>
                                                         </constraints>
@@ -1835,13 +1840,13 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="nf2-RC-Adr">
-                                                        <rect key="frame" x="30" y="0.0" width="562" height="562"/>
+                                                        <rect key="frame" x="40" y="0.0" width="541" height="541"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="wQx-1N-amH" customClass="FaceView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="562" height="562"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="541" height="541"/>
                                                             </customView>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="zTC-X2-Wcf" customClass="DialView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="562" height="562"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="541" height="541"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                                                         <real key="value" value="12.4"/>
@@ -1865,6 +1870,9 @@
                                                         </constraints>
                                                     </customView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="zTC-X2-Wcf" firstAttribute="top" secondItem="qO3-H6-Cnv" secondAttribute="bottom" constant="20" id="o2d-Qx-HGq"/>
+                                                </constraints>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
@@ -1876,14 +1884,15 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="nf2-RC-Adr" secondAttribute="trailing" constant="40" id="Bkd-bt-kH7"/>
                                             <constraint firstAttribute="trailing" secondItem="5dJ-C6-uqV" secondAttribute="trailing" id="Phg-0Y-rt1"/>
-                                            <constraint firstItem="qO3-H6-Cnv" firstAttribute="top" secondItem="Vd9-yd-WhC" secondAttribute="top" constant="180" id="Z4Z-qu-4r2"/>
                                             <constraint firstItem="5dJ-C6-uqV" firstAttribute="centerY" secondItem="Vd9-yd-WhC" secondAttribute="centerY" constant="-10" id="dXA-27-9OE"/>
                                             <constraint firstItem="5dJ-C6-uqV" firstAttribute="leading" secondItem="Vd9-yd-WhC" secondAttribute="leading" id="nxX-O6-eJC"/>
+                                            <constraint firstItem="nf2-RC-Adr" firstAttribute="leading" secondItem="Vd9-yd-WhC" secondAttribute="leading" constant="40" id="zoU-zf-rnX"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="background">
-                                                <color key="value" white="0.1060402397" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="corner">
                                                 <real key="value" value="8"/>
@@ -1931,6 +1940,8 @@
                         <outlet property="dialView" destination="zTC-X2-Wcf" id="ta8-no-Ejp"/>
                         <outlet property="faceView" destination="zTC-X2-Wcf" id="zBk-aE-bSP"/>
                         <outlet property="label" destination="qO3-H6-Cnv" id="xe5-mq-to1"/>
+                        <outlet property="viewHeight" destination="0M6-Pd-yUW" id="2ye-Up-jOP"/>
+                        <outlet property="viewWidth" destination="Z70-nB-h81" id="E1k-8B-Yh7"/>
                     </connections>
                 </viewController>
                 <customObject id="PCf-ZP-pPE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1970,10 +1981,10 @@
                                         <rect key="frame" x="0.0" y="-20" width="621" height="1012"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g58-wj-WES">
-                                                <rect key="frame" x="0.0" y="200" width="621" height="632"/>
+                                                <rect key="frame" x="0.0" y="211" width="621" height="611"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J0L-ms-clS">
-                                                        <rect key="frame" x="250" y="582" width="122" height="50"/>
+                                                        <rect key="frame" x="250" y="561" width="122" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="RZB-gb-9Fv"/>
                                                         </constraints>
@@ -1984,13 +1995,13 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="dnx-Sb-0CK">
-                                                        <rect key="frame" x="30" y="0.0" width="562" height="562"/>
+                                                        <rect key="frame" x="40" y="0.0" width="541" height="541"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="9yL-aM-xaK" customClass="FaceView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="562" height="562"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="541" height="541"/>
                                                             </customView>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Jhz-ce-3eJ" customClass="DialView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="562" height="562"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="541" height="541"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                                                         <real key="value" value="25"/>
@@ -2014,6 +2025,9 @@
                                                         </constraints>
                                                     </customView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Jhz-ce-3eJ" firstAttribute="top" secondItem="J0L-ms-clS" secondAttribute="bottom" constant="20" id="OBo-DA-07A"/>
+                                                </constraints>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
@@ -2026,13 +2040,15 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="g58-wj-WES" secondAttribute="trailing" id="5Ha-BK-aoS"/>
+                                            <constraint firstAttribute="trailing" secondItem="dnx-Sb-0CK" secondAttribute="trailing" constant="40" id="G92-uI-pjR"/>
                                             <constraint firstItem="g58-wj-WES" firstAttribute="centerY" secondItem="YD8-YZ-wkz" secondAttribute="centerY" constant="-10" id="NSu-MU-umT"/>
                                             <constraint firstItem="g58-wj-WES" firstAttribute="leading" secondItem="YD8-YZ-wkz" secondAttribute="leading" id="P7J-TT-7pR"/>
-                                            <constraint firstItem="J0L-ms-clS" firstAttribute="top" secondItem="YD8-YZ-wkz" secondAttribute="top" constant="180" id="d2f-Z7-mfy"/>
+                                            <constraint firstItem="g58-wj-WES" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YD8-YZ-wkz" secondAttribute="top" constant="20" id="Qxd-eQ-imE"/>
+                                            <constraint firstItem="dnx-Sb-0CK" firstAttribute="leading" secondItem="YD8-YZ-wkz" secondAttribute="leading" constant="40" id="a3p-uo-8PW"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="background">
-                                                <color key="value" white="0.1060402397" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="corner">
                                                 <real key="value" value="8"/>
@@ -2080,6 +2096,8 @@
                         <outlet property="dialView" destination="Jhz-ce-3eJ" id="cqi-1z-w76"/>
                         <outlet property="faceView" destination="Jhz-ce-3eJ" id="AZt-tY-yAM"/>
                         <outlet property="label" destination="J0L-ms-clS" id="MeR-o3-65k"/>
+                        <outlet property="viewHeight" destination="q82-JB-LvJ" id="zGh-xc-Vqw"/>
+                        <outlet property="viewWidth" destination="lAM-p8-PCb" id="qbF-gK-pfw"/>
                     </connections>
                 </viewController>
                 <customObject id="kcU-3o-Gh8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -2194,6 +2212,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="7I8-Nf-0ib" firstAttribute="centerY" secondItem="gu9-XO-9uR" secondAttribute="centerY" id="Hig-VI-rBc"/>
+                                                    <constraint firstAttribute="width" constant="581" id="KNP-u1-ZjC"/>
                                                     <constraint firstItem="AQX-7w-7F9" firstAttribute="centerX" secondItem="0In-S5-WNG" secondAttribute="centerX" id="KUM-W2-7E3"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I6b-4Y-UDe" secondAttribute="trailing" id="MPd-yY-0nL"/>
                                                     <constraint firstAttribute="trailing" secondItem="06O-lp-Spa" secondAttribute="trailing" constant="36" id="Mwn-wg-6Ia"/>
@@ -2226,10 +2245,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </customView>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XkI-eB-9hA">
-                                                <rect key="frame" x="0.0" y="200" width="621" height="632"/>
+                                                <rect key="frame" x="0.0" y="210" width="621" height="612"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wtd-Va-A7Q">
-                                                        <rect key="frame" x="260" y="582" width="102" height="50"/>
+                                                        <rect key="frame" x="260" y="562" width="102" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="1eM-gm-ih3"/>
                                                         </constraints>
@@ -2240,13 +2259,13 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="k6P-tM-Pm1">
-                                                        <rect key="frame" x="30" y="0.0" width="562" height="562"/>
+                                                        <rect key="frame" x="40" y="0.0" width="542" height="542"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-OZ-hhV" customClass="FaceView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="562" height="562"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="542" height="542"/>
                                                             </customView>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="79U-4t-h7d" customClass="DialView" customModule="Tick_Task_Release_Assets" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="562" height="562"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="542" height="542"/>
                                                             </customView>
                                                         </subviews>
                                                         <constraints>
@@ -2273,17 +2292,16 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="0In-S5-WNG" secondAttribute="trailing" constant="20" id="63l-en-Y3U"/>
                                             <constraint firstItem="XkI-eB-9hA" firstAttribute="leading" secondItem="sEO-Sz-cdv" secondAttribute="leading" id="Ak7-bB-5Uu"/>
                                             <constraint firstItem="0In-S5-WNG" firstAttribute="top" secondItem="sEO-Sz-cdv" secondAttribute="top" constant="20" id="D6M-m1-gPn"/>
+                                            <constraint firstItem="0In-S5-WNG" firstAttribute="centerX" secondItem="sEO-Sz-cdv" secondAttribute="centerX" id="HTW-yX-Swk"/>
                                             <constraint firstItem="XkI-eB-9hA" firstAttribute="centerY" secondItem="sEO-Sz-cdv" secondAttribute="centerY" constant="-10" id="aV8-Wk-P1L"/>
-                                            <constraint firstItem="0In-S5-WNG" firstAttribute="leading" secondItem="sEO-Sz-cdv" secondAttribute="leading" constant="20" id="akd-wq-i1e"/>
-                                            <constraint firstItem="wtd-Va-A7Q" firstAttribute="top" secondItem="sEO-Sz-cdv" secondAttribute="top" constant="180" id="jJm-KH-hXp"/>
                                             <constraint firstAttribute="trailing" secondItem="XkI-eB-9hA" secondAttribute="trailing" id="lUb-9Q-bgb"/>
+                                            <constraint firstItem="wtd-Va-A7Q" firstAttribute="top" secondItem="0In-S5-WNG" secondAttribute="bottom" constant="27" id="pAz-zC-vpK"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="background">
-                                                <color key="value" white="0.1060402397" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="corner">
                                                 <real key="value" value="8"/>
@@ -2331,6 +2349,8 @@
                         <outlet property="dialView" destination="79U-4t-h7d" id="ek1-7b-zyy"/>
                         <outlet property="faceView" destination="79U-4t-h7d" id="7dC-wF-HC2"/>
                         <outlet property="label" destination="wtd-Va-A7Q" id="HRF-Cz-BW7"/>
+                        <outlet property="viewHeight" destination="Xeq-dh-2CI" id="e8f-YN-PAU"/>
+                        <outlet property="viewWidth" destination="SbC-pO-Kk7" id="4C5-Ee-TQI"/>
                     </connections>
                 </viewController>
                 <customObject id="hYv-Kf-CHi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

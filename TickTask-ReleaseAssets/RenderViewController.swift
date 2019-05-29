@@ -42,7 +42,7 @@ class RenderViewController: ViewController
         return "timer_completed_title".localized
     }
     
-    @objc var durationText: String = ViewController.durationString(with: 0)
+    @objc var durationText: String = ViewController.durationString(with: TimeInterval(25 * 60).toAngle())
     
     @objc var nowText: String {
         return "now".localized
@@ -61,5 +61,26 @@ class RenderViewController: ViewController
 //        
 //        viewWidth.constant = 1000
 //        view.needsLayout = true
+    }
+    
+    override func mouseUp(with event: NSEvent)
+    {
+//        print(event.locationInWindow)
+        
+        if event.locationInWindow.x < view.window!.frame.size.width * 0.33
+        {
+            viewWidth.constant = CGFloat(SizeClass.iPhone.rawValue.width / 2)
+            viewHeight.constant = CGFloat(SizeClass.iPhone.rawValue.height / 2)
+        }
+        else if event.locationInWindow.x > view.window!.frame.size.width * 0.66
+        {
+            viewWidth.constant = CGFloat(SizeClass.iPhoneX.rawValue.width / 2)
+            viewHeight.constant = CGFloat(SizeClass.iPhoneX.rawValue.height / 2)
+        }
+        else
+        {
+            viewWidth.constant = CGFloat(SizeClass.iPad.rawValue.width / 2)
+            viewHeight.constant = CGFloat(SizeClass.iPad.rawValue.height / 2)
+        }
     }
 }

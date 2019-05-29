@@ -29,7 +29,7 @@ extension ViewController
         
         #if os(iOS)
         dialView.setNeedsDisplay()
-        label.text = durationString(with: angle)
+        label.text = ViewController.durationString(with: angle)
         #elseif os(OSX)
         dialView.setNeedsDisplay(dialView.bounds)
         label.stringValue = ViewController.durationString(with: angle)

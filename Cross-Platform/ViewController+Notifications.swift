@@ -11,6 +11,12 @@ import UserNotifications
 
 extension ViewController
 {
+    #if DEBUG
+    static var notificationIdentifier = "me.joshgrant.TickTask-TimeUpNotificationDebug"
+    #else
+    static var notificationIdentifier = "me.joshgrant.TickTask-TimeUpNotification"
+    #endif
+    
     func requestAuthorizationToDisplayNotifications()
     {
         let center = UNUserNotificationCenter.current()
@@ -41,7 +47,6 @@ extension ViewController
         
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
-            
             // Register for push notifications
             //            DispatchQueue.main.async {
             //                NSApp.registerForRemoteNotifications()
@@ -66,8 +71,7 @@ extension ViewController
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: ViewController.fullDuration,
                                                         repeats: false)
         
-        let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString,
+        let request = UNNotificationRequest(identifier: ViewController.notificationIdentifier,
                                             content: content,
                                             trigger: trigger)
 

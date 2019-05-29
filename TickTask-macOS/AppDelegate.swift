@@ -13,9 +13,13 @@ import ServiceManagement
 class AppDelegate: NSObject, NSApplicationDelegate
 {
     // MARK: Shared Variables
-    
+    #if DEBUG
+    static let autoOpenKey = "me.joshgrant.TickTask.isAutoOpenDebug"
+    static let launcherKey = "me.joshgrant.TickTask-macOSLauncherDebug"
+    #else
     static let autoOpenKey = "me.joshgrant.TickTask.isAutoOpen"
     static let launcherKey = "me.joshgrant.TickTask-macOSLauncher"
+    #endif
     
     var statusItem: NSStatusItem!
     var viewController: ViewController!
@@ -36,17 +40,17 @@ class AppDelegate: NSObject, NSApplicationDelegate
         viewController.statusItem = statusItem
     }
     
-    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
-    {
-//        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-//        let token = tokenParts.joined()
-//        print("Device Token: \(token)")
-    }
-    
-    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
-    {
-        debugPrint("Failed to register: \(error)")
-    }
+//    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+//    {
+////        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+////        let token = tokenParts.joined()
+////        print("Device Token: \(token)")
+//    }
+//
+//    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
+//    {
+//        debugPrint("Failed to register: \(error)")
+//    }
 }
 
 extension AppDelegate: RightClickViewDelegate

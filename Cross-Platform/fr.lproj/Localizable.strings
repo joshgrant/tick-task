@@ -14,13 +14,21 @@
 "timer" = "minuteur";
 "now" = "à présent";
 "mobile" = "mobile";
+"title" = "Tick Task - Minuterie ciblée";
 "subtitle" = "Garder le temps simple";
 "promotional_text" = "Les minuteurs doivent être simples, nous avons donc créé Tick Task pour vous aider à garder une trace de votre temps.";
-"description" = "Caractéristiques:
+"description_mac" = "Caractéristiques:
 • Fait partie dans la barre de menu pour un accès rapide
 • Il suffit de tourner la minuterie pour régler une alarme
 • Regardez combien de temps il reste avec l'icône de la barre de menus
 • Recevez une notification lorsque votre minuterie est terminée
 • Utilisez la souris droite (ou la molette de commande) pour rendre la durée plus précise
 • Cliquez-droit, sur le menu pour ouvrir Tick Task lors de la connexion";
-"keywords" = "minuterie, tâche, concentré, simple, pomodoro, compte à rebours, intervalle, piste, menu";
+"keywords_mac" = "minuterie, tâche, concentré, simple, pomodoro, compte à rebours, intervalle, piste, menu";
+
+"description_ios" = "Caractéristiques:
+• Ouvrir rapidement pour démarrer un nouveau chronomètre
+• Tourner le cadran de la minuterie pour régler une alarme
+• Recevez une notification lorsque votre minuterie est terminée
+• Il n'y a pas de quatrième étape!";
+"keywords_ios" = "minuterie, tâche, concentré, simple, pomodoro, compte à rebours, intervalle, piste, temps, blocage";

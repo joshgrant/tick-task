@@ -14,13 +14,21 @@
 "timer" = "minutero";
 "now" = "ahora";
 "mobile" = "móvil";
+"title" = "Tick Task - Temporizador";
 "subtitle" = "Mantener el tiempo simple";
 "promotional_text" = "Los temporizadores deben ser simples, por lo que creamos Tick Task para ayudar a mantener un registro de su tiempo.";
-"description" = "Caracteristicas:
+"description_mac" = "Caracteristicas:
 • Vive en la barra de menú para un acceso rápido
 • Simplemente gire el dial del temporizador para programar una alarma
 • Eche un vistazo a cuánto tiempo queda con el icono de la barra de menú
 • Recibir una notificación cuando se complete su temporizador
 • Use el mouse derecho (o control-mouse) para hacer que la duración sea más precisa
 • Haga clic derecho en el menú para abrir Tick Task al iniciar sesión";
-"keywords" = "temporizador, tarea, enfocado, simple, pomodoro, cuenta atrás, intervalo, pista, menú, barra de menú";
+"keywords_mac" = "temporizador, tarea, enfocado, simple, pomodoro, cuenta atrás, intervalo, pista, menú, barra de menú";
+
+"description_ios" = "Caracteristicas:
+• Abrir rápidamente para iniciar un nuevo temporizador
+• Gire el dial del temporizador para configurar una alarma
+• Recibir una notificación cuando se complete su temporizador
+• ¡No hay paso cuatro!";
+"keywords_ios" = "temporizador, tarea, enfocado, simple, pomodoro, cuenta atrás, intervalo, seguimiento, tiempo, bloqueo";

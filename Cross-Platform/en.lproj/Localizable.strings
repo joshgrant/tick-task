@@ -14,14 +14,22 @@
 "timer" = "timer";
 "now" = "now";
 "mobile" = "mobile";
+"title" = "Tick Task - Focus Timer";
 "subtitle" = "Keeping time simple";
 "promotional_text" = "Timers should be simple, so we created Tick Task to help keep track of your time.";
-"description" = "Features:
+
+"description_mac" = "Features:
 • Lives in the menu bar for quick access
 • Simply rotate the timer dial to set an alarm
 • Peek at how much time is left with the menu bar icon
 • Get notified when your timer completes
 • Use the right mouse (or control-mouse) to make the snapping more precise
 • Right-click the menu to open Tick Task at login";
+"keywords_mac" = "timer, task, focused, simple, pomodoro, countdown, interval, track, time, menu, menubar, blocking";
 
-"keywords" = "timer, task, focused, simple, pomodoro, countdown, interval, track, menu, menubar, time, blocking";
+"description_ios" = "Features:
+• Open quickly to start a new timer
+• Rotate the timer dial to set an alarm
+• Get notified when your timer completes
+• There is no step four!";
+"keywords_ios" = "timer, task, focused, simple, pomodoro, countdown, interval, track, time, blocking";

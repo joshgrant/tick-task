@@ -14,13 +14,21 @@
 "timer" = "timer";
 "now" = "jetzt";
 "mobile" = "handy";
+"title" = "Tick Task - Fokussierter Timer";
 "subtitle" = "Zeit einfach halten";
 "promotional_text" = "Die Timer sollten einfach sein, deshalb haben wir Tick Task erstellt, um Ihre Zeit im Auge zu behalten.";
-"description" = "Eigenschaften:
+"description_mac" = "Eigenschaften:
 • Lebt in der Menüleiste für den schnellen Zugriff
 • Drehen Sie einfach den Timer, um einen Alarm einzustellen
 • Sehen Sie mit dem Menüleistensymbol nach, wie viel Zeit noch übrig ist
 • Lassen Sie sich benachrichtigen, wenn Ihr Timer abgelaufen ist
 • Verwenden Sie die rechte Maustaste (oder die Steuermaus), um die Dauer zu präzisieren
 • Klicken Sie mit der rechten Maustaste auf das Menü, um beim Anmelden das Kontrollkästchen Task zu öffnen";
-"keywords" = "timer, aufgabe, fokussiert, einfach, pomodoro, countdown, intervall, spur, menü, menüleiste, zeit, b";
+"keywords_mac" = "timer, aufgabe, fokussiert, einfach, pomodoro, countdown, intervall, spur, menü, menüleiste, zeit";
+
+"description_ios" = "Eigenschaften:
+• Schnell öffnen, um einen neuen Timer zu starten
+• Drehen Sie den Timer, um einen Alarm einzustellen
+• Lassen Sie sich benachrichtigen, wenn Ihr Timer abgelaufen ist
+• Es gibt keinen vierten Schritt!";
+"keywords_ios" = "zeitschaltuhr, aufgabe, fokussiert, einfach, pomodoro, countdown, intervall";

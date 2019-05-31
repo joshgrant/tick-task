@@ -34,7 +34,7 @@ extension NSImage
             // Update the graphics context
             
             context.pushPop {
-                context.translateBy(x: 11.5 * scaleFactor, y: 11.5 * scaleFactor)
+                context.translateBy(x: 11.5 * scaleFactor, y: 10.5 * scaleFactor)
                 context.rotate(by: angle)
                 
                 let path = DialShape.dialPath(drawingData: drawingData, withCenter: false)

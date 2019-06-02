@@ -24,15 +24,15 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController storyboardIdentifier="ViewController" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="Tick_Task" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="118" height="143"/>
+                    <view key="view" id="m2S-Jp-Qdl" customClass="BackgroundView" customModule="Tick_Task" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="118" height="151"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ttx-Mz-rdC">
-                                <rect key="frame" x="0.0" y="0.0" width="118" height="143"/>
+                                <rect key="frame" x="0.0" y="0.0" width="118" height="151"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RED-zY-5Z7">
-                                        <rect key="frame" x="2" y="118" width="114" height="17"/>
+                                        <rect key="frame" x="-2" y="126" width="122" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="00m 00s" id="yfR-97-WmA">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -40,27 +40,36 @@
                                         </textFieldCell>
                                     </textField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="PbT-Ku-dc1">
-                                        <rect key="frame" x="4" y="0.0" width="110" height="110"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="6Iy-iY-iXk" customClass="FaceView" customModule="Tick_Task" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
                                             </customView>
-                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HMW-T1-LtX" customClass="DialView" customModule="Tick_Task" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="HMW-T1-LtX" customClass="DialView" customModule="Tick_Task" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
                                             </customView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="6Iy-iY-iXk" secondAttribute="bottom" id="49C-X8-1hC"/>
+                                            <constraint firstItem="HMW-T1-LtX" firstAttribute="leading" secondItem="PbT-Ku-dc1" secondAttribute="leading" id="EAp-JD-Grn"/>
+                                            <constraint firstItem="6Iy-iY-iXk" firstAttribute="top" secondItem="PbT-Ku-dc1" secondAttribute="top" id="FzK-Sn-CUL"/>
+                                            <constraint firstItem="6Iy-iY-iXk" firstAttribute="leading" secondItem="PbT-Ku-dc1" secondAttribute="leading" id="QWQ-EA-hlA"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Iy-iY-iXk" secondAttribute="trailing" id="SFf-Gz-snC"/>
+                                            <constraint firstAttribute="width" secondItem="PbT-Ku-dc1" secondAttribute="height" multiplier="1:1" id="U3e-3o-Aro"/>
                                             <constraint firstItem="6Iy-iY-iXk" firstAttribute="top" secondItem="PbT-Ku-dc1" secondAttribute="top" id="UlL-ty-B1r"/>
                                             <constraint firstAttribute="bottom" secondItem="6Iy-iY-iXk" secondAttribute="bottom" id="Wxc-UK-sWP"/>
-                                            <constraint firstAttribute="height" constant="110" id="aNT-ho-mul"/>
+                                            <constraint firstItem="HMW-T1-LtX" firstAttribute="top" secondItem="PbT-Ku-dc1" secondAttribute="top" id="aIl-RN-JP8"/>
                                             <constraint firstItem="6Iy-iY-iXk" firstAttribute="leading" secondItem="PbT-Ku-dc1" secondAttribute="leading" id="abr-Gt-Clg"/>
-                                            <constraint firstAttribute="width" constant="110" id="gfX-Wq-gQj"/>
+                                            <constraint firstAttribute="trailing" secondItem="HMW-T1-LtX" secondAttribute="trailing" id="qYL-Go-8jH"/>
                                             <constraint firstAttribute="trailing" secondItem="6Iy-iY-iXk" secondAttribute="trailing" id="sLE-EV-mlN"/>
+                                            <constraint firstAttribute="bottom" secondItem="HMW-T1-LtX" secondAttribute="bottom" id="yaT-kE-yHW"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
-                                <edgeInsets key="edgeInsets" left="4" right="4" top="8" bottom="0.0"/>
+                                <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="8" bottom="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="118" id="fE8-Ky-CE7"/>
+                                </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>

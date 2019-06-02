@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, DialViewDelegate
+class ViewController: NSViewController, DialViewDelegate, BackgroundViewDelegate
 {
     // MARK: Properties
     var statusItem: NSStatusItem?
@@ -22,21 +22,52 @@ class ViewController: NSViewController, DialViewDelegate
     // MARK: View Lifecycle
     override func viewDidLoad()
     {
-        dialView.delegate = self
+        if let view = self.view as? BackgroundView
+        {
+            view.delegate = self
+        }
+        
+//        if let window = self.view.window
+//        {
+//            print("window: \(window)")
+//            window.acceptsMouseMovedEvents = true
+//        }
+//        
+        self.dialView.delegate = self
+        
         self.configureInterfaceElements(state: .inactive)
         requestAuthorizationToDisplayNotifications()
+        
+//        NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved, .mouseExited, .mouseEntered]) { (event) -> NSEvent? in
+//            print("Local")
+////            print(event)
+//            return event
+//        }
+//
+//        NSEvent.addGlobalMonitorForEvents(matching: .any) { (event) in
+//            print("Global")
+////            print(event)
+//        }
         
         super.viewDidLoad()
     }
     
-    // MARK: Dial View Delegate
+    override func viewDidAppear()
+    {
+        super.viewDidAppear()
+        print(self.view)
+    }
     
-    func dialViewMouseEvent(_ event: NSEvent)
+    // MARK: Background View Delegate
+    
+    func backgroundViewMouseEvent(_ event: NSEvent)
     {
         handlePanGesture(with: event)
     }
     
-    func dialViewAngleDurationUpdate(angle: CGFloat) {}
+    // MARK: Dial View Delegate
+    
+    func dialViewAngleDurationUpdate(angle: CGFloat) { }
 }
 
 // MARK: Gesture
@@ -47,6 +78,8 @@ extension ViewController
         let viewLocation = self.view.topLevelView.convert(event.locationInWindow, to: dialView)
             .applying(CGAffineTransform(translationX: 0, y: -dialView.frame.size.height))
             .applying(CGAffineTransform(scaleX: 1, y: -1))
+        
+//        print(viewLocation)
         
         let origin = dialView.frame.center
         let snap: CGFloat = event.rightMouseOrModifierKey ? 60 : 12

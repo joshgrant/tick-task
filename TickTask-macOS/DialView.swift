@@ -9,7 +9,6 @@ import Cocoa
 
 protocol DialViewDelegate
 {
-    func dialViewMouseEvent(_ event: NSEvent)
     func dialViewAngleDurationUpdate(angle: CGFloat)
 }
 
@@ -39,18 +38,8 @@ protocol DialViewDelegate
         }
     }
     
-    var state: DialState = .inactive
-    
     var delegate: DialViewDelegate?
-    
-    override func acceptsFirstMouse(for event: NSEvent?) -> Bool { return true }
-    override var acceptsFirstResponder: Bool { return true }
-    override func mouseUp(with event: NSEvent) { delegate?.dialViewMouseEvent(event) }
-    override func mouseDragged(with event: NSEvent) { delegate?.dialViewMouseEvent(event) }
-    override func mouseDown(with event: NSEvent) { delegate?.dialViewMouseEvent(event) }
-    override func rightMouseDown(with event: NSEvent) { delegate?.dialViewMouseEvent(event) }
-    override func rightMouseDragged(with event: NSEvent) { delegate?.dialViewMouseEvent(event) }
-    override func rightMouseUp(with event: NSEvent) { delegate?.dialViewMouseEvent(event) }
+    var state: DialState = .inactive
     
     override func draw(_ rect: CGRect)
     {

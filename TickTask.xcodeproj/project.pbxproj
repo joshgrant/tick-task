@@ -15,6 +15,8 @@
 		B54DCE4A228722D0000EC5BB /* RightClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DCE49228722D0000EC5BB /* RightClickView.swift */; };
 		B54DCE4F22872F10000EC5BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE4E22872F10000EC5BB /* Main.storyboard */; };
 		B54DCE5222873871000EC5BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B54DCE5422873871000EC5BB /* Localizable.strings */; };
+		B58C2E6622A39FA10024097B /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C2E6522A39FA10024097B /* BackgroundView.swift */; };
+		B58C2E6722A39FA10024097B /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C2E6522A39FA10024097B /* BackgroundView.swift */; };
 		B58FF1EC228C327A00922A69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF1EB228C327A00922A69 /* AppDelegate.swift */; };
 		B58FF1EE228C327A00922A69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF1ED228C327A00922A69 /* ViewController.swift */; };
 		B5905570229EA55E001C57AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B52273D72297C50800B00C95 /* Assets.xcassets */; };
@@ -142,6 +144,7 @@
 		B54DCE4E22872F10000EC5BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B54DCE5322873871000EC5BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B54DCE5522873874000EC5BB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B58C2E6522A39FA10024097B /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B58FF1E9228C327A00922A69 /* TickTask-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58FF1EB228C327A00922A69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B58FF1ED228C327A00922A69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 				B54DCE49228722D0000EC5BB /* RightClickView.swift */,
 				B5370810226F188600ACFA62 /* TickTask-macOS.entitlements */,
 				B5370805226F188600ACFA62 /* ViewController.swift */,
+				B58C2E6522A39FA10024097B /* BackgroundView.swift */,
 			);
 			path = "TickTask-macOS";
 			sourceTree = "<group>";
@@ -602,6 +606,7 @@
 				B5CEA94C229D0F28008DB140 /* TimeInterval+.swift in Sources */,
 				B5CEA96D229D0F28008DB140 /* Border.swift in Sources */,
 				B5CEA952229D0F28008DB140 /* NSImage+.swift in Sources */,
+				B58C2E6622A39FA10024097B /* BackgroundView.swift in Sources */,
 				B5CEA958229D0F28008DB140 /* ViewController+Notifications.swift in Sources */,
 				B5CEA95B229D0F28008DB140 /* Gradient.swift in Sources */,
 				B5CEA979229D0F28008DB140 /* CGContext+.swift in Sources */,
@@ -705,6 +710,7 @@
 				B5CEA9A5229D3F1F008DB140 /* GradientView.swift in Sources */,
 				B5CEA9AC229D5FD5008DB140 /* ViewController+.swift in Sources */,
 				B5CEA963229D0F28008DB140 /* NSEvent+.swift in Sources */,
+				B58C2E6722A39FA10024097B /* BackgroundView.swift in Sources */,
 				B5CEA9A1229D2BD7008DB140 /* Dimension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

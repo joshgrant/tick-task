@@ -33,8 +33,12 @@ extension ViewController
         #elseif os(OSX)
         dialView.setNeedsDisplay(dialView.bounds)
         label.stringValue = ViewController.durationString(with: angle)
-        // We only want to update this infrequently...
-        statusItem?.button?.image = NSImage.statusItemDialWithRotation(angle: angle)
+        // We only update on 10 second intervals
+        let interval = angle.toInterval().truncatingRemainder(dividingBy: 10)
+        if Int(interval) == 0
+        {
+            statusItem?.button?.image = NSImage.statusItemDialWithRotation(angle: angle)
+        }
         #endif
     }
     
@@ -45,8 +49,7 @@ extension ViewController
     
     func userEndedDragging(angle: CGFloat)
     {
-        // Setting the angle like this sucks...
-        if angle.distance(to: -CGFloat.pi * 2) == 0
+        if angle.distance(to: defaultAngle) == 0
         {
             invalidateTimersAndDates()
             configureInterfaceElements(state: .inactive, angle: angle)

@@ -27,35 +27,12 @@ class ViewController: NSViewController, DialViewDelegate, BackgroundViewDelegate
             view.delegate = self
         }
         
-//        if let window = self.view.window
-//        {
-//            print("window: \(window)")
-//            window.acceptsMouseMovedEvents = true
-//        }
-//        
         self.dialView.delegate = self
         
         self.configureInterfaceElements(state: .inactive)
         requestAuthorizationToDisplayNotifications()
         
-//        NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved, .mouseExited, .mouseEntered]) { (event) -> NSEvent? in
-//            print("Local")
-////            print(event)
-//            return event
-//        }
-//
-//        NSEvent.addGlobalMonitorForEvents(matching: .any) { (event) in
-//            print("Global")
-////            print(event)
-//        }
-        
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear()
-    {
-        super.viewDidAppear()
-        print(self.view)
     }
     
     // MARK: Background View Delegate
@@ -79,8 +56,6 @@ extension ViewController
             .applying(CGAffineTransform(translationX: 0, y: -dialView.frame.size.height))
             .applying(CGAffineTransform(scaleX: 1, y: -1))
         
-//        print(viewLocation)
-        
         let origin = dialView.frame.center
         let snap: CGFloat = event.rightMouseOrModifierKey ? 60 : 12
         let angle: CGFloat = viewLocation.angleFromPoint(point: origin, snapTo: snap)
@@ -97,7 +72,6 @@ extension ViewController
             configureInterfaceElements(state: .selected, angle: angle)
             
             startInactivityTimer()
-            
         case .leftMouseUp, .rightMouseUp:
             userEndedDragging(angle: angle)
         default:

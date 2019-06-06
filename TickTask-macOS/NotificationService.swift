@@ -1,22 +1,15 @@
 //
-//  ViewController+Notifications.swift
-//  TickTask
+//  NotificationService.swift
+//  TickTask-macOS
 //
-//  Created by Joshua Grant on 5/27/19.
+//  Created by Joshua Grant on 6/6/19.
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
-import Foundation
 import UserNotifications
 
-extension ViewController
+class NotificationService
 {
-    #if DEBUG
-    static var notificationIdentifier = "me.joshgrant.TickTask-TimeUpNotificationDebug"
-    #else
-    static var notificationIdentifier = "me.joshgrant.TickTask-TimeUpNotification"
-    #endif
-    
     func requestAuthorizationToDisplayNotifications()
     {
         let center = UNUserNotificationCenter.current()
@@ -41,24 +34,25 @@ extension ViewController
         }
     }
     
-    func createNotification()
+    func createNotification(at timeInterval: TimeInterval)
     {
         let notificationCenter = UNUserNotificationCenter.current()
         
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
+            
             // Register for push notifications
             //            DispatchQueue.main.async {
             //                NSApp.registerForRemoteNotifications()
             //            }
             
-            self.scheduleNotification()
+            self.scheduleNotification(at: timeInterval)
         }
     }
-
-    func scheduleNotification()
+    
+    func scheduleNotification(at timeInterval: TimeInterval)
     {
-        let dateComponents = ViewController.fullDuration.dateComponents
+        let dateComponents = timeInterval.dateComponents
         
         let notificationTitle = "timer_completed_title".localized
         let notificationBody = DateComponentsFormatter.completedDurationFormatter.string(from: dateComponents) ?? ""
@@ -68,13 +62,13 @@ extension ViewController
         content.body = notificationBody
         content.sound = UNNotificationSound.default
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: ViewController.fullDuration,
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval,
                                                         repeats: false)
         
-        let request = UNNotificationRequest(identifier: ViewController.notificationIdentifier,
+        let request = UNNotificationRequest(identifier: notificationIdentifier,
                                             content: content,
                                             trigger: trigger)
-
+        
         UNUserNotificationCenter.current().add(request) { (error) in
             if let error = error
             {
@@ -82,4 +76,5 @@ extension ViewController
             }
         }
     }
+
 }

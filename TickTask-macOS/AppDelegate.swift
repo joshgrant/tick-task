@@ -9,164 +9,128 @@
 import Cocoa
 import ServiceManagement
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate
 {
-    // MARK: Shared Variables
-    #if DEBUG
-    static let autoOpenKey = "me.joshgrant.TickTask.isAutoOpenDebug"
-    static let launcherKey = "me.joshgrant.TickTask-macOSLauncherDebug"
-    #else
-    static let autoOpenKey = "me.joshgrant.TickTask.isAutoOpen"
-    static let launcherKey = "me.joshgrant.TickTask-macOSLauncher"
-    #endif
+    // MARK: Properties
     
-    var statusItem: NSStatusItem!
-    var viewController: ViewController!
     var menu: NSMenu!
-    var contextMenu: NSMenu!
+    var timerService: TimerService!
+    var notificationService: NotificationService!
     
-    var autoOpenItem: NSMenuItem!
+    lazy var dialMenuView: DialMenuView = {
+        return DialMenuView.initFromNib(delegate: self)
+    }()
+    
+    lazy var optionsMenuView: OptionsMenuView = {
+        return OptionsMenuView.initFromNib(delegate: self)
+    }()
+    
+    lazy var autoOpenItem: AutoOpenMenuItem = {
+        return AutoOpenMenuItem()
+    }()
+    
+    lazy var quitItem: QuitMenuItem = {
+        return QuitMenuItem()
+    }()
+    
+    lazy var statusItem: NSStatusItem = {
+        let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        
+        if let button = statusItem.button
+        {
+            button.image = NSImage.statusItemDialWithInterval(interval: defaultInterval)
+        }
+        
+        return statusItem
+    }()
     
     // MARK: Application Lifecycle
     
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
-        viewController = initializeViewController()
-        menu = initializeMenu(viewController: viewController)
-        contextMenu = initializeContextMenu()
-        statusItem = initializeStatusItem(menu: menu)
+        timerService = TimerService()
+        notificationService = NotificationService()
         
-        viewController.statusItem = statusItem
-    }
-    
-//    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
-//    {
-////        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-////        let token = tokenParts.joined()
-////        print("Device Token: \(token)")
-//    }
-//
-//    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
-//    {
-//        debugPrint("Failed to register: \(error)")
-//    }
-}
-
-extension AppDelegate: RightClickViewDelegate
-{
-    func rightMouseEvent(with event: NSEvent)
-    {
-        switch event.type
-        {
-        case .rightMouseDown:
-            contextMenu.popUp(positioning: nil, at: NSPoint(x: 0, y: 22), in: statusItem.button)
-        default:
-            break
-        }
-    }
-}
-
-// MARK: Object Initialization
-
-extension AppDelegate
-{
-    func initializeStatusItem(menu: NSMenu) -> NSStatusItem
-    {
-        let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        
-        if let button = statusItem.button
-        {
-            button.image = NSImage.statusItemDialWithRotation(angle: 0)
-            
-            let rightClickView = RightClickView(frame: button.frame)
-            rightClickView.delegate = self
-            
-            button.addSubview(rightClickView)
-        }
+        menu = NSMenu()
+        menu.addItem(dialMenuView.menuItem)
+        menu.addItem(optionsMenuView.menuItem)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(autoOpenItem)
+        menu.addItem(quitItem)
         
         statusItem.menu = menu
         
-        return statusItem
+        notificationService.requestAuthorizationToDisplayNotifications()
+        
+        configureElements()
     }
     
-    
-    func initializeViewController() -> ViewController
+    func configureElements(interval: Double? = nil, manual: Bool = true)
     {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateController(withIdentifier: "ViewController")
-        return viewController as! ViewController
-    }
-    
-    func initializeMenu(viewController: ViewController) -> NSMenu
-    {
-        let menu = NSMenu()
+        let interval: Double = interval ?? timerService.currentInterval
         
-        menu.addItem(viewControllerMenuItem(viewController: viewController))
+        dialMenuView.configureDial(interval: interval)
+        dialMenuView.configureLabel(interval: interval)
         
-        return menu
-    }
-    
-    func initializeContextMenu() -> NSMenu
-    {
-        let menu = NSMenu()
-        
-        menu.addItem(openMenuItem())
-        menu.addItem(quitMenuItem())
-        
-        return menu
-    }
-    
-    func viewControllerMenuItem(viewController: ViewController) -> NSMenuItem
-    {
-        let item = NSMenuItem()
-        
-        item.view = viewController.view
-        
-        return item
-    }
-    
-    func quitMenuItem() -> NSMenuItem
-    {
-        let title = "quit_ticktask".localized
-        let selector = #selector(NSApplication.terminate(_:))
-        let keyEquivalent = "q"
-        
-        let item = NSMenuItem(title: title, action: selector, keyEquivalent: keyEquivalent)
-        
-        return item
-    }
-    
-    func openMenuItem() -> NSMenuItem
-    {
-        let title = "open_at_login".localized
-        let selector = #selector(autoOpen)
-        
-        autoOpenItem = NSMenuItem(title: title, action: selector, keyEquivalent: String())
-        
-        let autoOpen = UserDefaults.standard.bool(forKey: AppDelegate.autoOpenKey)
-        autoOpenItem.state = autoOpen ? .on : .off
-        
-        return autoOpenItem
-    }
-    
-    @objc func autoOpen()
-    {
-        if autoOpenItem.state == .on
+        if manual || interval.truncatingRemainder(dividingBy: 10) == 0
         {
-            autoOpenItem.state = .off
-            if SMLoginItemSetEnabled(AppDelegate.launcherKey as CFString, false)
-            {
-                UserDefaults.standard.set(false, forKey: AppDelegate.autoOpenKey)
-            }
+            statusItem.button?.image = NSImage.statusItemDialWithInterval(interval: interval)
+        }
+    }
+}
+
+extension AppDelegate: DialDelegate
+{
+    func dialStartedTracking(dial: Dial)
+    {
+        dial.state = .mixed
+        
+        timerService.invalidateTimersAndDates()
+        
+        configureElements(interval: dial.doubleValue)
+    }
+    
+    func dialUpdatedTracking(dial: Dial)
+    {
+        dial.state = .mixed
+        
+        configureElements(interval: dial.doubleValue)
+    }
+    
+    func dialStoppedTracking(dial: Dial)
+    {
+        if dial.doubleValue == 0
+        {
+            dial.state = .off
+            
+            timerService.invalidateTimersAndDates()
         }
         else
         {
-            autoOpenItem.state = .on
-            if SMLoginItemSetEnabled(AppDelegate.launcherKey as CFString, true)
-            {
-                UserDefaults.standard.set(true, forKey: AppDelegate.autoOpenKey)
+            dial.state = .on
+            
+            timerService.setTimerToActive(interval: dial.doubleValue) { (timer) in
+                if self.timerService.currentInterval <= 0
+                {
+                    dial.state = .off
+                    self.timerService.invalidateTimersAndDates()
+                    
+                    self.configureElements(interval: dial.doubleValue, manual: false)
+                }
+                else
+                {
+                    self.configureElements(manual: false)
+                }
             }
+            
+            notificationService.createNotification(at: dial.doubleValue)
         }
+        
+        configureElements(interval: dial.doubleValue)
     }
+}
+
+extension AppDelegate: OptionsMenuDelegate
+{
+    
 }

@@ -37,15 +37,17 @@ class DialShape: Shape
         ]
     }
     
-    func draw(context: CGContext, angle: CGFloat, state: DialState)
+    func draw(context: CGContext, angle: CGFloat, state: NSControl.StateValue)
     {
         switch state {
-        case .countdown:
-            self.fills = [Color.dialFillCountdown]
-        case .inactive:
-            self.fills = [Color.dialFillInactive]
-        case .selected:
+        case .mixed:
             self.fills = [Color.dialFillSelected]
+        case .off:
+            self.fills = [Color.dialFillInactive]
+        case .on:
+            self.fills = [Color.dialFillCountdown]
+        default:
+            break
         }
         
         context.pushPop {

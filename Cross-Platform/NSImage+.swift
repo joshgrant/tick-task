@@ -11,13 +11,14 @@ import CoreGraphics
 
 extension NSImage
 {
-    static func statusItemDialWithRotation(angle: CGFloat, size: CGSize = CGSize(square: 22)) -> NSImage
+    static func statusItemDialWithInterval(interval: TimeInterval, size: CGSize = CGSize(square: 22)) -> NSImage
     {
         let image = NSImage(size: size, flipped: true) { (rect) -> Bool in
             
             guard let context = NSGraphicsContext.current?.cgContext else { return false }
             
             let scaleFactor = size.width / 22.0
+            let angle = interval.toAngle()
             
             let borderRect = NSRect(x: 3.5 * scaleFactor,
                                     y: 2.5 * scaleFactor,
@@ -35,7 +36,7 @@ extension NSImage
             
             context.pushPop {
                 context.translateBy(x: 11.5 * scaleFactor, y: 10.5 * scaleFactor)
-                context.rotate(by: angle)
+                context.rotate(by: CGFloat(angle))
                 
                 let path = DialShape.dialPath(drawingData: drawingData, withCenter: false)
                 path.windingRule = .evenOdd

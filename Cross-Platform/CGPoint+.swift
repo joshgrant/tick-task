@@ -9,10 +9,7 @@
 import Foundation
 import CoreGraphics
 
-var defaultAngle = -CGFloat.pi * 2
-
-var previousAngle: CGFloat = defaultAngle
-var previousDistance: CGFloat = 0
+var defaultAngle = -Double.pi * 2
 
 var offset: Int = 0
 
@@ -26,7 +23,7 @@ extension CGPoint
         return (deltaX.squared + deltaY.squared).squareRoot()
     }
     
-    func angleFromPoint(point: CGPoint, snapTo snap: CGFloat) -> CGFloat
+    func angleFromPoint(point: CGPoint) -> CGFloat
     {
         // We calculate the angle of the mouse location from the origin
         // Angle 0 is the right side of the unit circle
@@ -43,29 +40,7 @@ extension CGPoint
             angle = CGFloat.pi * -2.0 + angle
         }
         
-        let distance = previousAngle.distance(to: angle)
-//        let secondOrderDistance = previousDistance.distance(to: distance)
-//        let sign = secondOrderDistance > 0 ? 1 : -1
-        
-//        previousDistance = distance
-//
-//        if abs(secondOrderDistance) > CGFloat.pi
-//        {
-//            offset += sign
-//        }
-        
-//        print(secondOrderDistance, offset)
-        
-        // This distance isn't exact, but the difference between the angles can't be greater than 5 minutes..
-        if abs(distance) > CGFloat.pi
-        {
-            angle = previousAngle
-        }
-        
-        let finalAngle = angle.snap(to: snap)
-        previousAngle = finalAngle
-        
-        return finalAngle
+        return angle
     }
     
     static func * (lhs: CGPoint, rhs: CGFloat) -> CGPoint

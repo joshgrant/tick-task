@@ -40,40 +40,7 @@ extension NSView
             layer?.borderColor = newValue.cgColor
         }
     }
-    
-//    @IBInspectable var shadowColor: NSColor {
-//        get {
-//            return NSColor(cgColor: layer?.shadowColor ?? .clear) ?? .clear
-//        }
-//        set {
-//            setShadowPath()
-//            self.wantsLayer = true
-//            layer?.shadowColor = newValue.cgColor
-//        }
-//    }
-//    
-//    @IBInspectable var shadowOffset: CGSize {
-//        get {
-//            return layer?.shadowOffset ?? CGSize.zero
-//        }
-//        set {
-//            setShadowPath()
-//            self.wantsLayer = true
-//            layer?.shadowOffset = newValue
-//        }
-//    }
-//    
-//    @IBInspectable var shadowBlur: CGFloat {
-//        get {
-//            return layer?.shadowRadius ?? 0
-//        }
-//        set {
-//            setShadowPath()
-//            self.wantsLayer = true
-//            layer?.shadowRadius = newValue
-//        }
-//    }
-    
+
     func setShadowPath()
     {
 //        if layer?.shadowPath == nil

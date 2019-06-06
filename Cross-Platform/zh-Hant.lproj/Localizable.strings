@@ -2,9 +2,10 @@
   Localizable.strings
   TickTask
 
-  Created by Joshua Grant on 5/11/19.
+  Created by Joshua Grant on 6/6/19.
   Copyright © 2019 joshgrant. All rights reserved.
 */
+
 "open_at_login" = "在登入時打開"; // Dock.lg
 "quit_ticktask" = "結束"; // Dock.lg
 "timer_completed_title" = "任務完成"; // Google translate
@@ -32,4 +33,3 @@
 •計時器完成時收到通知
 •沒有第四步！";
 "keywords_ios" = "計時器，任務，集中，簡單，番茄鐘，倒計時，間隔，跟踪，時間，阻止";
-

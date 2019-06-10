@@ -8,12 +8,17 @@
 
 import Cocoa
 
-NSApplication.shared.setActivationPolicy(.accessory)
-
-let delegate = AppDelegate()
-
-NSApplication.shared.delegate = delegate
-
-NSApplication.shared.run()
-
-//NSApplication.shared.finishLaunching()
+autoreleasepool {
+    
+    let delegate = AppDelegate()
+    
+    withExtendedLifetime(delegate, {
+        let app = NSApplication.shared
+        
+        app.setActivationPolicy(.accessory)
+        app.delegate = delegate
+        app.run()
+        
+        app.delegate = nil
+    })
+}

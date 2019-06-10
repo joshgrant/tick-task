@@ -17,6 +17,15 @@ class AppDelegate: NSObject, NSApplicationDelegate
     var timerService: TimerService!
     var notificationService: NotificationService!
     
+    var isAutoOpen: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: autoOpenKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: autoOpenKey)
+        }
+    }
+    
     lazy var dialMenuView: DialMenuView = {
         return DialMenuView.initFromNib(delegate: self)
     }()
@@ -25,8 +34,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
         return OptionsMenuView.initFromNib(delegate: self)
     }()
     
-    lazy var autoOpenItem: AutoOpenMenuItem = {
-        return AutoOpenMenuItem()
+    lazy var autoOpenItem: NSMenuItem = {
+        let item = NSMenuItem(title: "open_at_login".localized,
+                                     action: #selector(toggleAutoOpen),
+                                     keyEquivalent: String())
+        item.state = UserDefaults.standard.bool(forKey: autoOpenKey) ? .on : .off
+        return item
     }()
     
     lazy var quitItem: QuitMenuItem = {
@@ -53,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         menu = NSMenu()
         menu.addItem(dialMenuView.menuItem)
-        menu.addItem(optionsMenuView.menuItem)
+//        menu.addItem(optionsMenuView.menuItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(autoOpenItem)
         menu.addItem(quitItem)
@@ -63,6 +76,28 @@ class AppDelegate: NSObject, NSApplicationDelegate
         notificationService.requestAuthorizationToDisplayNotifications()
         
         configureElements()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyStoreChanged(_:)),
+                                               name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+                                               object: NSUbiquitousKeyValueStore.default)
+        
+        NSUbiquitousKeyValueStore.default.synchronize()
+    }
+    
+    @objc func keyStoreChanged(_ notification: Notification)
+    {
+        print(notification)
+    }
+    
+    @objc func toggleAutoOpen()
+    {
+        autoOpenItem.state = isAutoOpen ? .off : .on
+        
+        if SMLoginItemSetEnabled(launcherKey as CFString, !isAutoOpen)
+        {
+            isAutoOpen = !isAutoOpen
+        }
     }
     
     func configureElements(interval: Double? = nil, manual: Bool = true)
@@ -122,6 +157,11 @@ extension AppDelegate: DialDelegate
                     self.configureElements(manual: false)
                 }
             }
+            
+            let timeInterval = dial.doubleValue
+            let date = Date().addingTimeInterval(timeInterval)
+            
+            NSUbiquitousKeyValueStore.default.set([date], forKey: "me.joshgrant.TickTask-alarms")
             
             notificationService.createNotification(at: dial.doubleValue)
         }

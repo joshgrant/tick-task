@@ -11,26 +11,122 @@ import UserNotifications
 
 class ViewController: UIViewController
 {
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var faceView: FaceView!
-    @IBOutlet weak var dialView: DialView!
+    var stackView: UIStackView
+    var label: UILabel
+    var containerView: UIView
+    var faceView: FaceView
+    var dial: Dial
     
-    @IBOutlet weak var panGesture: UIPanGestureRecognizer!
-    @IBOutlet weak var dialWidthConstraint: NSLayoutConstraint!
+    var containerViewSizeConstraint: NSLayoutConstraint!
+    
+    var timerService: TimerService
+    var notificationService: NotificationService!
+    
+    init()
+    {
+        label = UILabel()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        label.text = "Hello, world"
+        label.font = UIFont.systemFont(ofSize: 34, weight: .semibold)
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        
+        faceView = FaceView()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        faceView.backgroundColor = .clear
+        dial = Dial()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        dial.backgroundColor = .clear
+        
+        containerView = UIView()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        containerView.backgroundColor = .clear
+        containerView.addSubview(faceView)
+        containerView.addSubview(dial)
+        
+        stackView = UIStackView(arrangedSubviews: [label, containerView])
+        
+        timerService = TimerService()
+        notificationService = NotificationService()
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        dial.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func contstraints(for child: UIView, in parent: UIView, padding: CGFloat = 0) -> [NSLayoutConstraint]
+    {
+        return [
+            NSLayoutConstraint(item: child,
+                               attribute: .leading,
+                               relatedBy: .equal,
+                               toItem: parent,
+                               attribute: .leading,
+                               multiplier: 1.0,
+                               constant: padding),
+            NSLayoutConstraint(item: child,
+                               attribute: .trailing,
+                               relatedBy: .equal,
+                               toItem: parent,
+                               attribute: .trailing,
+                               multiplier: 1.0,
+                               constant: padding),
+            NSLayoutConstraint(item: child,
+                               attribute: .top,
+                               relatedBy: .equal,
+                               toItem: parent,
+                               attribute: .top,
+                               multiplier: 1.0,
+                               constant: padding),
+            NSLayoutConstraint(item: child,
+                               attribute: .bottom,
+                               relatedBy: .equal,
+                               toItem: parent,
+                               attribute: .bottom,
+                               multiplier: 1.0,
+                               constant: padding),
+        ]
+    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        configureInterfaceElements(state: .inactive)
-        requestAuthorizationToDisplayNotifications()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        dial.translatesAutoresizingMaskIntoConstraints = false
+        faceView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 20
+        stackView.contentMode = .center
+        
+        view.addSubview(stackView)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.addConstraints(contstraints(for: faceView, in: containerView))
+        containerView.addConstraints(contstraints(for: dial, in: containerView))
+        containerView.addConstraint(NSLayoutConstraint(item: containerView,
+                                                       attribute: .width,
+                                                       relatedBy: .equal,
+                                                       toItem: containerView,
+                                                       attribute: .height,
+                                                       multiplier: 1.0,
+                                                       constant: 0.0))
+//        view.addConstraints(contstraints(for: stackView, in: view))
+        
+        containerViewSizeConstraint = NSLayoutConstraint(item: containerView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: view.frame.size.width)
+        containerViewSizeConstraint.priority = .required
+        
+        view.addConstraints([NSLayoutConstraint(item: stackView, attribute: .centerY, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: stackView, attribute: .centerX, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0),
+            containerViewSizeConstraint])
         
         configureStackAxis(size: view.frame.size)
-        dialWidthConstraint.constant = view.frame.size.width
-        dialWidthConstraint.priority = UILayoutPriority.required
         
-        panGesture.delegate = self
+        notificationService.requestAuthorizationToDisplayNotifications()
         
         setNeedsStatusBarAppearanceUpdate()
     }
@@ -47,67 +143,15 @@ class ViewController: UIViewController
     
     func configureStackAxis(size: CGSize)
     {
-        if size.width > size.height // Landscape
-        {
-            self.stackView.axis = .horizontal
-        }
-        else // Portrait
-        {
-            self.stackView.axis = .vertical
-        }
+        stackView.axis = (size.width > size.height) ? .horizontal : .vertical
     }
     
-    // MARK: Interface Actions
-    
-    @IBAction func handlePan(_ sender: UIPanGestureRecognizer)
+    func configureElements(interval: Double? = nil)
     {
-        let location = sender.location(in: dialView)
-        let center = dialView.bounds.center
-        let snap: CGFloat = bestGuessForNumberOfTouches() == 1 ? 12 : 60
-        let angle: CGFloat = location.angleFromPoint(point: center, snapTo: snap)
+        let interval: Double = interval ?? timerService.currentInterval
         
-        switch sender.state
-        {
-        case .began:
-            userBeganDragging(angle: angle)
-        case .changed:
-            trackTouch(sender: sender)
-            configureInterfaceElements(state: .selected, angle: angle)
-        case .ended:
-            userEndedDragging(angle: angle)
-        default:
-            break
-        }
-    }
-    
-    // This creates a buffer so that when the user takes their fingers off
-    // the screen, it won't think they have just one finger
-    var previousNumberOfTouches: [Int] = []
-    
-    func trackTouch(sender: UIPanGestureRecognizer, keep amount: Int = 3)
-    {
-        previousNumberOfTouches.append(sender.numberOfTouches)
-        
-        if previousNumberOfTouches.count > amount
-        {
-            previousNumberOfTouches.removeFirst()
-        }
-    }
-    
-    func bestGuessForNumberOfTouches() -> Int
-    {
-        guard previousNumberOfTouches.count > 0 else { return 0 }
-        
-        var total: CGFloat = 0
-        
-        for numberOfTouches in previousNumberOfTouches
-        {
-            total += CGFloat(numberOfTouches)
-        }
-        
-        total /= CGFloat(previousNumberOfTouches.count)
-        
-        return Int(total.rounded())
+        self.dial.setNeedsDisplay()
+        self.label.text = interval.durationString
     }
 }
 
@@ -127,15 +171,67 @@ extension ViewController: UIGestureRecognizerDelegate
 {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
     {
-        let location = gestureRecognizer.location(in: dialView)
-//        print(location, dialView.bounds.center, dialView.bounds.width)
-//        print(location.distance(to: dialView.bounds.center))
-        let radius = (dialView.bounds.width / 2)
-        if location.distance(to: dialView.bounds.center) > radius
+        let location = gestureRecognizer.location(in: dial)
+        let radius = (dial.bounds.width / 2)
+        if location.distance(to: dial.bounds.center) > radius
         {
             return false
         }
         
         return true
+    }
+}
+
+extension ViewController: DialDelegate
+{
+    func dialStartedTracking(dial: Dial)
+    {
+        dial.dialState = .selected
+        
+        timerService.invalidateTimersAndDates()
+        
+        configureElements(interval: dial.doubleValue)
+    }
+    
+    func dialUpdatedTracking(dial: Dial)
+    {
+        configureElements(interval: dial.doubleValue)
+    }
+    
+    func dialStoppedTracking(dial: Dial)
+    {
+        if dial.doubleValue == 0
+        {
+            dial.dialState = .inactive
+            
+            timerService.invalidateTimersAndDates()
+        }
+        else
+        {
+            dial.dialState = .countdown
+            
+            timerService.setTimerToActive(interval: dial.doubleValue) { (timer) in
+                if self.timerService.currentInterval <= 0
+                {
+                    dial.dialState = .inactive
+                    self.timerService.invalidateTimersAndDates()
+                    
+                    self.configureElements(interval: dial.doubleValue)
+                }
+                else
+                {
+                    self.configureElements()
+                }
+            }
+            
+            let timeInterval = dial.doubleValue
+            let date = Date().addingTimeInterval(timeInterval)
+            
+            NSUbiquitousKeyValueStore.default.set([date], forKey: "me.joshgrant.TickTask-alarms")
+            
+            notificationService.createNotification(at: dial.doubleValue)
+        }
+        
+        configureElements()
     }
 }

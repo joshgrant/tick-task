@@ -11,56 +11,7 @@
         <customView id="V5P-ea-ejn" customClass="OptionsMenuView" customModule="Tick_Task" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="106" height="28"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8W6-LN-Co2">
-                    <rect key="frame" x="6" y="6" width="16" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="8W6-LN-Co2" secondAttribute="height" multiplier="1:1" id="U1T-3h-kBB"/>
-                    </constraints>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSCaution" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="kjS-SZ-fy2">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rtc-eh-QD5">
-                    <rect key="frame" x="28" y="3" width="50" height="22"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="HYL-1K-35B"/>
-                    </constraints>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oJJ-KX-9G1">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vot-yb-1lg">
-                    <rect key="frame" x="82" y="4" width="20" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="vot-yb-1lg" secondAttribute="height" multiplier="1:1" id="TDw-B4-GZX"/>
-                    </constraints>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="Gx4-oZ-mS8">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-            </subviews>
-            <constraints>
-                <constraint firstItem="8W6-LN-Co2" firstAttribute="leading" secondItem="V5P-ea-ejn" secondAttribute="leading" constant="6" id="3Hi-mp-oXy"/>
-                <constraint firstItem="Rtc-eh-QD5" firstAttribute="top" secondItem="V5P-ea-ejn" secondAttribute="top" constant="4" id="7bo-oR-8uq"/>
-                <constraint firstAttribute="bottom" secondItem="Rtc-eh-QD5" secondAttribute="bottom" constant="4" id="IJ4-E6-FB5"/>
-                <constraint firstAttribute="bottom" secondItem="8W6-LN-Co2" secondAttribute="bottom" constant="6" id="KqX-fq-hAl"/>
-                <constraint firstItem="8W6-LN-Co2" firstAttribute="top" secondItem="V5P-ea-ejn" secondAttribute="top" constant="6" id="XXG-Et-z0O"/>
-                <constraint firstItem="vot-yb-1lg" firstAttribute="top" secondItem="V5P-ea-ejn" secondAttribute="top" constant="4" id="h7d-oo-3hh"/>
-                <constraint firstItem="vot-yb-1lg" firstAttribute="leading" secondItem="Rtc-eh-QD5" secondAttribute="trailing" constant="4" id="iWy-fW-XaM"/>
-                <constraint firstAttribute="trailing" secondItem="vot-yb-1lg" secondAttribute="trailing" constant="4" id="q2q-PR-yYN"/>
-                <constraint firstAttribute="bottom" secondItem="vot-yb-1lg" secondAttribute="bottom" constant="4" id="sRn-it-jq4"/>
-                <constraint firstItem="Rtc-eh-QD5" firstAttribute="leading" secondItem="8W6-LN-Co2" secondAttribute="trailing" constant="6" id="uCC-0z-8T6"/>
-            </constraints>
             <point key="canvasLocation" x="-47" y="-58"/>
         </customView>
     </objects>
-    <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSCaution" width="32" height="32"/>
-        <image name="NSRefreshTemplate" width="11" height="15"/>
-    </resources>
 </document>

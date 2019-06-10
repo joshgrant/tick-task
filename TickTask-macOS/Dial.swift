@@ -8,13 +8,6 @@
 
 import Cocoa
 
-protocol DialDelegate
-{
-    func dialStartedTracking(dial: Dial)
-    func dialStoppedTracking(dial: Dial)
-    func dialUpdatedTracking(dial: Dial)
-}
-
 class Dial: NSSliderCell
 {
     var delegate: DialDelegate?
@@ -70,7 +63,9 @@ class Dial: NSSliderCell
         context.pushPop {
             let dialShape = DialShape(drawingData: drawingData)
             
-            dialShape.draw(context: context, angle: CGFloat(doubleValue.toAngle()), state: state)
+            dialShape.draw(context: context,
+                           angle: CGFloat(doubleValue.toAngle()),
+                           state: DialState.dialState(from: state))
         }
     }
     

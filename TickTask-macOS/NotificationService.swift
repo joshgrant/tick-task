@@ -21,10 +21,8 @@ class NotificationService
         {
             options = [.alert, .sound, .criticalAlert, .badge]
         } else {
-            // Fallback on earlier versions
             options = [.alert, .sound, .badge]
         }
-        center.delegate = self
         #elseif os(OSX)
         options = [.alert, .sound, .criticalAlert, .badge]
         #endif

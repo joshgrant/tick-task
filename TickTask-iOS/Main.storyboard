@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TickTask_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tick_Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,11 +30,11 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOm-Bf-Ilz">
                                         <rect key="frame" x="0.0" y="61" width="375" height="375"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4h-al-A8V" customClass="FaceView" customModule="TickTask_iOS" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4h-al-A8V" customClass="FaceView" customModule="Tick_Task" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fi5-Dh-XDB" customClass="DialView" customModule="TickTask_iOS" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fi5-Dh-XDB" customClass="Dial" customModule="Tick_Task" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -70,6 +70,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="dial" destination="fi5-Dh-XDB" id="GkE-4j-iYO"/>
                         <outlet property="dialView" destination="fi5-Dh-XDB" id="wad-bs-VAy"/>
                         <outlet property="dialWidthConstraint" destination="tHg-Vy-Jgz" id="5so-KA-NAH"/>
                         <outlet property="faceView" destination="T4h-al-A8V" id="CI5-pU-gro"/>

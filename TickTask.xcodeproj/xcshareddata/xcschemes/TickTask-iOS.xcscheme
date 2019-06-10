@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B58FF1E8228C327A00922A69"
-               BuildableName = "TickTask-iOS.app"
+               BuildableName = "Tick Task.app"
                BlueprintName = "TickTask-iOS"
                ReferencedContainer = "container:TickTask.xcodeproj">
             </BuildableReference>
@@ -27,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58FF1E8228C327A00922A69"
-            BuildableName = "TickTask-iOS.app"
-            BlueprintName = "TickTask-iOS"
-            ReferencedContainer = "container:TickTask.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -58,6 +49,17 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B58FF1E8228C327A00922A69"
+            BuildableName = "Tick Task.app"
+            BlueprintName = "TickTask-iOS"
+            ReferencedContainer = "container:TickTask.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -74,11 +76,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58FF1E8228C327A00922A69"
-            BuildableName = "TickTask-iOS.app"
+            BuildableName = "Tick Task.app"
             BlueprintName = "TickTask-iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -91,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58FF1E8228C327A00922A69"
-            BuildableName = "TickTask-iOS.app"
+            BuildableName = "Tick Task.app"
             BlueprintName = "TickTask-iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>

@@ -8,9 +8,10 @@
 
 import Cocoa
 
-class Dial: NSSliderCell
+class Dial: NSSliderCell, DialProtocol
 {
     var delegate: DialDelegate?
+    var dialState: DialState = .inactive
     
     // We want to set the state manually, so we override this method. Maybe we'll
     // come in here sometime and implement better state setting methods?
@@ -18,7 +19,7 @@ class Dial: NSSliderCell
     
     override func startTracking(at startPoint: NSPoint, in controlView: NSView) -> Bool
     {
-        doubleValue = secondsFrom(point: startPoint, in: controlView)
+        doubleValue = startPoint.timeInterval(in: controlView.frame)
         
         delegate?.dialStartedTracking(dial: self)
         
@@ -27,7 +28,7 @@ class Dial: NSSliderCell
     
     override func continueTracking(last lastPoint: NSPoint, current currentPoint: NSPoint, in controlView: NSView) -> Bool
     {
-        doubleValue = secondsFrom(point: currentPoint, in: controlView)
+        doubleValue = currentPoint.timeInterval(in: controlView.frame)
         
         delegate?.dialUpdatedTracking(dial: self)
         
@@ -36,17 +37,9 @@ class Dial: NSSliderCell
     
     override func stopTracking(last lastPoint: NSPoint, current stopPoint: NSPoint, in controlView: NSView, mouseIsUp flag: Bool)
     {
-        doubleValue = secondsFrom(point: stopPoint, in: controlView)
+        doubleValue = stopPoint.timeInterval(in: controlView.frame)
         
         delegate?.dialStoppedTracking(dial: self)
-    }
-    
-    func secondsFrom(point: NSPoint, in view: NSView) -> Double
-    {
-        let center = view.frame.center
-        let angle = Double(point.angleFromPoint(point: center))
-        let minutes = angle.toSeconds()
-        return Double(minutes)
     }
     
     override func knobRect(flipped: Bool) -> NSRect
@@ -65,7 +58,7 @@ class Dial: NSSliderCell
             
             dialShape.draw(context: context,
                            angle: CGFloat(doubleValue.toAngle()),
-                           state: DialState.dialState(from: state))
+                           state: dialState)
         }
     }
     

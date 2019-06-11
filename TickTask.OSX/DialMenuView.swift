@@ -43,8 +43,6 @@ class DialMenuView: NSStackView
         }
         
         dialMenuView.dial.delegate = delegate
-        dialMenuView.dial.allowsMixedState = true
-        dialMenuView.dial.state = .off
         
         return dialMenuView
     }
@@ -59,6 +57,8 @@ class DialMenuView: NSStackView
     func configureDial(interval: Double)
     {
         guard let dialView = dial.controlView else { return }
+        
+        dial.doubleValue = interval
         
         dialView.setNeedsDisplay(dialView.frame)
     }

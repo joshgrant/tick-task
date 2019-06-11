@@ -43,8 +43,6 @@ class TimerService
         timer?.invalidate()
         timer = nil
         start = nil
-        
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func initializeTimer(action: @escaping (Timer) -> Void) -> Timer

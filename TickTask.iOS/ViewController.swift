@@ -15,6 +15,8 @@ import UserNotifications
 
 class ViewController: UIViewController
 {
+    var controller: Controller!
+    
     var stackView: UIStackView
     var label: UILabel
     var containerView: UIView
@@ -22,12 +24,6 @@ class ViewController: UIViewController
     var dial: Dial
     
     var containerViewSizeConstraint: NSLayoutConstraint!
-    
-    lazy var ubiquitous: Ubiquitous = {
-        return Ubiquitous(delegate: self, platform: .iOS)
-    }()
-    var timerService: TimerService
-    var notificationService: NotificationService!
     
     init()
     {
@@ -49,12 +45,13 @@ class ViewController: UIViewController
         
         stackView = UIStackView(arrangedSubviews: [label, containerView])
         
-        timerService = TimerService()
-        notificationService = NotificationService()
-        
         super.init(nibName: nil, bundle: nil)
         
-        dial.delegate = self
+        controller = Controller(delegate: self)
+        
+        dial.delegate = controller
+        
+        view.backgroundColor = Color.faceFill.color
     }
     
     required init?(coder aDecoder: NSCoder)
@@ -132,7 +129,7 @@ class ViewController: UIViewController
         
         configureStackAxis(size: view.frame.size)
         
-        notificationService.requestAuthorizationToDisplayNotifications()
+        controller.notificationService.requestAuthorizationToDisplayNotifications()
         
         setNeedsStatusBarAppearanceUpdate()
     }
@@ -151,26 +148,6 @@ class ViewController: UIViewController
     {
         stackView.axis = (size.width > size.height) ? .horizontal : .vertical
     }
-    
-    func configureElements(interval: Double? = nil)
-    {
-        let interval: Double = interval ?? timerService.currentInterval
-        
-        self.dial.setNeedsDisplay()
-        self.label.text = interval.durationString
-    }
-}
-
-extension ViewController: UNUserNotificationCenterDelegate
-{
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-    {
-        completionHandler([.alert, .badge, .sound])
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
 }
 
 extension ViewController: UIGestureRecognizerDelegate
@@ -188,64 +165,12 @@ extension ViewController: UIGestureRecognizerDelegate
     }
 }
 
-extension ViewController: DialDelegate
+extension ViewController: ControllerDelegate
 {
-    func dialStartedTracking(dial: Dial)
+    func configureElements(interval: Double, manual: Bool)
     {
-        dial.dialState = .selected
-        
-        timerService.invalidateTimersAndDates()
-        
-        configureElements(interval: dial.doubleValue)
-    }
-    
-    func dialUpdatedTracking(dial: Dial)
-    {
-        configureElements(interval: dial.doubleValue)
-    }
-    
-    func dialStoppedTracking(dial: Dial)
-    {
-        if dial.doubleValue == 0
-        {
-            dial.dialState = .inactive
-            
-            timerService.invalidateTimersAndDates()
-        }
-        else
-        {
-            dial.dialState = .countdown
-            
-            timerService.setTimerToActive(interval: dial.doubleValue) { (timer) in
-                if self.timerService.currentInterval <= 0
-                {
-                    dial.dialState = .inactive
-                    self.timerService.invalidateTimersAndDates()
-                    
-                    self.configureElements(interval: defaultInterval)
-                }
-                else
-                {
-                    self.configureElements()
-                }
-            }
-            
-            Ubiquitous.syncAlarm(interval: dial.doubleValue, on: .iOS)
-            
-            notificationService.createNotification(at: dial.doubleValue)
-        }
-        
-        configureElements(interval: dial.doubleValue)
-    }
-}
-
-extension ViewController: UbiquitousDelegate
-{
-    func alarmWasRemotelyUpdated(platform: Platform, date: Date)
-    {
-        print("Alarm updated! Create an alert")
-        // We should remove the old notifications if this is the case...
-        // But only for the osx apps...
-        notificationService.createNotification(at: nil, at: date)
+        self.dial.doubleValue = interval
+        self.dial.setNeedsDisplay()
+        self.label.text = interval.durationString
     }
 }

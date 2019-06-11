@@ -18,7 +18,7 @@ class Dial: UIControl
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
     {
         let point = touch.location(in: self)
-        doubleValue = secondsFrom(point: point, in: self)
+        doubleValue = point.timeInterval(in: self.frame)
         
         delegate?.dialStartedTracking(dial: self)
         
@@ -28,7 +28,7 @@ class Dial: UIControl
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
     {
         let point = touch.location(in: self)
-        doubleValue = secondsFrom(point: point, in: self)
+        doubleValue = point.timeInterval(in: self.frame)
         
         delegate?.dialUpdatedTracking(dial: self)
         
@@ -39,7 +39,7 @@ class Dial: UIControl
     {
         if let point = touch?.location(in: self)
         {
-            doubleValue = secondsFrom(point: point, in: self)
+            doubleValue = point.timeInterval(in: self.frame)
         }
         
         delegate?.dialStoppedTracking(dial: self)
@@ -54,31 +54,5 @@ class Dial: UIControl
         let dialShape = DialShape(drawingData: drawingData)
         
         dialShape.draw(context: context, angle: CGFloat(doubleValue.toAngle()), state: dialState)
-    }
-    
-    func secondsFrom(point: CGPoint, in view: UIView, snap: Bool = true) -> Double
-    {
-        let center = view.frame.center
-        let distance = point.distance(to: center)
-        let angle = Double(point.angleFromPoint(point: center))
-        let seconds = angle.toSeconds()
-        
-        var snapValue: Double = seconds
-        
-        if snap
-        {
-            if distance <= view.frame.size.width / 3
-            {
-                // Snap to 5 minute intervals
-                snapValue = seconds - seconds.remainder(dividingBy: 300)
-            }
-            else
-            {
-                // Snap to 1 minute intervals
-                snapValue = seconds - seconds.remainder(dividingBy: 60)
-            }
-        }
-        
-        return Double(snapValue)
     }
 }

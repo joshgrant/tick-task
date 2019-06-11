@@ -43,6 +43,32 @@ extension CGPoint
         return angle
     }
     
+    func timeInterval(in rect: CGRect, snap: Bool = true) -> Double
+    {
+        let center = rect.center
+        let distance = self.distance(to: center)
+        let angle = Double(self.angleFromPoint(point: center))
+        let seconds = angle.toSeconds()
+        
+        var snapValue: Double = seconds
+        
+        if snap
+        {
+            if distance <= rect.size.width / 3
+            {
+                // Snap to 5 minute intervals
+                snapValue = seconds - seconds.remainder(dividingBy: 300)
+            }
+            else
+            {
+                // Snap to 1 minute intervals
+                snapValue = seconds - seconds.remainder(dividingBy: 60)
+            }
+        }
+        
+        return Double(snapValue)
+    }
+    
     static func * (lhs: CGPoint, rhs: CGFloat) -> CGPoint
     {
         return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)

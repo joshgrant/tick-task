@@ -17,12 +17,5 @@ let autoOpenKey = "me.joshgrant.TickTask.isAutoOpen"
 let launcherKey = "me.joshgrant.TickTask-macOSLauncher"
 #endif
 
-// MARK: Notifications
-#if DEBUG
-let notificationIdentifier = "me.joshgrant.TickTask-TimeUpNotificationDebug"
-#else
-let notificationIdentifier = "me.joshgrant.TickTask-TimeUpNotification"
-#endif
-
 // MARK: Defaults
 let defaultInterval: Double = 0

@@ -14,3 +14,9 @@ protocol DialDelegate
     func dialStoppedTracking(dial: Dial)
     func dialUpdatedTracking(dial: Dial)
 }
+
+protocol DialProtocol
+{
+    var delegate: DialDelegate? { get set }
+    var dialState: DialState { get set }
+}

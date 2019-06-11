@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B5A43F8822AEBA1600F969A9"
-               BuildableName = "TickTask.iOS.app"
+               BuildableName = "Tick Task.app"
                BlueprintName = "TickTask.iOS"
                ReferencedContainer = "container:TickTask.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5A43F8822AEBA1600F969A9"
-            BuildableName = "TickTask.iOS.app"
+            BuildableName = "Tick Task.app"
             BlueprintName = "TickTask.iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5A43F8822AEBA1600F969A9"
-            BuildableName = "TickTask.iOS.app"
+            BuildableName = "Tick Task.app"
             BlueprintName = "TickTask.iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5A43F8822AEBA1600F969A9"
-            BuildableName = "TickTask.iOS.app"
+            BuildableName = "Tick Task.app"
             BlueprintName = "TickTask.iOS"
             ReferencedContainer = "container:TickTask.xcodeproj">
          </BuildableReference>

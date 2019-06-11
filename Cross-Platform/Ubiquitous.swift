@@ -8,49 +8,15 @@
 
 import Foundation
 
-enum Platform
-{
-    case iOS
-    case OSX
-}
+let keyChangedKey = "NSUbiquitousKeyValueStoreChangedKeysKey"
 
 protocol UbiquitousDelegate
 {
-    func alarmWasRemotelyUpdated(platform: Platform, date: Date)
+    func alarmWasRemotelyUpdated(platform: Platform, timeInterval: TimeInterval, date: Date)
 }
 
 class Ubiquitous
-{
-    struct Key
-    {
-        static var alarmDateiOS = "me.joshgrant.TickTask.iOS.alarmDate"
-        static var alarmDateOSX = "me.joshgrant.TickTask.OSX.alarmDate"
-        static var keyChanged = "NSUbiquitousKeyValueStoreChangedKeysKey"
-        
-        // There is a better way to do this...
-//        // Maybe this could conform to some protocol?
-//        static func keyForString(string: String) -> String
-//        {
-//            switch string
-//            {
-//            case "me.joshgrant.TickTask.iOS.alarmDate":
-//                return alarmDateiOS
-//            default:
-//                return alarmDateiOS
-//            }
-//        }
-//        
-//        static func platformForKey(key: String) -> Platform
-//        {
-//            switch key
-//            {
-//            case alarmDateiOS: return .iOS
-//            case alarmDateOSX: return .OSX
-//                
-//            }
-//        }
-    }
-    
+{    
     var delegate: UbiquitousDelegate?
     var platform: Platform
     
@@ -67,32 +33,26 @@ class Ubiquitous
         NSUbiquitousKeyValueStore.default.synchronize()
     }
     
-    static func syncAlarm(interval: Double, on platform: Platform)
+    func syncAlarm(timeInterval: TimeInterval, date: NSDate, on platform: Platform)
     {
-        switch platform
-        {
-        case .iOS:
-            NSUbiquitousKeyValueStore.default.set(NSDate().addingTimeInterval(interval),
-                                                  forKey: Key.alarmDateiOS)
-        case .OSX:
-            NSUbiquitousKeyValueStore.default.set(NSDate().addingTimeInterval(interval),
-                                                  forKey: Key.alarmDateOSX)
-        }
+        print("Sending the alert to \(platform)")
+        
+        NSUbiquitousKeyValueStore.default.set(["timeInterval" : timeInterval,
+                                               "date" : date,],
+                                              forKey: platform.alarmKey)
     }
     
     @objc func keyStoreChanged(notification: NSNotification)
     {
-        if let userInfo = notification.userInfo, let key = userInfo[Key.keyChanged] as? NSArray, let value = key.firstObject as? String
-        {
-            if let date = NSUbiquitousKeyValueStore.default.object(forKey: value) as? Date
-            {
-                print(date)
-                
-                if let delegate = delegate
-                {
-                    delegate.alarmWasRemotelyUpdated(platform: platform, date: date)
-                }
-            }
-        }
+        guard let userInfo = notification.userInfo else { return }
+        guard let key = userInfo[keyChangedKey] as? NSArray else { return }
+        guard let value = key.firstObject as? String else { return }
+        guard let dictionary = NSUbiquitousKeyValueStore.default.dictionary(forKey: value) else { return }
+        guard let date = dictionary["date"] as? Date else { return }
+        guard let timeInterval = dictionary["timeInterval"] as? TimeInterval else { return }
+        guard let delegate = delegate else { return }
+        
+        delegate.alarmWasRemotelyUpdated(platform: platform, timeInterval: timeInterval, date: date)
     }
 }
+

@@ -18,7 +18,7 @@ class Dial: UIControl
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
     {
         let point = touch.location(in: self)
-        doubleValue = point.timeInterval(in: self.frame)
+        doubleValue = point.timeInterval(in: self.bounds)
         
         delegate?.dialStartedTracking(dial: self)
         
@@ -28,7 +28,7 @@ class Dial: UIControl
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
     {
         let point = touch.location(in: self)
-        doubleValue = point.timeInterval(in: self.frame)
+        doubleValue = point.timeInterval(in: self.bounds)
         
         delegate?.dialUpdatedTracking(dial: self)
         
@@ -39,7 +39,7 @@ class Dial: UIControl
     {
         if let point = touch?.location(in: self)
         {
-            doubleValue = point.timeInterval(in: self.frame)
+            doubleValue = point.timeInterval(in: self.bounds)
         }
         
         delegate?.dialStoppedTracking(dial: self)

@@ -26,9 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     var controller: Controller!
     
-    lazy var dialMenuView: DialMenuView = {
-        return DialMenuView.initFromNib(delegate: controller)
-    }()
+    var dialMenuItem: DialMenuItem!
     
     lazy var optionsMenuView: OptionsMenuView = {
         return OptionsMenuView.initFromNib(delegate: self)
@@ -64,11 +62,14 @@ class AppDelegate: NSObject, NSApplicationDelegate
         controller = Controller(delegate: self)
         
         menu = NSMenu()
-        menu.addItem(dialMenuView.menuItem)
 //        menu.addItem(optionsMenuView.menuItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(autoOpenItem)
         menu.addItem(quitItem)
+        
+        dialMenuItem = DialMenuItem(delegate: controller, width: menu.size.width)
+        
+        menu.insertItem(dialMenuItem.menuItem, at: 0)
         
         statusItem.menu = menu
         
@@ -95,8 +96,8 @@ extension AppDelegate: ControllerDelegate
 {
     func configureElements(interval: Double, manual: Bool)
     {        
-        dialMenuView.configureDial(interval: interval)
-        dialMenuView.configureLabel(interval: interval)
+        dialMenuItem.configureDial(interval: interval)
+        dialMenuItem.configureLabel(interval: interval)
         
         if manual || interval.truncatingRemainder(dividingBy: 10) == 0
         {

@@ -59,40 +59,6 @@ class ViewController: UIViewController
         fatalError("init(coder:) has not been implemented")
     }
     
-    func contstraints(for child: UIView, in parent: UIView, padding: CGFloat = 0) -> [NSLayoutConstraint]
-    {
-        return [
-            NSLayoutConstraint(item: child,
-                               attribute: .leading,
-                               relatedBy: .equal,
-                               toItem: parent,
-                               attribute: .leading,
-                               multiplier: 1.0,
-                               constant: padding),
-            NSLayoutConstraint(item: child,
-                               attribute: .trailing,
-                               relatedBy: .equal,
-                               toItem: parent,
-                               attribute: .trailing,
-                               multiplier: 1.0,
-                               constant: padding),
-            NSLayoutConstraint(item: child,
-                               attribute: .top,
-                               relatedBy: .equal,
-                               toItem: parent,
-                               attribute: .top,
-                               multiplier: 1.0,
-                               constant: padding),
-            NSLayoutConstraint(item: child,
-                               attribute: .bottom,
-                               relatedBy: .equal,
-                               toItem: parent,
-                               attribute: .bottom,
-                               multiplier: 1.0,
-                               constant: padding),
-        ]
-    }
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -109,8 +75,8 @@ class ViewController: UIViewController
         view.addSubview(stackView)
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.addConstraints(contstraints(for: faceView, in: containerView))
-        containerView.addConstraints(contstraints(for: dial, in: containerView))
+        containerView.addConstraints(NSLayoutConstraint.contstraints(for: faceView, in: containerView))
+        containerView.addConstraints(NSLayoutConstraint.contstraints(for: dial, in: containerView))
         containerView.addConstraint(NSLayoutConstraint(item: containerView,
                                                        attribute: .width,
                                                        relatedBy: .equal,

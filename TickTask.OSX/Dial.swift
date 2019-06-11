@@ -19,7 +19,7 @@ class Dial: NSSliderCell, DialProtocol
     
     override func startTracking(at startPoint: NSPoint, in controlView: NSView) -> Bool
     {
-        doubleValue = startPoint.timeInterval(in: controlView.frame)
+        doubleValue = startPoint.timeInterval(in: controlView.bounds)
         
         delegate?.dialStartedTracking(dial: self)
         
@@ -28,7 +28,7 @@ class Dial: NSSliderCell, DialProtocol
     
     override func continueTracking(last lastPoint: NSPoint, current currentPoint: NSPoint, in controlView: NSView) -> Bool
     {
-        doubleValue = currentPoint.timeInterval(in: controlView.frame)
+        doubleValue = currentPoint.timeInterval(in: controlView.bounds)
         
         delegate?.dialUpdatedTracking(dial: self)
         
@@ -37,7 +37,7 @@ class Dial: NSSliderCell, DialProtocol
     
     override func stopTracking(last lastPoint: NSPoint, current stopPoint: NSPoint, in controlView: NSView, mouseIsUp flag: Bool)
     {
-        doubleValue = stopPoint.timeInterval(in: controlView.frame)
+        doubleValue = stopPoint.timeInterval(in: controlView.bounds)
         
         delegate?.dialStoppedTracking(dial: self)
     }

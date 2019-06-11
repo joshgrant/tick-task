@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         if let button = statusItem.button
         {
-            button.image = NSImage.statusItemDialWithInterval(interval: defaultInterval)
+            button.image = NSImage.statusItemDialWithInterval(interval: defaultInterval, rotations: 0)
         }
         
         return statusItem
@@ -73,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         statusItem.menu = menu
         
-        configureElements(interval: defaultInterval, manual: true)
+        configureElements(totalInterval: defaultInterval, rotations: 0, manual: true)
     }
     
     @objc func toggleAutoOpen()
@@ -94,14 +94,14 @@ extension AppDelegate: OptionsMenuDelegate
 
 extension AppDelegate: ControllerDelegate
 {
-    func configureElements(interval: Double, manual: Bool)
-    {        
-        dialMenuItem.configureDial(interval: interval)
-        dialMenuItem.configureLabel(interval: interval)
+    func configureElements(totalInterval: Double, rotations: Int, manual: Bool)
+    {
+        dialMenuItem.configureDial(totalInterval: totalInterval, rotations: rotations)
+        dialMenuItem.configureLabel(interval: totalInterval)
         
-        if manual || interval.truncatingRemainder(dividingBy: 10) == 0
+        if manual || totalInterval.truncatingRemainder(dividingBy: 10) == 0
         {
-            statusItem.button?.image = NSImage.statusItemDialWithInterval(interval: interval)
+            statusItem.button?.image = NSImage.statusItemDialWithInterval(interval: totalInterval, rotations: rotations)
         }
     }
 }

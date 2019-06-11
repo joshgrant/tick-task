@@ -11,14 +11,14 @@ import CoreGraphics
 
 extension NSImage
 {
-    static func statusItemDialWithInterval(interval: TimeInterval, size: CGSize = CGSize(square: 22)) -> NSImage
+    static func statusItemDialWithInterval(interval: TimeInterval, rotations: Int, size: CGSize = CGSize(square: 22)) -> NSImage
     {
         let image = NSImage(size: size, flipped: true) { (rect) -> Bool in
             
             guard let context = NSGraphicsContext.current?.cgContext else { return false }
             
             let scaleFactor = size.width / 22.0
-            let angle = interval.toAngle()
+            let angle = (interval - Double(rotations) * 3600).toAngle()
             
             let borderRect = NSRect(x: 3.5 * scaleFactor,
                                     y: 2.5 * scaleFactor,

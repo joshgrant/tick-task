@@ -12,6 +12,11 @@ class Dial: NSSliderCell, DialProtocol
 {
     var delegate: DialDelegate?
     var dialState: DialState = .inactive
+    var lastInterval: Double = 0
+    var rotations: Int = 0
+    var totalInterval: Double {
+        return doubleValue + Double(rotations) * 3600
+    }
     
     // We want to set the state manually, so we override this method. Maybe we'll
     // come in here sometime and implement better state setting methods?
@@ -19,7 +24,9 @@ class Dial: NSSliderCell, DialProtocol
     
     override func startTracking(at startPoint: NSPoint, in controlView: NSView) -> Bool
     {
-        doubleValue = startPoint.timeInterval(in: controlView.bounds)
+        doubleValue = startPoint.overscrollTimeInterval(in: controlView.bounds, lastInterval: lastInterval, snap: true, rotations: &rotations)
+        
+        lastInterval = doubleValue
         
         delegate?.dialStartedTracking(dial: self)
         
@@ -28,7 +35,9 @@ class Dial: NSSliderCell, DialProtocol
     
     override func continueTracking(last lastPoint: NSPoint, current currentPoint: NSPoint, in controlView: NSView) -> Bool
     {
-        doubleValue = currentPoint.timeInterval(in: controlView.bounds)
+        doubleValue = currentPoint.overscrollTimeInterval(in: controlView.bounds, lastInterval: lastInterval, snap: true, rotations: &rotations)
+        
+        lastInterval = doubleValue
         
         delegate?.dialUpdatedTracking(dial: self)
         
@@ -36,8 +45,10 @@ class Dial: NSSliderCell, DialProtocol
     }
     
     override func stopTracking(last lastPoint: NSPoint, current stopPoint: NSPoint, in controlView: NSView, mouseIsUp flag: Bool)
-    {
-        doubleValue = stopPoint.timeInterval(in: controlView.bounds)
+    {        
+        doubleValue = stopPoint.overscrollTimeInterval(in: controlView.bounds, lastInterval: lastInterval, snap: true, rotations: &rotations)
+        
+        lastInterval = doubleValue
         
         delegate?.dialStoppedTracking(dial: self)
     }

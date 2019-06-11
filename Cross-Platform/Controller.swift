@@ -10,7 +10,7 @@ import Foundation
 
 protocol ControllerDelegate
 {
-    func configureElements(interval: Double, manual: Bool)
+    func configureElements(totalInterval: Double, rotations: Int, manual: Bool)
 }
 
 class Controller
@@ -59,17 +59,17 @@ extension Controller: DialDelegate
         timerService.invalidateTimersAndDates()
         notificationService.removeNotification(with: Platform.current.alarmKey)
         
-        delegate.configureElements(interval: dial.doubleValue, manual: true)
+        delegate.configureElements(totalInterval: dial.totalInterval, rotations: dial.rotations, manual: true)
     }
     
     func dialUpdatedTracking(dial: Dial)
     {
-        delegate.configureElements(interval: dial.doubleValue, manual: true)
+        delegate.configureElements(totalInterval: dial.totalInterval, rotations: dial.rotations, manual: true)
     }
     
     func dialStoppedTracking(dial: Dial)
     {
-        if dial.doubleValue == 0
+        if dial.totalInterval == 0
         {
             dial.dialState = .inactive
             
@@ -80,30 +80,34 @@ extension Controller: DialDelegate
         {
             dial.dialState = .countdown
             
-            ubiquitous.syncAlarm(timeInterval: dial.doubleValue,
-                                 date: NSDate().addingTimeInterval(dial.doubleValue),
+            ubiquitous.syncAlarm(timeInterval: dial.totalInterval,
+                                 date: NSDate().addingTimeInterval(dial.totalInterval),
                                  on: Platform.current)
             
-            let body = DateComponentsFormatter.completedDurationFormatter.string(from: dial.doubleValue.dateComponents) ?? ""
+            let body = DateComponentsFormatter.completedDurationFormatter.string(from: dial.totalInterval.dateComponents) ?? ""
             
-            notificationService.createNotification(timeInterval: dial.doubleValue,
+            notificationService.createNotification(timeInterval: dial.totalInterval,
                                                    body: body,
                                                    with: Platform.current.alarmKey)
 
-            timerService.setTimerToActive(interval: dial.doubleValue) { (timer) in
+            timerService.setTimerToActive(interval: dial.totalInterval) { (timer) in
                 if self.timerService.currentInterval <= 0
                 {
                     dial.dialState = .inactive
                     
-                    self.delegate.configureElements(interval: defaultInterval, manual: true)
+                    self.delegate.configureElements(totalInterval: defaultInterval, rotations: dial.rotations, manual: true)
                 }
                 else
-                {
-                    self.delegate.configureElements(interval: self.timerService.currentInterval, manual: false)
+                {                    
+                    let rotations = Int(self.timerService.currentInterval / 3600)
+                    
+                    self.delegate.configureElements(totalInterval: self.timerService.currentInterval,
+                                                    rotations: rotations,
+                                                    manual: false)
                 }
             }
         }
         
-        delegate.configureElements(interval: dial.doubleValue, manual: true)
+        delegate.configureElements(totalInterval: dial.totalInterval, rotations: dial.rotations, manual: true)
     }
 }

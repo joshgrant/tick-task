@@ -62,11 +62,11 @@ class DialMenuItem
         label.stringValue = interval.durationString
     }
     
-    func configureDial(interval: Double)
+    func configureDial(totalInterval: Double, rotations: Int)
     {
         guard let dialView = dial.controlView else { return }
         
-        dial.doubleValue = interval
+        dial.doubleValue = totalInterval - Double(rotations) * 3600
         
         dialView.setNeedsDisplay(dialView.frame)
     }

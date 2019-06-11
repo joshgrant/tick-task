@@ -133,10 +133,10 @@ extension ViewController: UIGestureRecognizerDelegate
 
 extension ViewController: ControllerDelegate
 {
-    func configureElements(interval: Double, manual: Bool)
+    func configureElements(totalInterval: Double, rotations: Int, manual: Bool)
     {
-        self.dial.doubleValue = interval
+        self.dial.doubleValue = totalInterval - Double(rotations) * 3600
         self.dial.setNeedsDisplay()
-        self.label.text = interval.durationString
+        self.label.text = totalInterval.durationString
     }
 }

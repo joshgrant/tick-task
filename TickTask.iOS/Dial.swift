@@ -8,17 +8,24 @@
 
 import UIKit
 
-class Dial: UIControl
+class Dial: UIControl, DialProtocol
 {
     var delegate: DialDelegate?
     var dialState: DialState = .inactive
-    
     var doubleValue: Double = 0
+    var lastInterval: Double = 0
+    var rotations: Int = 0
+    var totalInterval: Double {
+        return doubleValue + Double(rotations) * 3600
+    }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
     {
         let point = touch.location(in: self)
-        doubleValue = point.timeInterval(in: self.bounds)
+        
+        doubleValue = point.overscrollTimeInterval(in: self.bounds, lastInterval: lastInterval, rotations: &rotations)
+        
+        lastInterval = doubleValue
         
         delegate?.dialStartedTracking(dial: self)
         
@@ -28,7 +35,10 @@ class Dial: UIControl
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
     {
         let point = touch.location(in: self)
-        doubleValue = point.timeInterval(in: self.bounds)
+        
+        doubleValue = point.overscrollTimeInterval(in: self.bounds, lastInterval: lastInterval, rotations: &rotations)
+        
+        lastInterval = doubleValue
         
         delegate?.dialUpdatedTracking(dial: self)
         
@@ -39,7 +49,8 @@ class Dial: UIControl
     {
         if let point = touch?.location(in: self)
         {
-            doubleValue = point.timeInterval(in: self.bounds)
+            doubleValue = point.overscrollTimeInterval(in: self.bounds, lastInterval: lastInterval, rotations: &rotations)
+            lastInterval = doubleValue
         }
         
         delegate?.dialStoppedTracking(dial: self)

@@ -19,4 +19,8 @@ protocol DialProtocol
 {
     var delegate: DialDelegate? { get set }
     var dialState: DialState { get set }
+    var lastInterval: Double { get set }
+    var totalInterval: Double { get }
+    var rotations: Int { get set }
+    var doubleValue: Double { get set }
 }

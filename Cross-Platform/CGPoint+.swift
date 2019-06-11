@@ -73,4 +73,40 @@ extension CGPoint
     {
         return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
     }
+    
+    func overscrollTimeInterval(in rect: CGRect, lastInterval: Double, snap: Bool = true, rotations: inout Int) -> Double
+    {
+        var snapValue = timeInterval(in: rect, snap: snap)
+        
+        let value = snapValue.distance(to: lastInterval)
+        
+        if value < -1800
+        {
+            if rotations <= 0
+            {
+                rotations = 0
+                
+                snapValue = lastInterval
+            }
+            else
+            {
+                rotations -= 1
+            }
+        }
+        else if value > 1800
+        {
+            if rotations >= 1
+            {
+                rotations = 1
+                
+                snapValue = lastInterval
+            }
+            else
+            {
+                rotations += 1
+            }
+        }
+        
+        return snapValue
+    }
 }

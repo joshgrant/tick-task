@@ -6,6 +6,9 @@
 //  Copyright © 2019 joshgrant. All rights reserved.
 //
 
+// If the user wants to have alerts - then they have to specify it in the system preferences
+// They need to change it from banner to alert...
+
 import UserNotifications
 
 struct NotificationIdentifier

@@ -26,12 +26,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     var controller: Controller!
     
-    var dialMenuItem: DialMenuItem!
+    var dialItems: [DialMenuItem] = []
     
     lazy var autoOpenItem: NSMenuItem = {
         let item = NSMenuItem(title: "open_at_login".localized,
-                                     action: #selector(toggleAutoOpen),
-                                     keyEquivalent: String())
+                              action: #selector(toggleAutoOpen),
+                              keyEquivalent: String())
         item.state = UserDefaults.standard.bool(forKey: autoOpenKey) ? .on : .off
         return item
     }()
@@ -51,6 +51,21 @@ class AppDelegate: NSObject, NSApplicationDelegate
         return statusItem
     }()
     
+    lazy var addItem: NSMenuItem = {
+        let addItem = NSMenuItem(title: "New Timer", action: #selector(addTimer(sender:)), keyEquivalent: "a")
+        return addItem
+    }()
+    
+    @objc func addTimer(sender: Any?)
+    {
+        let timer = DialMenuItem(delegate: controller, width: menu.size.width)
+        
+        dialItems.append(timer)
+        
+        menu.insertItem(NSMenuItem.separator(), at: (dialItems.count - 1) * 2 - 1)
+        menu.insertItem(timer.menuItem, at: (dialItems.count - 1) * 2)
+    }
+    
     // MARK: Application Lifecycle
     
     func applicationDidFinishLaunching(_ aNotification: Notification)
@@ -58,17 +73,22 @@ class AppDelegate: NSObject, NSApplicationDelegate
         controller = Controller(delegate: self)
         
         menu = NSMenu()
+        //        menu.addItem(NSMenuItem.separator())
+        //        menu.addItem(addItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(autoOpenItem)
         menu.addItem(quitItem)
         
-        dialMenuItem = DialMenuItem(delegate: controller, width: menu.size.width)
+        dialItems = [DialMenuItem(delegate: controller, width: menu.size.width)]
         
-        menu.insertItem(dialMenuItem.menuItem, at: 0)
+        for item in dialItems
+        {
+            menu.insertItem(item.menuItem, at: 0)
+        }
         
         statusItem.menu = menu
         
-        configureElements(totalInterval: defaultInterval, rotations: 0, manual: true)
+        configureElements(dial: nil, totalInterval: defaultInterval, rotations: 0, manual: true)
     }
     
     @objc func toggleAutoOpen()
@@ -84,14 +104,19 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
 extension AppDelegate: ControllerDelegate
 {
-    func configureElements(totalInterval: Double, rotations: Int, manual: Bool)
+    func configureElements(dial: Dial?, totalInterval: Double, rotations: Int, manual: Bool)
     {
-        dialMenuItem.configureDial(totalInterval: totalInterval, rotations: rotations)
-        dialMenuItem.configureLabel(interval: totalInterval)
+        guard let item = dialItems.first else { return }
         
-        if manual || totalInterval.truncatingRemainder(dividingBy: 10) == 0
+        item.configureDial(totalInterval: totalInterval, rotations: rotations)
+        item.configureLabel(interval: totalInterval)
+        
+        print(totalInterval.truncatingRemainder(dividingBy: 10))
+        
+        if manual || Int(totalInterval.truncatingRemainder(dividingBy: 10)) == 0
         {
-            statusItem.button?.image = NSImage.statusItemDialWithInterval(interval: totalInterval, rotations: rotations)
+            statusItem.button?.image = NSImage.statusItemDialWithInterval(interval: totalInterval,
+                                                                          rotations: rotations)
         }
     }
 }

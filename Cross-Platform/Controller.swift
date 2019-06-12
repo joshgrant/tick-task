@@ -10,7 +10,7 @@ import Foundation
 
 protocol ControllerDelegate
 {
-    func configureElements(totalInterval: Double, rotations: Int, manual: Bool)
+    func configureElements(dial: Dial?, totalInterval: Double, rotations: Int, manual: Bool)
 }
 
 class Controller
@@ -59,12 +59,18 @@ extension Controller: DialDelegate
         timerService.invalidateTimersAndDates()
         notificationService.removeNotification(with: Platform.current.alarmKey)
         
-        delegate.configureElements(totalInterval: dial.totalInterval, rotations: dial.rotations, manual: true)
+        delegate.configureElements(dial: dial,
+                                   totalInterval: dial.totalInterval,
+                                   rotations: dial.rotations,
+                                   manual: true)
     }
     
     func dialUpdatedTracking(dial: Dial)
     {
-        delegate.configureElements(totalInterval: dial.totalInterval, rotations: dial.rotations, manual: true)
+        delegate.configureElements(dial: dial,
+                                   totalInterval: dial.totalInterval,
+                                   rotations: dial.rotations,
+                                   manual: true)
     }
     
     func dialStoppedTracking(dial: Dial)
@@ -95,19 +101,26 @@ extension Controller: DialDelegate
                 {
                     dial.dialState = .inactive
                     
-                    self.delegate.configureElements(totalInterval: defaultInterval, rotations: dial.rotations, manual: true)
+                    self.delegate.configureElements(dial: dial,
+                                                    totalInterval: defaultInterval,
+                                                    rotations: dial.rotations,
+                                                    manual: true)
                 }
                 else
                 {                    
                     let rotations = Int(self.timerService.currentInterval / 3600)
                     
-                    self.delegate.configureElements(totalInterval: self.timerService.currentInterval,
+                    self.delegate.configureElements(dial: dial,
+                                                    totalInterval: self.timerService.currentInterval,
                                                     rotations: rotations,
                                                     manual: false)
                 }
             }
         }
         
-        delegate.configureElements(totalInterval: dial.totalInterval, rotations: dial.rotations, manual: true)
+        delegate.configureElements(dial: dial,
+                                   totalInterval: dial.totalInterval,
+                                   rotations: dial.rotations,
+                                   manual: true)
     }
 }

@@ -32,7 +32,7 @@ class DialMenuItem
     {
         let label = NSTextField(labelWithString: defaultInterval.durationString)
         label.alignment = .center
-        label.font = NSFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = NSFont.systemFont(ofSize: 16, weight: .medium)
         return label
     }
     

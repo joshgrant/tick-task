@@ -73,7 +73,6 @@
 		B5A4403E22AEBDFD00F969A9 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402822AEBCA900F969A9 /* TimerService.swift */; };
 		B5A4404222AEC41700F969A9 /* Ubiquitous.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4404122AEC41700F969A9 /* Ubiquitous.swift */; };
 		B5A4404322AEC41700F969A9 /* Ubiquitous.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4404122AEC41700F969A9 /* Ubiquitous.swift */; };
-		B5D83D4E22B1107000ECB07F /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D83D4C22B1107000ECB07F /* TriangleView.swift */; };
 		B5EB7FD022AF8D66006FF633 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FCF22AF8D66006FF633 /* Date+.swift */; };
 		B5EB7FD122AF8D66006FF633 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FCF22AF8D66006FF633 /* Date+.swift */; };
 		B5EB7FD322AFA4A6006FF633 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FD222AFA4A6006FF633 /* Controller.swift */; };
@@ -170,7 +169,6 @@
 		B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-macOSLauncher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D56C622286B2BE00338BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5D56C632286B2BE00338BF6 /* TickTask_macOSLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask_macOSLauncher.entitlements; sourceTree = "<group>"; };
-		B5D83D4C22B1107000ECB07F /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		B5EB7FCF22AF8D66006FF633 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B5EB7FD222AFA4A6006FF633 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		B5EB7FD522AFA520006FF633 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 				B5A4402522AEBCA800F969A9 /* AppDelegate.swift */,
 				B5A4402722AEBCA900F969A9 /* DialMenuItem.swift */,
 				B5A4402422AEBCA800F969A9 /* main.swift */,
-				B5D83D4C22B1107000ECB07F /* TriangleView.swift */,
 				B5A4402C22AEBCA900F969A9 /* QuitMenuItem.swift */,
 				B550392922A6B4E5005BCE50 /* Dial.swift */,
 				B5D56C5A2286B2BD00338BF6 /* Launcher */,
@@ -584,7 +581,6 @@
 				B5A4401122AEBBCE00F969A9 /* DialDelegate.swift in Sources */,
 				B5A4402F22AEBCA900F969A9 /* main.swift in Sources */,
 				B5A4400822AEBBCE00F969A9 /* TimeInterval+.swift in Sources */,
-				B5D83D4E22B1107000ECB07F /* TriangleView.swift in Sources */,
 				B5A43FFB22AEBBCE00F969A9 /* DialShape.swift in Sources */,
 				B5A4401A22AEBBEF00F969A9 /* Dial.swift in Sources */,
 				B5A4400422AEBBCE00F969A9 /* Shape.swift in Sources */,

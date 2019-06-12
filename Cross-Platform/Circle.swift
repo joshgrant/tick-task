@@ -49,13 +49,14 @@ class Circle: Shape
     static func boundsWithLevel(level: Int,
                                 frame: CGRect,
                                 offset: CGSize,
-                                borderWidth: CGFloat) -> CGRect
+                                borderWidth: CGFloat,
+                                scaleFactor: CGFloat) -> CGRect
     {
         let origin = CGPoint(x: offset.width + borderWidth * CGFloat(level),
                              y: offset.height + borderWidth * CGFloat(level))
         
-        return CGRect(origin: origin, size: CGSize(width: frame.size.width - origin.x * 2,
-                                                   height: frame.size.height - origin.y * 2))
+        return CGRect(origin: origin, size: CGSize(width: frame.size.width - origin.x * 2,//- 6 * scaleFactor,
+                                                   height: frame.size.height - origin.y * 2))// - 6 * scaleFactor))
     }
     
     // MARK: Global Instances
@@ -68,7 +69,8 @@ class Circle: Shape
                ovalBounds: Circle.boundsWithLevel(level: 0,
                                                   frame: drawingData.rect,
                                                   offset: drawingData.padding,
-                                                  borderWidth: drawingData.rimThickness))
+                                                  borderWidth: drawingData.rimThickness,
+                                                  scaleFactor: drawingData.scaleFactor))
     }
     
     static func outerRimCircle(with drawingData: DrawingData) -> Circle
@@ -79,7 +81,8 @@ class Circle: Shape
                       ovalBounds: Circle.boundsWithLevel(level: 0,
                                                          frame: drawingData.rect,
                                                          offset: drawingData.padding,
-                                                         borderWidth: drawingData.rimThickness))
+                                                         borderWidth: drawingData.rimThickness,
+                                                         scaleFactor: drawingData.scaleFactor))
     }
     
     static func centerRimCircle(with drawingData: DrawingData) -> Circle
@@ -90,7 +93,8 @@ class Circle: Shape
                ovalBounds: Circle.boundsWithLevel(level: 1,
                                                   frame: drawingData.rect,
                                                   offset: drawingData.padding,
-                                                  borderWidth: drawingData.rimThickness))
+                                                  borderWidth: drawingData.rimThickness,
+                                                  scaleFactor: drawingData.scaleFactor))
     }
     
     static func innerRimCircle(with drawingData: DrawingData) -> Circle
@@ -101,7 +105,8 @@ class Circle: Shape
                       ovalBounds: Circle.boundsWithLevel(level: 2,
                                                          frame: drawingData.rect,
                                                          offset: drawingData.padding,
-                                                         borderWidth: drawingData.rimThickness))
+                                                         borderWidth: drawingData.rimThickness,
+                                                         scaleFactor: drawingData.scaleFactor))
     }
     
     static func faceInnerCircle(with drawingData: DrawingData) -> Circle
@@ -112,6 +117,7 @@ class Circle: Shape
                ovalBounds: Circle.boundsWithLevel(level: 3,
                                                   frame: drawingData.rect,
                                                   offset: drawingData.padding,
-                                                  borderWidth: drawingData.rimThickness))
+                                                  borderWidth: drawingData.rimThickness,
+                                                  scaleFactor: drawingData.scaleFactor))
     }
 }

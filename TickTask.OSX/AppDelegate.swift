@@ -28,10 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     var dialMenuItem: DialMenuItem!
     
-    lazy var optionsMenuView: OptionsMenuView = {
-        return OptionsMenuView.initFromNib(delegate: self)
-    }()
-    
     lazy var autoOpenItem: NSMenuItem = {
         let item = NSMenuItem(title: "open_at_login".localized,
                                      action: #selector(toggleAutoOpen),
@@ -62,7 +58,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         controller = Controller(delegate: self)
         
         menu = NSMenu()
-//        menu.addItem(optionsMenuView.menuItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(autoOpenItem)
         menu.addItem(quitItem)
@@ -85,11 +80,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
             isAutoOpen = !isAutoOpen
         }
     }
-}
-
-extension AppDelegate: OptionsMenuDelegate
-{
-    
 }
 
 extension AppDelegate: ControllerDelegate

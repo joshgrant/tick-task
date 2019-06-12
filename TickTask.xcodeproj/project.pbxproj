@@ -66,16 +66,14 @@
 		B5A4401C22AEBBEF00F969A9 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FD8D022A9482100853A84 /* NotificationService.swift */; };
 		B5A4402F22AEBCA900F969A9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402422AEBCA800F969A9 /* main.swift */; };
 		B5A4403022AEBCA900F969A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402522AEBCA800F969A9 /* AppDelegate.swift */; };
-		B5A4403122AEBCA900F969A9 /* OptionsMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A4402622AEBCA800F969A9 /* OptionsMenuView.xib */; };
 		B5A4403222AEBCA900F969A9 /* DialMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402722AEBCA900F969A9 /* DialMenuItem.swift */; };
 		B5A4403322AEBCA900F969A9 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402822AEBCA900F969A9 /* TimerService.swift */; };
-		B5A4403522AEBCA900F969A9 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402A22AEBCA900F969A9 /* AudioService.swift */; };
-		B5A4403622AEBCA900F969A9 /* OptionsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402B22AEBCA900F969A9 /* OptionsMenuView.swift */; };
 		B5A4403722AEBCA900F969A9 /* QuitMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402C22AEBCA900F969A9 /* QuitMenuItem.swift */; };
 		B5A4403D22AEBDFD00F969A9 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FD8D022A9482100853A84 /* NotificationService.swift */; };
 		B5A4403E22AEBDFD00F969A9 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402822AEBCA900F969A9 /* TimerService.swift */; };
 		B5A4404222AEC41700F969A9 /* Ubiquitous.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4404122AEC41700F969A9 /* Ubiquitous.swift */; };
 		B5A4404322AEC41700F969A9 /* Ubiquitous.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4404122AEC41700F969A9 /* Ubiquitous.swift */; };
+		B5D83D4E22B1107000ECB07F /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D83D4C22B1107000ECB07F /* TriangleView.swift */; };
 		B5EB7FD022AF8D66006FF633 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FCF22AF8D66006FF633 /* Date+.swift */; };
 		B5EB7FD122AF8D66006FF633 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FCF22AF8D66006FF633 /* Date+.swift */; };
 		B5EB7FD322AFA4A6006FF633 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FD222AFA4A6006FF633 /* Controller.swift */; };
@@ -128,11 +126,8 @@
 		B5A43FAD22AEBA4500F969A9 /* TickTask.iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask.iOS.entitlements; sourceTree = "<group>"; };
 		B5A4402422AEBCA800F969A9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B5A4402522AEBCA800F969A9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B5A4402622AEBCA800F969A9 /* OptionsMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsMenuView.xib; sourceTree = "<group>"; };
 		B5A4402722AEBCA900F969A9 /* DialMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialMenuItem.swift; sourceTree = "<group>"; };
 		B5A4402822AEBCA900F969A9 /* TimerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
-		B5A4402A22AEBCA900F969A9 /* AudioService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
-		B5A4402B22AEBCA900F969A9 /* OptionsMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsMenuView.swift; sourceTree = "<group>"; };
 		B5A4402C22AEBCA900F969A9 /* QuitMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuitMenuItem.swift; sourceTree = "<group>"; };
 		B5A4402D22AEBCA900F969A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A4404122AEC41700F969A9 /* Ubiquitous.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ubiquitous.swift; sourceTree = "<group>"; };
@@ -175,6 +170,7 @@
 		B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TickTask-macOSLauncher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D56C622286B2BE00338BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5D56C632286B2BE00338BF6 /* TickTask_macOSLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask_macOSLauncher.entitlements; sourceTree = "<group>"; };
+		B5D83D4C22B1107000ECB07F /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		B5EB7FCF22AF8D66006FF633 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B5EB7FD222AFA4A6006FF633 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		B5EB7FD522AFA520006FF633 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -244,11 +240,9 @@
 			isa = PBXGroup;
 			children = (
 				B5A4402522AEBCA800F969A9 /* AppDelegate.swift */,
-				B5A4402A22AEBCA900F969A9 /* AudioService.swift */,
 				B5A4402722AEBCA900F969A9 /* DialMenuItem.swift */,
 				B5A4402422AEBCA800F969A9 /* main.swift */,
-				B5A4402B22AEBCA900F969A9 /* OptionsMenuView.swift */,
-				B5A4402622AEBCA800F969A9 /* OptionsMenuView.xib */,
+				B5D83D4C22B1107000ECB07F /* TriangleView.swift */,
 				B5A4402C22AEBCA900F969A9 /* QuitMenuItem.swift */,
 				B550392922A6B4E5005BCE50 /* Dial.swift */,
 				B5D56C5A2286B2BD00338BF6 /* Launcher */,
@@ -515,7 +509,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5A4403122AEBCA900F969A9 /* OptionsMenuView.xib in Resources */,
 				B5A43FB322AEBBA400F969A9 /* Assets.xcassets in Resources */,
 				B5A43FB122AEBBA100F969A9 /* Localizable.strings in Resources */,
 			);
@@ -586,13 +579,12 @@
 				B5A43FFC22AEBBCE00F969A9 /* DialState.swift in Sources */,
 				B5A4400922AEBBCE00F969A9 /* CGContext+.swift in Sources */,
 				B5A4403322AEBCA900F969A9 /* TimerService.swift in Sources */,
-				B5A4403522AEBCA900F969A9 /* AudioService.swift in Sources */,
 				B5A43FFD22AEBBCE00F969A9 /* DrawingData.swift in Sources */,
-				B5A4403622AEBCA900F969A9 /* OptionsMenuView.swift in Sources */,
 				B5A4400B22AEBBCE00F969A9 /* CGPoint+.swift in Sources */,
 				B5A4401122AEBBCE00F969A9 /* DialDelegate.swift in Sources */,
 				B5A4402F22AEBCA900F969A9 /* main.swift in Sources */,
 				B5A4400822AEBBCE00F969A9 /* TimeInterval+.swift in Sources */,
+				B5D83D4E22B1107000ECB07F /* TriangleView.swift in Sources */,
 				B5A43FFB22AEBBCE00F969A9 /* DialShape.swift in Sources */,
 				B5A4401A22AEBBEF00F969A9 /* Dial.swift in Sources */,
 				B5A4400422AEBBCE00F969A9 /* Shape.swift in Sources */,

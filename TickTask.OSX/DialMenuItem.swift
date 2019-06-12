@@ -13,35 +13,64 @@ class DialMenuItem
     
     var label: NSTextField
     var slider: NSSlider
+    var menuItem: NSMenuItem
     var dial: Dial
     var stackView: NSStackView
-//    var containerView: NSView
-    var menuItem: NSMenuItem
     
     init(delegate: DialDelegate, width: CGFloat)
     {
-        label = NSTextField(labelWithString: defaultInterval.durationString)
-        label.alignment = .center
-        label.font = NSFont.systemFont(ofSize: 16, weight: .medium)
+        label = DialMenuItem.makeLabel()
+        dial = DialMenuItem.dial(with: delegate)
+        slider = DialMenuItem.slider(with: dial)
+        stackView = DialMenuItem.stackView(with: label, slider: slider, width: width)
         
-        dial = Dial()
+        menuItem = NSMenuItem(title: "Dial", action: nil, keyEquivalent: "")
+        menuItem.view = stackView
+    }
+    
+    static func makeLabel() -> NSTextField
+    {
+        let label = NSTextField(labelWithString: defaultInterval.durationString)
+        label.alignment = .center
+        label.font = NSFont.systemFont(ofSize: 14, weight: .regular)
+        return label
+    }
+    
+    static func slider(with dial: Dial) -> NSSlider
+    {
+        let slider = NSSlider()
+        slider.cell = dial
+        
+        slider.addConstraint(NSLayoutConstraint(item: slider,
+                                                attribute: .width,
+                                                relatedBy: .equal,
+                                                toItem: slider,
+                                                attribute: .height,
+                                                multiplier: 1.0,
+                                                constant: 0.0))
+        
+        return slider
+    }
+    
+    static func dial(with delegate: DialDelegate) -> Dial
+    {
+        let dial = Dial()
         dial.minValue = 0
         dial.maxValue = 3600
         dial.sliderType = .circular
         dial.delegate = delegate
         
-        slider = NSSlider()
-        slider.cell = dial
-        
-        slider.addConstraint(NSLayoutConstraint(item: slider, attribute: .width, relatedBy: .equal, toItem: slider, attribute: .height, multiplier: 1.0, constant: 0.0))
-        
-        stackView = NSStackView(views: [label, slider])
+        return dial
+    }
+    
+    static func stackView(with label: NSTextField, slider: NSSlider, width: CGFloat) -> NSStackView
+    {
+        let stackView = NSStackView(views: [label, slider])
         stackView.edgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
         stackView.orientation = .vertical
         stackView.alignment = .centerX
         stackView.distribution = .fill
         stackView.spacing = 10
-        
         stackView.autoresizingMask = [.width, .height]
         stackView.autoresizesSubviews = true
         
@@ -53,8 +82,7 @@ class DialMenuItem
                                                    multiplier: 1.0,
                                                    constant: width - stackView.spacing * 4))
         
-        menuItem = NSMenuItem(title: "Dial", action: nil, keyEquivalent: "")
-        menuItem.view = stackView
+        return stackView
     }
     
     func configureLabel(interval: Double)

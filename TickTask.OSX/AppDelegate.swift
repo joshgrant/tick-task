@@ -111,8 +111,6 @@ extension AppDelegate: ControllerDelegate
         item.configureDial(totalInterval: totalInterval, rotations: rotations)
         item.configureLabel(interval: totalInterval)
         
-        print(totalInterval.truncatingRemainder(dividingBy: 10))
-        
         if manual || Int(totalInterval.truncatingRemainder(dividingBy: 10)) == 0
         {
             statusItem.button?.image = NSImage.statusItemDialWithInterval(interval: totalInterval,

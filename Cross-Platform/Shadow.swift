@@ -18,7 +18,6 @@ struct Shadow
 {
     var color: Color
     var blur: CGFloat
-    var spread: CGFloat // Right now, spread does nothing...
     var offset: CGSize
     var type: ShadowType
     
@@ -26,7 +25,6 @@ struct Shadow
     {
         return Shadow(color: Color.faceDropShadow,
                       blur: 4 * scaleFactor,
-                      spread: 0,
                       offset: CGSize(width: 0, height: 2 * scaleFactor),
                       type: .outer)
     }
@@ -35,7 +33,6 @@ struct Shadow
     {
         return Shadow(color: Color.dialOuterDropShadow,
                       blur: 4 * scaleFactor,
-                      spread: 0,
                       offset: CGSize(width: 0, height: 2 * scaleFactor),
                       type: .outer)
     }
@@ -44,7 +41,6 @@ struct Shadow
     {
         return Shadow(color: Color.dialOuterStrokeShadow,
                       blur: 2 * scaleFactor,
-                      spread: 0,
                       offset: CGSize(width: 0, height: 1 * scaleFactor),
                       type: .outer)
     }
@@ -53,7 +49,6 @@ struct Shadow
     {
         return Shadow(color: Color.dialInnerHighlight,
                       blur: 0,
-                      spread: 0,
                       offset: CGSize(width: 0, height: 1 * scaleFactor),
                       type: .inner)
     }
@@ -62,7 +57,6 @@ struct Shadow
     {
         return Shadow(color: Color.dialInnerShadow,
                       blur: 0,
-                      spread: 0,
                       offset: CGSize(width: 0, height: -1 * scaleFactor),
                       type: .inner)
     }

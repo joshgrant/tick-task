@@ -9,7 +9,7 @@
 import Foundation
 import CoreGraphics
 
-var defaultAngle = -Double.pi * 2
+//var defaultAngle = -Double.pi * 2
 
 var offset: Int = 0
 
@@ -67,11 +67,6 @@ extension CGPoint
         }
         
         return Double(snapValue)
-    }
-    
-    static func * (lhs: CGPoint, rhs: CGFloat) -> CGPoint
-    {
-        return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
     }
     
     func overscrollTimeInterval(in rect: CGRect, lastInterval: Double, snap: Bool = true, rotations: inout Int) -> Double

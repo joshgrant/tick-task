@@ -44,7 +44,6 @@
 		B5A4400322AEBBCE00F969A9 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA93D229D0F28008DB140 /* Shadow.swift */; };
 		B5A4400422AEBBCE00F969A9 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA92E229D0F27008DB140 /* Shape.swift */; };
 		B5A4400522AEBBCE00F969A9 /* DateComponentsFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA93B229D0F28008DB140 /* DateComponentsFormatter+.swift */; };
-		B5A4400622AEBBCE00F969A9 /* NSEvent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA934229D0F27008DB140 /* NSEvent+.swift */; };
 		B5A4400722AEBBCE00F969A9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA92B229D0F27008DB140 /* String+.swift */; };
 		B5A4400822AEBBCE00F969A9 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA92D229D0F27008DB140 /* TimeInterval+.swift */; };
 		B5A4400922AEBBCE00F969A9 /* CGContext+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA93C229D0F28008DB140 /* CGContext+.swift */; };
@@ -54,7 +53,6 @@
 		B5A4400D22AEBBCE00F969A9 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA933229D0F27008DB140 /* CGSize+.swift */; };
 		B5A4400E22AEBBCE00F969A9 /* NSBezierPath+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA92C229D0F27008DB140 /* NSBezierPath+.swift */; };
 		B5A4400F22AEBBCE00F969A9 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA92F229D0F27008DB140 /* NSImage+.swift */; };
-		B5A4401022AEBBCE00F969A9 /* NSView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA93E229D0F28008DB140 /* NSView+.swift */; };
 		B5A4401122AEBBCE00F969A9 /* DialDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E29E622AE64EE005A9F03 /* DialDelegate.swift */; };
 		B5A4401222AEBBE300F969A9 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CEA8A0229AE43A008DB140 /* FaceView.swift */; };
 		B5A4401322AEBBE300F969A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF1EB228C327A00922A69 /* AppDelegate.swift */; };
@@ -153,7 +151,6 @@
 		B5CEA930229D0F27008DB140 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		B5CEA932229D0F27008DB140 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		B5CEA933229D0F27008DB140 /* CGSize+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
-		B5CEA934229D0F27008DB140 /* NSEvent+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEvent+.swift"; sourceTree = "<group>"; };
 		B5CEA936229D0F28008DB140 /* DialShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialShape.swift; sourceTree = "<group>"; };
 		B5CEA937229D0F28008DB140 /* DrawingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingData.swift; sourceTree = "<group>"; };
 		B5CEA938229D0F28008DB140 /* Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
@@ -162,7 +159,6 @@
 		B5CEA93B229D0F28008DB140 /* DateComponentsFormatter+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+.swift"; sourceTree = "<group>"; };
 		B5CEA93C229D0F28008DB140 /* CGContext+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGContext+.swift"; sourceTree = "<group>"; };
 		B5CEA93D229D0F28008DB140 /* Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
-		B5CEA93E229D0F28008DB140 /* NSView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+.swift"; sourceTree = "<group>"; };
 		B5CEA93F229D0F28008DB140 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B5CEA940229D0F28008DB140 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		B5CEA942229D0F28008DB140 /* CGRect+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+.swift"; sourceTree = "<group>"; };
@@ -277,20 +273,19 @@
 				B5EB7FCF22AF8D66006FF633 /* Date+.swift */,
 				B5EB7FD222AFA4A6006FF633 /* Controller.swift */,
 				B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */,
-				B5CEA993229D0FEE008DB140 /* Drawing Utilities */,
-				B5CEA98E229D0F3C008DB140 /* Drawing Wrappers */,
-				B5CEA990229D0F81008DB140 /* General Extensions */,
-				B5CEA992229D0FC1008DB140 /* Graphics Extensions */,
-				B5CEA991229D0F94008DB140 /* Protocols */,
-				B5B82F4722A8E6A000359FFC /* Localizable.strings */,
-				B58FD8D622A9616300853A84 /* Assets.xcassets */,
-			);
-			path = "Cross-Platform";
-			sourceTree = "<group>";
-		};
-		B5CEA98E229D0F3C008DB140 /* Drawing Wrappers */ = {
-			isa = PBXGroup;
-			children = (
+				B5CEA936229D0F28008DB140 /* DialShape.swift */,
+				B5CEA93A229D0F28008DB140 /* DialState.swift */,
+				B5CEA937229D0F28008DB140 /* DrawingData.swift */,
+				B50E29E622AE64EE005A9F03 /* DialDelegate.swift */,
+				B5CEA93C229D0F28008DB140 /* CGContext+.swift */,
+				B5CEA939229D0F28008DB140 /* CGFloat+.swift */,
+				B5CEA92A229D0F27008DB140 /* CGPoint+.swift */,
+				B5CEA942229D0F28008DB140 /* CGRect+.swift */,
+				B5CEA933229D0F27008DB140 /* CGSize+.swift */,
+				B5CEA92C229D0F27008DB140 /* NSBezierPath+.swift */,
+				B5CEA92F229D0F27008DB140 /* NSImage+.swift */,
+				B5CEA92B229D0F27008DB140 /* String+.swift */,
+				B5CEA92D229D0F27008DB140 /* TimeInterval+.swift */,
 				B5CEA938229D0F28008DB140 /* Border.swift */,
 				B5CEA940229D0F28008DB140 /* Circle.swift */,
 				B5CEA93F229D0F28008DB140 /* Color.swift */,
@@ -299,51 +294,10 @@
 				B5CEA93D229D0F28008DB140 /* Shadow.swift */,
 				B5CEA92E229D0F27008DB140 /* Shape.swift */,
 				B5CEA93B229D0F28008DB140 /* DateComponentsFormatter+.swift */,
+				B5B82F4722A8E6A000359FFC /* Localizable.strings */,
+				B58FD8D622A9616300853A84 /* Assets.xcassets */,
 			);
-			name = "Drawing Wrappers";
-			sourceTree = "<group>";
-		};
-		B5CEA990229D0F81008DB140 /* General Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B5CEA934229D0F27008DB140 /* NSEvent+.swift */,
-				B5CEA92B229D0F27008DB140 /* String+.swift */,
-				B5CEA92D229D0F27008DB140 /* TimeInterval+.swift */,
-			);
-			name = "General Extensions";
-			sourceTree = "<group>";
-		};
-		B5CEA991229D0F94008DB140 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				B50E29E622AE64EE005A9F03 /* DialDelegate.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		B5CEA992229D0FC1008DB140 /* Graphics Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B5CEA93C229D0F28008DB140 /* CGContext+.swift */,
-				B5CEA939229D0F28008DB140 /* CGFloat+.swift */,
-				B5CEA92A229D0F27008DB140 /* CGPoint+.swift */,
-				B5CEA942229D0F28008DB140 /* CGRect+.swift */,
-				B5CEA933229D0F27008DB140 /* CGSize+.swift */,
-				B5CEA92C229D0F27008DB140 /* NSBezierPath+.swift */,
-				B5CEA92F229D0F27008DB140 /* NSImage+.swift */,
-				B5CEA93E229D0F28008DB140 /* NSView+.swift */,
-			);
-			name = "Graphics Extensions";
-			sourceTree = "<group>";
-		};
-		B5CEA993229D0FEE008DB140 /* Drawing Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				B5CEA936229D0F28008DB140 /* DialShape.swift */,
-				B5CEA93A229D0F28008DB140 /* DialState.swift */,
-				B5CEA937229D0F28008DB140 /* DrawingData.swift */,
-			);
-			name = "Drawing Utilities";
+			path = "Cross-Platform";
 			sourceTree = "<group>";
 		};
 		B5D56C5A2286B2BD00338BF6 /* Launcher */ = {
@@ -572,7 +526,6 @@
 				B5A4400022AEBBCE00F969A9 /* Color.swift in Sources */,
 				B5A4403722AEBCA900F969A9 /* QuitMenuItem.swift in Sources */,
 				B5EB7FD122AF8D66006FF633 /* Date+.swift in Sources */,
-				B5A4401022AEBBCE00F969A9 /* NSView+.swift in Sources */,
 				B5A43FFC22AEBBCE00F969A9 /* DialState.swift in Sources */,
 				B5A4400922AEBBCE00F969A9 /* CGContext+.swift in Sources */,
 				B5A4403322AEBCA900F969A9 /* TimerService.swift in Sources */,
@@ -592,7 +545,6 @@
 				B5EB7FD722AFA520006FF633 /* Platform.swift in Sources */,
 				B5EB7FD422AFA4A6006FF633 /* Controller.swift in Sources */,
 				B5EB801F22AFDE23006FF633 /* NSLayoutConstraint+.swift in Sources */,
-				B5A4400622AEBBCE00F969A9 /* NSEvent+.swift in Sources */,
 				B5A4400222AEBBCE00F969A9 /* Path.swift in Sources */,
 				B5A4400C22AEBBCE00F969A9 /* CGRect+.swift in Sources */,
 				B5A4401C22AEBBEF00F969A9 /* NotificationService.swift in Sources */,

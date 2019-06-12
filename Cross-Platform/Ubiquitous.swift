@@ -35,8 +35,6 @@ class Ubiquitous
     
     func syncAlarm(timeInterval: TimeInterval, date: NSDate, on platform: Platform)
     {
-        print("Sending the alert to \(platform)")
-        
         NSUbiquitousKeyValueStore.default.set(["timeInterval" : timeInterval,
                                                "date" : date,],
                                               forKey: platform.alarmKey)

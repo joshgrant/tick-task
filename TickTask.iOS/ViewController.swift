@@ -27,7 +27,7 @@ class ViewController: UIViewController
     
     init()
     {
-        label = UILabel()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        label = UILabel()
         label.text = defaultInterval.durationString
         label.font = UIFont.systemFont(ofSize: 34, weight: .semibold)
         label.textColor = UIColor.white
@@ -133,10 +133,11 @@ extension ViewController: UIGestureRecognizerDelegate
 
 extension ViewController: ControllerDelegate
 {
-    func configureElements(totalInterval: Double, rotations: Int, manual: Bool)
+    func configureElements(dial: Dial?, totalInterval: Double, rotations: Int, manual: Bool)
     {
-        self.dial.doubleValue = totalInterval - Double(rotations) * 3600
-        self.dial.setNeedsDisplay()
+        (dial ?? self.dial).doubleValue = totalInterval - Double(rotations) * 3600
+        (dial ?? self.dial).setNeedsDisplay()
+        
         self.label.text = totalInterval.durationString
     }
 }

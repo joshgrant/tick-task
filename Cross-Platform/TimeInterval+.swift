@@ -9,8 +9,6 @@
 import Foundation
 import CoreGraphics
 
-// I'm using this time interval as minutes, not seconds....
-
 extension TimeInterval
 {
     var minutes: Int {
@@ -69,14 +67,5 @@ extension TimeInterval
         let interval = seconds.rounded()
         
         return Double(interval)
-    }
-    
-    func snap(to snap: Double) -> Double
-    {
-        // Now we want to make sure the dial "snaps" to different locations.
-        // This is achieved by subtracting the remainder from the value
-        // This gives us twice the number of snaps (because a full rotation is 2 pi)
-        let remainder = self.remainder(dividingBy: Double((CGFloat.pi * 2)) / snap)
-        return self - remainder
     }
 }

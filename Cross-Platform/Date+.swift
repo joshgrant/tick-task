@@ -12,6 +12,6 @@ extension Date
 {
     var components: DateComponents {
         // Is this time zone safe?
-        return Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year], from: self)
+        return Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year, .timeZone], from: self)
     }
 }

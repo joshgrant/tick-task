@@ -37,15 +37,16 @@ extension Controller: UbiquitousDelegate
     {
         let relativeTimeInterval = date.timeIntervalSinceNow
         
-        // This whole thing isn't very clear
-        if timeInterval > 0
+        print("Platform: \(platform), timeInterval: \(timeInterval), date: \(date)")
+        
+        if timeInterval > 0 && platform != .current
         {
             let body = DateComponentsFormatter.completedDurationFormatter.string(from: timeInterval.dateComponents) ?? ""
             
-            notificationService.removeNotification(with: platform.alarmKey)
+            notificationService.removeNotification(with: platform.rawValue)
             notificationService.createNotification(timeInterval: relativeTimeInterval,
                                                    body: body,
-                                                   with: platform.alarmKey)
+                                                   with: platform.rawValue)
         }
     }
 }
@@ -57,7 +58,7 @@ extension Controller: DialDelegate
         dial.dialState = .selected
         
         timerService.invalidateTimersAndDates()
-        notificationService.removeNotification(with: Platform.current.alarmKey)
+        notificationService.removeNotification(with: Platform.current.rawValue)
         
         delegate.configureElements(dial: dial,
                                    totalInterval: dial.totalInterval,
@@ -80,7 +81,7 @@ extension Controller: DialDelegate
             dial.dialState = .inactive
             
             timerService.invalidateTimersAndDates()
-            self.notificationService.removeNotification(with: Platform.current.alarmKey)
+            self.notificationService.removeNotification(with: Platform.current.rawValue)
         }
         else
         {
@@ -94,7 +95,7 @@ extension Controller: DialDelegate
             
             notificationService.createNotification(timeInterval: dial.totalInterval,
                                                    body: body,
-                                                   with: Platform.current.alarmKey)
+                                                   with: Platform.current.rawValue)
 
             timerService.setTimerToActive(interval: dial.totalInterval) { (timer) in
                 if self.timerService.currentInterval <= 0

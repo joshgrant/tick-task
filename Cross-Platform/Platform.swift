@@ -8,22 +8,12 @@
 
 import Foundation
 
-enum Platform
+enum Platform: String
 {
-    case iOS
-    case iOSDebug
-    case OSX
-    case OSXDebug
-    
-    var alarmKey: String {
-        switch self
-        {
-        case .iOS: return "me.joshgrant.TickTask.iOS.alarmDate"
-        case .iOSDebug: return "me.joshgrant.TickTask.iOS.Debug.alarmDate"
-        case .OSX: return "me.joshgrant.TickTask.OSX.alarmDate"
-        case .OSXDebug: return "me.joshgrant.TickTask.OSX.Debug.alarmDate"
-        }
-    }
+    case iOS = "me.joshgrant.TickTask.iOS.alarmDate"
+    case iOSDebug = "me.joshgrant.TickTask.iOS.Debug.alarmDate"
+    case OSX = "me.joshgrant.TickTask.OSX.alarmDate"
+    case OSXDebug = "me.joshgrant.TickTask.OSX.Debug.alarmDate"
     
     static var current: Platform
     {

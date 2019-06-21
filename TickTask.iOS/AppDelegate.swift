@@ -9,6 +9,7 @@
 // TeamID: 685257RUQP
 
 import UIKit
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -24,5 +25,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+    {
+        /*
+        let dict = userInfo as! [String: NSObject]
+        let notification = CKNotification(fromRemoteNotificationDictionary: dict)
+        let db = CloudKitNoteDatabase.shared
+        if notification.subscriptionID == db.subscriptionID {
+            db.handleNotification()
+            completionHandler(.newData)
+        }
+        else {
+            completionHandler(.noData)
+        }
+         */
     }
 }

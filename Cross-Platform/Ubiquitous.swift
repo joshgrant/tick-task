@@ -35,22 +35,37 @@ class Ubiquitous
     
     func syncAlarm(timeInterval: TimeInterval, date: NSDate, on platform: Platform)
     {
+        print("Time Interval: \(timeInterval), Date: \(date), Current Date: \(Date()) for: \(platform.rawValue)")
+        
         NSUbiquitousKeyValueStore.default.set(["timeInterval" : timeInterval,
                                                "date" : date,],
-                                              forKey: platform.alarmKey)
+                                              forKey: platform.rawValue)
     }
     
     @objc func keyStoreChanged(notification: NSNotification)
     {
-        guard let userInfo = notification.userInfo else { return }
-        guard let key = userInfo[keyChangedKey] as? NSArray else { return }
-        guard let value = key.firstObject as? String else { return }
-        guard let dictionary = NSUbiquitousKeyValueStore.default.dictionary(forKey: value) else { return }
-        guard let date = dictionary["date"] as? Date else { return }
-        guard let timeInterval = dictionary["timeInterval"] as? TimeInterval else { return }
-        guard let delegate = delegate else { return }
+        print("Notification: \(notification)")
         
-        delegate.alarmWasRemotelyUpdated(platform: platform, timeInterval: timeInterval, date: date)
+        guard let delegate = delegate else { return }
+        guard let userInfo = notification.userInfo else { return }
+        guard let keys = userInfo[keyChangedKey] as? NSArray else { return }
+        
+        for key in keys
+        {
+            if let key = key as? String,
+                let platform = Platform(rawValue: key),
+                let dictionary = NSUbiquitousKeyValueStore.default.dictionary(forKey: key),
+                let date = dictionary["date"] as? Date,
+                let timeInterval = dictionary["timeInterval"] as? TimeInterval
+            {
+                print("Updating")
+                delegate.alarmWasRemotelyUpdated(platform: platform, timeInterval: timeInterval, date: date)
+            }
+            else
+            {
+                print("Fail: \(key)")
+            }
+        }
     }
 }
 

@@ -25,7 +25,7 @@ class CloudService
     var database: CKDatabase
     var containerID: String
     
-    var delegate: CloudServiceDelegate?
+    var delegate: CloudServiceDelegate
     
     init(delegate: CloudServiceDelegate)
     {
@@ -33,11 +33,17 @@ class CloudService
         self.database = container.database(with: .private)
         self.containerID = container.containerIdentifier ?? ""
         
+        self.delegate = delegate
+        
         createSubscription()
     }
     
     // MARK: - Subscriptions
     
+    /*
+     Truth be told, I'm not sure when this method is supposed to be called.
+     I'm calling it on app start, but that might not make any sense...
+     */
     func createSubscription()
     {
         let predicate = NSPredicate(value: true)
@@ -83,57 +89,46 @@ class CloudService
             }
             else if let alarmRecords = records
             {
-                print(alarmRecords)
-                
                 for alarmRecord in alarmRecords
                 {
                     let alarm = Alarm(record: alarmRecord)
                     
-                    DispatchQueue.main.async {
-                        // Create a local notification with the given alarm
-                        
-                        print(alarm)
-                    }
+                    self.delegate.alarmWasRemotelyUpdated(date: alarm.alarmDate,
+                                                     timeInterval: alarm.timeInterval,
+                                                     platform: alarm.platform)
                 }
+                
             }
         }
     }
     
     func uploadAlarm(alarm: Alarm)
     {
-        if let record = alarm.record
-        {
-            database.save(record) { (record, error) in
-                if let error = error
-                {
-                    print(error.localizedDescription)
-                }
-                else if let alarm = record
-                {
-                    print("Uploaded the alarm: \(alarm)")
-                }
+        database.save(alarm.record) { (record, error) in
+            if let error = error
+            {
+                print(error.localizedDescription)
+            }
+            else if let alarm = record
+            {
+                print("Uploaded the alarm: \(alarm)")
             }
         }
     }
     
-    func deleteAlarm(alarm: Alarm)
+    func deleteAlarm(alarm: Alarm, completion: @escaping (Alarm) -> ())
     {
-        if let record = alarm.record
-        {
-            database.delete(withRecordID: record.recordID) { (recordID, error) in
-                if let error = error
-                {
-                    print(error.localizedDescription)
-                }
-                else if let id = recordID
-                {
-                    print("Deleted the record with ID: \(id)")
-                }
-                
-                DispatchQueue.main.async {
-                    // Remove the alarm??
-                }
+        database.delete(withRecordID: alarm.record.recordID) { (recordID, error) in
+            if let error = error
+            {
+                print(error.localizedDescription)
             }
+            else if let id = recordID
+            {
+                print("Deleted the record with ID: \(id)")
+            }
+            
+            completion(alarm)
         }
     }
 }

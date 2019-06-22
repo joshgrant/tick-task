@@ -104,9 +104,10 @@ class AppDelegate: NSObject, NSApplicationDelegate
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any])
     {
         // Will this actually work?
-        let cloudService = CloudService()
         
-        cloudService.downloadAlarms()
+        let controller = Controller(delegate: self)
+        
+        controller.cloudService.downloadAlarms()
         
 //        let dict = userInfo as! [String: NSObject]
 //        let notification = CKNotification(fromRemoteNotificationDictionary: dict)

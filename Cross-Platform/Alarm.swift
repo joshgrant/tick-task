@@ -11,37 +11,42 @@ import CloudKit
 
 class Alarm: NSObject
 {
-    var record: CKRecord?
+    var record: CKRecord
     
-    var alarmDate: Date? {
+    var alarmDate: Date {
         didSet {
-            record!["alarmDate"] = alarmDate
+            record["alarmDate"] = alarmDate
         }
     }
     
-    var timeInterval: Double? {
+    var timeInterval: Double {
         didSet {
-            record!["timeInterval"] = timeInterval
+            record["timeInterval"] = timeInterval
         }
     }
     
-    var platform: Platform? {
+    var platform: Platform {
         didSet {
-            record!["platform"] = platform?.rawValue
+            record["platform"] = platform.rawValue
         }
     }
     
     init(record: CKRecord)
     {
+        self.alarmDate = record["alarmDate"] as? Date ?? Date()
+        self.timeInterval = record["timeInterval"] as? Double ?? 0
+        
+        let recordPlatform = record["platform"] as? String ?? ""
+        self.platform = Platform(rawValue: recordPlatform) ?? Platform.current
+        
         self.record = record
-        self.alarmDate = self.record!["alarmDate"] as? Date
-        self.timeInterval = self.record!["timeInterval"] as? Double
-        self.platform = Platform(rawValue: (self.record!["platform"] as? String ?? ""))
     }
     
     convenience init(alarmDate: Date, timeInterval: Double, platform: Platform)
     {
-        let record = CKRecord(recordType: "Alarms", recordID: CKRecord.ID.init(recordName: UUID().uuidString))
+        let recordID = CKRecord.ID.init(recordName: UUID().uuidString)
+        let record = CKRecord(recordType: "Alarms", recordID: recordID)
+        
         record["alarmDate"] = alarmDate
         record["timeInterval"] = timeInterval
         record["platform"] = platform.rawValue

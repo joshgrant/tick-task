@@ -23,7 +23,7 @@ class Controller
     
     var timerService: TimerService!
     var notificationService: NotificationService!
-//    var ubiquitous: Ubiquitous!
+    //    var ubiquitous: Ubiquitous!
     var cloudService: CloudService!
     
     var alarms: [Alarm] = []
@@ -34,28 +34,30 @@ class Controller
         
         timerService = TimerService()
         notificationService = NotificationService()
-        cloudService = CloudService()
+        cloudService = CloudService(delegate: self)
         
         notificationService.requestAuthorizationToDisplayNotifications()
     }
 }
 
-extension Controller: UbiquitousDelegate
+extension Controller: CloudServiceDelegate
 {
-    func alarmWasRemotelyUpdated(platform: Platform, timeInterval: TimeInterval, date: Date)
+    func alarmWasRemotelyUpdated(date: Date, timeInterval: TimeInterval, platform: Platform)
     {
-        let relativeTimeInterval = date.timeIntervalSinceNow
-        
         print("Platform: \(platform), timeInterval: \(timeInterval), date: \(date)")
+        
+        // The alarm time interval is the total time of the alarm
+        // The alarm date lets us create a relative time interval
+        // from when the device finished syncing.. for the notification
         
         if timeInterval > 0 && platform != .current
         {
             let body = DateComponentsFormatter.completedDurationFormatter.string(from: timeInterval.dateComponents) ?? ""
             
             notificationService.removeNotification(with: platform.rawValue)
-            notificationService.createNotification(timeInterval: relativeTimeInterval,
-                                                   body: body,
-                                                   with: platform.rawValue)
+            notificationService.createNotification(timeInterval: date.timeIntervalSinceNow,
+                                                              body: body,
+                                                              with: platform.rawValue)
         }
     }
 }
@@ -107,7 +109,7 @@ extension Controller: DialDelegate
             notificationService.createNotification(timeInterval: dial.totalInterval,
                                                    body: body,
                                                    with: Platform.current.rawValue)
-
+            
             timerService.setTimerToActive(interval: dial.totalInterval) { (timer) in
                 if self.timerService.currentInterval <= 0
                 {

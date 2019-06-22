@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
+        debugPrint("Received remote notification: \(userInfo)")
+        
         let controller = Controller()
         
         let dict = userInfo as! [String: NSObject]

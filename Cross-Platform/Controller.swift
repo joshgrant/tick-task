@@ -37,44 +37,28 @@ class Controller
 
 extension Controller: CloudServiceDelegate
 {
-    func noAlarmsExistOnTheServer()
+    func alarmsWereUpdated(alarms: [Platform : Alarm?])
     {
-        // This is just a little safe keeping to make sure
-        // That we don't delete the device's alarm from the server (should never
-        // be possible)
-        let platforms = Platform.all.compactMap { (platform) -> Platform? in
-            if platform == Platform.current
+        for (platform, alarm) in alarms
+        {
+            // We don't touch the current platform when it comes to syncing...
+            guard platform != .current else { return }
+            
+            // We're removing all the notifications, just to be safe. If there
+            // isn't an alarm for the platform, it gets removed here. However,
+            // the current platform is untouched
+            notificationService.removeNotification(with: platform.rawValue)
+            
+            print(alarm?.alarmDate.timeIntervalSinceNow)
+            
+            if let alarm = alarm, alarm.timeInterval > 0 && alarm.alarmDate.timeIntervalSinceNow > 0
             {
-                return nil
+                let body = DateComponentsFormatter.completedDurationFormatter.string(from: alarm.timeInterval.dateComponents) ?? ""
+                
+                notificationService.createNotification(timeInterval: alarm.alarmDate.timeIntervalSinceNow,
+                                                       body: body,
+                                                       with: platform.rawValue)
             }
-            
-            return platform
-        }
-        
-        print("No alarms exist on the server: \(platforms)")
-        
-        for platform in platforms
-        {
-            notificationService.removeNotification(with: platform.rawValue)
-        }
-    }
-    
-    func alarmWasRemotelyUpdated(date: Date, timeInterval: TimeInterval, platform: Platform)
-    {
-        print("Platform: \(platform), timeInterval: \(timeInterval), date: \(date)")
-        
-        // The alarm time interval is the total time of the alarm
-        // The alarm date lets us create a relative time interval
-        // from when the device finished syncing.. for the notification
-        
-        if timeInterval > 0 && platform != .current
-        {
-            let body = DateComponentsFormatter.completedDurationFormatter.string(from: timeInterval.dateComponents) ?? ""
-            
-            notificationService.removeNotification(with: platform.rawValue)
-            notificationService.createNotification(timeInterval: date.timeIntervalSinceNow,
-                                                              body: body,
-                                                              with: platform.rawValue)
         }
     }
 }
@@ -91,23 +75,18 @@ extension Controller: DialDelegate
         // Notification service delete
         notificationService.removeNotification(with: Platform.current.rawValue)
         
-        // Cloud service delete
-        cloudService.deleteAlarm(platform: .current) {
-            print("Deleted the alarm?")
-        }
-        
         delegate?.configureElements(dial: dial,
-                                   totalInterval: dial.totalInterval,
-                                   rotations: dial.rotations,
-                                   manual: true)
+                                    totalInterval: dial.totalInterval,
+                                    rotations: dial.rotations,
+                                    manual: true)
     }
     
     func dialUpdatedTracking(dial: Dial)
     {
         delegate?.configureElements(dial: dial,
-                                   totalInterval: dial.totalInterval,
-                                   rotations: dial.rotations,
-                                   manual: true)
+                                    totalInterval: dial.totalInterval,
+                                    rotations: dial.rotations,
+                                    manual: true)
     }
     
     func dialStoppedTracking(dial: Dial)
@@ -150,25 +129,25 @@ extension Controller: DialDelegate
                     dial.dialState = .inactive
                     
                     self.delegate?.configureElements(dial: dial,
-                                                    totalInterval: defaultInterval,
-                                                    rotations: dial.rotations,
-                                                    manual: true)
+                                                     totalInterval: defaultInterval,
+                                                     rotations: dial.rotations,
+                                                     manual: true)
                 }
                 else
                 {                    
                     let rotations = Int(self.timerService.currentInterval / 3600)
                     
                     self.delegate?.configureElements(dial: dial,
-                                                    totalInterval: self.timerService.currentInterval,
-                                                    rotations: rotations,
-                                                    manual: false)
+                                                     totalInterval: self.timerService.currentInterval,
+                                                     rotations: rotations,
+                                                     manual: false)
                 }
             }
         }
         
         delegate?.configureElements(dial: dial,
-                                   totalInterval: dial.totalInterval,
-                                   rotations: dial.rotations,
-                                   manual: true)
+                                    totalInterval: dial.totalInterval,
+                                    rotations: dial.rotations,
+                                    manual: true)
     }
 }

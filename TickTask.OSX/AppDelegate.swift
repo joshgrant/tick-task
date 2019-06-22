@@ -83,6 +83,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
         controller = Controller(delegate: self)
+        controller.cloudService.createSubscription()
         
         menu = NSMenu()
         menu.addItem(NSMenuItem.separator())
@@ -100,11 +101,13 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         configureElements(dial: nil, totalInterval: defaultInterval, rotations: 0, manual: true)
         
-        NSApp.registerForRemoteNotifications()
+        NSApplication.shared.registerForRemoteNotifications()
     }
     
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any])
     {
+        debugPrint("Received remote notification: \(userInfo)")
+        
         let controller = Controller(delegate: self)
         
         let dict = userInfo as! [String: NSObject]

@@ -14,8 +14,7 @@ let recordType = "Alarms"
 
 protocol CloudServiceDelegate
 {
-    func noAlarmsExistOnTheServer()
-    func alarmWasRemotelyUpdated(date: Date, timeInterval: TimeInterval, platform: Platform)
+    func alarmsWereUpdated(alarms: [Platform: Alarm?])
 }
 
 class CloudService
@@ -36,7 +35,7 @@ class CloudService
         
         self.delegate = delegate
         
-        createSubscription()
+        downloadAlarms()
     }
     
     // MARK: - Subscriptions
@@ -60,7 +59,8 @@ class CloudService
         
         subscription.notificationInfo = notificationInfo
         
-        let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: [])
+        let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription],
+                                                       subscriptionIDsToDelete: [])
         
         operation.modifySubscriptionsCompletionBlock = { (_, _, error) in
             if let error = error
@@ -78,6 +78,8 @@ class CloudService
     
     // MARK: - CRUD Operations
     
+    // Download alarms simply gets the alarms that are on the server and
+    // Synchronizes them with the alarms that are on the device...
     func downloadAlarms()
     {
         let predicate = NSPredicate(value: true)
@@ -92,24 +94,20 @@ class CloudService
             {
                 print("Got some alarms: \(records!)")
                 
-                guard alarmRecords.count > 0 else
-                {
-                    // We need to delete all of the alarms?
-                    // In the case that there are no alarm records, we have
-                    // deleted all of them.
-                    self.delegate.noAlarmsExistOnTheServer()
-                    return
-                }
+                var alarms: [Platform: Alarm?] = [
+                    .OSX: nil,
+                    .OSXDebug: nil,
+                    .iOS: nil,
+                    .iOSDebug: nil
+                ]
                 
                 for alarmRecord in alarmRecords
                 {
                     let alarm = Alarm(record: alarmRecord)
-                    
-                    self.delegate.alarmWasRemotelyUpdated(date: alarm.alarmDate,
-                                                          timeInterval: alarm.timeInterval,
-                                                          platform: alarm.platform)
+                    alarms[alarm.platform] = alarm
                 }
                 
+                self.delegate.alarmsWereUpdated(alarms: alarms)
             }
             else
             {
@@ -120,14 +118,41 @@ class CloudService
     
     func uploadAlarm(alarm: Alarm)
     {
-        database.save(alarm.record) { (record, error) in
-            if let error = error
+        let predicate = NSPredicate(format: "platform == %@", alarm.platform.rawValue)
+        let query = CKQuery(recordType: recordType, predicate: predicate)
+        
+        database.perform(query, inZoneWith: nil) { (records, error) in
+            if records?.count == 0
             {
-                print(error.localizedDescription)
+                self.database.save(alarm.record, completionHandler: { (record, error) in
+                    if let error = error
+                    {
+                        print(error.localizedDescription)
+                    }
+                    else if let alarm = record
+                    {
+                        print("Uploaded the alarm: \(alarm)")
+                    }
+                })
             }
-            else if let alarm = record
+            else if let record = records?.first
             {
-                print("Uploaded the alarm: \(alarm)")
+                let updateAlarm = Alarm(record: record)
+                updateAlarm.alarmDate = alarm.alarmDate
+                updateAlarm.timeInterval = alarm.timeInterval
+                
+                let modifyRecordOperation = CKModifyRecordsOperation(recordsToSave: [updateAlarm.record],
+                                                                     recordIDsToDelete: [])
+                modifyRecordOperation.savePolicy = .allKeys
+                modifyRecordOperation.qualityOfService = .userInitiated
+                modifyRecordOperation.modifyRecordsCompletionBlock = { _, _, error in
+                    if let error = error
+                    {
+                        print("Error saving: \(error)")
+                    }
+                }
+                
+                self.database.add(modifyRecordOperation)
             }
         }
     }

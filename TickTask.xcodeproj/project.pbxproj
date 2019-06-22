@@ -75,8 +75,6 @@
 		B5A4403722AEBCA900F969A9 /* QuitMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402C22AEBCA900F969A9 /* QuitMenuItem.swift */; };
 		B5A4403D22AEBDFD00F969A9 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FD8D022A9482100853A84 /* NotificationService.swift */; };
 		B5A4403E22AEBDFD00F969A9 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4402822AEBCA900F969A9 /* TimerService.swift */; };
-		B5A4404222AEC41700F969A9 /* Ubiquitous.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4404122AEC41700F969A9 /* Ubiquitous.swift */; };
-		B5A4404322AEC41700F969A9 /* Ubiquitous.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4404122AEC41700F969A9 /* Ubiquitous.swift */; };
 		B5EB7FD022AF8D66006FF633 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FCF22AF8D66006FF633 /* Date+.swift */; };
 		B5EB7FD122AF8D66006FF633 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FCF22AF8D66006FF633 /* Date+.swift */; };
 		B5EB7FD322AFA4A6006FF633 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FD222AFA4A6006FF633 /* Controller.swift */; };
@@ -135,7 +133,6 @@
 		B5A4402822AEBCA900F969A9 /* TimerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		B5A4402C22AEBCA900F969A9 /* QuitMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuitMenuItem.swift; sourceTree = "<group>"; };
 		B5A4402D22AEBCA900F969A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5A4404122AEC41700F969A9 /* Ubiquitous.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ubiquitous.swift; sourceTree = "<group>"; };
 		B5B82F4622A8E6A000359FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5B82F4822A8E6A100359FFC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5B82F4922A8E6A200359FFC /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -261,30 +258,21 @@
 		B54B1FDF22BD1C4600EEB8F7 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				B54B1FDA22BD170100EEB8F7 /* Alarm.swift */,
+				B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */,
 				B5EB7FD222AFA4A6006FF633 /* Controller.swift */,
 				B58FD8D022A9482100853A84 /* NotificationService.swift */,
 				B5A4402822AEBCA900F969A9 /* TimerService.swift */,
-				B54B1FE022BD1C5300EEB8F7 /* Cloud */,
 			);
 			name = Logic;
-			sourceTree = "<group>";
-		};
-		B54B1FE022BD1C5300EEB8F7 /* Cloud */ = {
-			isa = PBXGroup;
-			children = (
-				B5A4404122AEC41700F969A9 /* Ubiquitous.swift */,
-				B54B1FDA22BD170100EEB8F7 /* Alarm.swift */,
-				B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */,
-			);
-			name = Cloud;
 			sourceTree = "<group>";
 		};
 		B54B1FE122BD1C6500EEB8F7 /* Convenience Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */,
 				B5EB7FCF22AF8D66006FF633 /* Date+.swift */,
 				B5CEA93B229D0F28008DB140 /* DateComponentsFormatter+.swift */,
+				B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */,
 				B5CEA92B229D0F27008DB140 /* String+.swift */,
 				B5CEA92D229D0F27008DB140 /* TimeInterval+.swift */,
 			);
@@ -303,12 +291,12 @@
 		B5A43F8A22AEBA1600F969A9 /* TickTask.iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B5CEA8A0229AE43A008DB140 /* FaceView.swift */,
 				B58FF1EB228C327A00922A69 /* AppDelegate.swift */,
-				B58FF1ED228C327A00922A69 /* ViewController.swift */,
+				B5092D6E22AE514600D72DAB /* Dial.swift */,
+				B5CEA8A0229AE43A008DB140 /* FaceView.swift */,
 				B59958B4229E738B00C0019D /* GradientView.swift */,
 				B5CEA920229D0E7C008DB140 /* LaunchScreen.storyboard */,
-				B5092D6E22AE514600D72DAB /* Dial.swift */,
+				B58FF1ED228C327A00922A69 /* ViewController.swift */,
 				B5A4403F22AEBE1A00F969A9 /* Meta */,
 			);
 			path = TickTask.iOS;
@@ -318,10 +306,10 @@
 			isa = PBXGroup;
 			children = (
 				B5A4402522AEBCA800F969A9 /* AppDelegate.swift */,
+				B550392922A6B4E5005BCE50 /* Dial.swift */,
 				B5A4402722AEBCA900F969A9 /* DialMenuItem.swift */,
 				B5A4402422AEBCA800F969A9 /* main.swift */,
 				B5A4402C22AEBCA900F969A9 /* QuitMenuItem.swift */,
-				B550392922A6B4E5005BCE50 /* Dial.swift */,
 				B5D56C5A2286B2BD00338BF6 /* Launcher */,
 				B5A4404022AEBE3B00F969A9 /* Meta */,
 			);
@@ -331,8 +319,8 @@
 		B5A4403F22AEBE1A00F969A9 /* Meta */ = {
 			isa = PBXGroup;
 			children = (
-				B5A43FAD22AEBA4500F969A9 /* TickTask.iOS.entitlements */,
 				B5A43F9722AEBA1700F969A9 /* Info.plist */,
+				B5A43FAD22AEBA4500F969A9 /* TickTask.iOS.entitlements */,
 			);
 			name = Meta;
 			sourceTree = "<group>";
@@ -340,8 +328,8 @@
 		B5A4404022AEBE3B00F969A9 /* Meta */ = {
 			isa = PBXGroup;
 			children = (
-				B5A43FA922AEBA2800F969A9 /* TickTask.OSX.entitlements */,
 				B5A4402D22AEBCA900F969A9 /* Info.plist */,
+				B5A43FA922AEBA2800F969A9 /* TickTask.OSX.entitlements */,
 			);
 			name = Meta;
 			sourceTree = "<group>";
@@ -351,11 +339,11 @@
 			children = (
 				B58FD8D622A9616300853A84 /* Assets.xcassets */,
 				B5B82F6322A8EA0200359FFC /* Globals.swift */,
-				B54B1FDD22BD1BEE00EEB8F7 /* Drawing */,
-				B54B1FDF22BD1C4600EEB8F7 /* Logic */,
+				B5B82F4722A8E6A000359FFC /* Localizable.strings */,
 				B54B1FE122BD1C6500EEB8F7 /* Convenience Extensions */,
 				B54B1FDE22BD1C1000EEB8F7 /* Dial */,
-				B5B82F4722A8E6A000359FFC /* Localizable.strings */,
+				B54B1FDD22BD1BEE00EEB8F7 /* Drawing */,
+				B54B1FDF22BD1C4600EEB8F7 /* Logic */,
 			);
 			path = "Cross-Platform";
 			sourceTree = "<group>";
@@ -364,8 +352,8 @@
 			isa = PBXGroup;
 			children = (
 				B5D56C622286B2BE00338BF6 /* Info.plist */,
-				B5D56C632286B2BE00338BF6 /* TickTask_macOSLauncher.entitlements */,
 				B51ECFA92286BB1C00B1EBC9 /* main.swift */,
+				B5D56C632286B2BE00338BF6 /* TickTask_macOSLauncher.entitlements */,
 			);
 			path = Launcher;
 			sourceTree = "<group>";
@@ -572,7 +560,6 @@
 				B5A4401422AEBBE300F969A9 /* ViewController.swift in Sources */,
 				B5A43FE622AEBBCC00F969A9 /* CGRect+.swift in Sources */,
 				B5A43FE122AEBBCC00F969A9 /* String+.swift in Sources */,
-				B5A4404222AEC41700F969A9 /* Ubiquitous.swift in Sources */,
 				B5A43FDB22AEBBCC00F969A9 /* Gradient.swift in Sources */,
 				B5A4401222AEBBE300F969A9 /* FaceView.swift in Sources */,
 			);
@@ -616,7 +603,6 @@
 				B5A4400E22AEBBCE00F969A9 /* NSBezierPath+.swift in Sources */,
 				B5A4400722AEBBCE00F969A9 /* String+.swift in Sources */,
 				B5A4400122AEBBCE00F969A9 /* Gradient.swift in Sources */,
-				B5A4404322AEC41700F969A9 /* Ubiquitous.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

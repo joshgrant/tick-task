@@ -14,6 +14,49 @@ import Cocoa
 
 extension NSLayoutConstraint
 {
+    static func width(item: Any, width: CGFloat) -> NSLayoutConstraint
+    {
+        return NSLayoutConstraint(item: item,
+                                  attribute: .width,
+                                  relatedBy: .equal,
+                                  toItem: nil,
+                                  attribute: .notAnAttribute,
+                                  multiplier: 1.0,
+                                  constant: width)
+    }
+    
+    static func centerY(for firstItem: Any, to secondItem: Any) -> NSLayoutConstraint
+    {
+        return NSLayoutConstraint(item: firstItem,
+                                  attribute: .centerY,
+                                  relatedBy: .equal,
+                                  toItem: secondItem,
+                                  attribute: .centerY,
+                                  multiplier: 1.0, constant: 0.0)
+    }
+    
+    static func centerX(for firstItem: Any, to secondItem: Any) -> NSLayoutConstraint
+    {
+        return NSLayoutConstraint(item: firstItem,
+                                  attribute: .centerX,
+                                  relatedBy: .equal,
+                                  toItem: secondItem,
+                                  attribute: .centerX,
+                                  multiplier: 1.0,
+                                  constant: 0.0)
+    }
+    
+    static func squareConstraints(item: Any) -> NSLayoutConstraint
+    {
+        return NSLayoutConstraint(item: item,
+                                  attribute: .width,
+                                  relatedBy: .equal,
+                                  toItem: item,
+                                  attribute: .height,
+                                  multiplier: 1.0,
+                                  constant: 0.0)
+    }
+    
     static func contstraints(for child: Any, in parent: Any, padding: CGFloat = 0) -> [NSLayoutConstraint]
     {
         return [

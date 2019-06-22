@@ -40,95 +40,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cross-Platform/CloudService.swift"
-            timestampString = "582916448.964053"
+            timestampString = "582919596.546528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "uploadAlarm(alarm:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Tick_Task.CloudService.uploadAlarm(alarm: Tick_Task.Alarm) -&gt; ()"
-                  moduleName = "Tick Task"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/formaze/Library/CloudStorage/iCloud%20Drive/Documents/Xcode/Archive/TickTask/Cross-Platform/CloudService.swift"
-                  timestampString = "582915829.58543"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "124"
-                  endingLineNumber = "124"
-                  offsetFromSymbolStart = "430">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CKRecord&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Tick_Task.CloudService.uploadAlarm(alarm: Tick_Task.Alarm) -&gt; ()"
                   moduleName = "Tick Task"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/formaze/Library/CloudStorage/iCloud%20Drive/Documents/Xcode/Archive/TickTask/Cross-Platform/CloudService.swift"
-                  timestampString = "582915829.587666"
+                  timestampString = "582918882.735242"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "125"
-                  endingLineNumber = "125"
-                  offsetFromSymbolStart = "201">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cross-Platform/CloudService.swift"
-            timestampString = "582916448.9641401"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "uploadAlarm(alarm:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CKRecord&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Tick_Task.CloudService.uploadAlarm(alarm: Tick_Task.Alarm) -&gt; ()"
-                  moduleName = "Tick Task"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/formaze/Library/CloudStorage/iCloud%20Drive/Documents/Xcode/Archive/TickTask/Cross-Platform/CloudService.swift"
-                  timestampString = "582915829.593691"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
-                  offsetFromSymbolStart = "444">
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "449">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.CKRecord&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CKRecord&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Tick_Task.CloudService.uploadAlarm(alarm: Tick_Task.Alarm) -&gt; ()"
                   moduleName = "Tick Task"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/formaze/Library/CloudStorage/iCloud%20Drive/Documents/Xcode/Archive/TickTask/Cross-Platform/CloudService.swift"
-                  timestampString = "582915829.595274"
+                  timestampString = "582918882.736798"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "161">
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "105">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -136,15 +88,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cross-Platform/CloudService.swift"
-            timestampString = "582916448.964197"
+            timestampString = "582919596.5466239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "uploadAlarm(alarm:)"
             landmarkType = "7">
          </BreakpointContent>

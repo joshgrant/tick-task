@@ -49,11 +49,15 @@ extension Controller: CloudServiceDelegate
             // the current platform is untouched
             notificationService.removeNotification(with: platform.rawValue)
             
-            if let alarm = alarm, alarm.timeInterval > 0 && alarm.alarmDate.timeIntervalSinceNow > 0
+            if let alarm = alarm,
+                let date = alarm.alarmDate,
+                let timeInterval = alarm.timeInterval,
+                timeInterval > 0,
+                date.timeIntervalSinceNow > 0
             {
-                let body = DateComponentsFormatter.completedDurationFormatter.string(from: alarm.timeInterval.dateComponents) ?? ""
+                let body = DateComponentsFormatter.completedDurationFormatter.string(from: timeInterval.dateComponents) ?? ""
                 
-                notificationService.createNotification(timeInterval: alarm.alarmDate.timeIntervalSinceNow,
+                notificationService.createNotification(timeInterval: date.timeIntervalSinceNow,
                                                        body: body,
                                                        with: platform.rawValue)
             }

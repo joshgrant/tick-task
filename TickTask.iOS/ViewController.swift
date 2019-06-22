@@ -36,7 +36,8 @@ class ViewController: UIViewController
         super.init(nibName: nil, bundle: nil)
         
         controller = Controller(delegate: self)
-        controller.cloudService.createSubscription()
+        controller.cloudService.downloadAlarms()
+        
         dial.delegate = controller
     }
     

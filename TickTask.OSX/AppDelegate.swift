@@ -83,7 +83,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
         controller = Controller(delegate: self)
-        controller.cloudService.createSubscription()
+        controller.cloudService.downloadAlarms()
         
         menu = NSMenu()
         menu.addItem(NSMenuItem.separator())
@@ -106,7 +106,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any])
     {
-        print("Received remote notification: \(userInfo)")
+        print("Received remote notification")
         
         let controller = Controller(delegate: self)
         
@@ -122,6 +122,8 @@ class AppDelegate: NSObject, NSApplicationDelegate
     func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
         print("Registered for remote notifications: \(deviceToken)")
+        
+        controller.cloudService.createSubscription()
     }
     
     func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)

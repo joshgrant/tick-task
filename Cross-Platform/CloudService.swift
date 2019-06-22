@@ -34,16 +34,10 @@ class CloudService
         self.containerID = container.containerIdentifier ?? ""
         
         self.delegate = delegate
-        
-        downloadAlarms()
     }
     
     // MARK: - Subscriptions
     
-    /*
-     Truth be told, I'm not sure when this method is supposed to be called.
-     I'm calling it on app start, but that might not make any sense...
-     */
     func createSubscription()
     {
         let predicate = NSPredicate(value: true)
@@ -92,7 +86,7 @@ class CloudService
             }
             else if let alarmRecords = records
             {
-                print("Downloaded \(alarmRecords.count) alarm(s)."
+                print("Downloaded \(alarmRecords.count) alarm(s).")
                 
                 var alarms: [Platform: Alarm?] = [
                     .OSX: nil,
@@ -104,7 +98,11 @@ class CloudService
                 for alarmRecord in alarmRecords
                 {
                     let alarm = Alarm(record: alarmRecord)
-                    alarms[alarm.platform] = alarm
+                    
+                    if let platform = alarm.platform
+                    {
+                        alarms[platform] = alarm
+                    }
                 }
                 
                 self.delegate.alarmsWereUpdated(alarms: alarms)
@@ -118,7 +116,12 @@ class CloudService
     
     func uploadAlarm(alarm: Alarm)
     {
-        let predicate = NSPredicate(format: "platform == %@", alarm.platform.rawValue)
+        guard let platform = alarm.platform else {
+            print("Couldn't upload the alarm: no platform")
+            return
+        }
+        
+        let predicate = NSPredicate(format: "platform == %@", platform.rawValue)
         let query = CKQuery(recordType: recordType, predicate: predicate)
         
         database.perform(query, inZoneWith: nil) { (records, error) in
@@ -151,6 +154,8 @@ class CloudService
                         print("Error saving: \(error)")
                     }
                 }
+                
+                print("Updated an alarm")
                 
                 self.database.add(modifyRecordOperation)
             }

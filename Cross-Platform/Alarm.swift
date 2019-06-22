@@ -11,46 +11,54 @@ import CloudKit
 
 class Alarm: NSObject
 {
+    // MARK: - Properties
+    
     var record: CKRecord
     
-    var alarmDate: Date {
-        didSet {
-            record["alarmDate"] = alarmDate
+    var alarmDate: Date? {
+        get {
+            return record["alarmDate"] as? Date
+        }
+        set {
+            record["alarmDate"] = newValue
         }
     }
     
-    var timeInterval: Double {
-        didSet {
-            record["timeInterval"] = timeInterval
+    var timeInterval: Double? {
+        get {
+            return record["timeInterval"] as? Double
+        }
+        set {
+            record["timeInterval"] = newValue
         }
     }
     
-    var platform: Platform {
-        didSet {
-            record["platform"] = platform.rawValue
+    var platform: Platform? {
+        get {
+            let recordPlatform = record["platform"] as? String ?? ""
+            return Platform(rawValue: recordPlatform)
+        }
+        set {
+            record["platform"] = newValue?.rawValue
         }
     }
+    
+    // MARK: - Initialization
     
     init(record: CKRecord)
     {
-        self.alarmDate = record["alarmDate"] as? Date ?? Date()
-        self.timeInterval = record["timeInterval"] as? Double ?? 0
-        
-        let recordPlatform = record["platform"] as? String ?? ""
-        self.platform = Platform(rawValue: recordPlatform) ?? Platform.current
-        
         self.record = record
     }
     
     convenience init(alarmDate: Date, timeInterval: Double, platform: Platform)
     {
         let recordID = CKRecord.ID.init(recordName: UUID().uuidString)
-        let record = CKRecord(recordType: "Alarms", recordID: recordID)
-        
-        record["alarmDate"] = alarmDate
-        record["timeInterval"] = timeInterval
-        record["platform"] = platform.rawValue
+        let record = CKRecord(recordType: recordType, recordID: recordID)
         
         self.init(record: record)
+        
+        self.alarmDate = alarmDate
+        self.timeInterval = timeInterval
+        self.platform = platform
     }
 }

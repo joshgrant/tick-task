@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B51ECFAA2286BB1C00B1EBC9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51ECFA92286BB1C00B1EBC9 /* main.swift */; };
+		B54B1FDB22BD170100EEB8F7 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B1FDA22BD170100EEB8F7 /* Alarm.swift */; };
+		B54B1FDC22BD170100EEB8F7 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B1FDA22BD170100EEB8F7 /* Alarm.swift */; };
+		B54B1FE322BD1D4C00EEB8F7 /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */; };
+		B54B1FE422BD1D4C00EEB8F7 /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */; };
 		B57D36FC22B3D8A300F17BCA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D36FB22B3D8A300F17BCA /* CloudKit.framework */; };
 		B57D36FE22B3D8B100F17BCA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D36FD22B3D8B100F17BCA /* CloudKit.framework */; };
 		B5A43FB022AEBBA000F969A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5B82F4722A8E6A000359FFC /* Localizable.strings */; };
@@ -77,8 +81,6 @@
 		B5EB7FD122AF8D66006FF633 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FCF22AF8D66006FF633 /* Date+.swift */; };
 		B5EB7FD322AFA4A6006FF633 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FD222AFA4A6006FF633 /* Controller.swift */; };
 		B5EB7FD422AFA4A6006FF633 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FD222AFA4A6006FF633 /* Controller.swift */; };
-		B5EB7FD622AFA520006FF633 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FD522AFA520006FF633 /* Platform.swift */; };
-		B5EB7FD722AFA520006FF633 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7FD522AFA520006FF633 /* Platform.swift */; };
 		B5EB801E22AFDE23006FF633 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */; };
 		B5EB801F22AFDE23006FF633 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */; };
 		B5EB802122AFE059006FF633 /* TickTask-macOSLauncher.app in Copy Launcher App */ = {isa = PBXBuildFile; fileRef = B5D56C592286B2BD00338BF6 /* TickTask-macOSLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -112,6 +114,8 @@
 		B5092D6E22AE514600D72DAB /* Dial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
 		B50E29E622AE64EE005A9F03 /* DialDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialDelegate.swift; sourceTree = "<group>"; };
 		B51ECFA92286BB1C00B1EBC9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B54B1FDA22BD170100EEB8F7 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudService.swift; sourceTree = "<group>"; };
 		B550392922A6B4E5005BCE50 /* Dial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
 		B57D36FB22B3D8A300F17BCA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		B57D36FD22B3D8B100F17BCA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -171,7 +175,6 @@
 		B5D56C632286B2BE00338BF6 /* TickTask_macOSLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask_macOSLauncher.entitlements; sourceTree = "<group>"; };
 		B5EB7FCF22AF8D66006FF633 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B5EB7FD222AFA4A6006FF633 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		B5EB7FD522AFA520006FF633 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +224,71 @@
 				B5A43F9F22AEBA2700F969A9 /* Tick Task.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B54B1FDD22BD1BEE00EEB8F7 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				B5CEA938229D0F28008DB140 /* Border.swift */,
+				B5CEA93C229D0F28008DB140 /* CGContext+.swift */,
+				B5CEA939229D0F28008DB140 /* CGFloat+.swift */,
+				B5CEA92A229D0F27008DB140 /* CGPoint+.swift */,
+				B5CEA942229D0F28008DB140 /* CGRect+.swift */,
+				B5CEA933229D0F27008DB140 /* CGSize+.swift */,
+				B5CEA940229D0F28008DB140 /* Circle.swift */,
+				B5CEA93F229D0F28008DB140 /* Color.swift */,
+				B5CEA937229D0F28008DB140 /* DrawingData.swift */,
+				B5CEA932229D0F27008DB140 /* Gradient.swift */,
+				B5CEA92C229D0F27008DB140 /* NSBezierPath+.swift */,
+				B5CEA92F229D0F27008DB140 /* NSImage+.swift */,
+				B5CEA930229D0F27008DB140 /* Path.swift */,
+				B5CEA93D229D0F28008DB140 /* Shadow.swift */,
+				B5CEA92E229D0F27008DB140 /* Shape.swift */,
+			);
+			name = Drawing;
+			sourceTree = "<group>";
+		};
+		B54B1FDE22BD1C1000EEB8F7 /* Dial */ = {
+			isa = PBXGroup;
+			children = (
+				B50E29E622AE64EE005A9F03 /* DialDelegate.swift */,
+				B5CEA936229D0F28008DB140 /* DialShape.swift */,
+				B5CEA93A229D0F28008DB140 /* DialState.swift */,
+			);
+			name = Dial;
+			sourceTree = "<group>";
+		};
+		B54B1FDF22BD1C4600EEB8F7 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				B5EB7FD222AFA4A6006FF633 /* Controller.swift */,
+				B58FD8D022A9482100853A84 /* NotificationService.swift */,
+				B5A4402822AEBCA900F969A9 /* TimerService.swift */,
+				B54B1FE022BD1C5300EEB8F7 /* Cloud */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
+		B54B1FE022BD1C5300EEB8F7 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				B5A4404122AEC41700F969A9 /* Ubiquitous.swift */,
+				B54B1FDA22BD170100EEB8F7 /* Alarm.swift */,
+				B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */,
+			);
+			name = Cloud;
+			sourceTree = "<group>";
+		};
+		B54B1FE122BD1C6500EEB8F7 /* Convenience Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */,
+				B5EB7FCF22AF8D66006FF633 /* Date+.swift */,
+				B5CEA93B229D0F28008DB140 /* DateComponentsFormatter+.swift */,
+				B5CEA92B229D0F27008DB140 /* String+.swift */,
+				B5CEA92D229D0F27008DB140 /* TimeInterval+.swift */,
+			);
+			name = "Convenience Extensions";
 			sourceTree = "<group>";
 		};
 		B57D36FA22B3D8A300F17BCA /* Frameworks */ = {
@@ -282,36 +350,12 @@
 			isa = PBXGroup;
 			children = (
 				B58FD8D622A9616300853A84 /* Assets.xcassets */,
-				B5CEA938229D0F28008DB140 /* Border.swift */,
-				B5CEA93C229D0F28008DB140 /* CGContext+.swift */,
-				B5CEA939229D0F28008DB140 /* CGFloat+.swift */,
-				B5CEA92A229D0F27008DB140 /* CGPoint+.swift */,
-				B5CEA942229D0F28008DB140 /* CGRect+.swift */,
-				B5CEA933229D0F27008DB140 /* CGSize+.swift */,
-				B5CEA940229D0F28008DB140 /* Circle.swift */,
-				B5CEA93F229D0F28008DB140 /* Color.swift */,
-				B5EB7FD222AFA4A6006FF633 /* Controller.swift */,
-				B5EB7FCF22AF8D66006FF633 /* Date+.swift */,
-				B5CEA93B229D0F28008DB140 /* DateComponentsFormatter+.swift */,
-				B50E29E622AE64EE005A9F03 /* DialDelegate.swift */,
-				B5CEA936229D0F28008DB140 /* DialShape.swift */,
-				B5CEA93A229D0F28008DB140 /* DialState.swift */,
-				B5CEA937229D0F28008DB140 /* DrawingData.swift */,
 				B5B82F6322A8EA0200359FFC /* Globals.swift */,
-				B5CEA932229D0F27008DB140 /* Gradient.swift */,
+				B54B1FDD22BD1BEE00EEB8F7 /* Drawing */,
+				B54B1FDF22BD1C4600EEB8F7 /* Logic */,
+				B54B1FE122BD1C6500EEB8F7 /* Convenience Extensions */,
+				B54B1FDE22BD1C1000EEB8F7 /* Dial */,
 				B5B82F4722A8E6A000359FFC /* Localizable.strings */,
-				B58FD8D022A9482100853A84 /* NotificationService.swift */,
-				B5CEA92C229D0F27008DB140 /* NSBezierPath+.swift */,
-				B5CEA92F229D0F27008DB140 /* NSImage+.swift */,
-				B5EB801D22AFDE23006FF633 /* NSLayoutConstraint+.swift */,
-				B5CEA930229D0F27008DB140 /* Path.swift */,
-				B5EB7FD522AFA520006FF633 /* Platform.swift */,
-				B5CEA93D229D0F28008DB140 /* Shadow.swift */,
-				B5CEA92E229D0F27008DB140 /* Shape.swift */,
-				B5CEA92B229D0F27008DB140 /* String+.swift */,
-				B5CEA92D229D0F27008DB140 /* TimeInterval+.swift */,
-				B5A4402822AEBCA900F969A9 /* TimerService.swift */,
-				B5A4404122AEC41700F969A9 /* Ubiquitous.swift */,
 			);
 			path = "Cross-Platform";
 			sourceTree = "<group>";
@@ -502,7 +546,6 @@
 				B5A43FD422AEBBCC00F969A9 /* Globals.swift in Sources */,
 				B5A4403D22AEBDFD00F969A9 /* NotificationService.swift in Sources */,
 				B5EB801E22AFDE23006FF633 /* NSLayoutConstraint+.swift in Sources */,
-				B5EB7FD622AFA520006FF633 /* Platform.swift in Sources */,
 				B5A43FD822AEBBCC00F969A9 /* Border.swift in Sources */,
 				B5A43FE422AEBBCC00F969A9 /* CGFloat+.swift in Sources */,
 				B5A43FDA22AEBBCC00F969A9 /* Color.swift in Sources */,
@@ -516,6 +559,7 @@
 				B5A43FE222AEBBCC00F969A9 /* TimeInterval+.swift in Sources */,
 				B5A43FD522AEBBCC00F969A9 /* DialShape.swift in Sources */,
 				B5EB7FD322AFA4A6006FF633 /* Controller.swift in Sources */,
+				B54B1FE322BD1D4C00EEB8F7 /* CloudService.swift in Sources */,
 				B5A43FDE22AEBBCC00F969A9 /* Shape.swift in Sources */,
 				B5A4401722AEBBE700F969A9 /* Dial.swift in Sources */,
 				B5A43FE722AEBBCC00F969A9 /* CGSize+.swift in Sources */,
@@ -523,6 +567,7 @@
 				B5A4401522AEBBE300F969A9 /* GradientView.swift in Sources */,
 				B5A43FDD22AEBBCC00F969A9 /* Shadow.swift in Sources */,
 				B5EB7FD022AF8D66006FF633 /* Date+.swift in Sources */,
+				B54B1FDB22BD170100EEB8F7 /* Alarm.swift in Sources */,
 				B5A43FDC22AEBBCC00F969A9 /* Path.swift in Sources */,
 				B5A4401422AEBBE300F969A9 /* ViewController.swift in Sources */,
 				B5A43FE622AEBBCC00F969A9 /* CGRect+.swift in Sources */,
@@ -548,11 +593,13 @@
 				B5A43FFC22AEBBCE00F969A9 /* DialState.swift in Sources */,
 				B5A4400922AEBBCE00F969A9 /* CGContext+.swift in Sources */,
 				B5A4403322AEBCA900F969A9 /* TimerService.swift in Sources */,
+				B54B1FDC22BD170100EEB8F7 /* Alarm.swift in Sources */,
 				B5A43FFD22AEBBCE00F969A9 /* DrawingData.swift in Sources */,
 				B5A4400B22AEBBCE00F969A9 /* CGPoint+.swift in Sources */,
 				B5A4401122AEBBCE00F969A9 /* DialDelegate.swift in Sources */,
 				B5A4402F22AEBCA900F969A9 /* main.swift in Sources */,
 				B5A4400822AEBBCE00F969A9 /* TimeInterval+.swift in Sources */,
+				B54B1FE422BD1D4C00EEB8F7 /* CloudService.swift in Sources */,
 				B5A43FFB22AEBBCE00F969A9 /* DialShape.swift in Sources */,
 				B5A4401A22AEBBEF00F969A9 /* Dial.swift in Sources */,
 				B5A4400422AEBBCE00F969A9 /* Shape.swift in Sources */,
@@ -561,7 +608,6 @@
 				B5A4403222AEBCA900F969A9 /* DialMenuItem.swift in Sources */,
 				B5A43FFF22AEBBCE00F969A9 /* Circle.swift in Sources */,
 				B5A4400322AEBBCE00F969A9 /* Shadow.swift in Sources */,
-				B5EB7FD722AFA520006FF633 /* Platform.swift in Sources */,
 				B5EB7FD422AFA4A6006FF633 /* Controller.swift in Sources */,
 				B5EB801F22AFDE23006FF633 /* NSLayoutConstraint+.swift in Sources */,
 				B5A4400222AEBBCE00F969A9 /* Path.swift in Sources */,

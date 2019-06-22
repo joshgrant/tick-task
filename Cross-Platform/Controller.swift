@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import CloudKit
+
+// Controller is an abstraction of all of the business logic that exists
+// between the iOS and the OSX version of the app
 
 protocol ControllerDelegate
 {
@@ -19,7 +23,10 @@ class Controller
     
     var timerService: TimerService!
     var notificationService: NotificationService!
-    var ubiquitous: Ubiquitous!
+//    var ubiquitous: Ubiquitous!
+    var cloudService: CloudService!
+    
+    var alarms: [Alarm] = []
     
     init(delegate: ControllerDelegate)
     {
@@ -27,7 +34,9 @@ class Controller
         
         timerService = TimerService()
         notificationService = NotificationService()
-        ubiquitous = Ubiquitous(delegate: self, platform: Platform.current)
+        cloudService = CloudService()
+        
+        notificationService.requestAuthorizationToDisplayNotifications()
     }
 }
 
@@ -87,9 +96,11 @@ extension Controller: DialDelegate
         {
             dial.dialState = .countdown
             
-            ubiquitous.syncAlarm(timeInterval: dial.totalInterval,
-                                 date: NSDate().addingTimeInterval(dial.totalInterval),
-                                 on: Platform.current)
+            let alarm = Alarm(alarmDate: Date().addingTimeInterval(dial.totalInterval),
+                              timeInterval: dial.totalInterval,
+                              platform: Platform.current)
+            
+            cloudService.uploadAlarm(alarm: alarm)
             
             let body = DateComponentsFormatter.completedDurationFormatter.string(from: dial.totalInterval.dateComponents) ?? ""
             

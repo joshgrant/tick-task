@@ -16,7 +16,7 @@ protocol UbiquitousDelegate
 }
 
 class Ubiquitous
-{    
+{
     var delegate: UbiquitousDelegate?
     var platform: Platform
     

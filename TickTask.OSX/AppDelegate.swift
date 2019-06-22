@@ -8,6 +8,8 @@
 
 import Cocoa
 import ServiceManagement
+import CloudKit
+import UserNotifications
 
 class AppDelegate: NSObject, NSApplicationDelegate
 {
@@ -66,6 +68,16 @@ class AppDelegate: NSObject, NSApplicationDelegate
         menu.insertItem(timer.menuItem, at: (dialItems.count - 1) * 2)
     }
     
+    @objc func toggleAutoOpen()
+    {
+        autoOpenItem.state = isAutoOpen ? .off : .on
+        
+        if SMLoginItemSetEnabled(launcherKey as CFString, !isAutoOpen)
+        {
+            isAutoOpen = !isAutoOpen
+        }
+    }
+    
     // MARK: Application Lifecycle
     
     func applicationDidFinishLaunching(_ aNotification: Notification)
@@ -73,8 +85,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         controller = Controller(delegate: self)
         
         menu = NSMenu()
-        //        menu.addItem(NSMenuItem.separator())
-        //        menu.addItem(addItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(autoOpenItem)
         menu.addItem(quitItem)
@@ -91,14 +101,35 @@ class AppDelegate: NSObject, NSApplicationDelegate
         configureElements(dial: nil, totalInterval: defaultInterval, rotations: 0, manual: true)
     }
     
-    @objc func toggleAutoOpen()
+    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any])
     {
-        autoOpenItem.state = isAutoOpen ? .off : .on
+        // Will this actually work?
+        let cloudService = CloudService()
         
-        if SMLoginItemSetEnabled(launcherKey as CFString, !isAutoOpen)
-        {
-            isAutoOpen = !isAutoOpen
-        }
+        cloudService.downloadAlarms()
+        
+//        let dict = userInfo as! [String: NSObject]
+//        let notification = CKNotification(fromRemoteNotificationDictionary: dict)
+//        let database = cloudService.database
+//
+//        if notification?.subscriptionID == subscriptionIdentifier
+//        {
+//            completionHandler(.newData)
+//        }
+//        else
+//        {
+//            completionHandler(.noData)
+//        }
+    }
+    
+    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+        print(deviceToken)
+    }
+    
+    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
+    {
+        print(error.localizedDescription)
     }
 }
 

@@ -95,8 +95,6 @@ class ViewController: UIViewController
         
         configureStackAxis(size: view.frame.size)
         
-        controller.notificationService.requestAuthorizationToDisplayNotifications()
-        
         setNeedsStatusBarAppearanceUpdate()
     }
     

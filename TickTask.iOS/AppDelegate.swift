@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
         
+        application.registerForRemoteNotifications()
+        
         return true
     }
     
@@ -35,16 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        let cloudService = CloudService()
-        
-        cloudService.downloadAlarms()
+        let controller = Controller()
         
         let dict = userInfo as! [String: NSObject]
         let notification = CKNotification(fromRemoteNotificationDictionary: dict)
-        let database = cloudService.database
         
         if notification?.subscriptionID == subscriptionIdentifier
         {
+            controller.cloudService.downloadAlarms()
             completionHandler(.newData)
         }
         else
@@ -55,11 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        print(deviceToken)
+        debugPrint("Did register for remote notifications: \(deviceToken)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        print(error)
+        debugPrint("Failed to register for remote notifications: \(error)")
     }
 }

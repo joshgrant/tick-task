@@ -99,38 +99,31 @@ class AppDelegate: NSObject, NSApplicationDelegate
         statusItem.menu = menu
         
         configureElements(dial: nil, totalInterval: defaultInterval, rotations: 0, manual: true)
+        
+        NSApp.registerForRemoteNotifications()
     }
     
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any])
     {
-        // Will this actually work?
-        
         let controller = Controller(delegate: self)
         
-        controller.cloudService.downloadAlarms()
+        let dict = userInfo as! [String: NSObject]
+        let notification = CKNotification(fromRemoteNotificationDictionary: dict)
         
-//        let dict = userInfo as! [String: NSObject]
-//        let notification = CKNotification(fromRemoteNotificationDictionary: dict)
-//        let database = cloudService.database
-//
-//        if notification?.subscriptionID == subscriptionIdentifier
-//        {
-//            completionHandler(.newData)
-//        }
-//        else
-//        {
-//            completionHandler(.noData)
-//        }
+        if notification?.subscriptionID == subscriptionIdentifier
+        {
+            controller.cloudService.downloadAlarms()
+        }
     }
     
     func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        print(deviceToken)
+        debugPrint("Registered for remote notifications: \(deviceToken)")
     }
     
     func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        print(error.localizedDescription)
+        debugPrint("Failed to register for remote notifications: \(error)")
     }
 }
 

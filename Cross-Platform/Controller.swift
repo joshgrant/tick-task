@@ -19,29 +19,46 @@ protocol ControllerDelegate
 
 class Controller
 {
-    var delegate: ControllerDelegate
+    var delegate: ControllerDelegate?
     
     var timerService: TimerService!
     var notificationService: NotificationService!
-    //    var ubiquitous: Ubiquitous!
     var cloudService: CloudService!
     
-    var alarms: [Alarm] = []
-    
-    init(delegate: ControllerDelegate)
+    init(delegate: ControllerDelegate? = nil)
     {
         self.delegate = delegate
         
         timerService = TimerService()
         notificationService = NotificationService()
         cloudService = CloudService(delegate: self)
-        
-        notificationService.requestAuthorizationToDisplayNotifications()
     }
 }
 
 extension Controller: CloudServiceDelegate
 {
+    func noAlarmsExistOnTheServer()
+    {
+        // This is just a little safe keeping to make sure
+        // That we don't delete the device's alarm from the server (should never
+        // be possible)
+        let platforms = Platform.all.compactMap { (platform) -> Platform? in
+            if platform == Platform.current
+            {
+                return nil
+            }
+            
+            return platform
+        }
+        
+        print("No alarms exist on the server: \(platforms)")
+        
+        for platform in platforms
+        {
+            notificationService.removeNotification(with: platform.rawValue)
+        }
+    }
+    
     func alarmWasRemotelyUpdated(date: Date, timeInterval: TimeInterval, platform: Platform)
     {
         print("Platform: \(platform), timeInterval: \(timeInterval), date: \(date)")
@@ -68,10 +85,18 @@ extension Controller: DialDelegate
     {
         dial.dialState = .selected
         
+        // Timer service delete
         timerService.invalidateTimersAndDates()
+        
+        // Notification service delete
         notificationService.removeNotification(with: Platform.current.rawValue)
         
-        delegate.configureElements(dial: dial,
+        // Cloud service delete
+        cloudService.deleteAlarm(platform: .current) {
+            print("Deleted the alarm?")
+        }
+        
+        delegate?.configureElements(dial: dial,
                                    totalInterval: dial.totalInterval,
                                    rotations: dial.rotations,
                                    manual: true)
@@ -79,7 +104,7 @@ extension Controller: DialDelegate
     
     func dialUpdatedTracking(dial: Dial)
     {
-        delegate.configureElements(dial: dial,
+        delegate?.configureElements(dial: dial,
                                    totalInterval: dial.totalInterval,
                                    rotations: dial.rotations,
                                    manual: true)
@@ -91,31 +116,40 @@ extension Controller: DialDelegate
         {
             dial.dialState = .inactive
             
+            // Timer service delete
             timerService.invalidateTimersAndDates()
+            
+            // Notification service delete
             self.notificationService.removeNotification(with: Platform.current.rawValue)
+            
+            // Cloud service delete
+            cloudService.deleteAlarm(platform: .current) {
+                print("Deleted the alarm?")
+            }
         }
         else
         {
             dial.dialState = .countdown
             
+            // Cloud service add
             let alarm = Alarm(alarmDate: Date().addingTimeInterval(dial.totalInterval),
                               timeInterval: dial.totalInterval,
                               platform: Platform.current)
-            
             cloudService.uploadAlarm(alarm: alarm)
             
+            // Notification service add
             let body = DateComponentsFormatter.completedDurationFormatter.string(from: dial.totalInterval.dateComponents) ?? ""
-            
             notificationService.createNotification(timeInterval: dial.totalInterval,
                                                    body: body,
                                                    with: Platform.current.rawValue)
             
+            // Timer service add
             timerService.setTimerToActive(interval: dial.totalInterval) { (timer) in
                 if self.timerService.currentInterval <= 0
                 {
                     dial.dialState = .inactive
                     
-                    self.delegate.configureElements(dial: dial,
+                    self.delegate?.configureElements(dial: dial,
                                                     totalInterval: defaultInterval,
                                                     rotations: dial.rotations,
                                                     manual: true)
@@ -124,7 +158,7 @@ extension Controller: DialDelegate
                 {                    
                     let rotations = Int(self.timerService.currentInterval / 3600)
                     
-                    self.delegate.configureElements(dial: dial,
+                    self.delegate?.configureElements(dial: dial,
                                                     totalInterval: self.timerService.currentInterval,
                                                     rotations: rotations,
                                                     manual: false)
@@ -132,7 +166,7 @@ extension Controller: DialDelegate
             }
         }
         
-        delegate.configureElements(dial: dial,
+        delegate?.configureElements(dial: dial,
                                    totalInterval: dial.totalInterval,
                                    rotations: dial.rotations,
                                    manual: true)

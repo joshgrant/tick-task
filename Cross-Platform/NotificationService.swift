@@ -41,6 +41,7 @@ class NotificationService: NSObject
     {
         super.init()
         UNUserNotificationCenter.current().delegate = self
+        requestAuthorizationToDisplayNotifications()
     }
     
     func requestAuthorizationToDisplayNotifications()
@@ -62,7 +63,6 @@ class NotificationService: NSObject
             
             let dateComponents = Date().addingTimeInterval(timeInterval).components
             
-            // Perhaps we could allow people to repeat their alerts...
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
             let title = "timer_completed_title".localized

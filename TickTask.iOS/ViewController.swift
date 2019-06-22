@@ -15,6 +15,8 @@ import UserNotifications
 
 class ViewController: UIViewController
 {
+    // MARK: - Properties
+    
     var controller: Controller!
     
     var stackView: UIStackView
@@ -25,23 +27,14 @@ class ViewController: UIViewController
     
     var containerViewSizeConstraint: NSLayoutConstraint!
     
+    // MARK: - Initialization
+    
     init()
     {
-        label = UILabel()
-        label.text = defaultInterval.durationString
-        label.font = UIFont.systemFont(ofSize: 34, weight: .semibold)
-        label.textColor = UIColor.white
-        label.textAlignment = .center
-        
-        faceView = FaceView()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        faceView.backgroundColor = .clear
-        dial = Dial()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        dial.backgroundColor = .clear
-        
-        containerView = UIView()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        containerView.backgroundColor = .clear
-        containerView.addSubview(faceView)
-        containerView.addSubview(dial)
+        label = ViewController.configureLabel()
+        faceView = ViewController.configureFaceView()
+        dial = ViewController.configureDial()
+        containerView = ViewController.configureContainerView(faceView: faceView, dial: dial)
         
         stackView = UIStackView(arrangedSubviews: [label, containerView])
         
@@ -58,6 +51,8 @@ class ViewController: UIViewController
     {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad()
     {
@@ -84,19 +79,81 @@ class ViewController: UIViewController
                                                        attribute: .height,
                                                        multiplier: 1.0,
                                                        constant: 0.0))
-//        view.addConstraints(contstraints(for: stackView, in: view))
         
-        containerViewSizeConstraint = NSLayoutConstraint(item: containerView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: view.frame.size.width)
+        containerViewSizeConstraint = NSLayoutConstraint(item: containerView,
+                                                         attribute: .width,
+                                                         relatedBy: .equal,
+                                                         toItem: nil,
+                                                         attribute: .notAnAttribute,
+                                                         multiplier: 1.0,
+                                                         constant: view.frame.size.width)
+        
         containerViewSizeConstraint.priority = .required
         
-        view.addConstraints([NSLayoutConstraint(item: stackView, attribute: .centerY, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0),
-            NSLayoutConstraint(item: stackView, attribute: .centerX, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0),
-            containerViewSizeConstraint])
+        view.addConstraints([NSLayoutConstraint(item: stackView,
+                                                attribute: .centerY,
+                                                relatedBy: .equal,
+                                                toItem: view.safeAreaLayoutGuide,
+                                                attribute: .centerY,
+                                                multiplier: 1.0,
+                                                constant: 0.0),
+                             NSLayoutConstraint(item: stackView,
+                                                attribute: .centerX,
+                                                relatedBy: .equal,
+                                                toItem: view.safeAreaLayoutGuide,
+                                                attribute: .centerX,
+                                                multiplier: 1.0,
+                                                constant: 0.0),
+                             containerViewSizeConstraint])
         
         configureStackAxis(size: view.frame.size)
         
         setNeedsStatusBarAppearanceUpdate()
     }
+    
+    // MARK: - Configuration
+    
+    func configureStackAxis(size: CGSize)
+    {
+        stackView.axis = (size.width > size.height) ? .horizontal : .vertical
+    }
+    
+    class func configureLabel() -> UILabel
+    {
+        let label = UILabel()
+        label.text = defaultInterval.durationString
+        label.font = UIFont.systemFont(ofSize: 34, weight: .semibold)
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        
+        return label
+    }
+    
+    class func configureDial() -> Dial
+    {
+        let dial = Dial()
+        dial.backgroundColor = .clear
+        return dial
+    }
+    
+    class func configureFaceView() -> FaceView
+    {
+        let faceView = FaceView()
+        faceView.backgroundColor = .clear
+        return faceView
+    }
+    
+    class func configureContainerView(faceView: FaceView, dial: Dial) -> UIView
+    {
+        let containerView = UIView()//frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        containerView.backgroundColor = .clear
+        containerView.addSubview(faceView)
+        containerView.addSubview(dial)
+        
+        return containerView
+    }
+    
+    // MARK: - System View Updates
     
     override var preferredStatusBarStyle: UIStatusBarStyle
     {
@@ -106,11 +163,6 @@ class ViewController: UIViewController
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
     {
         configureStackAxis(size: size)
-    }
-    
-    func configureStackAxis(size: CGSize)
-    {
-        stackView.axis = (size.width > size.height) ? .horizontal : .vertical
     }
 }
 

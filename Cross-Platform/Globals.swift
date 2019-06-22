@@ -27,6 +27,13 @@ enum Platform: String
     case OSX = "me.joshgrant.TickTask.OSX.alarmDate"
     case OSXDebug = "me.joshgrant.TickTask.OSX.Debug.alarmDate"
     
+    static var all: [Platform] = [
+        .iOS,
+        .iOSDebug,
+        .OSX,
+        .OSXDebug
+    ]
+    
     static var current: Platform
     {
         #if os(iOS)

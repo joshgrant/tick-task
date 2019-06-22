@@ -14,6 +14,7 @@ let recordType = "Alarms"
 
 protocol CloudServiceDelegate
 {
+    func noAlarmsExistOnTheServer()
     func alarmWasRemotelyUpdated(date: Date, timeInterval: TimeInterval, platform: Platform)
 }
 
@@ -89,15 +90,30 @@ class CloudService
             }
             else if let alarmRecords = records
             {
+                print("Got some alarms: \(records!)")
+                
+                guard alarmRecords.count > 0 else
+                {
+                    // We need to delete all of the alarms?
+                    // In the case that there are no alarm records, we have
+                    // deleted all of them.
+                    self.delegate.noAlarmsExistOnTheServer()
+                    return
+                }
+                
                 for alarmRecord in alarmRecords
                 {
                     let alarm = Alarm(record: alarmRecord)
                     
                     self.delegate.alarmWasRemotelyUpdated(date: alarm.alarmDate,
-                                                     timeInterval: alarm.timeInterval,
-                                                     platform: alarm.platform)
+                                                          timeInterval: alarm.timeInterval,
+                                                          platform: alarm.platform)
                 }
                 
+            }
+            else
+            {
+                print("No Records")
             }
         }
     }
@@ -116,19 +132,32 @@ class CloudService
         }
     }
     
-    func deleteAlarm(alarm: Alarm, completion: @escaping (Alarm) -> ())
+    func deleteAlarm(platform: Platform, completion: @escaping () -> ())
     {
-        database.delete(withRecordID: alarm.record.recordID) { (recordID, error) in
-            if let error = error
-            {
-                print(error.localizedDescription)
-            }
-            else if let id = recordID
-            {
-                print("Deleted the record with ID: \(id)")
+        let predicate = NSPredicate(format: "platform == %@", platform.rawValue)
+        let query = CKQuery(recordType: recordType, predicate: predicate)
+        
+        database.perform(query, inZoneWith: nil) { (records, error) in
+            
+            guard let records = records else {
+                print("No records to delete")
+                return
             }
             
-            completion(alarm)
+            for record in records
+            {
+                self.database.delete(withRecordID: record.recordID) { (recordID, error) in
+                    if let error = error
+                    {
+                        print(error.localizedDescription)
+                    }
+                    else if let id = recordID
+                    {
+                        print("Deleted the record with ID: \(id)")
+                    }
+                    completion()
+                }
+            }
         }
     }
 }

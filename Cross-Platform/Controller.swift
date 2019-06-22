@@ -49,8 +49,6 @@ extension Controller: CloudServiceDelegate
             // the current platform is untouched
             notificationService.removeNotification(with: platform.rawValue)
             
-            print(alarm?.alarmDate.timeIntervalSinceNow)
-            
             if let alarm = alarm, alarm.timeInterval > 0 && alarm.alarmDate.timeIntervalSinceNow > 0
             {
                 let body = DateComponentsFormatter.completedDurationFormatter.string(from: alarm.timeInterval.dateComponents) ?? ""
@@ -103,7 +101,7 @@ extension Controller: DialDelegate
             
             // Cloud service delete
             cloudService.deleteAlarm(platform: .current) {
-                print("Deleted the alarm?")
+                print("Deleted the alarm")
             }
         }
         else

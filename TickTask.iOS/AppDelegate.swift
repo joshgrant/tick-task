@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        debugPrint("Received remote notification: \(userInfo)")
+        print("Received remote notification: \(userInfo)")
         
         let controller = Controller()
         
@@ -57,11 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        debugPrint("Did register for remote notifications: \(deviceToken)")
+        print("Did register for remote notifications: \(deviceToken)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        debugPrint("Failed to register for remote notifications: \(error)")
+        print("Failed to register for remote notifications: \(error)")
     }
 }

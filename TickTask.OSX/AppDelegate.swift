@@ -106,7 +106,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any])
     {
-        debugPrint("Received remote notification: \(userInfo)")
+        print("Received remote notification: \(userInfo)")
         
         let controller = Controller(delegate: self)
         
@@ -121,12 +121,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        debugPrint("Registered for remote notifications: \(deviceToken)")
+        print("Registered for remote notifications: \(deviceToken)")
     }
     
     func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        debugPrint("Failed to register for remote notifications: \(error)")
+        print("Failed to register for remote notifications: \(error)")
     }
 }
 

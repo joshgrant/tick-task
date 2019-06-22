@@ -92,7 +92,7 @@ class CloudService
             }
             else if let alarmRecords = records
             {
-                print("Got some alarms: \(records!)")
+                print("Downloaded \(alarmRecords.count) alarm(s)."
                 
                 var alarms: [Platform: Alarm?] = [
                     .OSX: nil,
@@ -129,9 +129,9 @@ class CloudService
                     {
                         print(error.localizedDescription)
                     }
-                    else if let alarm = record
+                    else
                     {
-                        print("Uploaded the alarm: \(alarm)")
+                        print("Uploaded an alarm")
                     }
                 })
             }

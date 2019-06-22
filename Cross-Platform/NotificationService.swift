@@ -79,7 +79,7 @@ class NotificationService: NSObject
             UNUserNotificationCenter.current().add(request) { (error) in
                 if let error = error
                 {
-                    debugPrint("Error adding the notification: \(error)")
+                    print("Error adding the notification: \(error)")
                 }
             }
         }

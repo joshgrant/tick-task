@@ -47,7 +47,7 @@ class TimerService
     
     func initializeTimer(action: @escaping (Timer) -> Void) -> Timer
     {
-        return Timer(timeInterval: 0.5, repeats: true, block: action)
+        return Timer(timeInterval: 1.0, repeats: true, block: action)
     }
     
     func setTimerToActive(interval: Double, update: @escaping (Timer) -> Void)

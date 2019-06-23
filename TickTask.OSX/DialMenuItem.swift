@@ -65,12 +65,17 @@ class DialMenuItem
     
     static func stackView(with label: NSTextField, slider: NSSlider, width: CGFloat) -> NSStackView
     {
-        let stackView = NSStackView(views: [label, slider])
+        let stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: width, height: width))
+        
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(slider)
+        
         stackView.edgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
         stackView.orientation = .vertical
         stackView.alignment = .centerX
         stackView.distribution = .fill
         stackView.spacing = 10
+        
         stackView.autoresizingMask = [.width, .height]
         stackView.autoresizesSubviews = true
         

@@ -113,7 +113,8 @@ extension Controller: DialDelegate
             dial.dialState = .countdown
             
             // Cloud service add
-            let alarm = Alarm(alarmDate: Date().addingTimeInterval(dial.totalInterval),
+            let date = Date().addingTimeInterval(dial.totalInterval)
+            let alarm = Alarm(alarmDate: date,
                               timeInterval: dial.totalInterval,
                               platform: Platform.current)
             cloudService.uploadAlarm(alarm: alarm)

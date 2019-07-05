@@ -28,5 +28,9 @@
 	<string>Copyright © 2019 joshgrant. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSSupportsSuddenTermination</key>
+	<true/>
+	<key>NSSupportsAutomaticTermination</key>
+	<false/>
 </dict>
 </plist>

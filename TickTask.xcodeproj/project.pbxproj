@@ -12,8 +12,6 @@
 		B54B1FDC22BD170100EEB8F7 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B1FDA22BD170100EEB8F7 /* Alarm.swift */; };
 		B54B1FE322BD1D4C00EEB8F7 /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */; };
 		B54B1FE422BD1D4C00EEB8F7 /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */; };
-		B57D36FC22B3D8A300F17BCA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D36FB22B3D8A300F17BCA /* CloudKit.framework */; };
-		B57D36FE22B3D8B100F17BCA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D36FD22B3D8B100F17BCA /* CloudKit.framework */; };
 		B5A43FB022AEBBA000F969A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5B82F4722A8E6A000359FFC /* Localizable.strings */; };
 		B5A43FB122AEBBA100F969A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5B82F4722A8E6A000359FFC /* Localizable.strings */; };
 		B5A43FB222AEBBA300F969A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58FD8D622A9616300853A84 /* Assets.xcassets */; };
@@ -115,6 +113,7 @@
 		B54B1FDA22BD170100EEB8F7 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		B54B1FE222BD1D4C00EEB8F7 /* CloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudService.swift; sourceTree = "<group>"; };
 		B550392922A6B4E5005BCE50 /* Dial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
+		B558706422CF867100E2992F /* TickTask.OSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask.OSX.entitlements; sourceTree = "<group>"; };
 		B57D36FB22B3D8A300F17BCA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		B57D36FD22B3D8B100F17BCA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		B58FD8D022A9482100853A84 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -125,7 +124,6 @@
 		B5A43F8922AEBA1600F969A9 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A43F9722AEBA1700F969A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A43F9F22AEBA2700F969A9 /* Tick Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tick Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5A43FA922AEBA2800F969A9 /* TickTask.OSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask.OSX.entitlements; sourceTree = "<group>"; };
 		B5A43FAD22AEBA4500F969A9 /* TickTask.iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TickTask.iOS.entitlements; sourceTree = "<group>"; };
 		B5A4402422AEBCA800F969A9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B5A4402522AEBCA800F969A9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B57D36FC22B3D8A300F17BCA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +185,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B57D36FE22B3D8B100F17BCA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,8 +324,8 @@
 		B5A4404022AEBE3B00F969A9 /* Meta */ = {
 			isa = PBXGroup;
 			children = (
+				B558706422CF867100E2992F /* TickTask.OSX.entitlements */,
 				B5A4402D22AEBCA900F969A9 /* Info.plist */,
-				B5A43FA922AEBA2800F969A9 /* TickTask.OSX.entitlements */,
 			);
 			name = Meta;
 			sourceTree = "<group>";
@@ -420,7 +416,7 @@
 		B53707F8226F188600ACFA62 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = joshgrant;
 				TargetAttributes = {
@@ -767,12 +763,11 @@
 		B5A43F9922AEBA1700F969A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = TickTask.iOS/TickTask.iOS.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -794,12 +789,11 @@
 		B5A43F9A22AEBA1700F969A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = TickTask.iOS/TickTask.iOS.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -826,6 +820,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = TickTask.OSX/TickTask.OSX.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
@@ -839,6 +834,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-OSX";
 				PRODUCT_NAME = "Tick Task";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -850,7 +846,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = TickTask.OSX/TickTask.OSX.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 685257RUQP;
@@ -864,6 +860,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.joshgrant.TickTask-OSX";
 				PRODUCT_NAME = "Tick Task";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

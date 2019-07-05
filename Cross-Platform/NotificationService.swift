@@ -50,7 +50,12 @@ class NotificationService: NSObject
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         
         center.requestAuthorization(options: options) { (granted, error) in
-            guard granted else { return }
+            if let error = error
+            {
+                print("Error requesting authorization: \(error.localizedDescription)")
+            }
+            
+            print("Granted authorization to display notifications")
         }
     }
     

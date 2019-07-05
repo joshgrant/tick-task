@@ -41,6 +41,7 @@ class CloudService
     func createSubscription()
     {
         let predicate = NSPredicate(value: true)
+        
         let subscription = CKQuerySubscription(recordType: recordType,
                                                predicate: predicate,
                                                subscriptionID: subscriptionIdentifier,
@@ -53,10 +54,7 @@ class CloudService
         
         subscription.notificationInfo = notificationInfo
         
-        let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription],
-                                                       subscriptionIDsToDelete: [])
-        
-        operation.modifySubscriptionsCompletionBlock = { (_, _, error) in
+        database.save(subscription) { (subscription, error) in
             if let error = error
             {
                 print(error.localizedDescription)
@@ -66,8 +64,6 @@ class CloudService
                 print("Added the subscription")
             }
         }
-        
-        database.add(operation)
     }
     
     // MARK: - CRUD Operations

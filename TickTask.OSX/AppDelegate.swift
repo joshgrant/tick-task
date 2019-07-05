@@ -101,7 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         configureElements(dial: nil, totalInterval: defaultInterval, rotations: 0, manual: true)
         
-        NSApplication.shared.registerForRemoteNotifications()
+        NSApp.registerForRemoteNotifications()
     }
     
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any])

@@ -24,6 +24,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "65EF686E-4CE2-438C-B2CE-42A01EB25B0F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -40,6 +41,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "696F3344-7B0F-42FF-96B3-D1C0208D6295"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -47,12 +49,13 @@
             timestampString = "582921004.989978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "uploadAlarm(alarm:)"
             landmarkType = "7">
             <Locations>
                <Location
+                  uuid = "696F3344-7B0F-42FF-96B3-D1C0208D6295 - 3466f337bf792c28"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -68,6 +71,7 @@
                   offsetFromSymbolStart = "449">
                </Location>
                <Location
+                  uuid = "696F3344-7B0F-42FF-96B3-D1C0208D6295 - 7d60e2799f060199"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -88,6 +92,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "BF544B0A-A86A-46BD-8E4A-CB5AED976163"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -95,8 +100,8 @@
             timestampString = "582921004.990042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "uploadAlarm(alarm:)"
             landmarkType = "7">
          </BreakpointContent>
